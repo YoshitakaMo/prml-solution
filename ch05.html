@@ -1,0 +1,1934 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第5章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html" class="active"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第5章演習問題解答"><a class="header" href="#prml第5章演習問題解答">PRML第5章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-51"><a class="header" href="#演習-51">演習 5.1</a></h2>
+<div class="panel-primary">
+<p>$$
+y_{k}(\mathbf{x}, \mathbf{w})=\sigma\left(\sum_{j=1}^{M} w_{k j}^{(2)} h\left(\sum_{i=1}^{D} w_{j i}^{(1)} x_{i}+w_{j 0}^{(1)}\right)+w_{k 0}^{(2)}\right) \tag{5.7}
+$$
+の形の2層ネットワーク関数で隠れユニットの非線形活性化関数がロジスティックシグモイド関数</p>
+<p>$$
+\sigma(a) = {1+ \exp(-a)}^{-1} \tag{5.191}
+$$</p>
+<p>で与えられるものを考える．これと等価なネットワーク，すなわち全く同じ関数を計算するが，隠れユニットの活性化関数が$\tanh(a)$で与えられるものが存在することを示せ．ただし，$\tanh$関数は
+$$
+\tanh (a)=\frac{e^{a}-e^{-a}}{e^{a}+e^{-a}} \tag{5.59}
+$$
+で定義される．</p>
+<p>ヒント：まず始めに$\sigma(a)$と$\tanh(a)$の関係を求め，次に2つのネットワークのパラメータの違いは線形変換であることを示す．</p>
+</div>
+<p>演習問題3.1と同様。まず$\tanh(a)$関数の定義から、シグモイド関数$\sigma(a)$との関係式は
+$$
+\begin{aligned}
+\tanh (a) &amp;=\frac{e^{a}-e^{-a}}{e^{a}+e^{-a}} \
+&amp;=-1+\frac{2 e^{a}}{e^{a}+e^{-a}} \
+&amp;=-1+2 \frac{1}{1+e^{-2 a}} \
+&amp;=2 \sigma(2 a)-1
+\end{aligned}
+$$
+で表される（$(3.100)$式）。</p>
+<p>ここで、$w_{ji}^{(1s)}$と$w_{j0}^{(1s)}, w_{kj}^{(2s)}$と$w_{k0}^{(2s)}$をネットワークのシグモイド活性化関数の重みパラメータ、$w_{ji}^{(1t)}$と$w_{j0}^{(1t)}, w_{kj}^{(2t)}$と$w_{k0}^{(2t)}$を$\tanh(a)$活性化関数を使う場合の重みパラメータとする。テキストの$(5.4)$式$\displaystyle a_{k}=\sum_{j=1}^{M} w_{k j}^{(2)} z_{j}+w_{k 0}^{(2)}$を使うと以下のように書き下せる。</p>
+<p>$$
+\begin{aligned}
+a_{k}^{(t)} &amp;=\sum_{j=1}^{M} w_{k j}^{(2 t)} \tanh \left(a_{j}^{(t)}\right)+w_{k 0}^{(2 t)} \
+&amp;=\sum_{j=1}^{M} w_{k j}^{(2 t)}\left[2 \sigma\left(2 a_{j}^{(t)}\right)-1\right]+w_{k 0}^{(2 t)} \
+&amp;=\sum_{j=1}^{M} 2 w_{k j}^{(2 t)} \sigma\left(2 a_{j}^{(t)}\right)+\left[-\sum_{j=1}^{M} w_{k j}^{(2 t)}+w_{k 0}^{(2 t)}\right]
+\end{aligned}
+$$</p>
+<p>一方、シグモイド活性化関数を使う場合だと</p>
+<p>$$
+a_{k}^{(s)}=\sum_{j=1}^{M} w_{k j}^{(2 s)} \sigma\left(a_{j}^{(s)}\right)+w_{k 0}^{(2 s)}
+$$
+のように書ける。</p>
+<p>これらのネットワークが等価になるとき、すなわち$a_{k}^{(t)} = a_{k}^{(s)}$であるならば、これら2つの式を比較して</p>
+<p>$$
+\left{\begin{array}{l}
+a_{j}^{(s)}=2 a_{j}^{(t)} \
+w_{k j}^{(2 s)}=2 w_{k j}^{(2 t)} \
+w_{k 0}^{(2 s)}=-\sum_{j=1}^{M} w_{k j}^{(2 t)}+w_{k 0}^{(2 t)}
+\end{array}\right.
+$$</p>
+<p>と変換すれば等価になることがわかる。ここで、1つ目の条件は以下のように設定することで達成される。
+$$
+w_{j i}^{(1 s)}=2 w_{j i}^{(1 t)}, \quad \text { and } \quad w_{j 0}^{(1 s)}=2 w_{j 0}^{(1 t)}
+$$</p>
+<p>以上から、シグモイド活性化関数と$\tanh$活性化関数の2つのネットワークは、線形変換において等価であることが示された。</p>
+<h2 id="演習-52"><a class="header" href="#演習-52">演習 5.2</a></h2>
+<div class="panel-primary">
+<p>複数の出力を持つニューラルネットワークについて，条件付き分布
+$$
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{w})=\mathcal{N}\left(\mathbf{t} \mid \mathbf{y}(\mathbf{x}, \mathbf{w}), \beta^{-1} \mathbf{I}\right) \tag{5.16}
+$$
+の尤度関数最大化は，二乗和誤差関数
+$$
+E(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left|\mathbf{y}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)-\mathbf{t}</em>{n}\right|^{2} \tag{5.11}
+$$
+の<s>最大化</s>最小化 <strong>（※おそらく誤植）</strong> と等価であることを示せ．</p>
+</div>
+<p>尤度関数は
+$$
+\prod_{n=1}^N \mathcal{N}\left(\mathbf{t} \mid \mathbf{y}(\mathbf{x}, \mathbf{w}), \beta^{-1} \mathbf{I}\right)
+$$
+と書けるから、負の対数尤度は、$K$を目標変数$\mathbf{t}$の数として</p>
+<p>$$
+\begin{aligned}
+&amp;-\sum_{n=1}^{N} \ln \mathcal{N}\left(\mathbf{t} \mid \mathbf{y}(\mathbf{x}, \mathbf{w}), \beta^{-1} \mathbf{I}\right) \
+=&amp;-\sum_{n=1}^{N} \ln \left{\frac{1}{(2 \pi)^{K / 2}} \frac{1}{\left(\beta^{-1}\right)^{K / 2}} \exp \left(-\frac{\beta}{2}(\mathbf{t}_n-\mathbf{y}(\mathbf{x}_n, \mathbf{w}))^{\mathrm T} \mathbf{I} (\mathbf{t}_n-\mathbf{y}(\mathbf{x}<em>n, \mathbf{w}))\right)\right} \
+=&amp;-\sum</em>{n=1}^{N}\left{\frac{K}{2} \ln \frac{\beta}{2 \pi}-\frac{\beta}{2}|\mathbf{t}_n-\mathbf{y}(\mathbf{x}<em>n, \mathbf{w})|^{2}\right} \
+=&amp; -\frac{N K}{2} \ln \frac{\beta}{2 \pi}+\frac{\beta}{2} \sum</em>{n=1}^{N}|\mathbf{y}(\mathbf{x}_n, \mathbf{w})-\mathbf{t}_n|^{2}
+\end{aligned}
+$$</p>
+<p>となる。$(5.11)$は上式の第2項の定数$\beta$倍であることがわかる。また、第1項は定数である。
+尤度関数の最大化は負の対数尤度の最小化と等価であるから、二乗和誤差関数$(5.11)$式の最小化に等しいことが示された。</p>
+<h2 id="演習-53"><a class="header" href="#演習-53">演習 5.3</a></h2>
+<div class="panel-primary">
+<p>複数の目標変数を持ち，入力ベクトル$\mathbf{x}$を固定したときの目標変数の分布が</p>
+<p>$$
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{w})=\mathcal{N}(\mathbf{t} \mid \mathbf{y}(\mathbf{x}, \mathbf{w}), \mathbf{\Sigma}) \tag{5.192}
+$$</p>
+<p>という形のガウス関数であるような回帰問題を考える．ここで，$\mathbf{y}(\mathbf{x}, \mathbf{w})$は入力べクトル$\mathbf{x}$，重みベクトル$\mathbf{w}$を持つニューラルネットワークの出力であり，$\mathbf{\Sigma}$は目標値の想定されたガウスノイズの共分散である．$\mathbf{x}$と$\mathbf{t}$の独立な観測値の集合が与えられたとき，$\mathbf{\Sigma}$は固定で既知と仮定して，$\mathbf{w}$に関する最尤推定解を見つけるための最小化すべき誤差関数を書き下せ．さらに，$\mathbf{\Sigma}$もまたデータから決定すべきと仮定し，$\mathbf{\Sigma}$の最尤推定解の式を書き下せ．ここでは5.2節で議論した独立な目標変数の場合と異なり，$\mathbf{w}$と$\mathbf{\Sigma}$の最適化が連結されている点に注意せよ．</p>
+</div>
+<p>※後半の$\mathbf{\Sigma}$の最尤推定解を求める部分は演習問題2.34とほぼ同じなのでこちらを参照。</p>
+<p>この場合の尤度関数は</p>
+<p>$$
+L=\prod_{n=1}^{N} \mathcal{N}\left(\mathbf{t}_{n} \mid \mathbf{y}(\mathbf{x}_n, \mathbf{w})), \mathbf{\Sigma}\right)
+$$</p>
+<p>で与えられるので、対数尤度関数は</p>
+<p>$$
+\begin{aligned}
+\ln L &amp;=\sum_{n=1}^{N} \ln \mathcal{N}\left(\mathbf{t}<em>{n} \mid \mathbf{y}(\mathbf{x}<em>n, \mathbf{w}), \mathbf{\Sigma}\right) \
+&amp;=-\frac{NK}{2}\ln(2\pi)-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum</em>{n=1}^{N}\left(\mathbf{t}</em>{n}-\mathbf{y}(\mathbf{x}<em>n, \mathbf{w})\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{t}</em>{n}-\mathbf{y}(\mathbf{x}_n, \mathbf{w})\right)
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>今、$\mathbf{\Sigma}$は固定で既知と仮定すると、上式より最小化すべき誤差関数は
+$$
+E(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left(\mathbf{t}_{n}-\mathbf{y}(\mathbf{x}<em>n, \mathbf{w})\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{t}</em>{n}-\mathbf{y}(\mathbf{x}_n, \mathbf{w})\right)
+$$</p>
+<p>である。</p>
+<p>次に$\mathbf{\Sigma}$の最尤推定解の式を求めるために$\mathbf{\Sigma}$について偏微分すると、$\mathbf{y}_n = \mathbf{y}(\mathbf{x}_n, \mathbf{w})$として</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{\Sigma}} \ln L &amp;=-\frac{N}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \ln |\mathbf{\Sigma}|-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \sum_{n=1}^{N}\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right) \
+&amp;=-\frac{N}{2} \mathbf{\Sigma}^{-1}-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \sum_{n=1}^{N} \operatorname{Tr}\left{\mathbf{\Sigma}^{-1}\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)^{\mathrm{T}}\right} \
+&amp;=-\frac{N}{2} \mathbf{\Sigma}^{-1}-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \operatorname{Tr}\left{\mathbf{\Sigma}^{-1} \sum_{n=1}^{N}\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)^{\mathrm{T}}\right} \
+&amp;=-\frac{N}{2} \mathbf{\Sigma}^{-1}-\frac{1}{2} \mathbf{\Sigma}^{-1}\left{\sum_{n=1}^{N}\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)\left(\mathbf{t}<em>{n}-\mathbf{y}</em>{n}\right)^{\mathrm{T}}\right} \mathbf{\Sigma}^{-1}
+\end{aligned}
+$$</p>
+<p>$\frac{\partial}{\partial \mathbf{\Sigma}} \ln L = 0$を求めると、最尤推定解は</p>
+<p>$$
+\mathbf{\Sigma}<em>{\mathrm{ML}}=\frac{1}{N} \sum</em>{n=1}^{N}\left(\mathbf{t}_{n}-\mathbf{y}(\mathbf{x}<em>n, \mathbf{w})\right)\left(\mathbf{t}</em>{n}-\mathbf{y}(\mathbf{x}_n, \mathbf{w})\right)^{\mathrm{T}}
+$$</p>
+<p>となる。</p>
+<p>ちなみに$\mathbf{w}$と$\mathbf{\Sigma}$は相互に依存しているので、これらの解を求めるときの1つの方法としては、$\mathbf{w}$と$\mathbf{\Sigma}$の解を交互にある一定の収束値以下の誤差になるまで繰り返し求める、というものがある。</p>
+<h2 id="演習-54"><a class="header" href="#演習-54">演習 5.4</a></h2>
+<div class="panel-primary">
+<p>目標値が$t \in { 0,1}$であり，ネットワークの出力$y(\mathbf{x}, \mathbf{w})$が$p(t=1\mid \mathbf{x})$を表すような2クラス分類問題を考え，訓練データ点のクラスラベルが誤っている確率が$\epsilon$であるとする．独立同分布のデータを仮定して，負の対数尤度に相当する誤差関数を書き下せ．また，$\epsilon=0$のときは誤差関数
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{5.21}
+$$
+が得られることを確かめよ．通常の誤差関数と比べ，この誤差関数を用いると，誤ってラベル付けされたデータに対してモデルが頑健になることに注意せよ．</p>
+</div>
+<p>※P.235の流れと演習問題4.16を参照。</p>
+<p>出力の$y(\mathbf{x}, \mathbf{w})$が$p(t=1\mid \mathbf{x})$となるので
+$$
+p(t=1\mid \mathbf{x}) = y(\mathbf{x}, \mathbf{w})
+$$
+で表される。ここで目標値$t$のデータラベルが確率$\varepsilon$で間違っているとすると、$k$を真のクラスラベルとして
+$$
+\begin{aligned}
+P(t=1 \mid \mathbf{x}) &amp;=\sum_{k=0}^1 p(t=1 \mid k) p(k \mid \mathbf{x}) \
+&amp;=\varepsilon(1-y(\mathbf{x}, \mathbf{w}))+(1-\varepsilon) y(\mathbf{x}, \mathbf{w})
+\end{aligned}
+$$</p>
+<p>P.235の議論から、入力が与えられたときの目標の条件付き分布は
+$$
+p(t \mid \mathbf{x}, \mathbf{w})=p(t=1 \mid \mathbf{x})^{t}(1-p(t=1 \mid \mathbf{x}))^{1-t}
+$$
+となる。独立同分布から$N$個のデータ点を取得して負の対数尤度を取り、これを誤差関数として定義すると
+$$
+\begin{aligned}
+E(\mathbf{w}) &amp;=-\ln \prod_{n=1}^{N} p\left(t_{n} \mid \mathbf{x}<em>{n}, \mathbf{w}\right) \
+&amp;=-\sum</em>{n=1}^{N}\left{t_{n} \ln p(t_{n}=1 \mid \mathbf{x}<em>n)+\left(1-t</em>{n}\right) \ln {1-p(t=1 \mid \mathbf{x}<em>n)} \right} \
+&amp;=-\sum</em>{n=1}^{N}\left{t_{n} \ln \left[\varepsilon\left(1-y\left(\mathbf{x}<em>{n}, \mathbf{w}\right)\right)+(1-\varepsilon) y\left(\mathbf{x}</em>{n}, \mathbf{w}\right)\right] + \left(1-t_{n}\right) \ln \left[1-\varepsilon\left(1-y\left(\mathbf{x}<em>{n}, \mathbf{w}\right)\right)-(1-\varepsilon) y\left(\mathbf{x}</em>{n}, \mathbf{w}\right)\right]\right}
+\end{aligned}
+$$
+となる。これは$\varepsilon = 0$（ラベルミスがない）ならば
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{5.21}
+$$
+と同型になる。</p>
+<h2 id="演習-55"><a class="header" href="#演習-55">演習 5.5</a></h2>
+<div class="panel-primary">
+<p>出力が$y_k(\mathbf{x}, \mathbf{w}) = p(t_k =1\mid \mathbf{x})$と解釈される多クラスニューラルネットワークモデルについて，尤度を最適化することは，交差エントロピー誤差関数
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{k}\left(\mathbf{x}_{n}, \mathbf{w}\right) \tag{5.24}
+$$
+を最小化することと等価であることを示せ．</p>
+</div>
+<p>$K$クラスにおける条件付き確率分布は
+$$
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{w})=\prod_{k=1}^{K} p\left(t_{k}=1 \mid \mathbf{x}, \mathbf{w}\right)^{t_{k}}=\prod_{k=1}^{K} y_{k}^{t_{k}}
+$$
+とかけるので尤度関数は$\mathbf{T}=\left{\mathbf{t}_1\dots\mathbf{t}_N\right}, \mathbf{X}=\left{\mathbf{x}_1\dots\mathbf{x}_N\right}$とおいて</p>
+<p>$$
+p\left(\mathbf{T} \mid \mathbf{X} , \mathbf{w} \right)=\prod_{n=1}^{N} p(\mathbf{t}<em>n \mid \mathbf{x}<em>n, \mathbf{w})=\prod</em>{n=1}^{N} \prod</em>{k=1}^{K} y_{n k}^{t_{n k}}
+$$
+とかける。尤度関数の負の対数は
+$$
+-\ln p\left(\mathbf{T} \mid \mathbf{X}, \mathbf{w} \right)=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k}
+$$
+となるので、$K$クラスの尤度関数の最適化は$(5.24)$の最小化と等価である。</p>
+<h2 id="演習-56"><a class="header" href="#演習-56">演習 5.6</a></h2>
+<div class="panel-primary">
+<p>ロジスティックシグモイド活性化関数を持つ出力ユニットの活性$a_k$に関する誤差関数
+$$
+E(\mathbf{w})=-\sum_{k=1}^{N}\left{t_{k} \ln y_{k}+\left(1-t_{k}\right) \ln \left(1-y_{k}\right)\right} \tag{5.21}
+$$
+の微分は，
+$$
+\frac{\partial E}{\partial a_{k}}=y_{k}-t_{k} \tag{5.18}
+$$
+を満たすことを示せ．</p>
+</div>
+<p>ロジスティックシグモイド$\displaystyle y_k = \sigma(a_{k}) = \frac{1}{1+e^{-a_k}}$を$a_k$で微分すると（これは演習問題4.12や$(4.88)$式と同じ）</p>
+<p>$$
+\begin{aligned}
+\frac{\partial y_k}{\partial a_k} &amp;= \frac{e^{-a_k}}{(1+e^{-a_k})^2} \
+&amp;=\frac{1}{1+e^{-a_k}}\left( 1-\frac{1}{1+e^{-a_k}} \right) \
+&amp;= y_k(1-y_k)
+\end{aligned}
+$$
+なので、ある$k$のときの$a_k$についての$E$の偏微分は
+$$
+\begin{aligned}
+\frac{\partial E}{\partial a_{k}} &amp;=-\left{t_{k} \frac{\partial}{\partial a_{k}} \ln y_{k}+\left(1-t_{k}\right) \frac{\partial}{\partial a_{k}} \ln \left(1-y_{k}\right)\right} \
+&amp;=-\left{\frac{t_{k}}{y_{k}} \frac{\partial y_{k}}{\partial a_{k}}-\frac{1-t_{k}}{1-y_{k}} \frac{\partial y_{k}}{\partial a_{k}}\right} \
+&amp;=-\left(\frac{t_{k}-y_{k}}{y_{k}\left(1-y_{k}\right)}\right) y_k (1- y_k ) \
+&amp;=y_{k}-t_{k}
+\end{aligned}
+$$
+となる。よって$(5.18)$式が得られた。</p>
+<h2 id="演習-57"><a class="header" href="#演習-57">演習 5.7</a></h2>
+<div class="panel-primary">
+<p>ソフトマックス活性化関数を持つ出力ユニットの活性$a_k$に関する誤差関数
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right) \tag{5.24}
+$$
+の微分は
+$$
+\frac{\partial E}{\partial a</em>{k}}=y_{k}-t_{k} \tag{5.18}
+$$
+を満たすことを示せ．</p>
+</div>
+<p>演習問題4.17とほとんど同じ。簡略化のため$y_{nk}=y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)$と書くことにする。実際は$\displaystyle \frac{\partial E}{\partial a</em>{nk}}=y_{nk}-t_{nk}$を示すことになる。</p>
+<p>$y_{nk}$はソフトマックス関数を出力の活性化関数に持っているので
+$$
+y_{n k}=y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)=\frac{\exp a</em>{nk}}{\sum_{j} \exp a_{nj}}
+$$
+微分のchain ruleを使うと
+$$
+\frac{\partial E}{\partial a_{n k}}=\sum_{i=1}^{N} \sum_{j=1}^{K} \frac{\partial E}{\partial y_{ij}} \frac{\partial y_{i j}}{\partial a_{n k}}
+$$
+となる。$\displaystyle \frac{\partial E}{\partial y_{ij}}=-\frac{t_{ij}}{y_{ij}}$は簡単に求まる。</p>
+<p>$\displaystyle \frac{\partial y_{i j}}{\partial a_{n k}}$は演習問題4.17の結果から
+$$
+\frac{\partial y_{i j}}{\partial a_{n k}}=\left{\begin{array}{cc}
+0 &amp; (\textrm{if}\ \  i \neq n) \
+y_{nj}\left(\delta_{kj}-y_{nk}\right) &amp; (\textrm{if}\ \  i = n)
+\end{array}\right.
+$$
+となる（$\delta_{kj}$はクロネッカーのデルタ）。よって
+$$
+\begin{aligned}
+\frac{\partial E}{\partial a_{n k}} &amp;=\sum_{j=1}^{K} t_{n j}\left(y_{n k}-\delta_{kj}\right) \
+&amp;=y_{n k}\left(\sum_{j=1}^{K} t_{nj}\right)-\sum_{j=1}^{K} t_{nj} \delta_{kj} \
+&amp;=y_{nk}-t_{nk} \left( \because \sum_{j=1}^{K} t_{nj}=1\right)
+\end{aligned}
+$$
+以上から$(5.18)$式が得られた。最後の計算部分は演習問題4.18も参照。</p>
+<h2 id="演習-58"><a class="header" href="#演習-58">演習 5.8</a></h2>
+<div class="panel-primary">
+<p>$$
+\frac{d \sigma}{d a}=\sigma(1-\sigma) \tag{4.88}
+$$
+ではロジスティックシグモイド活性化関数の微分は，関数の値そのもので表されることがわかった．活性化関数が
+$$
+\tanh (a)=\frac{e^{a}-e^{-a}}{e^{a}+e^{-a}} \tag{5.59}
+$$
+で定義される$\tanh$である場合について，対応する結果を導け．</p>
+</div>
+<p>※単純に微分するだけ</p>
+<p>$$
+\begin{aligned}
+\frac{d}{da}\tanh(a) &amp;= \frac{(e^{a}+e^{-a})(e^{a}+e^{-a})-(e^{a}-e^{-a})(e^{a}-e^{-a})}{(e^{a}+e^{-a})^2} \
+&amp;= 1-\left( \frac{e^{a}-e^{-a}}{e^{a}+e^{-a}} \right)^2\
+&amp;= 1-\tanh^2 (a)\
+\end{aligned}
+$$</p>
+<h2 id="演習-59"><a class="header" href="#演習-59">演習 5.9</a></h2>
+<div class="panel-primary">
+<p>$0\leq y(\mathbf{x}, \mathbf{w})\leq 1$となるロジスティックシグモイド活性化関数を出力に持ち，データが目標値$t \in {0,1}$を持つようなネットワークについて，2クラス分類問題における誤差関数
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{5.21}
+$$
+が導かれた．ネットワークの出力が$-1\leq y(\mathbf{x}, \mathbf{w})\leq 1$であり，目標値がクラス$\mathcal{C}_1$については$t=1$，クラス$\mathcal{C}_2$については$t=-1$であるようなネットワークを考えたとき，対応する誤差関数を導け．出力ユニットの活性化関数はどのように選ぶのが適切か．</p>
+</div>
+<p>指定された値域になるような変換を考える．</p>
+<p>$$
+\begin {aligned}
+t \in {0,1} &amp;\longrightarrow \hat{t} \in {-1,1} \
+0\leqslant y \leqslant 1 &amp;\longrightarrow -1 \leqslant \hat{y} \leqslant 1
+\end {aligned}
+$$</p>
+<p>となる$\hat{t}, \hat{y}$は</p>
+<p>$$
+\begin {aligned}
+\hat{t} =  2t-1 &amp;\Leftrightarrow t = \frac{\hat{t}+1}{2} \
+\hat{y} =  2y-1 &amp;\Leftrightarrow y = \frac{\hat{y}+1}{2}
+\end {aligned}
+$$</p>
+<p>で与えられる．</p>
+<p>これを$5.21$に代入すると，</p>
+<p>$$
+\begin {aligned}
+E(\mathbf{w}) &amp;= -\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \
+&amp;= -\sum_{n=1}^{N}\left{\frac{\hat{t}<em>{n}+1}{2} \ln \frac{\hat{y}</em>{n}+1}{2}+\left(1-\frac{\hat{t}<em>{n}+1}{2}\right) \ln \left(1-\frac{\hat{y}</em>{n}+1}{2}\right)\right} \
+&amp;= -\frac{1}{2} \sum_{n=1}^{N}\left{(1+\hat{t}<em>{n}) \ln (1+\hat{y}</em>{n})+\left(1-\hat{t}<em>{n}\right) \ln \left(1-\hat{y}</em>{n}\right)\right} + N \ln 2
+\end {aligned}
+$$</p>
+<p>となり，対応する誤差関数が導かれる．</p>
+<p>また，出力ユニットの活性化関数$h(a)$については$y=\sigma (a)$の値域が$0 \leqslant y \leqslant 1$であったので</p>
+<p>$$
+\begin {aligned}
+h(a) &amp;= 2\sigma (a) - 1 \
+&amp;= \frac{2}{1+e^{-a}} - 1 \
+&amp;= \frac{1-e^{-a}}{1+e^{-a}} \
+&amp;= \frac{e^{a/2}-e^{a/2}}{e^{a/2}+e^{a/2}} \
+&amp;= \tanh (a/2)
+\end {aligned}
+$$</p>
+<p>を選べば良い．</p>
+<h2 id="演習-510"><a class="header" href="#演習-510">演習 5.10</a></h2>
+<div class="panel-primary">
+<p>固有方程式
+$$
+\mathbf{H}\mathbf{u}<em>i = \lambda_i \mathbf{u}<em>i \tag{5.33}
+$$
+を持つヘッセ行列$\mathbf{H}$を考える．
+$$
+\mathbf{v}^{\mathrm{T}} \mathbf{H} \mathbf{v}=\sum</em>{i} c</em>{i}^{2} \lambda_{i} \tag{5.39}
+$$
+におけるベクトル$\mathbf{v}$を順々に固有ベクトル$\mathbf{u}_i$のそれぞれと等しくすることにより，すべての固有値が正であるときそのときに限り$\mathbf{H}$は正定値であることを示せ．</p>
+</div>
+<p>(5.33)と(5.34)より</p>
+<p>$$\mathbf{u}_i^T\mathbf{H}\mathbf{u}_i=\mathbf{u}_i^T\mathbf{\lambda}_i\mathbf{u}_i=\mathbf{\lambda}_i$$</p>
+<p>$\mathbf{H}$が正定値のとき、(5.37)が成り立つ。</p>
+<p>ここで$\mathbf{v}=\mathbf{u}_i$とすると、</p>
+<p>$$\mathbf{\lambda}_i=\mathbf{u}_i^T\mathbf{H}\mathbf{u}_i&gt;0$$</p>
+<p>よって$\mathbf{H}$が正定値のとき、すべての固有値は正となる。</p>
+<p>またすべての固有値が正であるとき、任意のベクトル$\mathbf{v}$に対して、(5.39)より、</p>
+<p>$$\mathbf{v}^T\mathbf{H}\mathbf{v}=\sum_{i}\mathbf{c}_i^2\mathbf{\lambda}_i&gt;0$$</p>
+<p>ゆえに、すべての固有値が正であるとき$\mathbf{H}$は正定値となる。</p>
+<h2 id="演習-511"><a class="header" href="#演習-511">演習 5.11</a></h2>
+<div class="panel-primary">
+<p>$$
+E(\mathbf{w}) \simeq E\left(\mathbf{w}^{<em>}\right)+\frac{1}{2}\left(\mathbf{w}-\mathbf{w}^{</em>}\right)^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}-\mathbf{w}^{*}\right) \tag{5.32}
+$$
+で定義される二次誤差関数を考える．ここで，ヘッセ行列$\mathbf{H}$が
+$$
+\mathbf{H}\mathbf{u}_i = \lambda_i \mathbf{u}_i \tag{5.33}
+$$
+で与えられる固有方程式を持つとする．このとき，誤差一定の等高線は，方向が固有ベクトル$\mathbf{u}_j$であり，長さが対応する固有値$\lambda_i$の平方根の逆数であるような軸を持つ楕円であることを示せ．</p>
+</div>
+<p>$(5.36)$より、$(5.32)$の式は</p>
+<p>$$
+E(\mathbf{w})=E(\mathbf{w}^{\star})+\frac{1}{2}\sum_{i}\mathbf{\lambda}_i\mathbf{\alpha}_i^2
+$$</p>
+<p>の形で書くことができる。</p>
+<p>誤差一定の等高線を考えたとき、$E(\mathbf{w})$を定数$C$で表すと、</p>
+<p>$$C=E(\mathbf{w}^{\star})+\frac{1}{2}\sum_{i}\mathbf{\lambda}_i\mathbf{\alpha}_i^2$$</p>
+<p>このとき、</p>
+<p>$$
+\begin{aligned}
+\frac{1}{2}\sum_{i}\mathbf{\lambda}_i\mathbf{\alpha}_i^2&amp;=\mathbf{C}-E(\mathbf{w}^{\star})\&amp;=\tilde{C}
+\end{aligned}
+$$</p>
+<p>と表すことができる。なお、$\tilde{C}$は定数である。</p>
+<p>$\mathbf{\alpha}_i$は$\mathbf{u}_i$方向の長さを表すため、この式は$\mathbf{u}_i$によって記述された座標に表現される楕円の方程式である。</p>
+<p>また、すべての$i \neq j$について$\mathbf{\alpha}_i=0$とすることで軸$j$の長さが決定される。</p>
+<p>このとき、</p>
+<p>$$\mathbf{\alpha}_j=\left(\frac{\tilde{C}}{\mathbf{\lambda}_j}\right)^{\frac{1}{2}}$$</p>
+<p>軸の長さが、対応する固有値$\mathbf{\lambda}_j$の平方根の逆数であるような軸を持つことが示された。</p>
+<h2 id="演習-512"><a class="header" href="#演習-512">演習 5.12</a></h2>
+<div class="panel-primary">
+<p>停留点$\mathbf{w}^{<em>}$のまわりでの誤差関数のテイラー展開
+$$
+E(\mathbf{w}) \simeq E\left(\mathbf{w}^{</em>}\right)+\frac{1}{2}\left(\mathbf{w}-\mathbf{w}^{<em>}\right)^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}-\mathbf{w}^{</em>}\right) \tag{5.32}
+$$
+を考えることで，停留点が誤差関数の局所的極小点であることの必要十分条件は，
+$$
+\left.(\mathbf{H})<em>{i j} \equiv \frac{\partial E}{\partial w</em>{i} \partial w_{j}}\right|_{\mathbf{w}=\widehat{\mathbf{w}}} \tag{5.30}
+$$
+で定義されるヘッセ行列$\mathbf{H}$が正定値であることを示せ．ただし$\hat{\mathbf{w}} = \mathbf{w}^{*}$である．</p>
+</div>
+<p>まず十分条件の証明を行う。$\mathbf{w}^{<em>}$が誤差関数$E(\mathbf{w})$の局所的極小点であるならば、$\mathbf{w}^{</em>}$周辺の任意のベクトル$\mathbf{w}$について$E(\mathbf{w}) &gt; E(\mathbf{w}^{*})$が成立することになる。同様に、$(5.32)$のテイラー展開の式から任意のベクトル$\mathbf{w}$について</p>
+<p>$$
+\frac{1}{2}\left(\mathbf{w}-\mathbf{w}^{<em>}\right)^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}-\mathbf{w}^{</em>}\right) &gt; 0
+$$</p>
+<p>となる必要がある。任意の$0$ベクトルでない$\left(\mathbf{w}-\mathbf{w}^{*}\right)$について上式が成り立つので、演習問題2.20でも証明されたように、ヘッセ行列$\mathbf{H}$は正定値行列となる。</p>
+<p>反対に必要条件の証明として、ヘッセ行列$\mathbf{H}$が正定値行列ならば任意の$0$ベクトルでない$\left(\mathbf{w}-\mathbf{w}^{<em>}\right)^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}-\mathbf{w}^{</em>}\right) &gt; 0$なので$E(\mathbf{w}) &gt; E(\mathbf{w}^{<em>})$となる。すなわち、（$\mathbf{w}^{</em>}$の近傍で）$E(\mathbf{w})$のとりうる最小の値は$E(\mathbf{w}^{<em>})$であるため、$\mathbf{w}^{</em>}$において極小値を取る。</p>
+<p>以上から題意が示された。</p>
+<p>※一般に多変数関数の極値判定において、「<strong>ある点で偏導関数の値が全て$0$かつヘッセ行列が正定値ならば、その点は極小である</strong>」という定理が存在する（反対にヘッセ行列が負定値ならば、その点は極大である）。ヘッセ行列$\mathbf{H}$が正定値行列であるかどうかは、以下の3つの条件のうちいずれかを満たすことを調べればよい（いずれも数学的には等価）。参考：https://mathtrain.jp/hessian</p>
+<ol>
+<li>全ての（$0$ベクトルではない）$n$次元ベクトル$\mathbf{v}$に対して$\mathbf{v}^{\mathrm{T}} \mathbf{H} \mathbf{v} &gt; 0$であること</li>
+<li>$\mathbf{H}$の固有値が全て正</li>
+<li>首座小行列の行列式が全て正。</li>
+</ol>
+<h2 id="演習-513"><a class="header" href="#演習-513">演習 5.13</a></h2>
+<div class="panel-primary">
+<p>ヘッセ行列$\mathbf{H}$の対称性により，二次誤差関数
+$$
+E(\mathbf{w}) \simeq E(\widehat{\mathbf{w}})+(\mathbf{w}-\widehat{\mathbf{w}})^{\mathrm{T}} \mathbf{b}+\frac{1}{2}(\mathbf{w}-\widehat{\mathbf{w}})^{\mathrm{T}} \mathbf{H}(\mathbf{w}-\widehat{\mathbf{w}}) \tag{5.28}
+$$
+の独立成分の数は$W(W+3)/2$で与えられることを示せ．</p>
+</div>
+<p>この式の各項は</p>
+<p>$$
+\begin{aligned}
+E(\mathbf{w}) \simeq E(\widehat{\mathbf{w}})+(\mathbf{w}-\widehat{\mathbf{w}})^{\mathrm{T}} \underbrace{\mathbf{b}}<em>{W個}+\frac{1}{2}(\mathbf{w}-\widehat{\mathbf{w}})^{\mathrm{T}} \underbrace{\mathbf{H}}</em>{\frac{W(W+1)}{2}個}(\mathbf{w}-\widehat{\mathbf{w}})
+\end{aligned}
+$$</p>
+<p>の独立変数があり他は全て定数である。これらの線形和なので全部で独立成分の数は$W(W+3)/2$である。</p>
+<h2 id="演習-514"><a class="header" href="#演習-514">演習 5.14</a></h2>
+<div class="panel-primary">
+<p>テイラー展開をすることにより，
+$$
+\frac{\partial E_{n}}{\partial w_{j i}}=\frac{E_{n}\left(w_{j i}+\epsilon\right)-E_{n}\left(w_{j i}-\epsilon\right)}{2 \epsilon}+O\left(\epsilon^{2}\right) \tag{5.69}
+$$
+の右辺において$O(\epsilon)$である項は消えることを確かめよ．</p>
+</div>
+<p>$\displaystyle E_n^{\prime} = \frac{\partial E_n}{\partial w_{ji}}$としてテイラー展開を用いると
+$$
+\begin{aligned}
+E_{n}\left(w_{j i}+\varepsilon\right) &amp;= E_{n}\left(w_{j i}\right)+\varepsilon E_{n}^{\prime}\left(w_{j i}\right)+\frac{\varepsilon^{2}}{2} E_{n}^{\prime \prime}\left(w_{j i}\right)+\mathcal{O}\left(\varepsilon^{3}\right) \
+E_{n}\left(w_{j i}-\varepsilon\right) &amp;= E_{n}\left(w_{j i}\right)-\varepsilon E_{n}^{\prime}\left(w_{j i}\right)+\frac{\varepsilon^{2}}{2} E_{n}^{\prime \prime}\left(w_{i i}\right)+\mathcal{O}\left(\varepsilon^{3}\right)
+\end{aligned}
+$$
+よって
+$$
+E_{n}\left(w_{j i}+\varepsilon\right)-E\left(w_{j i}-\varepsilon\right)=2 \varepsilon E_{n}^{\prime}\left(w_{j i}\right)+\mathcal{O}\left(\varepsilon^{3}\right)
+$$
+これを変形すれば
+$$
+\begin{aligned}
+\frac{\partial E_{n}}{\partial w_{j i}} &amp;= \frac{E_{n}\left(w_{j i}+\epsilon\right)-E_{n}\left(w_{j i}-\epsilon\right)+\mathcal{O}\left(\varepsilon^{3}\right)}{2 \epsilon} \
+&amp;= E_{n}^{\prime}\left(w_{j i}\right) +\mathcal{O}\left(\varepsilon^{2}\right)
+\end{aligned}
+$$
+が得られる。</p>
+<h2 id="演習-515"><a class="header" href="#演習-515">演習 5.15</a></h2>
+<div class="panel-primary">
+<p>5.3.4節において．逆伝播手続きを利用してニューラルネットワークのヤコビ行列を評価する手続きを導いた．順伝播方程式に基づき，ヤコビ行列を見つけるための他の定式化を導出せよ．</p>
+</div>
+<p>※たぶん5.3.4節で行っていた逆伝播の手順と逆向きに連鎖律を適用することでヤコビ行列を導け、という意味。</p>
+<p>イメージとしては以下のような図になる。</p>
+<img src="/attachment/617b8a2ad44de45e6ef74f72" width="600px">
+<p>$(5.73)$式から、ユニット$j$を出力層と結合する全てのユニットとすると</p>
+<p>$$
+J_{k i}=\frac{\partial y_{k}}{\partial x_{i}}=\sum_{j} \frac{\partial y_{k}}{\partial a_{j}} \frac{\partial a_{j}}{\partial x_{i}}
+$$
+であり、出力ユニット活性に関わる項$\displaystyle \frac{\partial y_{k}}{\partial a_{j}}$は$(5.75)$, $(5.76)$式で示されているように</p>
+<p>$$
+\frac{\partial y_{k}}{\partial a_{j}}=\delta_{k j} \sigma^{\prime}\left(a_{j}\right)
+$$
+などで表されるので、</p>
+<p>$$
+\sum_{j} \frac{\partial y_{k}}{\partial a_{j}} \frac{\partial a_{j}}{\partial x_{i}} = \sum_{j} \delta_{k j} \sigma^{\prime}\left(a_{j}\right) \frac{\partial a_j}{\partial x_i}
+$$</p>
+<p>となる。</p>
+<p>また、ユニット$j$に結合している全てのユニットを$l$(層状構造なら$j$の一つ手前の層に属するユニット)とすると</p>
+<p>$a_j = \sum_{l} w_{jl}z_l$と$z_l = h(a_l)$を利用して</p>
+<p>$$
+\begin{aligned}
+\frac{\partial a_{j}}{\partial x_{i}} &amp;= \sum_l \frac{\partial a_j}{\partial z_l}\frac{\partial z_l}{\partial a_l}\frac{\partial a_l}{\partial x_i} \
+&amp;= \sum_l w_{jl}h^{\prime}(a_l)\frac{\partial a_l}{\partial x_i}
+\end{aligned}
+$$
+で評価できる。もし$a_l$がインプット層から見て最初の隠れ層ならば</p>
+<p>$$
+\frac{\partial a_{l}}{\partial x_{i}} = \frac{\partial}{\partial x_i}\sum_i w_{li}x_i = w_{li}
+$$
+となっている。
+これを再帰的に計算することによってヤコビ行列を計算することができる。</p>
+<h2 id="演習-516"><a class="header" href="#演習-516">演習 5.16</a></h2>
+<div class="panel-primary">
+<p>二乗和誤差関数を用いたニューラルネットワークのヘッセ行列の外積による近似は
+$$
+\mathbf{H} \simeq \sum_{n=1}^{N} \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.84}
+$$
+で与えられる．この結果を複数の出力を持つ場合に拡張せよ．</p>
+</div>
+<p>※5.4.2 外積による近似を参照。</p>
+<p>$(5.82)$式から二乗和誤差関数
+$$
+E=\frac{1}{2} \sum_{n=1}^{N}\left(y_{n}-t_{n}\right)^{2}
+$$</p>
+<p>の出力$y_n, t_n$を$K$次元に拡張すると</p>
+<p>$$
+\begin{aligned}
+E &amp;=\frac{1}{2} \sum_{n=1}^{N}\left|\mathbf{y}_n-\mathbf{t}<em>n\right|^{2} \
+&amp;=\frac{1}{2} \sum</em>{n=1}^{N}\left(\mathbf{y}<em>n-\mathbf{t}<em>n\right)^{\mathrm T}\left(\mathbf{y}<em>n-\mathbf{t}<em>n\right) \
+&amp;=\frac{1}{2} \sum</em>{n=1}^{N} \sum</em>{k=1}^{K}\left(y</em>{n k}-t</em>{nk}\right)^{2}
+\end{aligned}
+$$</p>
+<p>となる。$(5.83)$にならってヘッセ行列を求めるために$w_i, w_j$で偏微分すると</p>
+<p>$$
+\frac{\partial E}{\partial w_{i}}=\sum_{n=1}^{N} \sum_{k=1}^{K}\left(y_{n k}-t_{n k}\right) \frac{\partial y_{n k}}{\partial w_{i}}
+$$
+$$
+\frac{\partial}{\partial w_{j}}\left(\frac{\partial E}{\partial w_{i}}\right)=\sum_{n=1}^{N} \sum_{k=1}^{K}\left{\frac{\partial y_{nk}}{\partial w_{j}} \frac{\partial y_{n k}}{\partial w_{i}}+\left(y_{n k}-t_{n k}\right) \frac{\partial}{\partial w_{j}} \frac{\partial y_{n k}}{\partial w_{i}}\right}
+$$
+P.252の記述のように、もし訓練によって出力値$\mathbf{y}<em>n$が目標値$\mathbf{t}<em>n$に十分近づいているとするならば、$\sum$の中の第2項は無視できるほど小さくなる。すなわち、
+$$
+\frac{\partial}{\partial w</em>{j}}\left(\frac{\partial E}{\partial w</em>{i}}\right) \simeq \sum_{n=1}^{N} \sum_{k=1}^{K}\left( \frac{\partial y_{nk}}{\partial w_{j}} \frac{\partial y_{n k}}{\partial w_{i}}\right)
+$$
+となる。これをもとにヘッセ行列を考えると</p>
+<p>$$
+\begin{aligned}
+\mathbf{H} = \nabla\nabla E
+&amp;= \sum_{n=1}^{N} \sum_{k=1}^{K}\begin{pmatrix}
+\frac{\partial y_{n k}}{\partial w_{0}}\frac{\partial y_{n k}}{\partial w_{0}} &amp; \cdots &amp; \frac{\partial y_{n k}}{\partial w_{0}}\frac{\partial y_{n k}}{\partial w_{M-1}} \
+\vdots&amp; \ddots &amp; \vdots \
+\frac{\partial y_{n k}}{\partial w_{M-1}}\frac{\partial y_{n k}}{\partial w_{0}} &amp; \cdots &amp; \frac{\partial y_{n k}}{\partial w_{M-1}}\frac{\partial y_{n k}}{\partial w_{M-1}}
+\end{pmatrix}\
+&amp;= \sum_{n=1}^{N} \sum_{k=1}^{K}\begin{pmatrix}
+\frac{\partial y_{n k}}{\partial w_{0}} \
+\vdots \
+\frac{\partial y_{n k}}{\partial w_{M-1}}
+\end{pmatrix}\begin{pmatrix}\frac{\partial y_{n k}}{\partial w_{0}}, \cdots, \frac{\partial y_{n k}}{\partial w_{M-1}}\end{pmatrix} \
+&amp;= \sum_{n=1}^{N} \sum_{k=1}^{K}\mathbf{b}<em>{n, k} \mathbf{b}</em>{n, k}^{\mathrm T}
+\end{aligned}
+$$</p>
+<p>と書ける。ここで、$\mathbf{b}<em>{n,k}=\nabla y</em>{nk}=\begin{pmatrix}\frac{\partial y_{n k}}{\partial w_{0}} \ \vdots \ \frac{\partial y_{n k}}{\partial w_{M-1}} \end{pmatrix}$とした。</p>
+<p>または$\sum_{n=1}^{N} \sum_{k=1}^{K}\mathbf{b}<em>{n, k} \mathbf{b}</em>{n, k}^{\mathrm T}$の式を$k$について拡張すると
+$$
+\begin{aligned}
+\sum_{n=1}^{N} \sum_{k=1}^{K}\mathbf{b}<em>{n, k} \mathbf{b}</em>{n, k}^{\mathrm T}
+&amp;= \sum_{n=1}^{N}
+\begin{pmatrix}
+\frac{\partial y_{n 1}}{\partial w_{0}} &amp; \cdots &amp; \frac{\partial y_{nK}}{\partial w_{0}} \
+\vdots &amp; \ddots &amp; \vdots \
+\frac{\partial y_{n_{1}}}{\partial w_{M-1}} &amp; \cdots &amp; \frac{\partial y_{nK}}{\partial w_{M-1}}
+\end{pmatrix}
+\begin{pmatrix}
+\frac{\partial y_{n 1}}{\partial w_{0}} &amp; \cdots &amp; \frac{\partial y_{n 1}}{\partial w_{M-1}} \
+\vdots &amp; \ddots &amp; \vdots \
+\frac{\partial y_{nK}}{\partial w_{0}} &amp; \cdots &amp; \frac{\partial y_{nK}}{\partial w_{M-1}}
+\end{pmatrix} \
+&amp;=\sum_{n=1}^{N}
+\begin{pmatrix}
+\mathbf{b}<em>{n1},\cdots,\mathbf{b}</em>{nK}
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{b}<em>{n1}^{\mathrm T} \ \vdots \ \mathbf{b}</em>{nK}^{\mathrm T}
+\end{pmatrix} \
+&amp;=\sum_{n=1}^{N}\mathbf{B}<em>n\mathbf{B}<em>n^{\mathrm T}
+\end{aligned}
+$$
+と書くこともできる。$\mathbf{B}<em>n$は$\mathbf{B}<em>n = \begin{pmatrix}
+\mathbf{b}</em>{n1},\cdots,\mathbf{b}</em>{nK}
+\end{pmatrix}$で表される$M\times K$行列を用いた。$\mathbf{B}<em>n$の$l$行$k$列成分は$\displaystyle \left(\mathbf{B}</em>{n}\right)</em>{l k}=\frac{\partial y</em>{n k}}{\partial w_{l-1}}$となっている。</p>
+<blockquote>
+<p>結局このヘッセ行列は3階のテンソルになっているらしい。</p>
+</blockquote>
+<h2 id="演習-517"><a class="header" href="#演習-517">演習 5.17</a></h2>
+<div class="panel-primary">
+<p>二乗誤差関数</p>
+<p>$$
+E=\frac{1}{2} \iint{y(\mathbf{x}, \mathbf{w})-t}^{2} p(\mathbf{x}, t) \mathrm{d} \mathbf{x} \mathrm{d} t \tag{5.193}
+$$</p>
+<p>を考える．ここで，$y(\mathbf{x},\mathbf{w})$はニューラルネットワークのようなパラメトリックな関数である．
+$$
+y(\mathbf{x})=\frac{\int t p(\mathbf{x}, t) \mathrm{d} t}{p(\mathbf{x})}=\int t p(t \mid \mathbf{x}) \mathrm{d} t=\mathbb{E}_{t}[t \mid \mathbf{x}] \tag{1.89}
+$$
+の結果はこの誤差を最小化する関数$y(\mathbf{x},\mathbf{w})$が$\mathbf{x}$が与えられたときの$t$の条件付き期待値で与えられることを示している．この結果を使って，ベクトル$\mathbf{w}$の2つの要素$w_r$と$w_s$に関する$E$の2階微分が</p>
+<p>$$
+\frac{\partial^{2} E}{\partial w_{r} \partial w_{s}}=\int \frac{\partial y}{\partial w_{r}} \frac{\partial y}{\partial w_{s}} p(\mathbf{x}) \mathrm{d} \mathbf{x} \tag{5.194}
+$$</p>
+<p>で与えられることを示せ．ここで$p(\mathbf{x})$から有限個サンプリングする場合には，
+$$
+\mathbf{H} \simeq \sum_{n=1}^{N} \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.84}
+$$
+が得られることに注意せよ．</p>
+</div>
+<p>※まず要素$w_r$と$w_s$についての微分を行う。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial^{2} E}{\partial w_{r} \partial w_{s}} &amp;=\frac{\partial}{\partial w_{r}}\left{\frac{1}{2} \frac{\partial}{\partial w_{s}} \iint{y(\mathbf{x}, \mathbf{w})-t}^{2} p(\mathbf{x}, t) d\mathbf{x} dt\right} \
+&amp;=\frac{\partial}{\partial w_r}\left{\frac{1}{2} \iint 2{y(\mathbf{x}, \mathbf{w})-t} \frac{\partial y}{\partial w_{s}} p(\mathbf{x},\mathbf{t}) d\mathbf{x} dt \right} \
+&amp;=\iint\left{\frac{\partial y}{\partial w_{r}} \frac{\partial y}{\partial w_{s}}+{y(\mathbf{x}, \mathbf{w})-t} \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}}\right} p(\mathbf{x}, t) d\mathbf{x} dt
+\end{aligned}
+$$</p>
+<p>$(5.194)$式と比べると${y(\mathbf{x}, \mathbf{w})-t}\frac{\partial^{2} y}{\partial w_{r} \partial w_{s}}$が消えているので、この項について計算してみると</p>
+<p>$$
+\begin{aligned}
+&amp; \iint(y(\mathbf{x}, \mathbf{w})-t) \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}} p(\mathbf{x}, t) d\mathbf{x} d t \
+=&amp; \iint y(\mathbf{x}, \mathbf{w}) \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}} p(\mathbf{x}, t) d\mathbf{x} d t-\int \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}}\left{\int t p(\mathbf{x}, t) d t\right} d\mathbf{x} \
+=&amp; \int y(\mathbf{x}, \mathbf{w}) \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}} p(\mathbf{x}) d\mathbf{x}-\int \frac{\partial^{2} y}{\partial w_{r} \partial w_{s}} y(\mathbf{x},\mathbf{w}) p(\mathbf{x}) d\mathbf{x} \
+=&amp;\ 0
+\end{aligned}
+$$
+となるので、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial^{2} E}{\partial w_{r} \partial w_{s}} &amp;=\iint \frac{\partial y}{\partial w_{r}} \frac{\partial y}{\partial w_{s}} p(\mathbf{x}, t) d\mathbf{x} d t \
+&amp;=\int \frac{\partial y}{\partial w_{r}} \frac{\partial y}{\partial w_{s}} p(\mathbf{x}) d\mathbf{x}
+\end{aligned}
+$$</p>
+<p>これより$(5.194)$式が求められた。</p>
+<p>ちなみにこの式は有限のデータセット$N$個であれば$p(\mathbf{x})$からサンプリングしたときに
+$$
+\begin{aligned}
+\frac{\partial^{2} E}{\partial w_{r} \partial w_{s}} &amp;=\frac{1}{N}\sum_{n=1}^N \frac{\partial y_n}{\partial w_{r}} \frac{\partial y_n}{\partial w_{s}}
+\end{aligned}
+$$
+となるので、$(5.84)$式のヘッセ行列と同型になることがわかる。</p>
+<h2 id="演習-518"><a class="header" href="#演習-518">演習 5.18</a></h2>
+<div class="panel-primary">
+<p><img src="/attachment/617b8a46d44de45e6ef74fd9" alt="fig5.1.png" /></p>
+<p>図5.1に示す形の2層ネットワークで，入力から出力へ直接つながる，層を飛び越えた結合に相当するパラメータを追加したものを考える．5.3.2節での議論を拡張して，誤差関数の追加されたパラメータに関する微分の方程式を書き下せ．</p>
+</div>
+<p>入力から出力層へ追加されたパラメータを考慮すると、</p>
+<p>$$
+y_{k} = a_{k} = \sum_{j=1}^{M} w_{k j} z_{j} + \sum_{i=1}^{D} w_{k i} x_{i}
+$$</p>
+<p>ここでは、Eは二乗和誤差関数、出力には恒等関数を使用しているので、追加されたパラメータに対して偏微分を取ってあげると、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial E}{\partial w_{k i}} &amp;= \frac{\partial E}{\partial y_{k}} \frac{\partial y_{k}}{\partial a_{k}} \frac{\partial a_{k}}{\partial w_{k i}} \
+&amp;= (y_{k} - t_{k}) x_{i} \
+\end{aligned}
+$$</p>
+<p>※</p>
+<h2 id="演習-519"><a class="header" href="#演習-519">演習 5.19</a></h2>
+<div class="panel-primary">
+<p>出力ユニットは1つでその活性化関数はロジスティックシグモイド関数，誤差関数は交差エントロピーであるネットワークについて，二乗和誤差関数の場合の結果
+$$
+\mathbf{H} \simeq \sum_{n=1}^{N} \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.84}
+$$
+に対応する，ネットワークのヘッセ行列の外積による近似式
+$$
+\mathbf{H} \simeq \sum_{n=1}^{N} y_{n}\left(1-y_{n}\right) \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.85}
+$$
+を導け．</p>
+</div>
+<p>ロジスティックシグモイド関数$\displaystyle y_n = \sigma(a_n) = \frac{1}{1+e^{-a_n}}$の微分形は$\displaystyle \frac{\partial y_n}{\partial a_n} = y_n(1-y_n)$になる演習問題4.12。</p>
+<p>誤差関数は交差エントロピー
+$$
+E(\mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{5.21}
+$$
+である場合、演習問題4.13の結果から
+$$
+\begin{aligned}
+\nabla E(\mathbf{w}) &amp;=\frac{\partial E}{\partial y_{n}} \frac{\partial y_{n}}{\partial a_{n}} \nabla a_{n} \
+&amp;=\sum_{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \cdot y_{n}\left(1-y_{n}\right) \nabla a_{n} \
+&amp;=\sum_{n=1}^{N}\left(y_{n}-t_{n}\right) \nabla a_{n}
+\end{aligned}
+$$
+となる。ヘッセ行列$\mathbf{H}$を計算するためにもう一度$\nabla$をとると
+$$
+\begin{aligned}
+\mathbf{H}=\nabla \nabla E(\mathbf{w}) &amp;=\sum_{n=1}^{N}\left{\nabla\left(y_{n}-t_{n}\right) \nabla a_{n}^{\mathrm T}+\left(y_{n}-t_{n}\right) \nabla \nabla a_{n}\right} \
+&amp;=\sum_{n=1}^{N}\left{\frac{\partial y_{n}}{\partial a_{n}} \nabla a_{n} \nabla a_{n}^{\mathrm T}+\left(y_{n}-t_{n}\right) \nabla \nabla a_{n}\right} \
+&amp;=\sum_{n=1}^{N}\left{y_{n}\left(1-y_{n}\right) \nabla a_{n} \nabla a_{n}^{\mathrm T}+\left(y_{n}-t_{n}\right) \nabla \nabla a_{n}\right}
+\end{aligned}
+$$
+P.252の記述のように、ネットワークをデータ集合で訓練し，その出力$y_n$が目標値$t_n$に非常に近づいたとしたら，第2項は小さくなり無視できるので
+$$
+\begin{aligned}
+\mathbf{H} &amp; \simeq \sum_{n=1}^{N} y_{n}\left(1-y_{n}\right) \nabla a_{n} \nabla a_{n}^{\mathrm T} \
+&amp;=\sum_{n=1}^{N} y_{n}\left(1-y_{n}\right) \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm T}
+\end{aligned}\tag{5.85}
+$$
+が得られる。</p>
+<h2 id="演習-520"><a class="header" href="#演習-520">演習 5.20</a></h2>
+<div class="panel-primary">
+<p>出力ユニットは$K$個でその活性化関数はソフトマックス関数，誤差関数は交差エントロピーであるネットワークについて，二乗和誤差関数の場合の結果
+$$
+\mathbf{H} \simeq \sum_{n=1}^{N} \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.84}
+$$
+に対応する，ネットワークのヘッセ行列の外積による近似式を導け．</p>
+</div>
+<p>※重み$w$の添字に$i,j$を、クラスの添字に$k,l$を使う。</p>
+<p>多クラスの場合の交差エントロピー誤差関数は
+$$
+\begin{aligned}
+E(\mathbf{w}) &amp;=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{nk} \ln y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right) \
+&amp;=-\sum</em>{n=1}^{N} \sum_{k=1}^{K} t_{nk} \ln y_{n k}
+\end{aligned} \tag{5.24, 4.108}
+$$
+であり、出力ユニットのソフトマックス活性化関数
+$$
+y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)=\frac{\exp \left(a</em>{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)\right)}{\sum</em>{l=1}^{K} \exp \left(a_{l}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)\right)}
+$$
+の偏微分は、演習問題5.7の結果から
+$$
+\frac{\partial E}{\partial a</em>{nk}}=y_{n k}-t_{n k}
+$$
+である。</p>
+<p>重み$w_i$についての$E$の偏微分を行うと
+$$
+\begin{aligned}
+\nabla_{w_{i}} E &amp;=\sum_{n=1}^{N} \sum_{k=1}^{K} \frac{\partial E}{\partial a_{n k}} \nabla_{w_{i}} a_{n k} \
+&amp;=\sum_{n=1}^{N} \sum_{k=1}^{K}\left(y_{n k}-t_{n k}\right) \nabla_{w_{i}} a_{n k}
+\end{aligned}
+$$
+となる。さらに重み$w_j$で偏微分すると
+$$
+\mathbf{H}=\nabla_{w_{j}} \nabla_{w_{i}} E=\sum_{n=1}^{N} \sum_{k=1}^{K}\left{
+(\nabla_{w_{j}}\left(y_{nk}-t_{nk}\right)) \nabla_{w_{i}} a_{n k}+\left(y_{nk}-t_{nk}\right) \nabla_{w_{j}} \nabla_{w_{i}} a_{nk}
+\right}
+$$
+ここで$\displaystyle \nabla_{w_{j}}\left(y_{nk}-t_{nk}\right)$についての計算は</p>
+<p>$$
+\begin{aligned}
+\nabla_{w_{j}}\left(y_{nk}-t_{nk}\right) &amp;=\sum_{l=1}^{K} \frac{\partial y_{n k}}{\partial a_{nl}} \nabla_{w_{j}} a_{n l} \
+&amp;=\sum_{l=1}^{K} y_{n k}\left(\delta_{k l}-y_{n l}\right) \nabla_{w_{j}} a_{n l}
+\end{aligned}
+$$</p>
+<p>となるので、ヘッセ行列は</p>
+<p>$$
+\begin{aligned}
+\mathbf{H}&amp;=\nabla_{w_{j}} \nabla_{w_{i}} E \
+&amp;=\sum_{n=1}^{N} \sum_{k=1}^{K} \left{ \sum_{l=1}^{K} y_{nk}\left(\delta_{kl}-y_{nl}\right) \nabla_{w_{j}} a_{nl} \nabla_{w_{i}} a_{nk} +\left(y_{nk}-t_{nk}\right) \nabla_{w_{j}} \nabla_{w_{i}} a_{nk}\right}
+\end{aligned}
+$$
+例によって第2項が無視できる状況ならば
+$$
+\begin{aligned}
+\mathbf{H} &amp;\simeq \sum_{n=1}^{N} \sum_{k=1}^{K} \sum_{l=1}^{K} y_{n k}\left(\delta_{k l}-y_{nl}\right) \nabla_{w_{j}} a_{nl} \nabla_{w_{i}} a_{n k} \
+&amp;= \sum_{n=1}^{N} \sum_{k=1}^{K} \sum_{l=1}^{K} y_{n k}\left(\delta_{k l}-y_{n l}\right)\begin{pmatrix}
+\frac{\partial a_{nl}}{\partial w_{0}} \
+\vdots \
+\frac{\partial a_{nl}}{\partial w_{M-1}}
+\end{pmatrix}
+\left(\frac{\partial a_{n k}}{\partial w_{0}}, \cdots, \frac{\partial a_{n k}}{\partial w_{M-1}}\right) \
+&amp;= \sum_{n=1}^{N} \sum_{k=1}^{K} \sum_{l=1}^{K} y_{n k}\left(\delta_{k l}-y_{n l}\right)\begin{pmatrix}
+\frac{\partial a_{nl} \partial a_{nk}}{\partial w_{0}^{2}} &amp; \cdots &amp; \frac{\partial a_{nl} \partial a_{nk}}{\partial w_{0} \partial w_{M-1}} \
+\vdots &amp; \ddots &amp;\vdots \
+\frac{\partial a_{nl} \partial a_{n k}}{\partial w_{M-1} \partial w_{0}} &amp; \cdots &amp; \frac{\partial a_{nl} \partial a_{nk}}{\partial w_{M-1} \partial w_{M-1}}
+\end{pmatrix}
+\end{aligned}
+$$
+を得る。</p>
+<h2 id="演習-521"><a class="header" href="#演習-521">演習 5.21</a></h2>
+<div class="panel-primary">
+<p>（難問）ヘッセ行列の外積による近似式
+$$
+\mathbf{H}<em>{N}=\sum</em>{n=1}^{N} \mathbf{b}<em>{n} \mathbf{b}</em>{n}^{\mathrm{T}} \tag{5.86}
+$$
+を出力ユニットが$K&gt;1$個ある場合に拡張せよ．すなわち，パターンの寄与だけではなく出力の寄与も逐次的に受ける形の
+$$
+\mathbf{H}<em>{L+1}=\mathbf{H}</em>{L}+\mathbf{b}<em>{L+1} \mathbf{b}</em>{L+1}^{\mathrm{T}} \tag{5.87}
+$$
+を導け．この式と
+$$
+\left(\mathbf{M}+\mathbf{vv}^{\mathrm{T}}\right)^{-1}=\mathbf{M}^{-1}-\frac{\left(\mathbf{M}^{-1} \mathbf{v}\right)\left(\mathbf{v}^{\mathbf{T}} \mathbf{M}^{-1}\right)}{1+\mathbf{v}^{\mathbf{T}} \mathbf{M}^{-1} \mathbf{v}} \tag{5.88}
+$$
+により，
+$$
+\mathbf{H}<em>{L+1}^{-1}=\mathbf{H}</em>{L}^{-1}-\frac{\mathbf{H}<em>{L}^{-1} \mathbf{b}</em>{L+1} \mathbf{b}<em>{L+1}^{\mathrm{T}} \mathbf{H}</em>{L}^{-1}}{1+\mathbf{b}<em>{L+1}^{\mathrm{T}} \mathbf{H}</em>{L}^{-1} \mathbf{b}_{L+1}} \tag{5.89}
+$$
+を利用して個々のパターンと出力からの寄与を逐次的に扱うことでヘッセ行列の逆行列を求めることができるようになる．</p>
+</div>
+<p>※ 演習問題5.16とほぼ同じ……？</p>
+<p>演習5.16の結果から、$K$次元の複数出力を持つ場合のヘッセ行列の外積による近似式は
+$$
+\mathbf{H}<em>{N,K}=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \mathbf{b}<em>{n,k} \mathbf{b}</em>{n,k}^{\mathrm{T}}
+$$
+である。ここで$\mathbf{b}<em>{n,k} = \nabla y</em>{nk}$である。</p>
+<p>これより単純に$N \to N+1$とすれば
+$$
+\begin{aligned}
+\mathbf{H}<em>{N+1,K} &amp;= \mathbf{H}</em>{N,K} + \sum_{k=1}^{K}\mathbf{b}<em>{N+1,k}\mathbf{b}</em>{N+1,k}^{\mathrm T} \
+&amp;= \mathbf{H}<em>{N,K} + \mathbf{B}</em>{N+1}\mathbf{B}<em>{N+1}^{\mathrm T}
+\end{aligned}
+$$
+の式が成り立つ。ここで$\mathbf{B}</em>{N+1}$は$\left( \mathbf{b}<em>{N+1,1}, \ldots , \mathbf{b}</em>{N+1,K} \right)$で構成される$W\times K$の行列である。</p>
+<p>$(5.88)$を使えば</p>
+<p>$$
+\mathbf{H}<em>{N+1, K}^{-1}=\mathbf{H}</em>{N, K}^{-1}-\frac{\mathbf{H}<em>{N, K}^{-1} \mathbf{B}</em>{N+1} \mathbf{B}<em>{N+1}^{\mathrm T} \mathbf{H}</em>{N, K}^{-1}}{1+\mathbf{B}<em>{N+1}^{\mathrm T} \mathbf{H}</em>{N, K}^{-1} \mathbf{B}_{N+1}}
+$$</p>
+<p>と書ける。</p>
+<h2 id="演習-522"><a class="header" href="#演習-522">演習 5.22</a></h2>
+<div class="panel-primary">
+<p>微分のチェーンルールを応用して，2層フィードフォワードネットワークのヘッセ行列の要素について
+$$
+\frac{\partial^{2} E_{n}}{\partial w_{k j}^{(2)} \partial w_{k^{\prime} j^{\prime}}^{(2)}}=z_{j} z_{j^{\prime}} M_{k k^{\prime}} \tag{5.93}
+$$
+$$
+\frac{\partial^{2} E_{n}}{\partial w_{j i}^{(1)} \partial w_{j^{\prime} i^{\prime}}^{(1)}}=x_{i} x_{i^{\prime}} h^{\prime \prime}\left(a_{j^{\prime}}\right) I_{j j^{\prime}} \sum_{k} w_{k j^{\prime}}^{(2)} \delta_{k} +x_{i} x_{i^{\prime}} h^{\prime}\left(a_{j^{\prime}}\right) h^{\prime}\left(a_{j}\right) \sum_{k} \sum_{k^{\prime}} w_{k^{\prime} j^{\prime}}^{(2)} w_{k j}^{(2)} M_{k k^{\prime}} \tag{5.94}
+$$
+および
+$$
+\frac{\partial^{2} E_{n}}{\partial w_{j i}^{(1)} \partial w_{k j^{\prime}}^{(2)}}=x_{i} h^{\prime}\left(a_{j}\right)\left{\delta_{k} I_{j j^{\prime}}+z_{j^{\prime}} \sum_{k^{\prime}} w_{k^{\prime} j}^{(2)} M_{k k^{\prime}}\right} \tag{5.95}
+$$
+の結果を導け．</p>
+</div>
+<p>$(5.93)$について
+$$
+\left{\begin{array}{l}
+a_{j}=\sum_{i} w_{j i} x_{i} \
+z_{j}=h\left(a_{j}\right) \
+y_{k}=g\left(a_{k}\right) \
+\delta_{k}=\frac{\partial E_{n}}{\partial a_{k}} \
+M_{k k^{\prime}}=\frac{\partial^{2} E_{n}}{\partial a_{k} \partial a_{k}^{\prime}}
+\end{array}\right.
+$$
+とする。
+$$
+\begin{aligned}
+\frac{\partial E_{n}}{\partial w_{kj}^{(2)}} &amp;=\frac{\partial E_{n}}{\partial a_{k}} \frac{\partial a_{k}}{\partial w_{kj}^{(2)}} \
+&amp;=\frac{\partial E_{n}}{\partial a_{k}} \cdot \frac{\partial} {\partial w_{k j}^{(2)}}\sum_{j} w_{kj}^{(2)} z_{j} \
+&amp;=\delta_{k} z_{j}
+\end{aligned}
+$$
+これより
+$$
+\begin{aligned}
+\frac{\partial^{2} E_{n}}{\partial w_{k j}^{(2)} \partial w_{k^{\prime} j^{\prime}}^{(2)}} &amp;= \frac{\partial}{\partial w_{k^{\prime} j^{\prime}}^{(2)}}\left( \frac{\partial E_{n}}{\partial w_{kj}^{(2)}} \right) \
+&amp;= \frac{\partial}{\partial w_{k^{\prime} j^{\prime}}^{(2)}}(\delta_k z_j) \
+&amp;= z_{j} \frac{\partial \delta_{k}}{\partial w_{k^{\prime} j^{\prime}}^{(2)}} \
+&amp;= z_{j} \frac{\partial^{2} E_{n}}{\partial a_{k} \partial a_{k^{\prime}}} \frac{\partial a_{k}}{\partial w_{k^{\prime} j^{\prime}}^{(2)}} \
+&amp;= z_{j} z_{j^{\prime}} M_{k k^{\prime}}
+\end{aligned}
+$$
+となる。</p>
+<h2 id="演習-523"><a class="header" href="#演習-523">演習 5.23</a></h2>
+<div class="panel-primary">
+<p>2層ネットワークの正確なヘッセ行列に関する5.4.5節の結果を，入力から出力へ直接つながる，層を飛び越えた結合を含むように拡張せよ．</p>
+</div>
+<p>※</p>
+<h2 id="演習-524"><a class="header" href="#演習-524">演習 5.24</a></h2>
+<div class="panel-primary">
+<p>入力への変換
+$$
+x_{i} \rightarrow \widetilde{x}<em>{i}=a x</em>{i}+b \tag{5.115}
+$$
+の下で，重みとバイアスが
+$$
+w_{j i} \rightarrow \widetilde{w}<em>{j i}=\frac{1}{a} w</em>{j i} \tag{5.116}
+$$
+と
+$$
+w_{j 0} \rightarrow \widetilde{w}<em>{j 0}=w</em>{j 0}-\frac{b}{a} \sum_{i} w_{j i} \tag{5.117}
+$$
+を用いて同時に変換されれば，
+$$
+z_{j}=h\left(\sum_{i} w_{j i} x_{i}+w_{j 0}\right) \tag{5.113}
+$$
+と
+$$
+y_{k}=\sum_{j} w_{k j} z_{j}+w_{k 0} \tag{5.114}
+$$
+で定義されたネットワーク関数は不変であることを確かめよ．同様に，ネットワーク出力は
+$$
+w_{k j} \rightarrow \widetilde{w}<em>{k j}=c w</em>{k j} \tag{5.119}
+$$
+と
+$$
+w_{k 0} \rightarrow \widetilde{w}<em>{k 0}=c w</em>{k 0}+d \tag{5.120}
+$$
+の変換を第2層の重みとバイアスに施すことにより，
+$$
+y_{k} \rightarrow \widetilde{y}<em>{k}=c y</em>{k}+d \tag{5.118}
+$$
+に従って変換できることを示せ．</p>
+</div>
+<p>（前半）$x_i \to \tilde{x}<em>i$, $w</em>{ji} \to \tilde{w}<em>{ji}$, $w</em>{j0} \to \tilde{w}_{j0}$が同時に満たされれば、$z_j$と$y_k$が不変であることを示せばよい。</p>
+<p>$$
+\begin{aligned}
+h\left(\sum_{i} \tilde{w}<em>{j i} \tilde{x</em>{i}}+\tilde{w}<em>{j 0}\right) &amp;= h\left(\sum</em>{i}\left(\frac{1}{a} w_{j i}\right)\left(a x_{i}+b\right)+\left(w_{j0}-\frac{b}{a} \sum_{i} w_{j i}\right)\right) \
+&amp;= h\left(\sum_{i} w_{j i} x_{i}+w_{j 0}\right) \
+&amp;= z_{j}
+\end{aligned}
+$$</p>
+<p>$\sum_{j}\tilde{w}<em>{kj} \tilde{z</em>{j}}+\tilde{w}<em>{k 0}$について、入力の変換$\tilde{z}<em>j = az</em>{j}+b$を行う。
+$$
+\begin{aligned}
+\sum</em>{j}\tilde{w}<em>{kj} \tilde{z</em>{j}}+\tilde{w}<em>{k 0} &amp;=\sum</em>{j}\left(\frac{1}{a} w_{k j}\left(a z_{j}+b\right)\right)+\left(w_{k 0}-\frac{b}{a} \sum_{j} w_{k j}\right) \
+&amp;=\sum_{j} w_{k j}+w_{k 0} \
+&amp;=y_{k}
+\end{aligned}
+$$
+以上から$z_j$と$y_k$が不変であることが示された。</p>
+<p>（後半）
+$(5.114)$式の右辺について$w_{k j} \rightarrow \widetilde{w}<em>{k j}, w</em>{k 0} \rightarrow \widetilde{w}<em>{k 0}$とすると
+$$
+\begin{aligned}
+\sum</em>{j} \tilde{w}<em>{k j} z</em>{j}+\tilde{w}<em>{k 0} &amp;= \sum</em>{j}\left(c w_{k j}\right) z_{j}+c w_{k 0}+d \
+&amp;= c\left(\sum_{j} w_{k j} z_{j}+w_{k 0}\right)+d \
+&amp;= c y_{k}+d
+\end{aligned}
+$$
+より、$(5.118)$式の変換が成立することが示された。</p>
+<h2 id="演習-525"><a class="header" href="#演習-525">演習 5.25</a></h2>
+<div class="panel-primary">
+<p>（難問）二次誤差関数</p>
+<p>$$
+E=E_{0}+\frac{1}{2}\left(\mathbf{w}-\mathbf{w}^{<em>}\right)^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}-\mathbf{w}^{</em>}\right) \tag{5.195}
+$$</p>
+<p>を考える．ただし，$\mathbf{w}^{\star}$は最小値を表し，ヘッセ行列$\mathbf{H}$は正定値で定数とする．重みベクトルは初期値$\mathbf{w}^{(0)}$が原点であり，単純な勾配降下法
+$$
+\mathbf{w}^{(\tau)}=\mathbf{w}^{(\tau-1)}-\rho \nabla E \tag{5.196}
+$$
+によって更新されるとしよう．ただし，$\tau$はステップ数，$\rho$は学習率（小さいと仮定）を表す．$\tau$ステップ後に，$\mathbf{H}$の固有ベクトルに平行な重みベクトルの成分は
+$$
+w_{j}^{(\tau)}=\left{1-\left(1-\rho \eta_{j}\right)^{\tau}\right} w_{j}^{\star} \tag{5.197}
+$$
+と書けることを示せ．ただし，$w_j = \mathbf{w}^{\mathrm T}\mathbf{u}_j$,$\mathbf{u}_j$と$\eta_j$はそれぞれ$\mathbf{H}$の固有ベクトルと固有値で，</p>
+<p>$$
+\mathbf{H}\mathbf{u}<em>j = \eta</em>{j}\mathbf{u}_j \tag{5.198}
+$$</p>
+<p>とする．もし$|1-\rho\eta_j|&lt;1$ならば，$\tau \to \infty$において期待通り$\mathbf{w}^{(\tau)}\to \mathbf{w}^{\star}$が与えられることを示せ．もし訓練が有限ステップ数$\tau$で止まったなら，ヘッセ行列の固有ベクトルに平行な重みベクトルの成分は
+$$
+w_{j}^{(\tau)} \simeq w_{j}^{\star} \left(\eta_{j} \gg(\rho \tau)^{-1}\right) \tag{5.199}
+$$
+$$
+\left|w_{j}^{(r)}\right| \ll\left|w_{j}^{\star}\right| \left(\eta_{j} \ll(\rho \tau)^{-1}\right) \tag{5.200}
+$$
+を満たすことを示せ．この結果を，3.5.3節での単純な荷重減衰による正則化の議論と比較し，$(\rho\tau)^{-1}$が正則化パラメータ$\require{enclose}\enclose{horizontalstrike}{\lambda}\alpha$(←誤植)に相当することを示せ．上の結果は
+$$
+\tau=\sum_{i} \frac{\lambda_{i}}{\alpha+\lambda_{i}} \tag{3.91}
+$$
+で定義されるネットワークの有効パラメータ数が，訓練が進むにつれて増加することも示している．</p>
+</div>
+<p>誤差関数の式$(5.195)$からヘッセ行列の計算を行う。微分すると</p>
+<p>$$
+\nabla E=\mathbf{H}\left(\mathbf{w}-\mathbf{w}^{\star}\right)
+$$</p>
+<p>なので、$(5.196)$式に代入すれば
+$$
+\mathbf{w}^{(\tau)}=\mathbf{w}^{(\tau-1)}-\rho \mathbf{H}\left(\mathbf{w}^{(\tau-1)}-\mathbf{w}^{\star}\right)
+$$</p>
+<p>$\mathbf{H}$の固有ベクトル$\mathbf{u}_j$を使い、$w_j^{(\tau)} = \mathbf{u}_j^{\mathrm{T}}\mathbf{w}^{(\tau)}$を用いると</p>
+<p>$$
+\begin{aligned}
+w_{j}^{(\tau)} &amp;=\mathbf{u}<em>{j}^{\mathrm{T}} \mathbf{w}^{(\tau)} \
+&amp;=\mathbf{u}</em>{j}^{\mathrm{T}} \mathbf{w}^{(\tau-1)}-\rho \mathbf{u}<em>{j}^{\mathrm{T}} \mathbf{H}\left(\mathbf{w}^{(\tau-1)}-\mathbf{w}^{\star}\right) \
+&amp;=w</em>{j}^{(r-1)}-\rho \eta_{j} \mathbf{u}<em>{j}^{\mathrm{T}}\left(\mathbf{w}-\mathbf{w}^{\star}\right) \
+&amp;=w</em>{j}^{(\tau-1)}-\rho \eta_{j}\left(w_{j}^{(\tau-1)}-w_{j}^{\star}\right)
+\end{aligned} \tag{*}
+$$
+となる。
+この式をもとに、数学的帰納法を用いてすべての整数$\tau$について$(5.197)$式が成立することを示す。</p>
+<p>まず$\tau=0$について
+$$
+w_j^{(0)} = { 1- (1-\rho\eta_j)^0}w_j^{\star} = 0
+$$
+初期座標が$\mathbf{0}$なので成立している。次に$\tau=1$について$(<em>)$の結果を用いると
+$$
+\begin{aligned}
+w_{j}^{(1)} &amp;=w_{j}^{(0)}-\rho \eta_{j}\left(w_{j}^{(0)}-w_{j}^{\star}\right) \
+&amp;=\rho \eta_{j} w_{j}^{</em>} \
+&amp;=\left{1-\left(1-\rho \eta_{j}\right)\right} w_{j}^{\star}
+\end{aligned}
+$$
+これは$(5.197)$式に$\tau=1$を代入したものと同じになるので$\tau=1$のときにも成立することが示された。</p>
+<p>次に$\tau= N-1$で$(5.197)$式が成立すると仮定したとき、$\tau=N$において
+$$
+\begin{aligned}
+w_{j}^{(N)} &amp;=w_{j}^{(N-1)}-\rho \eta_{j}\left(w_{j}^{(N-1)}-w_{j}^{\star}\right) \
+&amp;=w_{j}^{(N-1)}\left(1-\rho \eta_{j}\right)+\rho \eta_{j} w_{j}^{\star} \
+&amp;=\left{1-\left(1-\rho \eta_{j}\right)^{N-1}\right} w_{j}^{<em>}\left(1-\rho \eta_{j}\right)+\rho \eta_{j} w_{j}^{</em>} \
+&amp;=\left{\left(1-\rho \eta_{j}\right)-\left(1-\rho \eta_{j}\right)^{N}\right} w_{j}^{\star}+\rho \eta_{j} w_{j}^{*} \
+&amp;=\left{1-\left(1-\rho \eta_{j}\right)^{N}\right} w_{j}^{\star}
+\end{aligned}
+$$
+となり、$\tau=N$のときにも成立することが示された。</p>
+<p>上式から$|1-\rho \eta_j| &lt; 1$ならば$(1-\rho \eta_j)^N \to 0$となるため、$\tau \to \infty$にて$w_j^{(\tau)} = w^{(\star)}$つまり$\mathbf{w}^{(\tau)} = \mathbf{w}^{(\star)}$が与えられる。</p>
+<p>$\tau$が有限で$\eta_j \gg (\rho\tau)^{-1}$というのは$\eta_j \rho \tau \gg 1$を満たすので、$\tau$がとても大きい状態に相当する。これは上の議論から$w_j^{(\tau)} \simeq w^{(\star)}$となる。</p>
+<p>$\eta_j \ll (\rho\tau)^{-1}$すなわち$\eta_j\rho\tau \ll 1$ならば、$\tau$が整数であることから$\rho\eta_j \ll 1$の状況であることが求められる。これより
+$$
+(1-\rho\eta_j)^{\tau} = 1-\tau\rho\eta_j + O(\rho^2\eta_j^2)
+$$
+とテイラー展開してみると
+$$
+\begin{aligned}
+\left|w_{j}^{(\tau)}\right| &amp;=\left|\left{1-\left(1-\rho \eta_{j}\right)^{\tau}\right} w_{j}^{\star}\right| \
+&amp;=\left|\left{1-\left(1-\tau \rho \eta_{j}+O\left(\rho^{2} \eta_{j}^{2}\right)\right)\right} w_{j}^{\star}\right| \
+&amp; \simeq \tau \rho \eta_{j}\left|w_{j}^{\star}\right|
+\end{aligned}
+$$
+となり、これは$|w_j^{(\tau)}|\ll\left|w_{j}^{\star}\right|$となる。</p>
+<p>3.5.3節の議論から、この節で$\alpha$とされていた正則化パラメータが固有ベクトルの1つ$\lambda_i$よりもとても大きな値（$\lambda_i \ll \alpha$）のとき、対応する$w_i$の値は$0$に近くなる。反対に$\lambda_i \gg \alpha$ならば$w_i$は最尤推定値に最も近くなる。このことから、$\alpha$は$(\rho\tau)^{-1}$の役割ととても似ていることがわかる。</p>
+<h2 id="演習-526"><a class="header" href="#演習-526">演習 5.26</a></h2>
+<div class="panel-primary">
+<p>任意のフィードフォワード構造を持つ多層パーセプトロンを考える．ここで訓練には，正則化関数として
+$$
+\Omega=\frac{1}{2} \sum_{n} \sum_{k}\left(\left.\frac{\partial y_{n k}}{\partial \xi}\right|<em>{\xi=0}\right)^{2}=\frac{1}{2} \sum</em>{n} \sum_{k}\left(\sum_{i=1}^{D} J_{n k i} \tau_{n i}\right)^{2} \tag{5.128}
+$$
+を持つ接線伝播誤差関数
+$$
+\widetilde{E} = E + \lambda\Omega \tag{5.127}
+$$
+の最小化を用いる．正則化項$\Omega$が，全パターンについて
+$$
+\Omega_{n}=\left. \frac{1}{2} \sum_{k}\left(\mathcal{G} y_{k}\right)^{2}\right|_{\mathbf{x}_n} \tag{5.201}
+$$
+という形の項を足し合わせたもので書けることを示せ．ここで$\mathcal{G}$は</p>
+<p>$$
+\mathcal{G} \equiv \sum_{i} \tau_{i} \frac{\partial}{\partial x_{i}} \tag{5.202}
+$$</p>
+<p>で定義される微分演算子である．演算子$\mathcal{G}$と順伝播方程式
+$$
+z_{j}=h\left(a_{j}\right), \quad a_{j}=\sum_{i} w_{j i} z_{i} \tag{5.203}
+$$
+を利用し，$\Omega_n$が
+$$
+\alpha_{j}=h^{\prime}\left(a_{j}\right) \beta_{j}, \quad \beta_{j}=\sum_{i} w_{j i} \alpha_{i} \tag{5.204}
+$$
+という方程式を用いた順伝播によって評価できることを示せ．ただし
+$$
+\alpha_{j} \equiv \mathcal{G} z_{j}, \quad \beta_{j} \equiv \mathcal{G} a_{j} \tag{5.205}
+$$
+と定義した．上の結果を用いて，$\Omega_n$のネットワーク内の重み$w_{rs}$に関する微分が
+$$
+\frac{\partial \Omega_{n}}{\partial w_{r s}}=\sum_{k} \alpha_{k}\left{\phi_{k r} z_{s}+\delta_{k r} \alpha_{s}\right} \tag{5.206}
+$$
+という形で書けることを示せ．ただし
+$$
+\delta_{k r} \equiv \frac{\partial y_{k}}{\partial a_{r}}, \quad \phi_{k r} \equiv \mathcal{G} \delta_{k r} \tag{5.207}
+$$
+と定義した．$\delta_{kr}$についての逆伝播方程式を書き下し，$\phi_{kr}$を評価するための逆伝播方程式系を導け．</p>
+</div>
+<p>※ この問題では、厳密にはある1つの入力$\mathbf{x}<em>n$に依存する正則化項$\Omega</em>{n}$を考える必要があるので、$(5.201)$など必要に応じて下付き文字$n$をつけて考えることにする（が、実際に問題を解く上ではあまり影響はない）</p>
+<p>$(5.201)$式について$(5.202)$式を用いて書き表すと
+$$
+\begin{aligned}
+\Omega_{n} &amp;=\left.\frac{1}{2} \sum_{k}\left(\sum_{i} \tau_{n i} \frac{\partial y_{nk}}{\partial x_{n i}}\right)^{2}\right|<em>{\mathbf{x}</em>{n}} \
+&amp;=\left.\frac{1}{2} \sum_{k}\left(\sum_{i=1}^{D} J_{nki} \tau_{n i}\right)^{2}\right|<em>{\mathbf{x}</em>{n}}
+\end{aligned}
+$$
+すべての$n$について足し合わせると
+$$
+\sum_{n} \Omega_{n}=\frac{1}{2} \sum_{n} \sum_{k}\left(\sum_{i=1}^{D} J_{n k i} \tau_{n i}\right)^{2}
+$$
+となり、$(5.128)$式を得ることができる。</p>
+<p>$(5.204)$式について
+$$
+\begin{aligned}
+\alpha_{j}=\mathcal{G} z_{j} &amp;=\sum_{i} \tau_{i} \frac{\partial}{\partial x_{i}} h\left(a_{j}\right) \
+&amp;=\sum_{i} \tau_{i} \frac{\partial h\left(a_{i}\right)}{\partial a_{j}} \frac{\partial}{\partial x_{i}} a_{i} \
+&amp;=h^{\prime}\left(a_{j}\right) \mathcal{G} a_{j} \
+&amp;=h^{\prime}\left(a_{j}\right) \beta_{j} \
+\beta_{j}=\mathcal{G} a_{j} &amp;=\sum_{i} \tau_{i} \frac{\partial}{\partial x_{i}} \sum_{l} w_{j l} z_{l} \
+&amp;=\sum_{l} w_{jl}\left(\sum_{i} r_{i} \frac{\partial}{\partial x_{i}} z_{l}\right) \
+&amp;=\sum_{l} w_{jl} \mathcal{G}z_{l} \
+&amp;=\sum_{l} w_{jl} \alpha_{l}
+\end{aligned}
+$$
+より、$(5.204)$式が示された。また、インプット層について計算をさらに進めると
+$$
+\begin{aligned}
+\beta_{n j} &amp;=\sum_{l} w_{j l} \alpha_{n l} \
+&amp;=\sum_{l} w_{jl} \mathcal{G} x_{n l} \
+&amp;=\sum_{l} w_{jl} \sum_{l^{\prime}} \tau_{nl^{\prime}} \frac{\partial x_{nl}}{\partial x_{n l^{\prime}}} \
+&amp;=\sum_{l} w_{jl} \tau_{nl}
+\end{aligned}
+$$
+となり$\tau_{n}$が$(5.204)$式によって順伝播していることが示された。</p>
+<p>$(5.206)$式について
+$$
+\begin{aligned}
+\frac{\partial \Omega_{n}}{\partial w_{r s}} &amp;=\frac{1}{2} \frac{\partial}{\partial w_{rs}} \sum_{k}\left(\mathcal{G}y_{n k}\right)^{2} \
+&amp;=\sum_{k}\left(\mathcal{G}y_{n k}\right) \frac{\partial}{\partial w_{r s}} \mathcal{G} y_{n k} \
+&amp;=\sum_{k} \alpha_{n k} \frac{\partial}{\partial w_{r s}} \sum_{i} \tau_{i} \frac{\partial}{\partial x_{n i}} y_{n k} \
+&amp;=\sum_{k} \alpha_{n k} \sum_{i} \tau_{i} \frac{\partial}{\partial x_{n i}}\left(\frac{\partial}{\partial w_{r s}} y_{n k}\right) \
+&amp;=\sum_{k} \alpha_{n k}\left( \mathcal{G} \left(\delta_{nkr} z_{n s}\right)\right) \quad \left( \because \frac{\partial y_{n k}}{\partial w_{r s}}=\frac{\partial y_{n k}}{\partial a_{n r}} \frac{\partial a_{n r}}{\partial w_{r s}}=\delta_{nkr} z_{ns} \quad (\textrm{eq}\ 5.52)\right)\
+&amp;=\sum_{k} \alpha_{n k}\left( (\mathcal{G} \delta_{n k r}) z_{n s}+\delta_{n k r}\left(\mathcal{G} z_{n s}\right)\right) \
+&amp;=\sum_{k} \alpha_{n k}\left{\phi_{n k r} z_{n s}+\delta_{nkr} \alpha_{n s}\right}
+\end{aligned}
+$$</p>
+<p>$\delta_{nkr}$についての逆伝播方程式は</p>
+<p>$$
+\begin{aligned}
+\delta_{nkr} \equiv \frac{\partial y_{nk}}{\partial a_{n r}} &amp;=\sum_{l} \frac{\partial y_{n k}}{\partial a_{n l}} \frac{\partial a_{n l}}{\partial a_{n r}} \
+&amp;=\sum_{l} \frac{\partial y_{n k}}{\partial a_{n l}} \frac{\partial}{\partial a_{n r}}\left(\sum_{r} w_{lr} h\left(a_{n r}\right)\right) \
+&amp;=h^{\prime}(a_{nr})\sum_{l}w_{lr}\frac{\partial y_{nk}}{\partial a_{nl}} \
+&amp;=h^{\prime}(a_{nr})\sum_{l}w_{lr}\delta_{nkl}
+\end{aligned}
+$$</p>
+<p>となり、これを用いた$\phi_{nkr}$を評価する逆伝播方程式は</p>
+<p>$$
+\begin{aligned}
+\phi_{n k r} \equiv \mathcal{G} \delta_{n k r} &amp;=\sum_{i} r_{i} \frac{\partial}{\partial x_{i}}\left(h^{\prime}\left(a_{n r}\right) \sum_{l} w_{lr} \delta_{n k l}\right) \
+&amp;=\sum_{i} \tau_{i}\left{\left(\frac{\partial}{\partial x_{i}} h^{\prime}\left(a_{n r}\right)\right) \sum_{l} w_{lr} \delta_{nkl}+h^{\prime}\left(a_{n r}\right)\left(\frac{\partial}{\partial x_{i}} \sum_{l} w_{lr} \delta_{n k l}\right)\right} \
+&amp;=\sum_{i} \tau_{i}\left(h^{\prime \prime}\left(a_{n r}\right) \frac{\partial a_{n r}}{\partial x_{i}}\right) \sum_{l} w_{lr} \delta_{nkl}+h^{\prime}\left(a_{n r}\right) \sum_{l} w_{lr} \mathcal{G} \delta_{nkl} \
+&amp;=h^{\prime \prime}\left(a_{n r}\right) \mathcal{G} a_{n r} \sum_{l} w_{lr} \delta_{nkl}+h^{\prime}\left(a_{n r}\right) \sum_{l} w_{lr} \mathcal{G} \delta_{nkl} \
+&amp;=h^{\prime \prime}\left(a_{n r}\right) \beta_{n r} \sum_{l} w_{lr} \delta_{nkl}+h^{\prime}\left(a_{n r}\right) \sum_{l} w_{lr} \mathcal{G} \delta_{nkl}
+\end{aligned}
+$$</p>
+<p>と書き下せる。</p>
+<h2 id="演習-527"><a class="header" href="#演習-527">演習 5.27</a></h2>
+<div class="panel-primary">
+<p>変換がランダムノイズの加算$\mathbf{x}\to\mathbf{x}+\boldsymbol{\xi}$のみであるという特別な場合について，変換されたデータを訓練する枠組みを考える．ただし，$\boldsymbol{\xi}$は平均がゼロ，分散が単位行列のガウス分布を持つとする．5.5.5節での議論と類似の議論に従って，結果として得られる正則化項はTikhonov正則化項
+$$
+\Omega=\frac{1}{2} \int|\nabla y(\mathbf{x})|^{2} p(\mathbf{x}) \mathrm{d} \mathbf{x} \tag{5.135}
+$$
+に帰着することを示せ．</p>
+</div>
+<p>※ $\mathbf{s}(\mathbf{x},\boldsymbol{\xi}) = \mathbf{x} + \boldsymbol{\xi}$である特別な場合において$5.5.5$節の議論を展開する。$(5.130)$式に導入して$\Omega$を計算すれば良いのだが、ベクトルの場合のテイラー展開などを丁寧に考える必要があるので計算は大変……というか難しすぎる？</p>
+<p>まず$y(\mathbf{s}(\mathbf{x},\boldsymbol{\xi})) = y(\mathbf{x}+\boldsymbol{\xi})$を$\boldsymbol{\xi}$でテイラー展開すると
+$$
+y(\mathbf{x}+\boldsymbol{\xi}) = y(\mathbf{x}) + \nabla y(\boldsymbol{x})\boldsymbol{\xi} + \frac{1}{2}\boldsymbol{\xi}^{\mathrm{T}}\nabla \nabla y(\mathbf{x}) \boldsymbol{\xi}+O(\boldsymbol{\xi}^3)
+$$
+ここで、$\nabla y(\mathbf{x})$は$\frac{\partial y}{\partial \xi_i}$を成分とする行ベクトル（なので$\nabla y(\boldsymbol{x})\boldsymbol{\xi}$はスカラー値）である。これより
+$$
+\begin{aligned}
+{y(\mathbf{x}+\boldsymbol{\xi})-t}^{2} &amp;=\left{(y(\mathbf{x})-t)+\nabla y(\mathbf{x}) \boldsymbol{\xi}+\frac{1}{2} \boldsymbol{\xi}^{\mathrm{T}} \nabla \nabla y(\mathbf{x}) \boldsymbol{\xi}+O\left(\boldsymbol{\xi}^{3}\right)\right}^{2} \
+&amp;=(y(\mathbf{x})-t)^{2}+(\nabla y(\mathbf{x}) \boldsymbol{\xi})^{2}+2 \nabla y(\mathbf{x}) \boldsymbol{\xi}(y(\mathbf{x})-t) +\boldsymbol{\xi}^{\mathrm{T}} \nabla \nabla y(\mathbf{x}) \boldsymbol{\xi}(y(\mathbf{x})-t)+O(\boldsymbol{\xi}^{3})
+\end{aligned}
+$$
+となる。
+この式と、以下の計算
+$$
+\begin{aligned}
+(\nabla y(\mathbf{x}) \boldsymbol{\xi})^{2} &amp;=\boldsymbol{\xi}^{\mathrm{T}} \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x}) \boldsymbol{\xi}\
+\int \boldsymbol{\xi} p(\boldsymbol{\xi}) d \boldsymbol{\xi} &amp;=\mathbb{E}[\boldsymbol{\xi}]=0, \int p(\boldsymbol{\xi}) d \boldsymbol{\xi}=1
+\end{aligned}
+$$
+を用いて$(5.130)$式に代入すると</p>
+<p>$$
+\begin{aligned}
+\tilde{E} &amp;= \frac{1}{2} \iint{y(\mathbf{x})-t}^{2} p(t \mid \mathbf{x}) p(\mathbf{x}) \int p(\boldsymbol{\xi}) d \boldsymbol{\xi} d \mathbf{x} d t + \iiint \nabla y(\mathbf{x})\boldsymbol{\xi} p(\boldsymbol{\xi}) d \boldsymbol{\xi} (y(\mathbf{x})-t) p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x} d t \
+&amp;+\frac{1}{2} \iiint \boldsymbol{\xi}^{\mathrm{T}} \nabla \nabla y(\mathbf{x})(y(\mathbf{x})-t) \boldsymbol{\xi} p(t \mid \mathbf{x})p(\mathbf{x}) d \mathbf{x} d t d \boldsymbol{\xi} \
+&amp;+\frac{1}{2} \iiint \boldsymbol{\xi}^{\mathrm{T}} \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x}) \boldsymbol{\xi} p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x} d t d \boldsymbol{\xi} \
+&amp;= \frac{1}{2} \iint{y(\mathbf{x})-t}^{2} p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x} d t + \mathbb{E}[\boldsymbol{\xi}] \iiint \nabla y(\mathbf{x})(y(\mathbf{x})-t) p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x} d t \
+&amp;+ \frac{1}{2}\iiint \boldsymbol{\xi}^{\mathrm{T}} \left[ (y(\mathbf{x})-t)\nabla \nabla y(\mathbf{x}) + \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right] \boldsymbol{\xi} p(\boldsymbol{\xi}) p(t \mid \mathbf{x}) p(\mathbf{x}) p(\boldsymbol{\xi}) d \mathbf{x} dt d \boldsymbol{\xi} \
+&amp;\equiv E + \Omega
+\end{aligned}
+$$
+となる（これ正則化係数$\lambda$がないけれどいいんですかね？）。ここで、$E$はもとの二乗和誤差関数であり、$\Omega$は
+$$
+\begin{aligned}
+\Omega &amp;= \frac{1}{2}\iiint \boldsymbol{\xi}^{\mathrm{T}} \left[ (y(\mathbf{x})-t)\nabla \nabla y(\mathbf{x}) + \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right] \boldsymbol{\xi} p(\boldsymbol{\xi}) p(t \mid \mathbf{x}) p(\mathbf{x})  d \mathbf{x} dt d \boldsymbol{\xi} \
+&amp;= \frac{1}{2}\iint \boldsymbol{\xi}^{\mathrm{T}} \left[ \left{ y(\mathbf{x})-\mathbb{E}[t\mid \mathbf{x}]\right}\nabla \nabla y(\mathbf{x}) + \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right] \boldsymbol{\xi} p(\boldsymbol{\xi}) p(\mathbf{x}) d \mathbf{x} d \boldsymbol{\xi}\end{aligned}
+$$
+で与えられる関数である。</p>
+<p>ここで、1.5.5節の議論と$(5.133)$の式から正則化項$\Omega$の括弧内の第1項は
+$$
+y(\mathbf{x})-\mathbb{E}[t\mid \mathbf{x}] = O(\boldsymbol{\xi})
+$$
+となるのに対し、$\Omega$は$O(\boldsymbol{\xi}^3)$の項を無視していることから、上の$\Omega$で残るのは
+$$
+\Omega \simeq \frac{1}{2}\iint \boldsymbol{\xi}^{\mathrm{T}} \left[ \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right] \boldsymbol{\xi} p(\boldsymbol{\xi}) p(\mathbf{x}) d \mathbf{x} d \boldsymbol{\xi}
+$$
+となり、これは
+$$
+\begin{aligned}
+\Omega &amp; \simeq \frac{1}{2} \iint \boldsymbol{\xi}^{\mathrm{T}}\left(\nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right) \boldsymbol{\xi} p(\boldsymbol{\xi}) p(\mathbf{x}) \mathrm{d} \boldsymbol{\xi} \mathrm{d} \mathbf{x} \
+&amp;=\frac{1}{2} \iint \operatorname{Tr}\left[\left(\boldsymbol{\xi} \boldsymbol{\xi}^{\mathrm{T}}\right)\left(\nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right)\right] p(\boldsymbol{\xi}) p(\mathbf{x}) \mathrm{d} \boldsymbol{\xi} \mathrm{d} \mathbf{x} \
+&amp;=\frac{1}{2} \int \operatorname{Tr}\left[\mathbf{I}\left(\nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x})\right)\right] p(\mathbf{x}) \mathrm{d} \mathbf{x} \
+&amp;=\frac{1}{2} \int \nabla y(\mathbf{x})^{\mathrm{T}} \nabla y(\mathbf{x}) p(\mathbf{x}) \mathrm{d} \mathbf{x}=\frac{1}{2} \int|\nabla y(\mathbf{x})|^{2} p(\mathbf{x}) \mathrm{d} \mathbf{x}
+\end{aligned}
+$$</p>
+<p>となる。ここで、$\boldsymbol{\xi}$が平均$\mathbf{0}$，分散が単位行列のガウス分布なので$(2.62)$式から$\mathbb{E}(\boldsymbol{\xi} \boldsymbol{\xi}^{\mathrm{T}}) = \mathbf{I}$となることを用いた。</p>
+<h2 id="演習-528"><a class="header" href="#演習-528">演習 5.28</a></h2>
+<div class="panel-primary">
+<p>5.5.6節で議論したたたみ込みニューラルネットワークのような，複数の重みが同じ値を持つように制約されているニューラルネットワークを考える．そのような制約条件を満たすためには，ネットワーク内の調整可能なパラメータに関する誤差関数の微分を評価する際に，標準的な逆伝播アルゴリズムをどのように変更しなければならないかを議論せよ．</p>
+</div>
+<p>※</p>
+<h2 id="演習-529"><a class="header" href="#演習-529">演習 5.29</a></h2>
+<div class="panel-primary">
+<p>$$
+\frac{\partial \widetilde{E}}{\partial w_{i}}=\frac{\partial E}{\partial w_{i}}+\lambda\sum_{j} \gamma_{j}\left(w_{i}\right) \frac{\left(w_{i}-\mu_{j}\right)}{\sigma_{j}^{2}} \tag{5.141}
+$$
+の結果を確かめよ．</p>
+</div>
+<p>※<strong>テキストの$(5.141)$式では$\lambda$が抜けている誤植がある</strong>。$(5.142)$,$(5.143)$も同様。</p>
+<p>$(5.139)$を用いるが、$(5.139)$式は$(5.138)$式に依存しているので先に$(5.138)$式の$w_i$についての微分を取る。このとき、$(1.46)$式の微分を先に計算しておく。</p>
+<p>$$
+\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} \exp \left{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right} \tag{1.46}
+$$
+の微分形は
+$$
+\frac{\partial \mathcal{N}}{\partial x}=-\frac{(x-\mu)}{\sigma^{2}} \mathcal{N}\left(x \mid \mu, \sigma^{2}\right)
+$$
+である。</p>
+<p>$$
+\Omega(\mathbf{w})=-\sum_{i} \ln \left(\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)\right) \tag{5.138}
+$$
+の$w_i$についての微分を取ると
+$$
+\begin{aligned}
+\frac{\partial \Omega}{\partial w_{i}} &amp;= \frac{-1}{\sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid u_{k}, \sigma_{k}^{2}\right)} \sum_{j=1}^{M} \pi_{j} \left(\frac{\partial \mathcal{N}\left(w_{i} \mid \mu_{i}, \sigma_{j}^{2}\right)}{\partial w_{i}}\right) \
+&amp;= \frac{1}{\sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)} \sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right) \frac{\left(w_{i}-\mu_{j}\right)}{\sigma^{2}}
+\end{aligned}
+$$
+これを$\tilde{E}(\mathbf{w})=E(\mathbf{w})+\lambda \Omega(\mathbf{w})\hspace{1em}(5.139)$式の微分形
+$$
+\frac{\partial \widetilde{E}}{\partial w_{i}}=\frac{\partial E}{\partial w_{i}}+\lambda \frac{\partial \Omega}{\partial w_{i}}
+$$
+に代入すると
+$$
+\frac{\partial \widetilde{E}}{\partial w_{i}}=\frac{\partial E}{\partial w_{i}}+\lambda\sum_{j} \gamma_{j}\left(w_{i}\right) \frac{\left(w_{i}-\mu_{j}\right)}{\sigma_{j}^{2}},\ \textrm{where}\ \gamma_{j}(w_{i})=\frac{\pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)}{\sum_{k} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)} \tag{5.141}
+$$
+が得られる。</p>
+<h2 id="演習-530"><a class="header" href="#演習-530">演習 5.30</a></h2>
+<div class="panel-primary">
+<p>$$
+\frac{\partial \widetilde{E}}{\partial \mu_{j}}=\lambda \sum_{i} \gamma_{j}\left(w_{i}\right) \frac{\left(\mu_{j}-w_{i}\right)}{\sigma_{j}^{2}} \tag{5.142}
+$$
+の結果を確かめよ．</p>
+</div>
+<p>※テキストの$(5.142)$でも$\lambda$が抜けている誤植があるので注意。</p>
+<p>$\mu_j$は$E$の項には現れず$\Omega(\mathbf{w})$の項にのみ現れるので、$(5.139)$式の微分は</p>
+<p>$$
+\frac{\partial \widetilde{E}}{\partial \mu_j}=\lambda \frac{\partial \Omega}{\partial \mu_j}
+$$
+となる。$(5.138)$式の$\mu_j$についての微分は
+$$
+\begin{aligned}
+\frac{\partial \Omega}{\partial \mu_{j}} &amp;=-\sum_{i} \frac{1}{\sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k} \sigma_{k}^{2}\right)} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right) \frac{w_{i}-\mu_{j}}{\sigma_{j}^{2}} \
+&amp;=-\sum_{i} \gamma_{j}\left(w_{i}\right) \frac{w_{i}-\mu_{j}}{\sigma_{j}^{2}}
+\end{aligned}
+$$
+よって
+$$
+\frac{\partial \widetilde{E}}{\partial \mu_{j}}=\lambda \sum_{i} \gamma_{j}\left(w_{i}\right) \frac{\left(\mu_{j}-w_{i}\right)}{\sigma_{j}^{2}} \tag{5.142}
+$$
+を得る。</p>
+<h2 id="演習-531"><a class="header" href="#演習-531">演習 5.31</a></h2>
+<div class="panel-primary">
+<p>$$
+\frac{\partial \tilde{E}}{\partial \sigma_{j}}=\lambda \sum_{i} \gamma_{j}\left(w_{i}\right)\left(\frac{1}{\sigma_{j}}-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{\sigma_{j}^{3}}\right) \tag{5.143}
+$$
+の結果を確かめよ．</p>
+</div>
+<p>※ 演習問題 5.29, 5.30と同様。テキストの$(5.143)$でも$\lambda$が抜けている誤植があるので注意。</p>
+<p>(5.139)より $\tilde{E}(\mathbf{w}) = E (\mathbf{w}) + \lambda \Omega(\mathbf{w})$
+(5.138)より $\Omega(\mathbf{w}) = - \Sigma_i \ln (\Sigma_{j=1}^M \pi_j \mathcal{N} (w_j|µ_j,\sigma_j^2))$</p>
+<br>
+<p>$\frac{\partial E(\mathbf{w})}{\partial \sigma_j}=0 $ なので</p>
+<p>$$
+\begin{align}
+\frac{\partial \tilde E(\mathbf{w})}{\partial \sigma_j} &amp;= \lambda\frac{\partial \Omega }{\partial \sigma_j}\
+&amp;= \lambda\frac{\partial}{\partial \sigma_j} (- \Sigma_i \ln (\Sigma_{j=1}^M \pi_j \mathcal{N} (w_j|µ_j,\sigma_j^2))) \
+\end{align}
+$$</p>
+<br>
+<p>ガウス分布について</p>
+<p>$$\mathcal{N}(x|µ, \sigma) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp -\frac{(x-µ)^2}{2\sigma^2}$$</p>
+<p>であるので</p>
+<p>$$
+\begin{aligned}
+\frac{\partial \mathcal{N}}{\partial \sigma_{j}} &amp;=(2 \pi)^{-\frac{1}{2}}\left[-\sigma_{j}^{-2} \exp \left{-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{2 \sigma_{j}^{2}}\right}+\sigma_{j}^{-1} \sigma_{j}^{-3}\left(w_{i}-\mu_{j}\right)^{2}\exp \left{-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{2 \sigma_{j}^{2}}\right} \right]\
+&amp;=(2 \pi)^{-\frac{1}{2}}\left(-\sigma_{j}^{-2}+\frac{\left(w_{i}-\mu_{j}\right)^{2}}{\sigma_{j}^{-4}}\right) \exp \left{-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{2 \sigma_{j}^{2}}\right} \
+&amp;=-\left(\frac{1}{\sigma_{j}}-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{\sigma_{j}^{3}}\right) \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)
+\end{aligned}
+$$
+より、
+$$
+\begin{aligned}
+\frac{\partial \Omega}{\partial \sigma_{j}} &amp;=-\sum_{i} \frac{1}{\sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)} \pi_{j} \frac{\partial \mathcal{N}}{\partial \sigma_{j}} \
+&amp;= -\sum_{i} \frac{\pi_j{-\frac{1}{\sigma_j}+\frac{(w_j-µ_j)^2}{\sigma^3_j}}{\mathcal{N}(w_j|µ_j,\sigma_j^2)}}{\Sigma^M_{j=1}\pi_k\mathcal{N}(w_i|µ_k,\sigma_k^2) }
+\end{aligned}
+$$</p>
+<br>
+<p>(5.140)より $\gamma_j(w)= \frac{\pi_j\mathcal{N}(w|µ_j,\sigma_j^2)}{\Sigma_k \pi_k \mathcal{N}(w|µ_k,\sigma_k^2)}$ を利用して</p>
+<p>$$
+\frac{\partial \Omega}{\partial \sigma_{j}} =\sum_{i} \gamma_{j}\left(w_{i}\right)\left(\frac{1}{\sigma_{j}}-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{\sigma_{j}^{3}}\right)
+$$</p>
+<br>
+よって
+<p>$$
+\frac{\partial \tilde{E}}{\partial \sigma_{j}}=\lambda \sum_{i} \gamma_{j}\left(w_{i}\right)\left(\frac{1}{\sigma_{j}}-\frac{\left(w_{i}-\mu_{j}\right)^{2}}{\sigma_{j}^{3}}\right) \tag{5.143}
+$$
+を得る。</p>
+<h2 id="演習-532"><a class="header" href="#演習-532">演習 5.32</a></h2>
+<div class="panel-primary">
+<p>$$
+\pi_{j}=\frac{\exp \left(\eta_{j}\right)}{\sum_{k=1}^{M} \exp \left(\eta_{k}\right)} \tag{5.146}
+$$
+で定義される混合係数${\pi_k }$の補助パラメータ${ \eta_j }$に関する微分が
+$$
+\frac{\partial \pi_{k}}{\partial \eta_{j}}=\delta_{j k} \pi_{j}-\pi_{j} \pi_{k} \tag{5.208}
+$$
+で与えられることを示せ．また，すべての$i$について$\sum_k \gamma_k (w_i)=1$という制約条件を利用して，
+$$
+\frac{\partial \widetilde{E}}{\partial \eta_{j}}=\lambda \sum_{i}\left{\pi_{j}-\gamma_{j}\left(w_{i}\right)\right} \tag{5.147}
+$$
+の結果を導け．</p>
+</div>
+<p>※<strong>テキストの$(5.147)$式でも$\lambda$が抜けている誤植がある</strong>。</p>
+<p>前半部分は演習問題4.17と同じなので省略。ただ、文字$k$,$j$がややこしいので
+$$
+\pi_{k}=\frac{\exp \left(\eta_{k}\right)}{\sum_{j=1}^{M} \exp \left(\eta_{j}\right)} \tag{5.146}
+$$
+をもとに偏微分し、$j=k$と$j\neq k$の場合に分けて考える。結果的に$(5.208)$式が求まる。</p>
+<p>後半は演習問題5.31までと同様に解いていく。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial \widetilde{E}}{\partial \eta_{j}} &amp;=\lambda \frac{\partial \Omega(\mathbf{w})}{\partial \eta_{j}} \
+&amp;=-\lambda \frac{\partial}{\partial \eta_{j}}\left{\sum_{i} \ln \left(\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)\right)\right} \
+&amp;=-\lambda \sum_{i} \frac{\partial}{\partial \eta_{j}}\left{\ln \left(\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)\right)\right} \
+&amp;=-\lambda \sum_{i} \frac{1}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)} \sum_{k=1}^{M} \frac{\partial}{\partial \eta_{j}}\left{\pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)\right} \
+&amp;=-\lambda \sum_{i} \frac{1}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)} \sum_{k=1}^{M} \frac{\partial}{\partial \pi_{k}}\left{\pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)\right} \frac{\partial \pi_{k}}{\partial \eta_{j}} \
+&amp;=-\lambda \sum_{i} \frac{1}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)} \sum_{k=1}^{M} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)\left(\delta_{kj} \pi_{j}-\pi_{j} \pi_{k}\right) \
+&amp;=-\lambda \sum_{i} \frac{1}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)}\left{\pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)- \pi_{j} \sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)\right} \
+&amp;=-\lambda \sum_{i}\left{\frac{\pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)}-\frac{\left.\pi_{j} \sum_{k=1}^{M} \pi_{k} \mathcal{N}\left(w_{i} \mid \mu_{k}, \sigma_{k}^{2}\right)\right)}{\sum_{j=1}^{M} \pi_{j} \mathcal{N}\left(w_{i} \mid \mu_{j}, \sigma_{j}^{2}\right)}\right} \
+&amp;=-\lambda \sum_{i}\left{\gamma_{j}\left(w_{i}\right)-\pi_{j}\right} \
+&amp;=\lambda \sum_{i}\left{\pi_{j}-\gamma_{j}\left(w_{i}\right)\right}
+\end{aligned}
+$$</p>
+<p>ちなみに後半部分の別解がある。</p>
+<blockquote>
+<p>Just as in Solutions 5.30 and 5.31, $j$ only affect $\widetilde{E}$ through $\Omega$. However, $j$ will affect $k$ for all values of $k$ (not just $j = k$). Thus we have
+$$
+\frac{\partial \Omega}{\partial \eta_{j}}=\sum_{k} \frac{\partial \Omega}{\partial \pi_{k}} \frac{\partial \pi_{k}}{\partial \eta_{j}} \tag{192}
+$$
+From $(5.138)$ and $(5.140)$, we get
+$$
+\frac{\partial \Omega}{\partial \pi_{k}}=-\sum_{i} \frac{\gamma_{k}\left(w_{i}\right)}{\pi_{k}}
+$$
+Substituting this and $(5.208)$ into $(192)$ yields
+$$
+\begin{aligned}
+\frac{\partial \Omega}{\partial \eta_{j}} &amp;=\frac{\partial \widetilde{E}}{\partial \eta_{j}}=-\sum_{k} \sum_{i} \frac{\gamma_{k}\left(w_{i}\right)}{\pi_{k}}\left{\delta_{j k} \pi_{j}-\pi_{j} \pi_{k}\right} \
+&amp;=\sum_{i}\left{\pi_{j}-\gamma_{j}\left(w_{i}\right)\right}
+\end{aligned}
+$$
+where we have used the fact that $\sum_{k} \gamma_{k}\left(w_{i}\right)=1$ for all $i$.</p>
+</blockquote>
+<h2 id="演習-533"><a class="header" href="#演習-533">演習 5.33</a></h2>
+<div class="panel-primary">
+<img src="/attachment/617ba640d44de45e6ef750a8" width="600px">
+<p>図5.18に示すロボットアームのデカルト座標$(x_1, x_2)$を表す2つの方程式を関節角$\theta_1, \theta_2$とリンクの長さ$L_1, L_2$で書き下せ．ここで，座標系の原点は下側のアームの接続点で与えられるとせよ．これらの方程式は，ロボットアームの「順運動学」を定義する．</p>
+</div>
+<p>$$
+\begin{aligned}
+x_1 &amp;= L_1\cos{\theta_1} + L_2\cos{(\theta_1+\theta_2-\pi)} \&amp;= L_1\cos{\theta_1} - L_2\cos{(\theta_1+\theta_2)}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+x_2 &amp;= L_1\sin{\theta_1} + L_2\sin{(\theta_1+\theta_2-\pi)} \&amp;= L_1\sin{\theta_1} - L_2\sin{(\theta_1+\theta_2)}
+\end{aligned}
+$$</p>
+<h2 id="演習-534"><a class="header" href="#演習-534">演習 5.34</a></h2>
+<div class="panel-primary">
+<p>混合密度ネットワーク内の混合係数を制御するネットワークの出力活性に関する誤差関数の微分について，
+$$
+\frac{\partial E_{n}}{\partial a_{k}^{\pi}}=\pi_{k}-\gamma_{n k} \tag{5.155}
+$$
+の結果を導け．</p>
+</div>
+<p>※ソフトマックス関数の$\pi_k$は$k=1, \cdots, K$に依存しているので</p>
+<p>微分のchain ruleから（ソフトマックス関数の$\pi_k$は$k=1, \cdots, K$に依存しているので$\sum$を使う）
+$$
+\frac{\partial E_{n}}{\partial a_{k}^{\pi}}=\sum_{j=1}^{K} \frac{\partial E_{n}}{\partial \pi_{j}} \frac{\partial \pi_{j}}{\partial a_{k}^{\pi}}
+$$</p>
+<p>この第1項について
+$$
+\frac{\partial E_{n}}{\partial \pi_{j}}=-\frac{\mathcal{N}<em>{n j}}{\sum</em>{l=1}^{K} \pi_{l} \mathcal{N}<em>{n l}}=-\frac{\gamma</em>{nj}}{\pi_{j}}\quad (\because (5.154))
+$$
+第2項について（演習問題4.17を参照）
+$$
+\begin{aligned}
+\frac{\partial \pi_{j}}{\partial a_{k}^{\pi}} &amp;=\frac{\partial}{\partial a_{k}^{\pi}}\left(\frac{e^{a_{j}^{\pi}}}{\sum_{l=1}^{K} e^{a_{l}^{\pi}}}\right) \
+&amp;=\pi_{j}\left(\delta_{k j}-\pi_{k}\right)
+\end{aligned}
+$$</p>
+<p>よって、この二式を結合させると
+$$
+\begin{aligned}
+\frac{\partial E_{n}}{\partial a_{k}^{\pi}} &amp;=\sum_{j=1}^{K}\left(-\frac{\gamma_{nj}}{\pi_{j}}\right) \pi_{j}\left(\delta_{k j}-\pi_{k}\right) \
+&amp;=\sum_{j=1}^{K} \gamma_{nj}\left(\pi_{k}-\delta_{k j}\right) \
+&amp;=-\gamma_{n_{k}}+\sum_{j=1}^{K} \gamma_{n j} \pi_{k} \
+&amp;=\pi_{k}-\gamma_{n k}\left(\because \sum_{j=1}^{K} \gamma_{nj}=1\right)
+\end{aligned}
+$$
+以上から$(5.155)$式が示された。</p>
+<h2 id="演習-535"><a class="header" href="#演習-535">演習 5.35</a></h2>
+<div class="panel-primary">
+<p>混合密度ネットワーク内の各要素の平均を制御するネットワークの出力活性に関する誤差関数の微分について，
+$$
+\frac{\partial E_{n}}{\partial a_{k l}^{\mu}}=\gamma_{n k}\left{\frac{\mu_{k l}-t_{n l}}{\sigma_{k}^{2}}\right} \tag{5.156}
+$$
+の結果を導け．</p>
+</div>
+<p>$$
+a_{k l}^{\mu}=\mu_{k l}\tag{5.152}
+$$
+より
+$$
+\frac{\partial E_{n}}{\partial a_{k l}^{\mu}}=\frac{\partial E_{n}}{\partial \mu_{k l}}
+$$
+が得られる。
+$$
+\partial E_{n}=-{\sum_{n=1}^N}\ln \bigg({\sum_{k=1}} \pi_k \mathcal{N}<em>{n k}\bigg)\tag{5.153}
+$$
+$$
+\gamma</em>{n k}=\frac{\pi_k \mathcal{N}<em>{n k}}{\sum</em>{l=1}^K\pi_l \mathcal{N}<em>{n l}}\tag{5.154}
+$$
+これらと(2.43)のガウス分布の式を用いると以下のように導ける。
+$$
+\begin{aligned}
+\frac{\partial E</em>{n}}{\partial \mu_{k l}} &amp;=-\frac{\pi_k}{{\sum_{k=1}} \pi_k \mathcal{N}<em>{n k}} \cdot \mathcal{N}</em>{n k} \cdot \frac{t_{n l}-\mu_{k l}}{\sigma^2} \
+&amp;=\gamma_{n k} \frac{\mu_{k l}-t_{n l}}{\sigma_{k}^2}
+\end{aligned}
+$$</p>
+<h2 id="演習-536"><a class="header" href="#演習-536">演習 5.36</a></h2>
+<div class="panel-primary">
+<p>混合密度ネットワーク内の各要素の分散を制御するネットワークの出力活性に関する誤差関数の微分について，
+$$
+\frac{\partial E_{n}}{\partial a_{k}^{\sigma}}=\gamma_{n k}\left(L-\frac{\left|\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k}\right|^{2}}{\sigma_{k}^{2}}\right) \tag{5.157}
+$$
+の結果を導け．</p>
+</div>
+<p>微分のchain-ruleより
+$$
+\frac{\partial E_{n}}{\partial a_{k}^{\sigma}}=\frac{\partial E_{n}}{\partial \sigma_{k}}\frac{\partial \sigma_{k}}{\partial a_{k}^{\sigma}}
+$$
+第二項について
+$$
+\sigma_{k}=\exp({a_{k}^{\sigma}})\tag{5.151}
+$$
+より
+$$
+\frac{\partial \sigma_{k}}{\partial a_{k}^{\sigma}}=\exp({a_{k}^{\sigma}})=\sigma_{k}
+$$
+(2.43)のガウス分布の式は以下のように変形できる。
+$$
+\begin{aligned}
+\mathcal{N}<em>{n k}&amp;=\frac{1}{{2 \pi}^{D/2}}\frac{1}{\vert{\sigma</em>{k^2} I}\vert}\exp\bigg({-\frac{1}{2}(\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k})^T \frac{1}{\sigma_k^2}(\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k})}\bigg)\
+&amp;=\bigg(\frac{1}{2 \pi \sigma_k^2}\bigg)^{\frac{D}{2}}\exp\bigg({-\frac{1}{2}(\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k})^T \frac{1}{\sigma_k^2}(\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k})}\bigg)\
+&amp;=\bigg(\frac{1}{2 \pi \sigma_k^2}\bigg)^{\frac{D}{2}}\exp\bigg(-{\frac{\Vert{\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k}\Vert}^2}{\sigma_k^2}}\bigg)
+\end{aligned}
+$$
+第一項について変形したガウス分布の指揮,(1.153),(1.154)を用いて以下のように導ける。
+$$
+\begin{aligned}
+\frac{\partial E_{n}}{\partial \sigma_{k}}&amp;=\frac{\pi_k}{-{\sum_{k=1}^K}\pi_k \mathcal{N}<em>{n k}} \bigg(\frac{1}{2 \pi}\bigg)^{\frac{D}{2}}\bigg({-\frac{L}{\sigma^{L+1}}exp\bigg(-{\frac{\Vert{\mathbf{t}</em>{n}-\boldsymbol{\mu}<em>{k}\Vert}^2}{\sigma_k^2}}\bigg)+\frac{1}{\sigma_k^2}exp\bigg(-{\frac{\Vert{\mathbf{t}</em>{n}-\boldsymbol{\mu}<em>{k}\Vert}^2}{\sigma_k^2}}\bigg)\frac{\Vert{\mathbf{t}</em>{n}-\boldsymbol{\mu}<em>{k}\Vert}^2}{\sigma_k^3}}\bigg)\
+&amp;=\frac{\mathcal{N}</em>{n k}\pi_k}{-{\sum_{k=1}^K}\pi_k \mathcal{N}<em>{n k}} \bigg({-\frac{L}{\sigma_k}+\frac{\Vert{\mathbf{t}</em>{n}-\boldsymbol{\mu}<em>{k}\Vert}^2}{\sigma_k^3}}\bigg)\
+&amp;=\gamma</em>{n k}\bigg({\frac{L}{\sigma_k}-\frac{\Vert{\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k}\Vert}^2}{\sigma_k^3}}\bigg)
+\end{aligned}
+$$
+最後に求めた第一項と第二項を掛け合わせて(5.157)の結果を得られる。
+$$
+\begin{aligned}
+\frac{\partial E_{n}}{\partial a_{k}^{\sigma}}&amp;=\frac{\partial E_{n}}{\partial \sigma_{k}}\frac{\partial \sigma_{k}}{\partial a_{k}^{\sigma}}\
+&amp;=\gamma_{n k}\bigg({\frac{L}{\sigma_k}-\frac{\Vert{\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k}\Vert}^2}{\sigma_k^3}}\bigg)\cdot \sigma_k \
+&amp;=\gamma_{n k}\bigg({L-\frac{\Vert{\mathbf{t}<em>{n}-\boldsymbol{\mu}</em>{k}\Vert}^2}{\sigma_k^2}}\bigg)
+\end{aligned}
+$$</p>
+<h2 id="演習-537"><a class="header" href="#演習-537">演習 5.37</a></h2>
+<div class="panel-primary">
+<p>混合密度ネットワークモデルの条件付き平均と分散について，
+$$
+\mathbb{E}[\mathbf{t} \mid \mathbf{x}]=\int \mathbf{t} p(\mathbf{t} \mid \mathbf{x}) \mathrm{d} \mathbf{t}=\sum_{k=1}^{K} \pi_{k}(\mathbf{x}) \boldsymbol{\mu}<em>{k}(\mathbf{x}) \tag{5.158}
+$$
+および
+$$
+s^2(\mathbf{x})=\sum</em>{k=1}^{K} \pi_{k}(\mathbf{x})\left{L\sigma_{k}^{2}(\mathbf{x})+\left|\mu_{k}(\mathbf{x})-\sum_{l=1}^{K} \pi_{l}(\mathbf{x}) \mu_{l}(\mathbf{x})\right|^{2}\right} \tag{5.160}
+$$
+の結果を確かめよ．</p>
+</div>
+<p>※<strong>テキストの$(5.160)$式は間違っており、実際には$\sigma_{k}^{2}(\mathbf{x})$に係数$L$がつくはずである。</strong></p>
+<p>$$
+p(\mathbf{t} \mid \mathbf{x})=\sum_{k=1}^{K} \pi_{k}(\mathbf{x}) \mathcal{N}\left(\mathbf{t} \mid \boldsymbol{\mu}<em>{k}(\mathbf{x}), \sigma</em>{k}^{2}(\mathbf{x}) \mathbf{I}\right) \tag{5.148}
+$$
+を利用してまず平均の$\mathbb{E}[\mathbf{t}\mid \mathbf{x}]$を計算すると
+$$
+\begin{aligned}
+\mathbb{E}[\mathbf{t} \mid \mathbf{x}] &amp;=\int \mathbf{t} p(\mathbf{t} \mid \mathbf{x}) d \mathbf{t} \
+&amp;=\int \mathbf{t} \sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(\mathbf{t} \mid \boldsymbol{\mu}<em>{k}, \sigma</em>{k}^{2}\mathbf{I}\right) d \mathbf{t} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \int \mathbf{t} \mathcal{N}\left(\mathbf{t} \mid \boldsymbol{\mu}<em>{k}, \sigma</em>{k}^{2}\mathbf{I}\right) d \mathbf{t} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \boldsymbol{\mu}<em>{k}
+\end{aligned}
+$$
+となる。次に分散は$s^{2}(x)=\mathbb{E}\left[\mathbf{t}^{2} \mid \mathbf{x}\right]-{\mathbb{E}[\mathbf{t} \mid \mathbf{x}]}^{2}$で求められるため、$\mathbb{E}\left[\mathbf{t}^{2} \mid \mathbf{x}\right]$を計算すると
+$$
+\begin{aligned}
+\mathbb{E}\left[\mathbf{t}^{2} \mid \mathbf{x}\right] &amp;=\mathbb{E}\left[\mathbf{t}^{\mathrm{T}} \mathbf{t} \mid \mathbf{x}\right] \
+&amp;=\mathbb{E}\left[\operatorname{Tr}\left[\mathbf{t}^{\mathrm{T}} \mathbf{t}\right] \mid \mathbf{x}\right] \
+&amp;=\mathbb{E}\left[\operatorname{Tr}\left[\mathbf{t}\mathbf{t}^{\mathrm{T}}\right] \mid \mathbf{x}\right] \
+&amp;=\operatorname{Tr}\left[\int \mathbf{t}\mathbf{t}^{\mathrm{T}} \sum</em>{k=1}^{K} \pi_k \mathcal{N}\left(\mathbf{t} \mid \boldsymbol{\mu}<em>{k}, \sigma</em>{k}^{2} \mathbf{I}\right) d \mathbf{t}\right] \
+&amp;=\sum_{k=1}^{K}\pi_k \operatorname{Tr}\left[\boldsymbol{\mu}<em>{k} \boldsymbol{\mu}</em>{k}^{\mathrm{T}}+\sigma_{k}^{2} \mathbf{I}\right] \
+&amp;=\sum_{k=1}^{K}\pi_k \left(\left|\boldsymbol{\mu}<em>{k}\right|^{2}+L \sigma</em>{k}^{2}\right)
+\end{aligned}
+$$
+ここで、$L$は$\mathbf{t}$の次元数である（この計算本当に合ってるのか疑問）。途中の式変形では
+$$
+\mathbb{E}\left[\mathbf{xx}^{\mathrm{T}}\right]=\boldsymbol{\mu \mu}^{\mathrm{T}}+\mathbf{\Sigma} \tag{2.62}
+$$
+を用いた。</p>
+<p>以上を用いて計算すると
+$$
+\begin{aligned}
+s^{2}(\mathbf{x}) &amp;= \sum_{k=1}^{K} \pi_{k}\left(L \sigma_{k}^{2}+\left|\boldsymbol{\mu}<em>{k}\right|^{2}\right)-\left|\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=L \sum</em>{k=1}^{K} \pi_{k} \sigma_{k}^{2}+\sum_{k=1}^{K} \pi_{k}\left|\boldsymbol{\mu}<em>{k}\right|^{2}-\left|\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=L \sum</em>{k=1}^{K} \pi_{k} \sigma_{k}^{2}+\sum_{k=1}^{K} \pi_{k}\left|\boldsymbol{\mu}<em>{k}\right|^{2}-2 \times\left|\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2}+1 \times\left|\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=L \sum</em>{k=1}^{K} \pi_{k} \sigma_{k}^{2}+\sum_{k=1}^{K} \pi_{k}\left|\boldsymbol{\mu}<em>{k}\right|^{2}-2\left(\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right)\left(\sum</em>{k=1}^{K} \pi_{k} \boldsymbol{\mu}<em>{k}\right)+\left(\sum</em>{k=1}^{K} \pi_{k}\right)\left|\sum_{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=L \sum</em>{k=1}^{K} \pi_{k} \sigma_{k}^{2}+\sum_{k=1}^{K} \pi_{k}\left|\boldsymbol{\mu}<em>{k}\right|^{2}-2\left(\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right)\left(\sum</em>{k=1}^{K} \pi_{k} \boldsymbol{\mu}<em>{k}\right)+\sum</em>{k=1}^{K} \pi_{k}\left|\sum_{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=L \sum</em>{k=1}^{K} \pi_{k} \sigma_{k}^{2}+\sum_{k=1}^{K} \pi_{k}\left|\boldsymbol{\mu}<em>{k}-\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}<em>{l}\right|^{2} \
+&amp;=\sum</em>{k=1}^{K} \pi_{k}\left(L \sigma_{k}^{2}+\left|\boldsymbol{\mu}<em>{k}-\sum</em>{l=1}^{K} \pi_{l} \boldsymbol{\mu}_{l}\right|^{2}\right)
+\end{aligned}
+$$</p>
+<p>以上から$(5.160)$式が導出された。</p>
+<h2 id="演習-538"><a class="header" href="#演習-538">演習 5.38</a></h2>
+<div class="panel-primary">
+<p>一般的な結果
+$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$
+を用いて，ベイズニューラルネットワークモデルのラプラス近似による予測分布
+$$
+p(t \mid \mathbf{x}, \mathcal{D}, \alpha, \beta)=\mathcal{N}\left(t \mid y\left(\mathbf{x}, \mathbf{w}_{\mathrm{MAP}}\right), \sigma^{2}(\mathbf{x})\right) \tag{5.172}
+$$
+を導け．</p>
+</div>
+<p>※$(2.115)$と$(5.172)$式が一致するように変数の値を変換できれば題意を満たせる。</p>
+<p>$(5.173)$式から、$\sigma^2(\mathbf{x}) = \beta^{-1}+\mathbf{g}^{\mathrm T}\mathbf{A}^{-1}\mathbf{g}$で定義されている。</p>
+<p>$(2.115)$式と$(5.172)$式の比較から
+$$
+\mathbf{y} \Rightarrow t,\quad \mathbf{L}^{-1} \Rightarrow \beta^{-1},\quad \mathbf{A} \Rightarrow \mathbf{g}^{\mathrm{T}},\quad\mathbf{\Lambda}^{-1} \Rightarrow \mathbf{A}^{-1}
+$$
+となることはわかる。</p>
+<p>$\mathbf{A} \boldsymbol{\mu}+\mathbf{b} = y(\mathbf{x},\mathbf{w}<em>{\mathrm{MAP}})$の関係は、ラプラス近似ではMAP（最大事後確率）解付近での近似なので$\boldsymbol{\mu} \Rightarrow \mathbf{w}</em>{\mathrm{MAP}}$とすればよく、このとき$\mathbf{g}^{\mathrm T}\mathbf{w}<em>{\mathrm{MAP}} + \mathbf{b} = y(\mathbf{x},\mathbf{w}</em>{\mathrm{MAP}})$なので、
+$$
+\mathbf{b} \Rightarrow y\left(\mathbf{x}, \mathbf{w}<em>{\mathrm{MAP}}\right)-\mathbf{g}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}
+$$
+とすればよい。</p>
+<p>以上の変数変換を適用すると、
+$$
+\begin{aligned}
+p(t) &amp;=\mathcal{N}\left(t \mid \mathbf{g}^{\mathrm{T}} \mathbf{w}<em>{\mathrm{MAP}}+y\left(\mathbf{x}, \mathbf{w}</em>{\mathrm{MAP}}\right)-\mathbf{g}^{\mathrm{T}} \mathbf{w}<em>{\mathrm{MAP}}, \beta^{-1}+\mathbf{g}^{\mathrm{T}} \mathbf{A}^{-1} \mathbf{g}\right) \
+&amp;=\mathcal{N}\left(t \mid y\left(\mathbf{x}, \mathbf{w}</em>{\mathrm{MAP}}\right), \sigma^{2}\right)
+\end{aligned}
+$$
+となる。</p>
+<h2 id="演習-539"><a class="header" href="#演習-539">演習 5.39</a></h2>
+<div class="panel-primary">
+<p>ラプラス近似の結果
+$$
+\begin{aligned}
+Z &amp;=\int f(\mathbf{z}) \mathrm{d} \mathbf{z} \
+&amp; \simeq f\left(\mathbf{z}<em>{0}\right) \int \exp \left{-\frac{1}{2}\left(\mathbf{z}-\mathbf{z}</em>{0}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{z}-\mathbf{z}<em>{0}\right)\right} \mathrm{d} \mathbf{z} \
+&amp;=f\left(\mathbf{z}</em>{0}\right) \frac{(2 \pi)^{M / 2}}{|\mathbf{A}|^{1 / 2}}
+\end{aligned} \tag{4.135}
+$$
+を用いて，ベイズニューラルネットワークモデルにおける超パラメータ$\alpha, \beta$のエビデンス関数が
+$$
+\ln p(\mathcal{D} \mid \alpha, \beta) \simeq-E\left(\mathbf{w}<em>{\mathrm{MAP}}\right)-\frac{1}{2} \ln |\mathbf{A}|+\frac{W}{2} \ln \alpha+\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi) \tag{5.175}
+$$
+で近似できることを示せ．ただし
+$$
+E\left(\mathbf{w}</em>{\mathrm{MAP}}\right)=\frac{\beta}{2} \sum_{n=1}^{N}\left{y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm{MAP}}\right)-t_{n}\right}^{2}+\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}} \tag{5.176}
+$$
+である。</p>
+</div>
+<p>※ やや計算量が多いが、ラプラス近似とガウス分布の計算さえしっかりすれば大丈夫。</p>
+<p>まず$(5.174)$式
+$$
+p(\mathcal{D} \mid \alpha, \beta)=\int p(\mathcal{D} \mid \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha) \mathrm{d} \mathbf{w}
+$$
+について$f(\mathbf{w})=p(\mathcal{D} \mid \mathbf{w}, \beta)p(\mathbf{w} \mid \alpha),\ Z=p(\mathcal{D} \mid \alpha, \beta)$として$(4.135)$式のラプラス近似の式に代入すると</p>
+<p>$$
+\begin{aligned}
+p(\mathcal{D} \mid \alpha, \beta) &amp;\simeq p\left(\mathcal{D} \mid \mathbf{w}<em>{\mathrm{MAP}}, \beta\right) p\left(\mathbf{w}</em>{\mathrm{MAP}} \mid \alpha\right) \int \exp \left{-\frac{1}{2}\left(\mathbf{w}-\mathbf{w}<em>{\mathrm{MAP}}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{w}</em>{\mathrm{MAP}}\right)\right} \mathrm{d} \mathbf{w} \
+&amp;=f\left(\mathbf{w}_{\mathrm {MAP}}\right) \frac{(2 \pi)^{W/2}}{|\mathbf{A}|^{1/2}}
+\end{aligned}
+$$
+とおくことができる。ここで、$W$は$\mathbf{w}$の次元数である。</p>
+<p>$f(\mathbf{w}<em>{\mathrm{MAP}})$について展開すると, $(5.162)$, $(5.163)$式を用いて
+$$
+\begin{aligned}
+f\left(\mathbf{w}</em>{\mathrm {MAP}}\right)=&amp; p\left(\mathcal{D} \mid \mathbf{w}<em>{\mathrm {MAP}}, \beta\right) p\left(\mathbf{w}</em>{\mathrm {MAP}} \mid \alpha\right) \
+=&amp; \prod_{n=1}^{N} \mathcal{N}\left(t_{n} \mid y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm {MAP}}\right), \beta^{-1}\right) \mathcal{N}\left(\mathbf{w}<em>{\mathrm {MAP}} \mid \mathbf{0}, \alpha^{-1} \mathrm{I}\right) \
+=&amp; \prod</em>{n=1}^{N} \left(\frac{\beta}{2 \pi}\right)^{1 / 2} \exp \left[-\frac{\beta}{2}\left{t_{n}-y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm {MAP}}\right)\right}^{2}\right] \
+&amp; \frac{1}{(2 \pi)^{W / 2}} \frac{1}{\left|\alpha^{-1} \mathbf{I}\right|^{1 / 2}} \exp \left{-\frac{1}{2} \mathbf{w}<em>{\mathrm {MAP}}^{\mathrm{T}}\left(\alpha^{-1} \mathbf{I}\right)^{-1} \mathbf{w}</em>{\mathrm {MAP}}\right} \
+=&amp; \prod_{n=1}^{N}\left(\frac{\beta}{2 \pi}\right)^{1 / 2} \exp \left[-\frac{\beta}{2}\left{t_{n}-y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm {MAP}}\right)\right}^{2}\right] \left(\frac{\alpha}{2 \pi}\right)^{W/2} \exp \left(-\frac{\alpha}{2} \mathbf{w}<em>{\mathrm {MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm {MAP}}\right)
+\end{aligned}
+$$
+これの対数を取ると
+$$
+\begin{aligned}
+\ln p(\mathcal{D} \mid \alpha, \beta) &amp; \simeq \ln f\left(\mathbf{w}<em>{\mathrm{MAP}}\right)+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp;=\sum</em>{n=1}^{N}\left[\frac{1}{2}{\ln \beta-\ln (2 \pi)}-\frac{\beta}{2}\left{t_{n}-y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm{MAP}}\right)\right}^{2}\right] \
+&amp;+\frac{W}{2}{\ln \alpha-\ln (2 \pi)}-\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp;=-\left[\frac{\beta}{2} \sum_{n=1}^{N}\left{t_{n}-y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm{MAP}}\right)\right}^{2}+\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}\right] -\frac{1}{2} \ln |\mathbf{A}|+\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi)+\frac{W}{2} \ln \alpha \
+&amp;=-E\left(\mathbf{w}_{\mathrm{MAP}}\right)-\frac{1}{2} \ln |\mathbf{A}|+\frac{W}{2} \ln \alpha+\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi)
+\end{aligned}
+$$
+以上から$(5.175)$式を得た。</p>
+<h2 id="演習-540"><a class="header" href="#演習-540">演習 5.40</a></h2>
+<div class="panel-primary">
+<p>5.7.3節で議論されたベイズニューラルネットワークの枠組みを，ソフトマックス活性化関数を出力ユニットに持つネットワークを用いて多クラス問題を扱えるようにするために必要な変更について．概略を述べよ．</p>
+</div>
+<p>※5.7.3節の議論をソフトマックス関数・多クラス問題の置き換えるだけ</p>
+<p>まずソフトマックス関数$(5.25)$の式から
+$$
+y_{k}(\mathbf{x}, \mathbf{w})=\frac{\exp \left(a_{k}(\mathbf{x}, \mathbf{w})\right)}{\sum_{j} \exp \left(a_{j}(\mathbf{x}, \mathbf{w})\right)}
+$$
+となり、目標変数$\mathbf{t}$の条件付き分布を多項分布にとって
+$$
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{w})=\prod_{k=1}^{K} y_{k}(\mathbf{x}, \mathbf{w})^{t_{k}}
+$$
+これをもとに尤度を計算すると、$\mathcal{D}=\left{\mathbf{t}<em>{1}, \mathbf{t}</em>{2}, \ldots\right}, \mathbf{X}=\left{\mathbf{x}<em>{1}, \mathbf{x}</em>{2}, \ldots\right}, y_{n k}=y_{k}\left(\mathbf{x}<em>{n}, \mathbf{w}\right)$として、
+$$
+\begin{aligned}
+p(\mathcal{D} \mid \mathbf{X}, \mathbf{w}) &amp;=\prod</em>{n=1}^{N} p\left(\mathbf{t}<em>{n} \mid \mathbf{x}</em>{n}, \mathbf{w}\right) \
+&amp;=\prod_{n=1}^{N} \prod_{k=1}^{K} y_{n k}^{t_{n k}}
+\end{aligned}
+$$
+となる。これより対数尤度は
+$$
+\ln p(\mathcal{D} \mid \mathbf{X}, \mathbf{w})=\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k}
+$$
+となる。</p>
+<p>対数尤度関数が求まったので、ラプラス近似理論を適用するために超パラメータ$\alpha$を初期化する。$\mathbf{w}$の事後分布は
+$$
+p(\mathbf{w} \mid \mathcal{D}, \mathbf{X})=\frac{p(\mathcal{D}, \mathbf{w} \mid \mathbf{X})}{p(\mathcal{D} \mid \mathbf{X})}=\frac{p(\mathcal{D} \mid \mathbf{w}, \mathbf{X}) p(\mathbf{w})}{p(\mathcal{D} \mid \mathbf{X})} \simeq p(\mathcal{D} \mid \mathbf{w}, \mathbf{X}) p(\mathbf{w})
+$$
+なので、対数事後分布は
+$$
+\ln p(\mathbf{w} \mid \mathcal{D}, \mathbf{X}) = \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k}+\ln p(\mathbf{w})+ \textrm{const.}
+$$
+となる。重みの事前分布$p(\mathbf{w})$を$(5.162)$のように
+$$
+p(\mathbf{w} \mid \alpha)=\mathcal{N}\left(\mathbf{w} \mid \mathbf{0}, \alpha^{-1} \mathbf{I}\right)
+$$
+とすると、
+$$
+\ln p(\mathbf{w} \mid \mathcal{D}, \mathbf{X})=\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k}-\frac{\alpha}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w}+\textrm{const.}
+$$
+となるので、対数事後分布の最大化は正則化誤差関数
+$$
+\begin{aligned}
+E(\mathrm{w}) &amp;=-\ln p(\mathcal{D} \mid \mathrm{w}, \mathrm{X})+\frac{\alpha}{2} \mathrm{w}^{\mathrm{T}} \mathrm{w} \
+&amp;=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k}+\frac{\alpha}{2} \mathrm{w}^{\mathrm{T}} \mathrm{w}
+\end{aligned}
+$$
+の最小化と等価になることがわかる。</p>
+<p>$E(\mathbf{w})$を最小にする$\mathbf{w}_{\mathrm{MAP}}$を$\frac{\partial E}{\partial \mathbf{w}} = 0$から求める。</p>
+<p>$\mathbf{w}<em>{\mathrm{MAP}}$を求めたらラプラス近似を使って
+$$
+\begin{aligned}
+p(\mathcal{D} \mid \alpha, \mathbf{X}) &amp;=\int p(\mathcal{D} \mid \mathbf{w}, \mathbf{X}) p(\mathbf{w} \mid \alpha) d \mathbf{w} \
+&amp;\simeq p(\mathcal{D} \mid \mathbf{w}</em>{\mathrm{MAP}}, \mathbf{X}) p(\mathbf{w}<em>{\mathrm{MAP}} \mid \alpha)\frac{(2\pi)^{W/2}}{|\mathbf{A}|^{1/2}}
+\end{aligned}
+$$
+となる。これを使って対数をとっていくと
+$$
+\ln p(\mathcal{D} \mid \alpha, \mathbf{X})=-E\left(\mathbf{w}</em>{\mathrm{MAP}}\right)-\frac{1}{2} \ln |\mathbf{A}|+\frac{W}{2} \ln \alpha
+$$
+となる。</p>
+<p>あとはP.284と同様に$\ln p(\mathcal{D}\mid \alpha)$を最大化して$\alpha$の点推定を行う。結果は$(5.178)$のように
+$$
+\alpha=\frac{\gamma}{\mathrm{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathrm{w}</em>{\mathrm{MAP}}}, \quad \gamma=\sum_{i=1}^{W} \frac{\lambda_{i}}{\alpha+\lambda_{i}}
+$$
+となる。</p>
+<h2 id="演習-541"><a class="header" href="#演習-541">演習 5.41</a></h2>
+<div class="panel-primary">
+<p>回帰ネットワークに関する5.7.1節および5.7.2節と類似のステップに従って，交差エントロピー誤差関数とロジスティックシグモイド活性化関数の出力ユニットを持つネットワークの場合の周辺化尤度の結果</p>
+<p>$$
+\ln p(\mathcal{D} \mid \alpha) \simeq-E\left(\mathbf{w}_{\mathrm{MAP}}\right)-\frac{1}{2} \ln |\mathbf{A}|+\frac{W}{2} \ln \alpha \tag{5.183}
+$$</p>
+<p>を導け．ただし</p>
+<p>$$
+E\left(\mathbf{w}<em>{\mathrm{MAP}}\right)=-\sum</em>{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right}+\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}} \tag{5.184}
+$$</p>
+<p>である．</p>
+</div>
+<p>※演習問題5.39と流れはほとんど同じ</p>
+<p>ラプラス近似を用いると
+$$
+\begin{aligned}
+p(\mathcal{D} \mid \alpha) &amp;=\int p\left(\mathcal{D} \mid \mathbf{w}<em>{\mathrm{MAP}}\right) p\left(\mathbf{w}</em>{\mathrm{MAP}} \mid \alpha\right) d \mathbf{w} \
+&amp; \simeq p\left(\mathcal{D} \mid \mathbf{w}<em>{\mathrm{MAP}}\right) p\left(\mathbf{w}</em>{\mathrm{MAP}}\mid \alpha\right) \frac{(2 \pi)^{W / 2}}{|\mathbf{A}|^{1 / 2}}
+\end{aligned}
+$$
+と書ける。ここで、今$p\left(\mathcal{D} \mid \mathbf{w}<em>{\mathrm{MAP}}\right)$はロジスティック回帰を出力に持つ活性化関数となっているので、対数形は
+$$
+\ln p(\mathcal{D} \mid \mathbf{w}</em>{\mathrm{MAP}})=\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right}
+$$
+で示される（$y_{n} \equiv y\left(\mathbf{x}<em>{n}, \mathbf{w}</em>{\mathrm{MAP}}\right)$である）。$p\left(\mathbf{w}<em>{\mathrm{MAP}}\mid \alpha\right)$は引き続きガウス分布
+$$
+p(\mathbf{w}</em>{\mathrm{MAP}} \mid \alpha)=\mathcal{N}\left(\mathbf{w}_{\mathrm{MAP}} \mid \mathbf{0}, \alpha^{-1} \mathbf{I}\right) \tag{5.162}
+$$
+を用いる。</p>
+<p>以上から$\ln p(\mathcal{D}\mid \alpha)$を計算すると
+$$
+\begin{aligned}
+\ln P\left(\mathcal{D} \mid \alpha\right) &amp; \simeq \sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} +\ln \mathcal{N}\left(\mathbf{w}<em>{\mathrm{MAP}} \mid \mathbf{0}, \alpha^{-1} \mathbf{I}\right)+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp; = \sum</em>{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} +\ln \left{ \left(\frac{\alpha}{2 \pi}\right)^{W / 2} \exp \left(-\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}\right) \right}+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp; = \sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} -\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}+\frac{W}{2}\ln \alpha-\frac{W}{2}\ln (2\pi)+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp; = \sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} -\frac{\alpha}{2} \mathbf{w}<em>{\mathrm{MAP}}^{\mathrm{T}} \mathbf{w}</em>{\mathrm{MAP}}+\frac{W}{2}\ln \alpha-\frac{W}{2}\ln (2\pi)+\frac{W}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}| \
+&amp;= -E\left(\mathbf{w}_{\mathrm{MAP}}\right) -\frac{1}{2} \ln |\mathbf{A}| +\frac{W}{2}\ln \alpha
+\end{aligned}
+$$
+となる。以上から$(5.183)$が導けた。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch04.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch06.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch04.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch06.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

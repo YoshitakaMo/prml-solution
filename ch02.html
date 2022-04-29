@@ -1,0 +1,2926 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第2章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html" class="active"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第2章演習問題解答"><a class="header" href="#prml第2章演習問題解答">PRML第2章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-21"><a class="header" href="#演習-21">演習 2.1</a></h2>
+<div class="panel-primary">
+<p>ベルヌーイ分布</p>
+<p>$$
+\textrm{Bern}(x|\mu)=\mu^x(1-\mu)^{1-x} \tag{2.2}
+$$</p>
+<p>が次の性質を満たすことを確かめよ.</p>
+<p>$$
+\sum_{x=0}^{1} p(x | \mu) =1 \tag{2.257}
+$$</p>
+<p>$$
+\mathbb{E}[x] = \mu \tag{2.258}
+$$
+$$
+\operatorname{var}[x] = \mu(1-\mu) \tag{2.259}
+$$</p>
+<p>ベルヌーイ分布に従う二値確率変数$x$のエントロピー$\mathrm{H}[x]$が</p>
+<p>$$
+\mathrm{H}[x]=-\mu \ln \mu-(1-\mu) \ln (1-\mu) \tag{2.260}
+$$
+で与えられることを示せ．</p>
+</div>
+<p>$\textrm{Bern}(x|\mu)=\mu^x(1-\mu)^{1-x}$であるから、</p>
+<p>$$
+\sum_{x=0}^{1} p(x | \mu)=\mu^{0}(1-\mu)^{1}+\mu^{1}(1-\mu)^{0}=1
+$$</p>
+<p>$$
+\mathbb{E}[x]=\sum_{x=0}^{1}x\mu^x(1-\mu)^{1-x} =\mu
+$$</p>
+<p>$$
+\operatorname{var}[x] = \mathbb{E}[x^2]-(\mathbb{E}[x])^2=\mu-\mu^2=\mu(1-\mu)
+$$</p>
+<p>また、エントロピー$\textrm{H}[x]$については</p>
+<p>$$
+\begin{aligned} H[x] &amp;=-\sum_{x=0}^{1} \operatorname{Bern}(x | \mu) \cdot \ln \operatorname{Bern}(x | \mu) \
+&amp;=-\sum_{x=0}^{1}\left(\mu^{x}(1-\mu)^{1-x} \ln \mu^{x}(1-\mu)^{1-x}\right) \
+&amp;=-((1-\mu) \cdot \ln (1-\mu)+\mu \ln \mu) \ &amp;=-\mu \ln \mu-(1-\mu) \ln (1-\mu) \end{aligned}
+$$</p>
+<h2 id="演習-22"><a class="header" href="#演習-22">演習 2.2</a></h2>
+<div class="panel-primary">
+<p>ベルヌーイ分布の</p>
+<p>$$
+\textrm{Bern}(x|\mu)=\mu^x(1-\mu)^{1-x} \tag{2.2}
+$$</p>
+<p>の表現では, $x$の2つの値$0$と$1$に関して対称ではない. 場合によっては，対称な$x \in{-1,1}$を用いた等価な表現の方が便利である. このとき分布は</p>
+<p>$$
+p(x | \mu)=\left(\frac{1-\mu}{2}\right)^{(1-x) / 2}\left(\frac{1+\mu}{2}\right)^{(1+x) / 2} \tag{2.261}
+$$</p>
+<p>と書くことができる. ただし, $\mu \in[-1,1]$である. この分布$(2.261)$が正規化されていることを示し, その平均, 分散, およびエントロピーを計算せよ.</p>
+</div>
+<p>$x \in{-1,1}$の二値のときに正規化されていることをまず示す。
+$$
+\begin{aligned} \sum_{x=-1}^{1} p(x | \mu) d x &amp;=p(x=-1 | \mu)+p(x=1 | \mu) \ &amp;=\left(\frac{1-\mu}{2}\right)+\left(\frac{1+\mu}{2}\right)=1 \end{aligned}
+$$
+続いて、$\mathbb[x], \operatorname{var}[x], \textrm{H}[x]$について、
+$$
+\begin{aligned}
+\mathbb{E}[x] &amp;=\sum x p(x | \mu)=(-1) \frac{1-\mu}{2}+\frac{1+\mu}{2}=\mu \
+\operatorname{var}[x] &amp;=\mathbb{E}\left[x^{2}\right]-{\mathbb{E}[x]}^{2}=\left(\frac{1-\mu}{2}\right)+\left(\frac{1+\mu}{2}\right)-\mu^{2}=1-\mu^{2} \
+\textrm{H}[x] &amp;=-\sum p(x | \mu) \ln p(x | \mu) \
+&amp;=-\left(\frac{1-\mu}{2} \ln \frac{1-\mu}{2}+\frac{1+\mu}{2} \ln \frac{1+\mu}{2}\right) \end{aligned}
+$$</p>
+<h2 id="演習-23"><a class="header" href="#演習-23">演習 2.3</a></h2>
+<div class="panel-primary">
+<p>この演習問題では, 二項分布</p>
+<p>$$
+\operatorname{Bin}(m \mid N, \mu)=\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m} \tag{2.9}
+$$</p>
+<p>が正規化されていることを証明する. まず, 全部で$N$個ある対象から$m$個の同じものを選ぶ組み合わせの数の定義(2.10）を用いて,</p>
+<p>$$
+\left(\begin{array}{l}N \ m\end{array}\right)+\left(\begin{array}{c}N \ m-1\end{array}\right)=\left(\begin{array}{c}N+1 \ m\end{array}\right) \tag{2.262}
+$$</p>
+<p>を示せ. この結果を用い, 帰納法で次の結果を証明せよ.</p>
+<p>$$
+(1+x)^{N}=\sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) x^{m} \tag{2.263}
+$$</p>
+<p>これは, <b>二項定理 (binomialtheorem)</b>として知られ，すべての実数値$x$について成り立つ．最後に二項分布が次のように正規化されていることを，$(1-\mu)^N$を和の外に出してから，二項定理を使うことで示せ．</p>
+<p>$$
+\sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m}=1 \tag{2.264}
+$$</p>
+</div>
+<p>$(2.262)$を示す。</p>
+<p>$$
+\begin{aligned}\left(\begin{array}{c}N \ m\end{array}\right)+\left(\begin{array}{c}N \
+m-1\end{array}\right) &amp;=\frac{N !}{m !(N-m) !}+\frac{N !}{(m-1) !(N-m+1)!} \
+&amp;=\frac{N !}{(m-1) !(N-m) !}\left(\frac{1}{m}+\frac{1}{N-m+1}\right) \
+&amp;=\frac{N !}{(m-1) !(N-m) !}\left(\frac{N+1}{m(N-m+1)}\right) \
+&amp;=\frac{(N+1) !}{m !(N+1-m) !}=\left(\begin{array}{c}N+1 \
+m\end{array}\right) \end{aligned}
+$$</p>
+<p>二項定理$(2.263)$を帰納法で示す。
+$N=1$のとき、</p>
+<p>$$
+(左辺)=(1+x)=\left(\begin{array}{c}1 \ 0\end{array}\right) x^{0}+\left(\begin{array}{c}1 \ 1\end{array}\right) x^{1}=\sum_{n=0}^{1}\left(\begin{array}{c}1 \ m\end{array}\right) x^{m}
+$$</p>
+<p>であり成立する。次に、$N=k$において式$(2.263)$が成立すると仮定したとき、$N=k+1$のときは</p>
+<p>$$
+\begin{aligned}(1+x)^{k+1} &amp;=(1+x) \sum_{m=0}^{k}\left(\begin{array}{c}k \ m\end{array}\right) x^{m}=\sum_{m=0}^{k}\left(\begin{array}{c}k \ m\end{array}\right) x^{m}+x \sum_{m=0}^{k}\left(\begin{array}{c}k \ m\end{array}\right) x^{m} \ &amp;=1+\sum_{m=1}^{k}\left{\left(\begin{array}{c}k \ m\end{array}\right)+\left(\begin{array}{c}k \ m-1\end{array}\right)\right} x^{m}+x^{k+1} \ &amp;=1+\sum_{m=1}^{k}\left(\begin{array}{c}k+1 \ m\end{array}\right) x^{m}+x^{k+1} \ &amp;=\sum_{m=0}^{k+1}\left(\begin{array}{c}k+1 \ m\end{array}\right) x^{m} \end{aligned}
+$$</p>
+<p>よって、$N=k+1$のときでも成立するので、帰納法より式$(2.263)$は示された。</p>
+<p>最後に正規化の式$(2.264)$について、二項定理から</p>
+<p>$$
+\left{(1-\mu)+\mu\right}^N=\sum_{m=0}^{N}\left(\begin{array}{c}N \ m \end{array} \right) \mu^m (1-\mu)^{N-m}
+$$
+が成立する。ここで、$(左辺)=1^N=1$なので、式(2.264)は成立する。</p>
+<h2 id="演習-24"><a class="header" href="#演習-24">演習 2.4</a></h2>
+<div class="panel-primary">
+<p>二項分布の平均が</p>
+<p>$$
+\mathbb{E}[m] \equiv \sum_{m=0}^{N} m \operatorname{Bin}(m \mid N, \mu)=N \mu \tag{2.11}
+$$</p>
+<p>であることを示せ．これには，正規化条件$(2.264)$の両辺を$\mu$で微分し，変形して$n$の平均を求めよ．同様に，$(2.264)$の両辺を$\mu$について2階微分し，二項分布の平均$(2.11)$も用いて，二項分布の分散の結果</p>
+<p>$$
+\operatorname{var}[m] \equiv \sum_{m=0}^{N}(m-\mathbb{E}[m])^{2} \operatorname{Bin}(m \mid N, \mu)=N \mu(1-\mu) \tag{2.12}
+$$</p>
+<p>を証明せよ．</p>
+</div>
+<p>$(2.264)$の両辺を$\mu$で微分すると</p>
+<p>$$
+\begin{array}{l}
+\displaystyle \sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right)\left(m \mu^{m-1}(1-\mu)^{N-m}-(N-m) \mu^{m}(1-\mu)^{N-m-1}\right)=0 \
+\displaystyle \sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m-1}(1-\mu)^{N-m-1}(m(1-\mu)-(N-m)\mu)=0 \
+\displaystyle \sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m-1}(1-\mu)^{N-m-1}(m-N \mu)=0 \
+\displaystyle \sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) m \mu^{m-1}(1-\mu)^{N-m-1}=N\mu \displaystyle \sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m-1}(1-\mu)^{N-m-1}
+\end{array}
+$$</p>
+<p>両辺に$\mu(1-\mu)$をかけると</p>
+<p>$$
+\underbrace{\sum_{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) m \mu^{m}(1-\mu)^{N-m}}<em>{\mathbb E[m]} = N\mu \underbrace{\sum</em>{m=0}^{N}\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m}}_{1}
+$$</p>
+<p>よって$\mathbb E[m]=N\mu$が示された。</p>
+<p>分散について,</p>
+<p>$$
+\begin{aligned} \operatorname{var}[m] &amp;=\mathbb{E}\left[m^{2}\right]-(\mathbb{E}[m])^{2} \ &amp;=\mathbb{E}[m(m-1)]+\mathbb{E}[m]-(\mathbb{E}[m])^{2} \end{aligned}
+$$</p>
+<p>であるから、$\mathbb{E}[m(m-1)]$の値を求める。</p>
+<p>$$
+\begin{aligned} E[m(m-1)] &amp;=\sum_{m=0}^{N} m(m-1)\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m} \
+&amp;=\sum_{m=2}^{N} m(m-1)\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m} \ &amp;=\sum_{m=2}^{N} m(m-1) \frac{N(N-1)(N-2) !}{(N-m) ! m(m-1)(m-2) !} \mu^{m}(1-\mu)^{N-m} \
+&amp;=N(N-1) \sum_{m=2}^{N}\left(\begin{array}{l}N-2 \ m-2\end{array}\right) \mu^{m}(1-\mu)^{N-m} \
+&amp;=N(N-1) \mu^{2} \underbrace{\sum_{\ell=0}^{N-2}\left(\begin{array}{c}N-2 \ \ell \end{array}\right) \mu^{\ell}(1-\mu)^{N-2-\ell}}_1 \
+&amp;=N(N-1) \mu^{2} \end{aligned}
+$$</p>
+<p>よって</p>
+<p>$$
+\begin{aligned} \operatorname{var}[m] &amp;=N(N-1) \mu^{2}+N \mu-(N \mu)^{2} \ &amp;=N \mu(1-\mu) \end{aligned}
+$$</p>
+<p>これは$(2.12)$と一致する。</p>
+<h2 id="演習-25"><a class="header" href="#演習-25">演習 2.5</a></h2>
+<div class="panel-primary">
+<p>この演習問題では,</p>
+<p>$$
+\operatorname{Beta}(\mu \mid a, b)=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} \tag{2.13}
+$$</p>
+<p>のベータ分布が,</p>
+<p>$$
+\int_{0}^{1} \operatorname{Beta}(\mu \mid a, b) \mathrm{d} \mu=1 \tag{2.14}
+$$</p>
+<p>が成立するように正しく正規化されていることを証明する. これは</p>
+<p>$$
+\int_{0}^{1} \mu^{a-1}(1-\mu)^{b-1} \mathrm{d} \mu=\frac{\Gamma(a) \Gamma(b)}{\Gamma(a+b)} \tag{2.265}
+$$</p>
+<p>を示すことと等価である．ガンマ関数の定義</p>
+<p>$$
+\Gamma(x) \equiv \int_{0}^{\infty} u^{x-1} e^{-u} \mathrm{d} u \tag{1.141}
+$$</p>
+<p>より，</p>
+<p>$$
+\Gamma(a) \Gamma(b)=\int_{0}^{\infty} \exp (-x) x^{a-1} \mathrm{d} x \int_{0}^{\infty} \exp (-y) y^{b-1} \mathrm{d} y \tag{2.266}
+$$</p>
+<p>を得る。この式を用いて，次のようにして$(2.265)$を証明せよ．まず$y$についての積分を, $x$についての積分の被積分関数の中に移す．次に$x$を固定して$t=y+x$と置換し，$x$と$t$の積分の順序を交換する．最後に，$t$を固定して$x=t\mu$と置換する．</p>
+</div>
+<p>式$(2.265)$を証明する。</p>
+<p>$$
+\begin{aligned} \Gamma(a) \Gamma(b) &amp;=\int_{0}^{\infty} \exp (-x) x^{a-1} dx \int_{0}^{\infty} \exp (-y) y^{b-1} dy \
+&amp;=\int_{0}^{\infty} \exp (-x) x^{a-1}\left{ \int_{0}^{\infty} \exp (-y) y^{b-1} dy\right} dx \
+&amp;=\int_{0}^{\infty} \int_{0}^{\infty} \exp (-x-y) x^{a-1} y^{b-1} dydx \end{aligned}
+$$</p>
+<p>$x$を固定してから$t=y+x$とおくと, $0 \le y \le \infty$なので, $x\le t \le \infty$となる。</p>
+<p>$$
+\Gamma(a) \Gamma(b)=\int_{0}^{\infty} \int_{x}^{\infty} \exp (-t) x^{a-1}(t-x)^{b-1} dt dx
+$$</p>
+<p>次に上式の$t$に関する積分と$x$に関する積分を入れ替える.</p>
+<p>積分範囲について注意すると、$x$は$0\le x\le \infty$, $t$は$x\le t \le \infty$であり, 順番を入れ替えると$0\le t \le \infty$の積分範囲で, $x$は$0\le x \le t$の範囲となる。よって,</p>
+<p>$$
+\Gamma(a) \Gamma(b)=\int_{0}^{\infty} \int_{0}^{t} \exp (-t) x^{a-1}(t-x)^{b-1} dx dt
+$$</p>
+<p>さらに$x=t\mu$と置換すると, 積分範囲は$0\le \mu \le 1, dx=td\mu$である.</p>
+<p>$$
+\Gamma(a) \Gamma(b)=\int_{0}^{\infty} \int_{0}^{1} \mu^{a-1} t^{a-1} \exp (-t) \cdot t^{b-1}(1-\mu)^{b-1} \cdot t d\mu dt
+$$</p>
+<p>$\mu$と$t$の積分に分離すると</p>
+<p>$$
+\Gamma(a) \Gamma(b)=\int_{0}^{\infty} t^{a+b-1} \exp (-t) dt \cdot \int_{0}^{1} \mu^{a-1}(1-\mu)^{b-1} d\mu
+$$</p>
+<p>ここで$\int_{0}^{\infty} \exp (-t) t^{a+b-1} d t=\Gamma(a+b)$なので,</p>
+<p>$$
+\int_{0}^{1} \mu^{a-1}(1-\mu)^{b-1} \mathrm{d} \mu=\frac{\Gamma(a) \Gamma(b)}{\Gamma(a+b)}
+$$</p>
+<p>よって, 式$(2.265)$は示された。</p>
+<h2 id="演習-26"><a class="header" href="#演習-26">演習 2.6</a></h2>
+<div class="panel-primary">
+<p>$(2.265)$の結果を用いて，ベータ分布</p>
+<p>$$
+\operatorname{Beta}(\mu \mid a, b)=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} \tag{2.13}
+$$</p>
+<p>の平均，分散，およびモードがそれぞれ</p>
+<p>$$
+\mathbb{E}[\mu] =\frac{a}{a+b} \tag{2.267}
+$$
+$$
+\operatorname{var}[\mu] =\frac{a b}{(a+b)^{2}(a+b+1)} \tag{2.268}
+$$
+$$
+\operatorname{mode}[\mu] =\frac{a-1}{a+b-2} \tag{2.269}
+$$</p>
+<p>になることを示せ.</p>
+</div>
+<p>式(2.265)$\int_{0}^{1} \mu^{a-1}(1-\mu)^{b-1} d \mu=\frac{\Gamma(a) \Gamma(b)}{\Gamma(a+b)}$を用いる。</p>
+<p>$$
+\begin{aligned} \mathbb{E}[\mu] &amp;=\int_{0}^{1} \mu \cdot \operatorname{Beta}(\mu | a, b) d \mu \ &amp;=\int_{0}^{1} \mu \frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} d \mu \ &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \int_{0}^{1} \mu^{a}(1-\mu)^{b-1} d \mu=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \cdot \frac{\Gamma(a+1) \Gamma(b)}{\Gamma(a+b+1)} \end{aligned}
+$$</p>
+<p>ここでガンマ関数の性質$\Gamma(x+1)=x\Gamma(x)$（演習1.17）を利用すると, 平均$\mathbb{E}[\mu]$は</p>
+<p>$$
+\mathbb{E}[\mu]=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \cdot \frac{a \Gamma(a) \Gamma(b)}{(a+b) \Gamma(a+b)}=\frac{a}{a+b}
+$$</p>
+<p>次に, 分散$\operatorname{var}[\mu]$の算出のために$\mathbb{E}[\mu^2]$を計算する</p>
+<p>$$
+\begin{aligned} \mathbb{E}\left[\mu^{2}\right] &amp;=\int_{0}^{1} \mu^{2} \cdot \operatorname{Beta}(\mu | a, b) d \mu \ &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \int_{0}^{1} \mu^{a+1}(1-\mu)^{b-1} d \mu \ &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \cdot \frac{\Gamma(a+2) \Gamma(b)}{\Gamma(a+b+2)} \
+&amp;= \frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \cdot \frac{a(a+1)\Gamma(a) \Gamma(b)}{(a+b+1)(a+b)\Gamma(a+b)} = \frac{a(a+1)}{(a+b+1)(a+b)} \end{aligned}
+$$</p>
+<p>よって, 求める分散は</p>
+<p>$$
+\begin{aligned} \operatorname{var}[\mu] &amp;=\mathbb{E}\left[\mu^{2}\right]-{\mathbb{E}[\mu]}^{2} \ &amp;=\frac{a(a+1)}{(a+b+1)(a+b)}-\frac{a^{2}}{(a+b)^{2}} \ &amp;=\frac{\left(a^{2}+a\right)(a+b)-a^{2}(a+b+1)}{(a+b)^{2}(a+b+1)} \ &amp;=\frac{a b}{(a+b)^{2}(a+b+1)} \end{aligned}
+$$</p>
+<p>$\operatorname{mode}[\mu]$は$\mu$の最頻値, 上に凸で$\operatorname{Beta}(\mu|a,b)$の傾きが0になる点。</p>
+<p>$$
+\begin{aligned} \frac{\partial \operatorname{Beta}}{\partial \mu} &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \frac{\partial}{\partial \mu}\left[\mu^{a-1}(1-\mu)^{b-1}\right] \ &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)}\left{(a-1) \mu^{a-2}(1-\mu)^{b-1}-(b-1) \mu^{a-1}(1-\mu)^{b-2}\right} \ &amp;=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-2}(1-\mu)^{b-2}{(a-1)(1-\mu)-(b-1) \mu}
+\end{aligned}
+$$
+ここで$\mu&gt;0, 1-\mu&gt;0$であるから
+$$
+(a-1)(1-\mu)-(b-1) \mu=0
+$$
+を考えれば良い
+これを解いて
+$$
+\space \mu=\frac{a-1}{a+b-2}
+$$
+(厳密には$a&gt;1, b&gt;1$でないと成立しない)</p>
+<h2 id="演習-27"><a class="header" href="#演習-27">演習 2.7</a></h2>
+<div class="panel-primary">
+<p>$\mu$の事前分布がベータ分布</p>
+<p>$$
+\operatorname{Beta}(\mu \mid a, b)=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} \tag{2.13}
+$$</p>
+<p>である二項分布</p>
+<p>$$
+\operatorname{Bin}(m \mid N, \mu)=\left(\begin{array}{l}N \ m\end{array}\right) \mu^{m}(1-\mu)^{N-m} \tag{2.9}
+$$</p>
+<p>に従う確率変数$x$を考える．ここで,$x=1$の事象が$m$回, $x=0$が$l$回生じたとする．このとき，$\mu$の事後平均が，事前平均と$\mu$の最尤推定量の間の値になることを示せ．これには，事前平均の$\lambda$倍と，最尤推定量の$(1-\lambda)$倍の和で事後平均が書けることを示せばよい．ただし，$0 \leq \lambda \leq 1$である．よって，事後分布が，事前分布と最尤推定解との間のものになることが分かる．</p>
+</div>
+<p>$0 \le \lambda \le 1$として、事後平均が事前平均の$\lambda$倍と最尤推定量の$(1-\lambda)$倍の和であることを示せばよい。
+$(2.15)$より、ベータ分布の平均は$\displaystyle \frac{a}{a+b}$で、これが事前分布の平均である。$x=1$を$m$回、$x=0$を$l$回観測すると、事後分布は$(2.18)$で与えられ、平均値は$(2.19)$, $(2.20)$から$\displaystyle \frac{m+a}{m+a+l+b}$となる。</p>
+<p>一方、最尤推定量は$(2.7)$, $(2.8)$の通り、$\displaystyle \mu_{\textrm{ML}}=\frac{m}{N}=\frac{m}{m+l}$であるので、題意としては</p>
+<p>$$
+\lambda \frac{a}{a+b}+(1-\lambda) \frac{m}{m+l}=\frac{m+a}{m+a+l+b}
+$$</p>
+<p>となるような$\lambda$が$0 \le \lambda \le 1$に存在することを示す。</p>
+<p>$$
+\frac{\lambda a(m+l)-\lambda m(a+b)}{(a+b)(m+l)}=\frac{m+a}{m+a+l+b}-\frac{m}{m+l}
+$$
+$$
+\lambda \frac{a l-b m}{(a+b)(m+l)}=\frac{(m+a)(m+l)-m(m+a+l+b)}{(m+a+l+b)(m+l)}
+$$
+$$
+\begin{aligned} \lambda &amp;=\frac{a+b}{a l-b m} \cdot \frac{m^{2}+m l+a m+a l-m^{2}-m a-m l-m b}{m+a+l+b} \ &amp;=\frac{a+b}{m+a+l+b} \end{aligned}
+$$
+$m,l \ge 0$, $a, b \gt 0$ なので、$m+a+l+b \ge a+b \gt 0$</p>
+<p>よって$0 \le \lambda \le 1$となる。</p>
+<h2 id="演習-28"><a class="header" href="#演習-28">演習 2.8</a></h2>
+<div class="panel-primary">
+<p>同時確率が$p(x,y)$であるような２つの変数$x$と$y$を考える. これについて，次の2つの結果を証明せよ．</p>
+<p>$$
+\mathbb{E}[x] =\mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}[x | y]\right] \tag{2.270}
+$$</p>
+<p>$$
+\operatorname{var}[x] =\mathbb{E}<em>{y}\left[\operatorname{var}</em>{x}[x | y]\right]+\operatorname{var}<em>{y}\left[\mathbb{E}</em>{x}[x | y]\right] \tag{2.271}
+$$</p>
+<p>ただし，$\mathbb{E}_{x}[x | y]$は，条件付き分布$p(x|y)$の下での$x$の期待値である. 条件付き分散についても同様である.</p>
+</div>
+<p>※ 添字の$x, y$と関数としての$x, y$を分けて考えておく必要がある。PRML P.19の式$(1.36)$にあるように、$\mathbb{E}_x[f(x,y)]$の添字$_x$は関数$f(x,y)$の$x$の分布に関する平均を表している。式$(1.37)$〜$(1.39)$の関数$f$を$f(x)=x$として考える。</p>
+<p>はじめに</p>
+<p>$$
+\mathbb{E}_{x}[f| y ]=\int f p(x | y) d x=\int f \frac{p(x, y)}{p(y)} dx
+$$</p>
+<p>であるから、</p>
+<p>$$
+\begin{aligned} \mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}[f | y]\right] &amp;=\int \left[ \int f \frac{p(x,y)}{p(y)}dx \right] p(y) dy \
+&amp;=\int\left[\int f p(x, y) d x\right] d y \
+&amp;=\int f \int p(x, y) d y d x \
+&amp;=\int f p(x) d x \
+&amp;=\mathbb{E}<em>{x}[f] = \mathbb{E}</em>{x}[x]
+\end{aligned}
+$$</p>
+<p>ここで、重積分の交換と式(1.31)の<strong>確率の加法定理</strong>である$\displaystyle p(x)=\int p(x,y)dy$を使った。</p>
+<p>次に式$(2.271)$の右辺について</p>
+<p>$$
+\begin{aligned}
+&amp; \mathbb{E}<em>{y}\left[\operatorname{var}</em>{x}[x | y]\right]+\operatorname{var}<em>{y}\left[\mathbb{E}</em>{x}[x | y]\right] \
+=&amp; \mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}\left[x^{2} | y\right]-\mathbb{E}<em>{x}[x | y]^{2}\right]+\mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}[x | y]^{2}\right]-\left{\mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}[x | y]\right]\right}^{2} \
+=&amp; \mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}\left[x^{2} | y\right]\right]-\mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}[x | y]^{2}\right]+\mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}[x | y]^{2}\right]-\left{\mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}[x | y]\right}\right}^{2} \
+=&amp; \mathbb{E}</em>{y}\left[\mathbb{E}<em>{x}\left[x^{2} | y\right]\right]-\left{\mathbb{E}</em>{y}\left[\mathbb{E}_{x}[x | y]\right]\right}^{2} \end{aligned}
+$$</p>
+<p>ここで式$(2.270)$の結果を用いる。今度は$f(x)=x^2$とすると</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}\left[x^{2} | y\right]\right]-\left{\mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}[x | y]\right]\right}^{2} &amp;= \mathbb{E}<em>{x}\left[x^{2}\right]-\left{\mathbb{E}</em>{x}[x]\right}^{2} \
+&amp;= \operatorname{var}_{x}[x]
+\end{aligned}
+$$</p>
+<p>これは式$(2.271)$の左辺なので、示された。</p>
+<h2 id="演習-29"><a class="header" href="#演習-29">演習 2.9</a></h2>
+<div class="panel-primary">
+<p>この演習問題では，ディリクレ分布が正規化されていることを，帰納法によって証明する．
+ディリクレ分布で$M=2$とした特殊な場合であるベータ分布が正規化されていることは，演習問題2.5ですでに示した．
+次に，ディリクレ分布が$M-1$変数の場合に正規化されているとの仮定の下，$M$変数でも正規化されていることを証明する.
+これにはまず$M$変数のディリクレ分布から, $\sum_{k=1}^{M} \mu_{k}=1$の
+制約を使って$\mu_M$を除去して，ディリクレ分布を</p>
+<p>$$
+p_{M}\left(\mu_{1}, \ldots, \mu_{M-1}\right)=C_{M} \prod_{k=1}^{M-1} \mu_{k}^{\alpha_{k}-1}\left(1-\sum_{j=1}^{M-1} \mu_{j}\right)^{\alpha_{M}-1} \tag{2.272}
+$$</p>
+<p>と書く．すると，あとは$C_M$を表す式を求めればよい．これには，この式を，範囲に注意しつつ$\mu_{M-1}$について積分し，さらに，この積分の範囲が0から1となるように変数を置換する.
+$C_{M-1}$での結果が正しいと仮定して(2.265)を用いて，$C_M$の式を導出せよ．</p>
+</div>
+<p>※ 誘導にしたがって解くものの、指示の意味がピンと来ないかもしれない。まずは制約$\displaystyle{\sum_{k=1}^{M} \mu_{k}=1}$を使ってまずは制約$\displaystyle{\sum_{k=1}^{M} \mu_{k}=1}$を使って$\mu_M$を除去し、$\mu_{M-1}$以下からなる式に変形していく。次に、$\mu_{M-1}$について積分を行うことで、$M-2$変数の周辺分布の形$p_{M-1}(\mu_1, \mu_2, \ldots, \mu_{M-2})$を計算することができる。これと、$M-1$変数のディリクレ分布の結果が正しいと仮定したときに得られる結果と比較することで、$C_M$についての式が得られる。</p>
+<p>$M−1$変数の場合に正規化されているとの仮定の下で、$M$変数の場合に正規化されていることを証明する。$M$変数のディリクレ分布から、$\sum_{k=1}^M μ_k = 1$の制約を用いて$\mu_M$を除去すると、以下の$M−1$変数の確率分布が得られる.</p>
+<p>$$
+p_M(\mu_1,...,\mu_{M-1}) = C_M \prod_{k=1}^{M-1} \mu_k^{\alpha_k-1} \left( 1 - \sum_{j=1}^{M-1} \mu_j \right )^{\alpha_M-1}
+$$</p>
+<p>ここで、$\displaystyle C_{M}=\frac{\Gamma\left(\alpha_{1}+\cdots+\alpha_{M}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{M}\right)}$, 制約として$\displaystyle 0 \leq \mu_{i} \leq 1(i=1, \ldots, M-1) , \sum_{k=1}^{M-1} \mu_{k} \leq 1$が存在する。</p>
+<p>確率分布$p_M$を変数$\mu_{M-1}$で積分すると、$M-2$変数の周辺分布が得られる（確率の加法定理）。$\mu_{M-1}$の積分範囲は、上記の制約により、$0$から$1-\sum_{j=1}^{M-2}\mu_j$までとなる。</p>
+<p>$$
+\begin{aligned}
+&amp; p_{M-1}\left(\mu_{1}, \ldots, \mu_{M-2}\right) \=&amp; \int_{0}^{1-\sum_{j=1}^{M-2} \mu_{j}} p_{M}\left(\mu_{1}, \ldots, \mu_{M-1}\right) d \mu_{M-1} \=&amp; C_{M}\left[\prod_{k=1}^{M-2} \mu_{k}^{\alpha_{k}-1}\right] \int_{0}^{1-\sum_{j=1}^{M-2} \mu_{j}} \mu_{M-1}^{\alpha_{M-1}-1}\left(1-\sum_{j=1}^{M-1} \mu_{j}\right)^{\alpha_{M}-1} d \mu_{M-1}
+\end{aligned}
+$$</p>
+<p>ここで積分範囲を$[0,1]$にするために次の変数変換を行う</p>
+<p>$$
+\begin{aligned}
+\mu_{M-1} &amp;= t\left(1-\sum_{j=1}^{M-2} \mu_{j}\right) \ 1-\sum_{j=1}^{M-1} \mu_{j} &amp;=1-\sum_{j=1}^{M-2} \mu_{j}-\mu_{M-1} \ &amp;=\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)-t\left(1-\sum_{j=1}^{M-2} \mu_{j}\right) \ &amp;=(1-t)\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)
+\end{aligned}
+$$</p>
+<p>これによって</p>
+<p>$$
+\begin{aligned}
+\quad p_{M-1}\left(\mu_{1}, \ldots, \mu_{M-2}\right) &amp;= C_{M}\left[\prod_{k=1}^{M-2} \mu_{k}^{\alpha_{z}-1}\right] \int_{0}^{1}\left{t\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)\right}^{\alpha_{w-1}-1}\left{(1-t)\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)\right}^{\alpha_{n-1}}\left(1-\sum_{j=1}^{M-2} \mu_{j}\right) d t \
+&amp;= C_{M}\left[\prod_{k=1}^{M-2} \mu_{k}^{\alpha_{k}-1}\right]\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)^{\alpha_{y-1}+\alpha_{n}-1} \int_{0}^{1} t^{\alpha_{n-1}-1}(1-t)^{\alpha_{n-1}-1} d t \
+&amp;= C_{M}\left[\prod_{k=1}^{n-2} \mu_{k}^{\alpha_{k}-1}\right]\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)^{\alpha_{n-1}+\alpha_{n}-1} \frac{\Gamma\left(\alpha_{M-1}\right) \Gamma\left(\alpha_{M}\right)}{\Gamma\left(\alpha_{M-1}+\alpha_{M}\right)}
+\end{aligned}
+$$</p>
+<p>こうして得られた周辺分布$p_{M-1}(μ_1,\ldots,μ_{M-2})$は、$\alpha'=(\alpha_1,\ldots,\alpha_{M-2},\alpha_{M-1}+\alpha_M)^T$をパラメータとする$M−1$変数のディリクレ分布から変数を一つ除去した確率分布の形をしている。</p>
+<p>一方、同じパラメータ$\alpha'=(\alpha_1,\ldots,\alpha_{M-2},\alpha_{M-1}+\alpha_M)^T$を持つ$M−1$変数のディリクレ分布から、$\sum_{k=1}^{M-1} μ_k = 1$の制約を用いて変数を一つ除去すると、以下の確率分布が得られる。</p>
+<p>$$
+p_{M-1}\left(\mu_{1}, \ldots, \mu_{M-2}\right)=C_{M-1} \prod_{k=1}^{M-2} \mu_{k}^{\alpha_{k}-1}\left(1-\sum_{j=1}^{M-2} \mu_{j}\right)^{\alpha_{M-1}+\alpha_{M}-1}
+$$</p>
+<p>ここで$\displaystyle{C_{M-1}=\frac{\Gamma\left(\alpha_{1}+\cdots+\alpha_{M-2}+\left(\alpha_{M-1}+\alpha_{M}\right)\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{M-2}\right) \Gamma\left(\alpha_{M-1}+\alpha_{M}\right)}}$。
+帰納法の仮定より、この確率分布は正規化されている。</p>
+<p>上記の$p_{M−1}$の定数部分は</p>
+<p>$$
+\begin{aligned}
+&amp; C_{M} \frac{\Gamma\left(\alpha_{M-1}\right) \Gamma\left(\alpha_{M}\right)}{\Gamma\left(\alpha_{M-1}+\alpha_{M}\right)} \=&amp; \frac{\Gamma\left(\alpha_{1}+\cdots+\alpha_{M}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{M}\right)} \frac{\Gamma\left(\alpha_{M-1}\right) \Gamma\left(\alpha_{M}\right)}{\Gamma\left(\alpha_{M-1}+\alpha_{M}\right)} \=&amp; \frac{\Gamma\left(\alpha_{1}+\cdots+\alpha_{M-2}+\left(\alpha_{M-1}+\alpha_{M}\right)\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{M-2}\right) \Gamma\left(\alpha_{M-1}+\alpha_{M}\right)} \=&amp; C_{M-1}
+\end{aligned}
+$$</p>
+<p>よって、$M$変数のディリクレ分布も正規化されていることが示された。</p>
+<h2 id="演習-210"><a class="header" href="#演習-210">演習 2.10</a></h2>
+<div class="panel-primary">
+<p>ガンマ関数の性質$\Gamma(x+1)=x\Gamma(x)$を用いて，</p>
+<p>$$
+\operatorname{Dir}(\boldsymbol{\mu} | \boldsymbol{\alpha})=\frac{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \prod_{k=1}^{K} \mu_{k}^{\alpha_{k}-1} \tag{2.38}
+$$</p>
+<p>のディリクレ分布の平均，分散，および共分散の結果を導出せよ.</p>
+<p>\begin{aligned}
+\mathbb{E}[\mu_j] &amp;= \frac{\alpha_j}{\alpha_0} \tag{2.273} \
+\operatorname{var}[\mu_j] &amp;= \frac{\alpha_j(\alpha_0 - \alpha_j)}{\alpha_0^2(\alpha_0 + 1)} \tag{2.274} \
+\operatorname{cov}[\mu_j][\mu_l] &amp;= -\frac{\alpha_j\alpha_l}{\alpha_0^2(\alpha_0 + 1)} \hspace{1em} (j \neq l) \tag{2.275}
+\end{aligned}</p>
+<p>ただし、$\alpha_0$は</p>
+<p>$$
+\alpha_0 = \sum_{k=1}^K\alpha_k \tag{2.39}
+$$</p>
+<p>で定義されている。</p>
+</div>
+<p>ディリクレ分布は正規化されているので、</p>
+<p>$$
+\int{\prod_{k=1}^{K}} \mu_{k}^{\alpha_{k}-1} d\boldsymbol{\mu}=\frac{\Gamma\left(\alpha_{1}\right) \Gamma\left(\alpha_{2}\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}\right)}
+$$</p>
+<p>平均$\mathbb{E}[\mu_j]$について、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\mu_{j}\right] &amp;=\int \mu_{i} \operatorname{Dir}(\boldsymbol{\mu} | \boldsymbol{\alpha}) d \boldsymbol{\mu} \
+&amp;=\frac{\Gamma\left(\alpha_{1}+\cdots +\alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \int \mu_{j} \prod_{k=1}^{K} \mu_{k}^{\alpha_{k}-1} d \boldsymbol{\mu} \
+&amp;=\frac{\Gamma\left(\alpha_{1}+\cdots +\alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \int \mu_{1}^{\alpha_{1}-1} \mu_{2}^{\alpha_{2}-1} \cdots \mu_{j}^{(\alpha_j +1)-1} \cdot \mu_{K}^{\alpha_{K}-1} d \boldsymbol{\mu}
+\end{aligned}
+$$</p>
+<p>ここで、ディリクレ分布のパラメータ$\boldsymbol{\alpha}$のうち、$\alpha_j \to \alpha_j + 1$となったものだとみなせば、$\displaystyle{\int{\prod_{k=1}^{K}} \mu_{k}^{\alpha_{k}-1} d\boldsymbol{\mu}=\frac{\Gamma\left(\alpha_{1}\right) \Gamma\left(\alpha_{2}\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}\right)}}$を利用して</p>
+<p>$$
+\int \mu_{1}^{\alpha_{1}-1} \mu_{2}^{\alpha_{2}-1} \cdots \mu_{j}^{\left(\alpha_{j}+1\right)-1} \cdots \mu_{K}^{\alpha_{K}-1} d \boldsymbol{\mu}=\frac{\Gamma\left(\alpha_{1}\right) \Gamma\left(\alpha_{2}\right) \cdots \Gamma\left(\alpha_{j}+1\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}+1\right)}
+$$</p>
+<p>となるので、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\mu_{j}\right] &amp;=\frac{\Gamma\left(\alpha_{1}+\cdots +\alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \cdot \frac{\Gamma\left(\alpha_{1}\right) \Gamma\left(\alpha_{2}\right) \cdots \Gamma\left(\alpha_{j}+1\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}+1\right)} \
+&amp;=\frac{\Gamma\left(\alpha_{1}+\cdots +\alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \cdot \frac{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+ \alpha_{K}\right)} \cdot \frac{\alpha_{j}}{\sum_{k=1}^{K} \alpha_{k}}=\frac{\alpha_{j}}{\alpha_{0}}
+\end{aligned}
+$$</p>
+<p>同様に、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\mu_{j}^{2}\right] &amp;=\int \mu_{j}^{2} \operatorname{Dir}(\boldsymbol{\mu} | \boldsymbol{\alpha}) d \boldsymbol{\mu} \ &amp;=\frac{\Gamma\left(\alpha_{1}+\cdots \alpha_{K}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{K}\right)} \cdot \frac{\Gamma\left(\alpha_{1}\right) \Gamma\left(\alpha_{2}\right) \cdots \cdot \Gamma\left(\alpha_{j}+2\right) \cdots \Gamma\left(\alpha_{K}\right)}{\Gamma\left(\alpha_{1}+\cdots+\alpha_{K}+2\right)} \
+&amp;=\frac{\alpha_{j}\left(\alpha_{j}+1\right)}{\alpha_{0}\left(\alpha_{0}+1\right)} \end{aligned}
+$$</p>
+<p>と求まるので、分散$\operatorname{var}[\mu_j]$は</p>
+<p>$$
+\begin{aligned}
+\operatorname{var}\left[\mu_{j}\right] &amp;=\mathbb{E}\left[\mu_{j}^{2}\right]-\left{\mathbb{E}\left[\mu_{j}\right]\right}^{2} \
+&amp;=\frac{\alpha_{j}\left(\alpha_{j}+1\right)}{\alpha_{0}\left(\alpha_{0}+1\right)}-\frac{\alpha_{j}^{2}}{\alpha_{0}^{2}} \
+&amp;=\frac{\alpha_{0} \alpha_{j}\left(\alpha_{j}+1\right)-\alpha_{j}^{2}\left(\alpha_{0}+1\right)}{\alpha_{0}^{2}\left(\alpha_{0}+1\right)} \ &amp;=\frac{\alpha_{j}\left(\alpha_{0}-\alpha_{j}\right)}{\alpha_{0}^{2}\left(\alpha_{0}+1\right)} \end{aligned}
+$$</p>
+<p>共分散$\operatorname{cov}[\mu_j, \mu_l]$について、$j\neq l$のとき、</p>
+<p>$$
+\begin{aligned}
+\operatorname{cov}\left[\mu_{j}, \mu_{l}\right] &amp;=\mathbb{E}\left[\mu_{j} \mu_{l}\right]-\mathbb{E}\left[\mu_{j}\right] \mathbb{E}\left[\mu_{l}\right] \
+&amp;=\frac{\alpha_{j} \alpha_{l}}{\alpha_{0}\left(\alpha_{0}+1\right)}-\frac{\alpha_{j}}{\alpha_{0}} \cdot \frac{\alpha_{l}}{\alpha_{0}} \
+&amp;=\frac{\alpha_{0} \alpha_{j} \alpha_{l}-\alpha_{j} \alpha_{l}\left(\alpha_{0}+1\right)}{\alpha_{0}^{2}\left(\alpha_{0}+1\right)} \
+&amp;= - \frac{\alpha_{j} \alpha_{l}}{\alpha_{0}^{2}\left(\alpha_{0}+1\right)}
+\end{aligned}
+$$</p>
+<h2 id="演習-211"><a class="header" href="#演習-211">演習 2.11</a></h2>
+<div class="panel-primary">
+<p>ディリクレ分布の下での$\ln \mu_j$の期待値を，$\alpha_j$についての導関数として表すと，</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\ln \mu_j]=\psi(\alpha_j)-\psi(\alpha_0) \tag{2.276}
+\end{aligned}
+$$</p>
+<p>になることを示せ．ただし$\alpha_0$は$(2.39)$で定義され,$\psi(\cdot)$はディガンマ関数 (digamma function)</p>
+<p>$$
+\begin{aligned}
+\psi(a) \equiv \frac{d}{d a} \ln \Gamma(a) \tag{2.277}
+\end{aligned}
+$$</p>
+<p>である．</p>
+</div>
+<p>ディリクレ分布は$(2.38)$式から</p>
+<p>$$
+\operatorname{Dir}(\mathbf{\mu} \mid \mathbf{\alpha})=K(\mathbf{\alpha}) \prod_{k=1}^{M} \mu_{k}^{\alpha_{k}-1}
+$$</p>
+<p>である。ただし、簡単のために$\displaystyle K(\mathbf{\alpha})=\frac{\Gamma\left(\alpha_{0}\right)}{\Gamma\left(\alpha_{1}\right) \cdots \Gamma\left(\alpha_{M}\right)}$と置いた。ただし、$\alpha_0 = \sum_{k=1}^{M}\alpha_k$である（ちなみにPRML本文内の記述と違い、和の上限の文字が$K$から$M$に変更になっている）。</p>
+<p>この設問で求める値はディリクレ分布の下での期待値なので、定義から$\displaystyle \mathbb{E}[\ln \mu_j] = \int \ln \mu_j \operatorname{Dir}(\mathbf{\mu} \mid \mathbf{\alpha}) d {\mu}$
+である。</p>
+<p>この設問の準備として以下の計算を行っておく。</p>
+<p>$$
+\frac{\partial}{\partial \alpha_j}\prod_{k=1}^{M}\mu_k^{\alpha_k-1}=\frac{\partial}{\partial \alpha_j}\prod_{k=1}^{M} \exp((\alpha_k-1)\ln \mu_k)
+$$</p>
+<p>これは$\exp\left((\alpha_j-1)\ln \mu_j\right)$のみ$\alpha_j$で微分すれば良いので</p>
+<p>$$
+\frac{\partial}{\partial \alpha_j}\left{ \exp \left( (\alpha_j - 1) \ln \mu_j \right)\right} = \ln \mu_j \exp\left( (\alpha_j - 1) \ln \mu_j \right)
+$$
+から、
+$$
+\frac{\partial}{\partial \alpha_j}\prod_{k=1}^{M}\mu_k^{\alpha_k-1}=\ln \mu_j \prod_{k=1}^M \exp((\alpha_k-1)\ln \mu_k)=\ln \mu_j \prod_{k=1}^{M}\mu_k^{\alpha_k-1}
+$$
+となる。</p>
+<p>よって、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\ln \mu_{j}\right] &amp;=K(\mathbf{\alpha}) \int_{0}^{1} \cdots \int_{0}^{1} \ln \mu_{j} \prod_{k=1}^{M} \mu_{k}^{\alpha_{k}-1} \mathrm{d} \mu_{1} \ldots \mathrm{d} \mu_{M} \
+&amp;=K(\mathbf{\alpha}) \frac{\partial}{\partial \alpha_{j}} \int_{0}^{1} \ldots \int_{0}^{1} \prod_{k=1}^{M} \mu_{k}^{\alpha_{k}-1} \mathrm{d} \mu_{1} \ldots \mathrm{d} \mu_{M} \
+&amp;=K(\mathbf{\alpha}) \frac{\partial}{\partial \alpha_{j}} \frac{1}{K(\mathbf{\alpha})}
+\end{aligned}
+$$</p>
+<p>最後はディリクレ分布が正規化されていること $\displaystyle  \int \operatorname{Dir}(\mathbf{\mu} \mid \mathbf{\alpha}) d \mathbf{\mu} = 1$から$\displaystyle \int_{0}^{1} \ldots \int_{0}^{1} \prod_{k=1}^{M} \mu_{k}^{\alpha_{k}-1} \mathrm{d} \mu_{1} \ldots \mathrm{d} \mu_{M} = \frac{1}{K(\alpha)}$となることを用いた。</p>
+<p>この式についてさらに$\displaystyle K(\alpha) = \frac{\Gamma(\alpha_0)}{\prod_{i=1}^M \Gamma(\alpha_k)}$を使って展開すると</p>
+<p>$$
+\begin{aligned} \mathbb{E}\left[\ln \mu_{j}\right]
+&amp;=\frac{\Gamma\left(\alpha_{0}\right)}{\prod_{i=1}^{M} \Gamma\left(\alpha_{k}\right)} \frac{\partial}{\partial \alpha_{j}} \frac{\prod_{i=1}^{M} \Gamma\left(\alpha_{k}\right)}{\Gamma\left(\alpha_{0}\right)} \
+&amp;=\frac{\Gamma\left(\alpha_{0}\right)}{\Gamma\left(\alpha_{j}\right)} \frac{\partial}{\partial \alpha_{j}} \frac{\Gamma\left(\alpha_{j}\right)}{\Gamma\left(\alpha_{0}\right)}\hspace{2em}\left(\because 約分 \right) \
+&amp;=\frac{\Gamma\left(\alpha_{0}\right)}{\Gamma\left(\alpha_{j}\right)}
+\left[
+\frac{1}{\left{\Gamma\left(\alpha_{0}\right)\right}^2}
+\left{ \left( \frac{\partial}{\partial \alpha_{j}} \Gamma\left(\alpha_{j}\right) \right) \Gamma\left(\alpha_{0}\right)-\Gamma\left(\alpha_{j}\right)\left(\frac{\partial}{\partial \alpha_{j}} \Gamma\left(\alpha_{0}\right)\right)\right}
+\right] \
+&amp;=\frac{1}{\Gamma\left(\alpha_{j}\right)}
+\left(\frac{\partial}{\partial \alpha_{j}} \Gamma\left(\alpha_{j}\right)\right) -\frac{1}{\Gamma\left(\alpha_{0}\right)}\left(\frac{\partial}{\partial \alpha_{j}} \Gamma\left(\alpha_{0}\right)\right)\
+&amp;=\frac{\partial}{\partial \alpha_{j}} \ln \Gamma\left(\alpha_{j}\right)-\frac{1}{\Gamma\left(\alpha_{0}\right)}\left(\frac{\partial}{\partial \alpha_{0}} \frac{\partial \alpha_{0}}{\partial \alpha_{j}} \Gamma\left(\alpha_{0}\right)\right) \
+&amp;=\frac{\partial}{\partial \alpha_{j}} \ln \Gamma\left(\alpha_{j}\right)-\frac{\partial}{\partial \alpha_{0}} \ln \Gamma\left(\alpha_{0}\right) \hspace{2em}
+\left( \because \alpha_0 = \sum_{k=1}^M \alpha_k より, \frac{\partial \alpha_{0}}{\partial \alpha_{j}} = 1\right)
+\end{aligned}
+$$</p>
+<p>最後にディガンマ関数の定義$\displaystyle \psi(a) \equiv \frac{d}{d a} \ln \Gamma(a)$を使うと</p>
+<p>$$
+\mathbb{E}\left[\ln \mu_{j}\right] = \psi(\alpha_j) - \psi(\alpha_0)
+$$</p>
+<p>が導かれる。</p>
+<p>※ $\alpha_j, \alpha_0$は1変数なので偏微分記号$\partial$、全微分記号$d$どちらで微分しても結果は同じである。</p>
+<h2 id="演習-212"><a class="header" href="#演習-212">演習 2.12</a></h2>
+<div class="panel-primary">
+<p>連続変数$x$の一様分布は</p>
+<p>$$
+\mathrm{U}(x | a, b)=\frac{1}{b-a}, \quad a \leq x \leq b \tag{2.278}
+$$</p>
+<p>で定義される．この分布が正規化されていることを確かめ，この分布の平均と分散の式を求めよ．</p>
+</div>
+<p>まず$\displaystyle \int_a^b \frac{1}{b-a}dx = 1$を証明する。</p>
+<p>$$
+\int_a^b \frac{1}{b-a}dx = \frac{1}{b-a}\int_a^b1dx = \frac{1}{b-a}(b-a)=1
+$$</p>
+<p>よって分布が正規化されていることが示された。</p>
+<p>分布の平均$\mathbb{E}[x]$は</p>
+<p>$$
+\mathbb{E}[x] = \int_a^b x \frac{1}{b-a}dx
+=\frac{1}{b-a}\left[ \frac{x^2}{2} \right]_{a}^{b}
+=\frac{b+a}{2}
+$$</p>
+<p>分布の分散は</p>
+<p>$$
+\begin{aligned}
+\operatorname{var}[x]
+&amp;= \mathbb{E}[x^2]-(\mathbb{E}[x])^2 \
+&amp;= \frac{1}{b-a}\left[ \frac{x^3}{3} \right]_{a}^{b}-\left( \frac{b+a}{2} \right)^2 \
+&amp;= \frac{b^2+ab+a^2}{3}-\frac{b^2+2ab+a^2}{4} \
+&amp;= \frac{(b-a)^2}{12}
+\end{aligned}
+$$</p>
+<p>である。</p>
+<h2 id="演習-213"><a class="header" href="#演習-213">演習 2.13</a></h2>
+<div class="panel-primary">
+<p>2つのガウス分布$p(\mathbf{x})=\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})$と$q(\mathbf{x})=\mathcal{N}(\mathbf{x} | \boldsymbol{m}, \mathbf{L})$の間のカルバック-ライブラーダイバージェンス</p>
+<p>$$
+\begin{aligned}
+\mathrm{KL}(p | q) &amp;=-\int p(\mathbf{x}) \ln q(\mathbf{x}) \mathrm{d} \mathbf{x}-\left(-\int p(\mathbf{x}) \ln p(\mathbf{x}) \mathrm{d} \mathbf{x}\right) \
+&amp;=-\int p(\mathbf{x}) \ln \left{\frac{q(\mathbf{x})}{p(\mathbf{x})}\right} \mathrm{d} \mathbf{x} \tag{1.113}
+\end{aligned}
+$$</p>
+<p>を求めよ．</p>
+</div>
+<p>※ 演習問題2.15とほぼ同じ操作を2回やるので、先に2.15をやってきたほうが良い。また、一般にガウス分布の指数部分では二次形式とトレースの関係を利用すると計算が楽になり見通しもよくなることが多い。「二次形式があればトレースを利用するかもしれない」くらいの心持ちを持っていると良いかもしれない。</p>
+<p>問題文から
+$$
+\mathrm{KL}(p | q) =-\int p(\mathbf{x}) \ln q(\mathbf{x}) d\mathbf{x}+\int p(\mathbf{x}) \ln p(\mathbf{x}) d\mathbf{x}
+$$
+に分解できる。</p>
+<p>この第2項は演習問題2.15や付録(B.41)で求められるように（2.15の方を参照）、</p>
+<p>$$
+\int p(\mathbf{x}) \ln p(\mathbf{x}) d\mathbf{x} = -\frac{1}{2} \ln |\mathbf{\Sigma}| - \frac{D}{2}\left{ 1 + \ln (2 \pi) \right} \tag{1}
+$$</p>
+<p>である。そこで、第1項を求める。</p>
+<p>$$
+\begin{aligned}
+&amp; -\int p(\mathbf{x}) \ln q(\mathbf{x}) d\mathbf{x} \
+&amp;=\int \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}) \cdot \frac{1}{2}\left{D \ln (2 \pi)+\ln |\mathbf{L}|+(\mathbf{x}-\mathbf{m})^{\mathrm{T}} \mathbf{L}^{-1}(\mathbf{x}-\mathbf{m})\right} d \mathbf{x} \
+&amp;=\frac{1}{2}\left{(D \ln (2 \pi)+\ln |\mathbf{L}|) \int \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}) d \mathbf{x}\right}+\frac{1}{2} \int \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}\right) \operatorname{Tr}\left[(\mathbf{x}-\mathbf{m})^{\mathrm{T}} \mathbf{L}^{-1} (\mathbf{x}-\mathbf{m})\right] d\mathbf{x} \
+&amp;\hspace{2em} (\because 二次形式はスカラーなので \mathbf{x^{\mathrm{T}}\mathbf{\Sigma}\mathbf{x}} = \operatorname{Tr}[\mathbf{x^{\mathrm{T}}\mathbf{\Sigma}\mathbf{x}}] \
+&amp;=\frac{1}{2}{D \ln (2 \pi)+\ln |\mathbf{L}|}+\frac{1}{2} \int \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}\right) \operatorname{Tr}\left[(\mathbf{x}-\mathbf{m})(\mathbf{x}-\mathbf{m})^{\mathrm{T}} \mathbf{L}^{-1}\right] d \mathbf{x} \
+&amp;\hspace{2em} (\because トレースの循環性\operatorname{Tr}[\mathbf{x^{\mathrm{T}}\mathbf{\Sigma}\mathbf{x}}] = \operatorname{Tr}[\mathbf{xx^{\mathrm{T}}\mathbf{\Sigma}}] )\
+&amp;=\frac{1}{2}{D \ln (2 \pi)+\ln |\mathbf{L}|}
++\frac{1}{2}\left{\left(\operatorname{Tr}\left[\int \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \Sigma) \mathbf{xx}^{\mathrm{T}} \mathbf{L}^{-1}d \mathbf{x} \right]
+-\operatorname{Tr}\left[\int \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{x}\mathbf{m}^{\mathrm{T}} \mathbf{L}^{-1}d \mathbf{x} \right]-\operatorname{Tr}\left[\int \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{m} \mathbf{x}^{\mathrm{T}} \mathbf{L}^{-1} d \mathbf{x} \right]
++\operatorname{Tr}\left[\int \mathcal{N}\left(\mathbf{x}|\boldsymbol{\mu}, \mathbf{\Sigma}\right) \mathbf{mm}^{\mathrm{T}} \mathbf{L}^{-1} d \mathbf{x}\right] \right) \right} \
+&amp;=\frac{1}{2}{D \ln (2 \pi)+\ln |\mathbf{L}|}
++\frac{1}{2}\left{\operatorname{Tr}\left[\left(\boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma}\right) \mathbf{L}^{-1}\right]
+-\operatorname{Tr} \left[\boldsymbol{\mu} \mathbf{m}^{\mathrm{T}}\mathbf{L}^{-1}\right]
+-\operatorname{Tr}\left[\mathbf{m} \boldsymbol{\mu}^{\mathrm{T}} \mathbf{L}^{-1}\right]
++\operatorname{Tr}\left[\mathbf{mm}^{\mathrm{T}} \mathbf{L}^{-1}\right] \right}\
+&amp;=\frac{1}{2}{D \ln (2 \pi)+\ln |\mathbf{L}|}+\frac{1}{2}\left{\operatorname{Tr}\left[\left(\boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma}\right)\mathbf{L}^{-1}\right]
+-\mathbf{m}^{\mathrm{T}}\mathbf{L}^{-1}\boldsymbol{\mu}
+-\boldsymbol{\mu}^{\mathrm{T}}\mathbf{L}^{-1}\mathbf{m}
++\mathbf{m}^{\mathrm{T}}\mathbf{L}^{-1}\mathbf{m}
+\right}\hspace{2em} (\because \operatorname{Tr}[\mathbf{x^{\mathrm{T}}\mathbf{\Sigma}\mathbf{x}}] = \mathbf{xx}^{\mathrm{T}}\mathbf{\Sigma} )
+\end{aligned}
+$$</p>
+<p>これと$(1)$の結果から、</p>
+<p>$$
+\begin{aligned}
+\mathrm{KL}(p | q)
+&amp;=-\int p(\mathbf{x}) \ln q(\mathbf{x}) d\mathbf{x}+\int p(\mathbf{x}) \ln p(\mathbf{x}) d\mathbf{x} \
+&amp;= \frac{1}{2}\left(\ln \frac{|\mathbf{L}|}{|\Sigma|}+\operatorname{Tr}\left[\left(\boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma}\right)\mathbf{L}^{-1}\right]
+-\mathbf{m}^{\mathrm{T}} \mathbf{L}^{-1} \boldsymbol{\mu}
+-\boldsymbol{\mu}^{\mathrm{T}} \mathbf{L}^{-1} \mathbf{m}
++\mathbf{m}^{\mathrm{T}} \mathbf{L}^{-1} \mathbf{m}-D\right)
+\end{aligned}
+$$</p>
+<p>※ちなみに$\operatorname{Tr}(\mathbf{AB}) = \operatorname{Tr}(\mathbf{BA})$が成り立つので$\operatorname{Tr}\left[\left(\boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma}\right)\mathbf{L}^{-1}\right] = \operatorname{Tr}\left[\mathbf{L}^{-1}\left(\boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma}\right)\right]$でも良い（公式解答例の記述）。</p>
+<p>※精度行列$\mathbf{L}^{-1}$は演習2.17の結果から一般性を失うことなく共分散行列$\mathbf{L}$を対称行列とおいても問題なく、演習2.22の結果から$\mathbf{L}^{-1}$も対称行列となるので$\mathbf{m}^{\mathrm{T}} \mathbf{L}^{-1} \boldsymbol{\mu}=\boldsymbol{\mu}^{\mathrm{T}} \mathbf{L}^{-1} \mathbf{m}$が成立するため、まとめて$2\mathbf{m}^{\mathrm{T}} \mathbf{L}^{-1} \boldsymbol{\mu}$と書いてもよい気がする。</p>
+<h2 id="演習-214"><a class="header" href="#演習-214">演習 2.14</a></h2>
+<div class="panel-primary">
+<p>この演習問題では，共分散が与えられているときに，エントロピーを最大にする多変量分布はガウス分布であることを示す．まず，分布$p(\mathbf{x})$のエントロピーは</p>
+<p>$$
+\mathrm{H}[\mathrm{x}]=-\int p(\mathrm{x}) \ln p(\mathrm{x}) \mathrm{d} \mathrm{x} \tag{2.279}
+$$</p>
+<p>である．そして，分布$p(\mathbf{x})$が正規化されていることと，平均と共分散が固定されているということを示す制約式</p>
+<p>$$
+\int p(\mathbf{x}) \mathrm{d} \mathbf{x}=1 \tag{2.280}
+$$</p>
+<p>$$
+\int p(\mathbf{x}) \mathbf{x} \mathrm{d} \mathbf{x}=\boldsymbol{\mu} \tag{2.281}
+$$</p>
+<p>$$
+\int p(\mathbf{x})(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}} \mathrm{d} \mathbf{x}=\mathbf{\Sigma} \tag{2.282}
+$$</p>
+<p>を満たすすべての分布中で，この$\mathrm{H}[\mathbf{x}]$を最大化したい制約$(2.280)$,$(2.281)$，および$(2.282)$を扱うためにラグランジュ乗数を用い，$（2.279)$を変分最大化し，尤度を最大にする分布がガウス分布$(2.43)$であることを示せ．</p>
+</div>
+<p>ラグランジュ乗数を用いて、$\mathrm{H}[\mathbf{x}]$を最大化する、そのため、ラグランジュ乗数として、定数、$D$次元ベクトルと$D*D$次元の行列を定義して代入すると</p>
+<p>$$
+\begin{aligned}
+\widetilde{H}[p] &amp;= -\int{p(\mathbf{x})\ln{p(\mathbf{x})}}\mathrm{d}\mathbf{x} + \lambda(\int{p(\mathbf{x})}\mathrm{d}\mathbf{x}-1)\
+&amp;+ \mathbf{m}^\top (\int{p(\mathbf{x})\mathbf{x}}\mathrm{d}\mathbf{x}-\boldsymbol{\mu})\
+&amp;+ \mathbf{tr}{\mathbf{L}\int{p(\mathbf{x})(\mathbf{x} - \boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top}\mathrm{d}\mathbf{x} - \mathbf{\Sigma}}\
+\end{aligned}
+$$</p>
+<p>となる．</p>
+<p>この式の導関数を求め,さらに導関数を0にした時の$p(\mathbf{x})$を求めよう。</p>
+<p>$$
+\begin{aligned}
+\frac{\mathrm{d}\widetilde{H}[p(\mathbf{x})]}{\mathrm{d}p(\mathbf{x})} &amp;= -1-\ln{p(\mathbf{x})} + \lambda + \mathbf{m}^\top \mathbf{x} + \mathbf{tr}{\mathbf{L}(\mathbf{x} - \boldsymbol{\mu})(\mathbf{x} - \boldsymbol{\mu})^\top}\
+\frac{\mathrm{d}\widetilde{H}[p(\mathbf{x})]}{\mathrm{d}p(\mathbf{x})} &amp;= 0\
+\ln{p(\mathbf{x})} &amp;=  -1+ \lambda + \mathbf{m}^\top \mathbf{x} + \mathbf{tr}{\mathbf{L}(\mathbf{x} - \boldsymbol{\mu})(\mathbf{x} - \boldsymbol{\mu})^\top}\
+p(\mathbf{x}) &amp;= \mathrm{exp}{\lambda -1+ \mathbf{m}^\top \mathbf{x} + \mathbf{tr}{\mathbf{L}(\mathbf{x} - \boldsymbol{\mu})(\mathbf{x} - \boldsymbol{\mu})^\top}}\
+&amp;= \mathrm{exp}{\lambda - 1 + \mathbf{y}^\top \mathbf{L}\mathbf{y} + \boldsymbol{\mu} ^\top \mathbf{m} - \frac{1}{4}\mathbf{m}^\top\mathbf{L}^{-1}\mathbf{m}}\
+\end{aligned}
+$$</p>
+<p>となる，ただし$\mathbf{y} = \mathbf{x} - \mu + \frac{1}{2}\mathbf{L}^{-1}\mathbf{m}$.</p>
+<p>また$p(\mathbf{x})$は制約$(2.280)$,$(2.281)$，および$(2.282)$を満たし，$p(\mathbf{x})$を$(2.280)$,$(2.281)$に代入すると</p>
+<p>$$
+\begin{aligned}
+\int{\mathrm{exp}{\lambda - 1 + \mathbf{y}^\top \mathbf{L}\mathbf{y} + \boldsymbol{\mu} ^\top \mathbf{m} - \frac{1}{4}\mathbf{m}^\top\mathbf{L}^{-1}\mathbf{m}}}\mathrm{d}\mathbf{y} &amp;= 1\
+\int{\mathrm{exp}{\lambda - 1 + \mathbf{y}^\top \mathbf{L}\mathbf{y} + \boldsymbol{\mu} ^\top \mathbf{m} - \frac{1}{4}\mathbf{m}^\top\mathbf{L}^{-1}\mathbf{m}}(\mathbf{y} + \boldsymbol{\mu} - \frac{1}{2}\mathbf{L}^{-1}\mathbf{m})}\mathrm{d}\mathbf{y} &amp;= \boldsymbol{\mu}\
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+(\boldsymbol{\mu} - \frac{1}{2}\mathbf{L}^{-1}\mathbf{m})\int{\mathrm{exp}{\lambda - 1 + \mathbf{y}^\top \mathbf{L}\mathbf{y} + \boldsymbol{\mu} ^\top \mathbf{m} - \frac{1}{4}\mathbf{m}^\top\mathbf{L}^{-1}\mathbf{m}}}\mathrm{d}\mathbf{y} \+ \int{\mathrm{exp}{\lambda - 1 + \mathbf{y}^\top \mathbf{L}\mathbf{y} + \boldsymbol{\mu} ^\top \mathbf{m} - \frac{1}{4}\mathbf{m}^\top\mathbf{L}^{-1}\mathbf{m}}\mathbf{y}}\mathrm{d}\mathbf{y} = \boldsymbol{\mu}\
+\boldsymbol{\mu} - \frac{1}{2}\mathbf{L}^{-1}\mathbf{m} = \boldsymbol{\mu}\
+\end{aligned}
+$$</p>
+<p>となって，$\mathbf{m}=\mathbf{0}$であることが分かって，$p(\mathbf{x}) = \mathrm{exp}{\lambda - 1 + (\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{L}(\mathbf{x}-\boldsymbol{\mu})}$となる．</p>
+<p>さらに，$(2.282)$に代入すると</p>
+<p>$$
+\begin{aligned}
+\int{\mathrm{exp}{\lambda - 1 + (\mathbf{x} - \boldsymbol{\mu})\mathbf{L}(\mathbf{x} - \boldsymbol{\mu})^\top}(\mathbf{x} - \boldsymbol{\mu})(\mathbf{x} - \boldsymbol{\mu})^\top}\mathrm{d}\mathbf{x} &amp;= \mathbf{\Sigma}\
+\end{aligned}
+$$</p>
+<p>となる．$\mathbf{z} = \mathbf{x} - \boldsymbol{\mu}$で書き換えると</p>
+<p>$$
+\begin{aligned}
+\int{\mathrm{exp}{\lambda - 1 + \mathbf{z}\mathbf{L}\mathbf{z}^\top}\mathbf{z}\mathbf{z}^\top}\mathrm{d}\mathbf{x} &amp;= \mathbf{\Sigma}\
+\mathrm{exp}(\lambda - 1)\int{\mathrm{exp}{\mathbf{z}\mathbf{L}\mathbf{z}^\top}\mathbf{z}\mathbf{z}^\top}\mathrm{d}\mathbf{x} &amp;= \mathbf{\Sigma}\
+\end{aligned}
+$$</p>
+<p>となる．$(2.61)$と比較すると，$\mathbf{L} = -\frac{1}{2} \Sigma^{-1}$であることがわかる．</p>
+<p>またここで，$\mathrm{exp}(\lambda - 1)$は正規化されていることを保証しているため</p>
+<p>$$
+\begin{aligned}
+\mathrm{exp}(\lambda - 1) &amp;= \frac{1}{(2\pi)^\frac{1}{2}}\frac{1}{|\mathbf{\Sigma}|^\frac{1}{2}}\
+\lambda &amp;= \ln\left{\frac{1}{(2\pi)^\frac{1}{2}}\frac{1}{|\mathbf{\Sigma}|^\frac{1}{2}}\right} + 1
+\end{aligned}
+$$</p>
+<p>となる．</p>
+<h2 id="演習-215"><a class="header" href="#演習-215">演習 2.15</a></h2>
+<div class="panel-primary">
+<p>多変量ガウス分布$\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})$のエントロピーが</p>
+<p>$$
+\mathrm{H}[\mathbf{x}]=\frac{1}{2} \ln |\mathbf{\Sigma}|+\frac{D}{2}(1+\ln (2 \pi)) \tag{2.283}
+$$</p>
+<p>となることを示せ．ただし，$D$は$\mathbf{x}$の次元数である．</p>
+</div>
+<p>エントロピーの定義の式$(1.104)$に直接ガウス分布の式$(2.43)$を代入して式を変形していく。ガウス分布が正規化されていること$\displaystyle \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{d} \mathbf{x} = 1$を利用する。</p>
+<p>$$
+\begin{aligned}
+\mathrm{H}[\mathbf{x}]
+&amp;=-\int p(\mathbf{x}) \ln p(\mathbf{x}) \mathrm{d} \mathbf{x}\
+&amp;=-\int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \ln \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{d} \mathbf{x} \
+&amp;= \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \cdot \frac{1}{2} { D \ln(2 \pi) + \ln |\mathbf{\Sigma}| + (\mathbf{x} - \boldsymbol{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) } \mathrm{d} \mathbf{x} \
+&amp;= \frac{1}{2} \left{ D \ln(2 \pi) \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{d} \mathbf{x} + \ln |\mathbf{\Sigma}| \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{d} \mathbf{x} + \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \mathrm{d} \mathrm{x} \right} \
+&amp;= \frac{1}{2} \left{ D \ln(2 \pi) \cdot 1 + \ln |\mathbf{\Sigma}| \cdot 1 + \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \mathrm{d} \mathbf{x} \right}
+\end{aligned}
+$$</p>
+<p>ここで、第3項$\displaystyle \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \mathrm{d} \mathbf{x}$について、<strong>二次形式とトレースの関係の式</strong>$\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x} = \mathrm{Tr}(\mathbf{Axx}^{\mathrm{T}})$を使って変形する。これは任意の$m \times n$行列$\mathbf{M}$と$n \times m$行列$\mathbf{N}$に対して$\mathrm{Tr}(\mathbf{MN}) = \mathrm{Tr}(\mathbf{NM})$が成立する（統計のための行列代数 上巻 第5章 補助定理5.2.1）ことから容易に示せる（下記）。また、トレースの値はスカラーであり、任意のスカラー$k$と任意の正方行列$\mathbf{A}$, $\mathbf{B}$に対して以下の性質（<strong>トレースの線形性</strong>）が成立することを利用する（※統計のための行列代数 上巻 第5章 5.1）。</p>
+<p>$$
+\begin{aligned}
+\mathrm{Tr}(k\mathbf{A}) &amp;= k\mathrm{Tr}(\mathbf{A}) \
+\mathrm{Tr}(\mathbf{A}+\mathbf{B}) &amp;= \mathrm{Tr}({\mathbf{A}}) + \mathrm{Tr}({\mathbf{B}})
+\end{aligned}
+$$</p>
+<p>また、$\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})$はスカラーであるので、$\displaystyle \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{Tr}(\mathbf{A}) = \mathrm{Tr}(\mathbf{\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) A})$と変形できる。</p>
+<p>以上から、
+$$
+\begin{aligned}
+&amp; \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \mathrm{d} \mathbf{x} \
+=&amp; \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathrm{Tr
+}\left( \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \right)\mathrm{d} \mathbf{x} \
+=&amp; \int \mathrm{Tr} \left[ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \left( \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) (\mathbf{x} - \boldsymbol{\mu})^\mathrm{T} \right)\right]\mathrm{d} \mathbf{x} \
+=&amp; \int \mathrm{Tr} \left[ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} \mathbf{x}^\mathrm{T} - \mathbf{x} \boldsymbol{\mu}^\mathrm{T} - \boldsymbol{\mu} \mathbf{x}^\mathrm{T} + \boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T}) \mathbf{\Sigma}^{-1} \right] \mathrm{d} \mathbf{x} \hspace{1em} (\because \mathrm{Tr}(\mathbf{MN}) = \mathrm{Tr}(\mathbf{NM})) \
+=&amp; \int \mathrm{Tr} \left[ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) (\mathbf{x} \mathbf{x}^\mathrm{T} - 2\mathbf{x} \boldsymbol{\mu}^\mathrm{T} + \boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T}) \mathbf{\Sigma}^{-1} \right] \mathrm{d} \mathbf{x} \hspace{1em} (\because \mathrm{Tr}(\mathbf{x}\boldsymbol{\mu}^{\mathrm{T}}) = \mathrm{Tr}(\boldsymbol{\mu}\mathbf{x}^{\mathrm{T}}))\
+=&amp; \int \mathrm{Tr} [ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{xx}^\mathrm{T} \mathbf{\Sigma}^{-1} ] \mathrm{d} \mathbf{x}
+-2 \int \mathrm{Tr} [ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})\mathbf{x} \boldsymbol{\mu}^\mathrm{T} \mathbf{\Sigma}^{-1} ]\mathrm{d} \mathbf{x}
++ \int \mathrm{Tr} [ \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})\boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T} \mathbf{\Sigma}^{-1} ] \mathrm{d} \mathbf{x} \
+=&amp; \mathrm{Tr} \left[ \left{ \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{xx}^\mathrm{T} \mathrm{d} \mathbf{x} -2 \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})\mathbf{x} \boldsymbol{\mu}^\mathrm{T} \mathrm{d} \mathbf{x} + \int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma})\boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T} \right} \mathbf{\Sigma}^{-1}\right] \
+\end{aligned}
+$$</p>
+<p>ここで、$(2.59)$と$(2.62)$より</p>
+<p>$$\int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{x} \mathrm{d} \mathbf{x} = \boldsymbol{\mu}$$</p>
+<p>$$\int \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) \mathbf{xx}^\mathrm{T} \mathrm{d} \mathbf{x} = \boldsymbol{\mu\mu}^\mathrm{T} + \mathbf{\Sigma}$$</p>
+<p>ゆえに</p>
+<p>$$
+\begin{aligned}
+\mathrm{H}[\mathbf{x}]
+&amp;= \frac{1}{2} { D \ln(2 \pi) + \ln |\mathbf{\Sigma}| + \mathrm{Tr}[ { (\boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T} + \mathbf{\Sigma}) - 2 \boldsymbol{\mu} \boldsymbol{\mu}^T + \boldsymbol{\mu} \boldsymbol{\mu}^\mathrm{T} } \mathbf{\Sigma}^{-1}  ]} \
+&amp;= \frac{1}{2} { D \ln(2 \pi) + \ln |\mathbf{\Sigma}| + \mathrm{Tr}[  \mathbf{\Sigma} \mathbf{\Sigma}^{-1}] } \
+&amp;= \frac{1}{2} { D \ln(2 \pi) + \ln |\mathbf{\Sigma}| + \mathrm{Tr}[ \mathbf{I} ] } \
+&amp;= \frac{1}{2} { D \ln(2 \pi) + \ln |\mathbf{\Sigma}| + D } \
+&amp;= \frac{1}{2} \ln |\mathbf{\Sigma}| + \frac{D}{2}\left{ 1 + \ln (2 \pi) \right}
+\end{aligned}
+$$</p>
+<p>したがって題意が示された。</p>
+<p>※ 二次形式とトレースの関係$\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x} = \mathrm{Tr}(\mathbf{Axx}^{\mathrm{T}})$の証明は、任意の$m \times n$行列$\mathbf{M}$と$n \times m$行列$\mathbf{N}$に対して$\mathrm{Tr}(\mathbf{MN}) = \mathrm{Tr}(\mathbf{NM})$が成立する（統計のための行列代数 上巻 第5章 補助定理5.2.1）ことを利用すれば以下のようにして簡単に求められる。</p>
+<p>まず二次形式の値はスカラー（$1 \times 1$行列）なので$\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x} = \mathrm{Tr}(\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x})$となる。ここで、$\mathrm{Tr}(\mathbf{MN}) = \mathrm{Tr}(\mathbf{NM})$の定理において$\mathbf{M} = \mathbf{x}^{\mathrm{T}}$, $\mathbf{N} = \mathbf{Ax}$とすれば$\mathrm{Tr}(\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x}) = \mathrm{Tr}(\mathbf{A}\mathbf{x}\mathbf{x}^{\mathrm{T}})$となるので、$\mathbf{x}^{\mathrm{T}}\mathbf{A}\mathbf{x} = \mathrm{Tr}(\mathbf{Axx}^{\mathrm{T}})$となることが示された。</p>
+<h2 id="演習-216"><a class="header" href="#演習-216">演習 2.16</a></h2>
+<div class="panel-primary">
+<p>2つの確率変数$x_1$と$x_2$を考える．これらはそれぞれ平均が$\mu_1$と$\mu_2$で，精度が$\tau_1$と$\tau_2$のガウス分布に従うとする．このとき，変数$x=x_1+x_2$の微分エントロピーの式を導出せよ．これには，まず，次の関係を用いて$x$の分布を求め，指数部分を平方完成する．</p>
+<p>$$
+p(x)=\int_{-\infty}^{\infty} p\left(x | x_{2}\right) p\left(x_{2}\right) \mathrm{d} x_{2} \tag{2.284}
+$$</p>
+<p>次に，これが2つのガウス分布のたたみ込みになっており，また，これ自体もガウス分布になっていることに注目する.最後に1変数のガウス分布のエントロピーの結果</p>
+<p>$$
+\mathrm{H}[x] = \frac{1}{2}{ 1+\ln(2\pi\sigma^2) } \tag{1.110}
+$$</p>
+<p>を利用する．</p>
+</div>
+<p>$x_1$、$x_2$について、問題文の条件より</p>
+<p>$$p(x_1) = \mathcal{N}(x_1 | \mu_1, \gamma_1^{-1})$$</p>
+<p>$$p(x_2) = \mathcal{N}(x_2 | \mu_2, \gamma_2^{-1})$$</p>
+<p>変数$x = x_1 + x_2$について、$x_2$が観測され固定された数とみなすと、$x$は$x_1$の線形関数とみなせる。</p>
+<p>よって$p(x|x_2)$の分布の平均は$x_1$の平均$\mu_1$に$x_2$を足したものとなり、分散は$x_1$の分散$\gamma_1^{-1}$となる。</p>
+<p>ゆえに</p>
+<p>$$p(x|x_2) = \mathcal{N}(x | \mu_1 + x_2, \gamma_1^{-1})$$</p>
+<p>(2.284)より</p>
+<p>$$\begin{aligned}p(x) &amp;= \int_{-\infty}^{\infty} \mathcal{N}(x | \mu_1 + x_2, \gamma_1^{-1}) \cdot \mathcal{N}(x_2 | \mu_2, \gamma_2^{-1}) \mathrm{d} x_2 \&amp;=  \int_{-\infty}^{\infty} \left( \frac{\gamma_1}{2 \pi} \right)^{\frac{1}{2}} \exp \left{- \frac{\gamma_1}{2} (x - \mu_1 - x_2)^2 \right} \cdot \left( \frac{\gamma_2}{2 \pi} \right)^{\frac{1}{2}} \exp \left{- \frac{\gamma_2}{2} (x_2 - \mu_2)^2 \right} \mathrm{d} x_2 \&amp;= \int_{-\infty}^{\infty} \left( \frac{\gamma_1}{2 \pi} \right)^{\frac{1}{2}} \left( \frac{\gamma_2}{2 \pi} \right)^{\frac{1}{2}} \exp \left{- \frac{\gamma_1}{2} (x - \mu_1 - x_2)^2 -   \frac{\gamma_2}{2} (x_2 - \mu_2)^2 \right} \mathrm{d} x_2 \end{aligned}$$</p>
+<p>この式の指数部分を$x_2$について平方完成すると</p>
+<p>$$\begin{aligned} - \frac{\gamma_1}{2} (x - \mu_1 - x_2)^2 -   \frac{\gamma_2}{2} (x_2 - \mu_2)^2 &amp;= - \frac{1}{2} (\gamma_1 + \gamma_2) x_2^2 + { \gamma_1(x - \mu_1) + \gamma_2 \mu_2 } x_2 - \frac{\gamma_1}{2}(x - \mu_1)^2 - \frac{\gamma_2}{2} \mu_2^2 \&amp;= - \frac{1}{2} (\gamma_1 + \gamma_2) \left{ x_2 - \frac{\gamma_1 (x - \mu_1) + \gamma_2 \mu_2}{\gamma_1 + \gamma_2} \right}^2 + \frac{{\gamma_1 (x - \mu_1) + \gamma_2 \mu_2}^2}{2 (\gamma_1 + \gamma_2)} - \frac{\gamma_1}{2}(x - \mu_1)^2 - \frac{\gamma_2}{2} \mu_2^2  \end{aligned}$$</p>
+<p>ここで、</p>
+<p>$$m = \frac{\gamma_1 (x - \mu_1) + \gamma_2 \mu_2}{\gamma_1 + \gamma_2}$$</p>
+<p>と置くと、指数部分の式は以下のように表せる。</p>
+<p>$$- \frac{\gamma_1 + \gamma_2}{2}  \left( x_2 - m \right)^2 + \frac{{\gamma_1 (x - \mu_1) + \gamma_2 \mu_2}^2}{2 (\gamma_1 + \gamma_2)} - \frac{\gamma_1}{2}(x - \mu_1)^2 - \frac{\gamma_2}{2} \mu_2^2$$</p>
+<p>この式の$x_2$への依存性を見てみると、ガウス分布の標準的な二次形式部分である第一項に、$x_2$に依存しない項を足したものとなっている。</p>
+<p>ここで$x_2$を積分消去すると、指数部分の式は第二項以降となる。</p>
+<p>$x$の精度は指数部分の式の$x^2$の係数で直接与えられるため、上記式の第二項以降の項において$x^2$の係数を計算すると</p>
+<p>$$\begin{aligned} \frac{{\gamma_1 (x - \mu_1) + \gamma_2 \mu_2}^2}{2 (\gamma_1 + \gamma_2)} - \frac{\gamma_1}{2}(x - \mu_1)^2 - \frac{\gamma_2}{2} \mu_2^2 &amp;= \frac{\gamma_1^2}{2 (\gamma_1 + \gamma_2)} x^2 - \frac{\gamma_1}{2} x^2 + \text{const} \&amp;= - \frac{1}{2} \frac{\gamma_1 \gamma_2}{\gamma_1 +  \gamma_2} x^2 + \text{const} \end{aligned}$$</p>
+<p>ただし、$\text{const}$は$x^2$に依存しない数を表す。</p>
+<p>ガウス分布の式(2.42)との比較から、$x$の精度を$\gamma$とすると</p>
+<p>$$\gamma = \frac{\gamma_1 \gamma_2}{\gamma_1 +  \gamma_2}$$
+が得られる。</p>
+<p>$(1.110)$の式から微分エントロピーは</p>
+<p>$$\begin{aligned}\mathrm{H}[\mathbf{x}] &amp;= \frac{1}{2} \left{ 1 + \ln \left( \frac{2 \pi}{\gamma} \right) \right} \&amp;= \frac{1}{2} \left{ 1 + \ln \left( \frac{2 \pi (\gamma_1 + \gamma_2)}{\gamma_1 \gamma_2} \right) \right}  \end{aligned}$$</p>
+<h2 id="演習-217"><a class="header" href="#演習-217">演習 2.17</a></h2>
+<div class="panel-primary">
+<p>$(2.43)$の多変量ガウス分布を考える精度行列（逆共分散行列）$\mathbf{\Sigma^{-1}}$を対称行列と反対称行列（歪対称行列）の和の形で書くと，反対称行列の項がガウス分布の指数部分には現れなくなるため，一般性を失うことなく精度行列は対称であるとしてよいことを示せ．この結果から，対称行列の逆行列も対称（演習2.22）なので，一般性を失うことなく，共分散行列にも対称なものを選んでよいことになる．</p>
+</div>
+<p>※ 演習1.14とやろうとしていることはほぼ同じです．行列の二次形式・対称行列・反対称行列についての定理をよく知っていれば瞬殺です．「統計のための行列代数」の第14章の補助定理14.1.1, 補助定理14.6.3あたりに出てきます．</p>
+<p>補助定理14.6.3</p>
+<p>$n\times n$行列の$\mathbf{A}$は，あらゆる$n$次元ベクトル$\mathbf{x}$に対して，$\mathbf{x'Ax}=0$のときかつそのときに限って，歪対称行列（反対称行列）である.</p>
+<p>また，任意の正方行列$\mathbf{M}$は対称行列$\mathbf{A}$と反対称行列$\mathbf{S}$の和でただ1通りに表現できることも必要です．先にそれを示します．</p>
+<p>ちなみに対称行列$\mathbf{A}$と反対称行列$\mathbf{S}$の一般形は次の通り．
+$$
+\mathbf{A}=\left(
+\begin{array}{ccccc}a_{11} &amp; a_{12} &amp; a_{13} &amp; \cdots &amp; a_{1 n} \ a_{12} &amp; a_{22} &amp; a_{23} &amp; \cdots &amp; a_{2 n} \ a_{13} &amp; a_{23} &amp; a_{33} &amp; \cdots &amp; a_{3 n} \ \vdots &amp; \vdots &amp; &amp; \ddots &amp; \vdots \ a_{1 n} &amp; a_{2 n} &amp; a_{3 n} &amp; \cdots &amp; a_{n n}\end{array}
+\right)
+$$</p>
+<p>$$
+\mathbf{S}=\left(
+\begin{array}{ccccc}0 &amp; s_{12} &amp; s_{13} &amp; \cdots &amp; s_{1 n} \ -s_{12} &amp; 0 &amp; s_{23} &amp; \cdots &amp; s_{2 n} \ -s_{13} &amp; -s_{23} &amp; 0 &amp; \cdots &amp; s_{3 n} \ \vdots &amp; \vdots &amp; &amp; \ddots &amp; \vdots \ -s_{1 n} &amp; -s_{2 n} &amp; -s_{3 n} &amp; \cdots &amp; 0\end{array}
+\right)
+$$</p>
+<p>（証明）</p>
+<p>任意の正方行列$\mathbf{M}$に対し，$\mathbf{(M+M}^{\mathrm{T}})^{\mathrm{T}}=\mathbf{M}^{\mathrm{T}}+{\mathbf M}$なので，$\mathbf{M}+\mathbf{M}^{\mathrm{T}}$は対称行列である．また，$\mathbf{(M-M}^{\mathrm{T}})^{\mathrm{T}}=-({\mathbf M}-\mathbf{M}^{\mathrm{T}})$なので，$\mathbf{M}-{\mathbf M}^{\mathrm{T}}$は反対称行列である．</p>
+<p>よって，$\displaystyle{\mathbf{A}=\frac{\mathbf{M}+\mathbf{M}^{\mathrm{T}}}{2}, \mathbf{S}=\frac{\mathbf{M}-\mathbf{M}^{\mathrm{T}}}{2}}$とすれば，任意の正方行列$\mathbf{M}$は対称行列$\mathbf{A}$と反対称行列$\mathbf{S}$の和で表せることが示される．</p>
+<p>また，これが1通りでのみ表せることを示す．そのために$\mathbf{M}=\mathbf{A}<em>{1}+\mathbf{S}</em>{1}=\mathbf{A}<em>{2}+\mathbf{S}</em>{2}$と仮定する．ここで，$\mathbf{A}<em>1,\mathbf{A}<em>2$は対称行列，$\mathbf{S}<em>1,\mathbf{S}<em>2$は反対称行列である．
+上式を移行すると$\mathbf{S}</em>{1}-\mathbf{S}</em>{2}=\mathbf{A}</em>{2}-\mathbf{A}</em>{1}$であるが，$\mathbf{S}<em>{1}-\mathbf{S}</em>{2}$は反対称行列，$\mathbf{A}<em>{2}-\mathbf{A}</em>{1}$は対称行列となる．よって，これを満たすのは</p>
+<p>$$
+\mathbf{S}<em>{1}-\mathbf{S}</em>{2}=\mathbf{A}<em>{2}-\mathbf{A}</em>{1} = \mathbf{O}
+$$
+のときのみであり，$\mathbf{S}<em>{1}=\mathbf{S}</em>{2}$, $\mathbf{A}<em>{1}=\mathbf{A}</em>{2}$となる．したがって一意性が示された．</p>
+<p>これにより，精度行列$\mathbf{\Sigma}^{-1}$も対称行列$\frac{\mathbf{\Sigma}^{-1}+(\mathbf{\Sigma}^{-1})^{\mathrm T}}{2}$, 反対称行列$\frac{\mathbf{\Sigma}^{-1}-(\mathbf{\Sigma}^{-1})^{\mathrm T}}{2}$に分解できる．</p>
+<p>ガウス分布の二次形式部分（マハラノビス距離の部分）$\Delta^2 = (\mathbf{x}-\boldsymbol{\mu})^{\mathrm T}\mathbf{\Sigma^{-1}}(\mathbf{x}-\boldsymbol{\mu})$の$\mathbf{\Sigma^{-1}}$の反対称要素は消えることを示す．</p>
+<p>$\mathbf{\Sigma^{-1}}=\mathbf{A}+\mathbf{S}$と書く．ここで$\mathbf{A}$は対称行列，$\mathbf{S}$は反対称行列．</p>
+<p>ここで，任意の$D$次元ベクトル$\mathbf{y}$と$D\times D$の反対称行列$\mathbf{S}$について，</p>
+<p>$$
+\mathbf{y}^{\mathrm T}{\mathbf{S}}{\mathbf{y}}=0
+$$</p>
+<p>が成立することを示す（上述の補助定理14.6.3）．任意の$D\times D$の行列$\mathbf{M}$を使うと</p>
+<p>$$
+\begin{aligned}
+\mathbf{y}^{\mathrm T}{\mathbf{S}}{\mathbf{y}} &amp;=\sum_{j=1}^{D}\left(\sum_{i=1}^{D} y_{i} S_{i j}\right) y_{j} \
+&amp;=\sum_{j=1}^{D} \sum_{i=1}^{D} y_{i} \cdot \frac{M_{ij}-M_{ji}}{2}\cdot y_{j} \
+&amp;=\frac{1}{2} \left{ \sum_{j=1}^{D} \sum_{i=1}^{D} y_{i} M_{ij} y_{j}-\sum_{j=1}^{D} \sum_{i=1}^{D} y_{j} M_{ji} y_{i}\right} \
+&amp;=0
+\end{aligned}
+$$
+よって，</p>
+<p>$$
+\begin{aligned}
+\Delta^{2} &amp;=(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}}(\mathbf{A}+\mathbf{S})(\mathbf{x}-\boldsymbol{\mu}) \
+&amp;=(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}} \mathbf{A}(\mathbf{x}-\boldsymbol{\mu})
+\end{aligned}
+$$</p>
+<p>つまり，反対称要素が消えることが示された．</p>
+<h2 id="演習-218"><a class="header" href="#演習-218">演習 2.18</a></h2>
+<div class="panel-primary">
+<p>実対称行列$\mathbf{\Sigma}$を考える．この行列について$(2.45)$</p>
+<p>$$
+\mathbf{\Sigma}\mathbf{u}_i = \lambda_i\mathbf{u}_i
+$$</p>
+<p>の固有値の方程式が成立する．この式の複素共役から，もとの式を引いた後，固有ベクトル$\mathbf{u}_i$との内積をとることで，固有値$\lambda_i$が実数となることを示せ．同様に，$\mathbf{\Sigma}$の対称性を用いて，2つの固有ベクトル$\mathbf{u}_i$と$\mathbf{u}_j$が，$\lambda_j \neq \lambda_i$であれば，直交することを示せ．最後に，たとえいくつかの固有値が0であっても，一般性を失うことなく，$(2.46)$式 $\mathbf{u}_i^{\mathrm{T}}\mathbf{u}<em>j = I</em>{ij}$を満たす，正規直交となるように固有ベクトル集合を選ぶことが可能であることを示せ．</p>
+</div>
+<p>この問題は以下の3つの問題を証明していくことになる。</p>
+<p>① <strong>対称行列の固有値は実数となる。</strong>
+② <strong>異なる固有値に対応する固有ベクトル同士は直交する。</strong>
+③ <strong>いくつかの固有値が0であっても、正規直交となるように固有ベクトル集合を選ぶことができる。</strong></p>
+<br>
+<p>① <strong>対称行列の固有値は実数となる。</strong></p>
+<p>$(2.45)$式</p>
+<p>$$
+\mathbf{\Sigma}\mathbf{u}_i = \lambda_i\mathbf{u}_i
+$$</p>
+<p>に左から随伴行列$\mathbf{u}_i^{\dagger}$をかけると（$\lambda_i$はスカラー値であることに注意する）</p>
+<p>$$
+\mathbf{u}_i^{\dagger}\mathbf{\Sigma}\mathbf{u}_i = \mathbf{u}_i^{\dagger}\lambda_i\mathbf{u}_i
+$$</p>
+<p>$$
+\mathbf{u}_i^{\dagger}\mathbf{\Sigma}\mathbf{u}_i = \lambda_i\mathbf{u}_i^{\dagger}\mathbf{u}_i \tag{1}
+$$</p>
+<p>また$(2.45)$式の両辺の複素共役をとり、右から$\mathbf{u}_i$をかける。$(\mathbf{\Sigma u_i})^{\dagger}=\mathbf{u}_i^{\dagger}\mathbf{\Sigma}^{\dagger}=\mathbf{u}_i^{\dagger}\mathbf{\Sigma}$、 $\bar{\lambda_i}$を$\lambda_i$の複素共役として</p>
+<p>$$
+(\mathbf{\Sigma u_i})^{\dagger}\mathbf{u}_i = (\lambda_i\mathbf{u}_i)^{\dagger}\mathbf{u}_i
+$$</p>
+<p>$$
+\mathbf{u}_i^{\dagger}\mathbf{\Sigma}\mathbf{u}_i = \bar{\lambda_i}\mathbf{u}_i^{\dagger}\mathbf{u}_i \tag{2}
+$$</p>
+<p>よって(1)(2)式の差を取ると</p>
+<p>$$
+0 = (\lambda_i - \bar{\lambda_i})\mathbf{u_i}^{\dagger}\mathbf{u_i}
+$$
+となる。$\mathbf{u_i}^{\dagger}\mathbf{u_i}$は$0$ではないため、$\lambda_i = \bar{\lambda_i}$、つまり$\lambda_i$が実数となることが示された。</p>
+<br>
+<p>② <strong>異なる固有値に対応する固有ベクトル同士は直交する。</strong></p>
+<p>次に$(2.45)$式の左側から$\mathbf{u_j}^{\mathrm{T}}$をかける</p>
+<p>$$
+\mathbf{u}_j^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i = \mathbf{u}_j^{\mathrm{T}}\lambda_i\mathbf{u}_i
+$$</p>
+<p>$$
+\mathbf{u}_j^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i = \lambda_i\mathbf{u}_j^{\mathrm{T}}\mathbf{u}_i
+$$</p>
+<p>$$
+\begin{aligned}
+\lambda_i\mathbf{u}_j^{\mathrm{T}}\mathbf{u}_i &amp;= \mathbf{u}_j^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i \
+&amp;= (\mathbf{\Sigma}\mathbf{u}_j)^{\mathrm{T}}\mathbf{u}_i \
+&amp;= (\lambda_j\mathbf{u}_j)^{\mathrm{T}}\mathbf{u}_i \
+&amp;= \lambda_j\mathbf{u}_j^{\mathrm{T}}\mathbf{u}_i
+\end{aligned}
+$$
+ここで$\lambda_i \neq \lambda_j$であれば上式から$\mathbf{u}_j^{\mathrm{T}}\mathbf{u}_i=0$となるので、$\mathbf{u}_i$,$\mathbf{u}_j$が直交していることが示された。この固有ベクトルは定数倍して$\mathbf{u}_i \to \mathbf{u}_i/||\mathbf{u}_i||$というように正規化すれば$(2.46)$式を満足させることができる。</p>
+<p>（※統計のための行列代数下巻 P.238 定理21.4.5と同じ）</p>
+<p>ちなみに、同じ固有値$\lambda(\neq0)$に対する2個の固有ベクトル$\mathbf{u}_i, \mathbf{u}_j$が存在したとき、この線型結合$a_i\mathbf{u}_i+a_j\mathbf{u}_j$について</p>
+<p>$$
+\mathbf{\Sigma}(a_i\mathbf{u}_i+a_j\mathbf{u}_j) = \lambda(a_i\mathbf{u}_i+a_j\mathbf{u}_j)
+$$</p>
+<p>と書くことができ、$a_i\mathbf{u}_i+a_j\mathbf{u}_j$も同じ固有値に対する固有ベクトルとして表現できる。これが得られる場合、例えばグラム・シュミットの直交化法を使うことで$(2.46)$式である$\mathbf{u}_k^{\mathrm{T}}\mathbf{u}<em>l = I</em>{kl}$となるような正規直交された$\mathbf{u}_k$, $\mathbf{u}_l$を$\mathbf{u}_i, \mathbf{u}_j$の組から得ることが可能であることが知られている。以上から、同じ固有値$\lambda_i=\lambda_j(\neq 0)$の場合でも$(2.46)$式を満足させられる固有ベクトルを得ることは可能である。</p>
+<br>
+<p>③ <strong>いくつかの固有値が0であっても、正規直交となるように固有ベクトル集合を選ぶことができる。</strong></p>
+<p>最後に、もしいくつかの$\lambda_i$が$0$だった場合、正則行列についての定理から$\mathbf{\Sigma}$は正則行列ではなく、逆行列を持たない特異行列となる。このとき、$\mathbf{\Sigma}\mathbf{u}_i=\mathbf{0}$となる零ベクトルではない固有ベクトル$\mathbf{u}_i$が存在することになり、これは$\mathbf{\Sigma}$の零空間（核）をなす。さらに、同じ固有値0となる別の固有ベクトル$\mathbf{u}_j$がある場合でも、上記のグラム・シュミット直交化法によって$(2.46)$式を満足させられる固有ベクトルを得ることが可能である。</p>
+<h2 id="演習-219"><a class="header" href="#演習-219">演習 2.19</a></h2>
+<div class="panel-primary">
+<p>固有ベクトルの方程式について$$\mathbf{\Sigma}\mathbf{u}_i=\lambda_i\mathbf{u}_i \tag{2.45}$$が成立する実対称行列$\mathbf{\Sigma}$は，固有値を係数とする固有ベクトルで展開した，</p>
+<p>$$
+\mathbf{\Sigma}=\sum_{i=1}^{D} \lambda_{i} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm{T}} \tag{2.48}
+$$</p>
+<p>の形で表せることを示せ．同様に，逆行列$\mathbf{\Sigma}^{-1}$は</p>
+<p>$$
+\mathbf{\Sigma}^{-1}=\sum_{i=1}^{D} \frac{1}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm{T}} \tag{2.49}
+$$</p>
+<p>の形で表現できることを示せ．</p>
+</div>
+<p>※ $(2.45)$と$(2.48)$を行列形式で表すと変形が簡単になる。このとき、固有値$\lambda_i$を対角行列$\mathbf{\Lambda}$で書くとわかりやすい。</p>
+<p>まず$\mathbf{\Lambda}$を$\displaystyle \mathbf{\Lambda} = \left(\begin{array}{cccc}\lambda_{1} &amp; &amp; &amp; 0 \ &amp; \lambda_{2} &amp; &amp; \ &amp; &amp; \ddots &amp; \ 0 &amp; &amp; &amp; \lambda_{D}\end{array}\right)$となるような固有値からなる対角行列であるとする。さらに、$\mathbf{U}$をその列が$D$個の固有ベクトルからなる行列であるとする（つまり$\mathbf{U} = (\mathbf{u}<em>{1}, \mathbf{u}</em>{2}, \cdots, \mathbf{u}_{D})$）。$\mathbf{\Lambda}, \mathbf{U}$はともに$D \times D$の行列である。</p>
+<p>これにより$(2.45)$は行列形式で$\mathbf{\Sigma}\mathbf{U} = \mathbf{U}\mathbf{\Lambda}$と表せ（付録C.38などを参照）、$(2.48)$は$\mathbf{\Sigma} = \mathbf{U}\mathbf{\Lambda}\mathbf{U}^{\mathrm{T}}$で表せる（……ということはちょっと計算してみないとわかりにくいかもしれない）。</p>
+<p>よって、$\mathbf{\Sigma}\mathbf{U} = \mathbf{U}\mathbf{\Lambda}$の左から$\mathbf{U}^{\mathrm{T}}$を掛けると</p>
+<p>$$
+\begin{aligned}
+\mathbf{U}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{U} &amp;= \mathbf{U}^{\mathrm{T}}\mathbf{U}\mathbf{\Lambda} \
+&amp;= \mathbf{\Lambda} \  (\because \mathbf{U}\mathbf{U}^{\mathrm{T}}=\mathbf{U}\mathbf{U}^{\mathrm{T}}=1 )\
+\end{aligned}
+$$
+となる。一方、この式から$\mathbf{\Sigma} = \mathbf{U}\mathbf{\Lambda}\mathbf{U}^{\mathrm{T}}$と表せることも分かり、$(2.48)$の行列形式が得られることが示された。</p>
+<p>また、$\mathbf{U}^{\mathrm{T}} = \mathbf{U}^{-1}$であることを利用すれば
+$$
+\begin{aligned}
+\mathbf{\Sigma}^{-1} &amp;= (\mathbf{U}\mathbf{\Lambda}\mathbf{U}^{\mathrm{T}})^{-1} \
+&amp;= (\mathbf{U}^{\mathrm{T}})^{-1}\mathbf{\Lambda}^{-1}\mathbf{U}^{-1} \
+&amp;= \mathbf{U}\mathbf{\Lambda}^{-1}\mathbf{U}^{\mathrm{T}}
+\end{aligned}
+$$
+となる。ここで$\mathbf{\Lambda}\mathbf{\Lambda}^{-1} = \mathbf{I}$より、$\mathbf{\Lambda}^{-1}$は対角成分が$\frac{1}{\lambda_i}$となる対角成分であることは容易にわかるので、</p>
+<p>$$
+\mathbf{\Sigma}^{-1} = \sum_{i=1}^{D}\frac{1}{\lambda_i}\mathbf{u}_i\mathbf{u}_i^{\mathrm{T}}
+$$</p>
+<p>となり、$(2.49)$式が得られることが示された。</p>
+<p>※ $\mathbf{\Sigma}\mathbf{u}_i=\lambda_i\mathbf{u}_i$ならば$\mathbf{\Sigma} \mathbf{U}=\mathbf{U\Lambda}$であることは</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma} \mathbf{U} &amp;= \mathbf{\Sigma}\left(\mathbf{u}<em>{1}, \mathbf{u}</em>{2}, \cdots, \mathbf{u}<em>{D}\right)=\left(\mathbf{\Sigma} \mathbf{u}</em>{1}, \mathbf{\Sigma} \mathbf{u}<em>{2}, \cdots \mathbf{\Sigma} \mathbf{u}</em>{D}\right) \
+\mathbf{U} \mathbf{\Lambda} &amp;=\left(\mathbf{u}<em>{1}, \mathbf{u}</em>{2}, \cdots, \mathbf{u}<em>{D}\right) \begin{pmatrix}\lambda</em>{1} &amp; &amp; &amp; 0 \ &amp; \lambda_{2} &amp; &amp; \ &amp; &amp; \ddots &amp; \ 0 &amp; &amp; &amp; \lambda_{D}\end{pmatrix}=\left(\lambda \mathbf{u}<em>{1}, \lambda \mathbf{u}</em>{2}, \cdots, \lambda \mathbf{u}_{D}\right)
+\end{aligned}
+$$</p>
+<p>から確かめられる。</p>
+<h2 id="演習-220"><a class="header" href="#演習-220">演習 2.20</a></h2>
+<div class="panel-primary">
+<p>正定値行列$\mathbf{\Sigma}$は次の二次形式が，任意の実ベクトル$\mathbf{a}$について正になるということで定義できる．</p>
+<p>$$
+\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a} \tag{2.285}
+$$</p>
+<p>$\mathbf{\Sigma}$が正定値になる必要十分条件は，$(2.45)$で定義される$\mathbf{\Sigma}$のすべての固有値$\lambda_i$が正となることであることを示せ．</p>
+</div>
+<p>※ 行列の定値性と固有値の間の有名な関係を示す問題です。<a href="https://ja.wikipedia.org/wiki/%E8%A1%8C%E5%88%97%E3%81%AE%E5%AE%9A%E5%80%A4%E6%80%A7">Wikipedia</a>にも書かれています。</p>
+<p>問題文より、「$\mathbf{\Sigma}$が正定値行列である」ことの定義は、$(2.285)$のように任意の零ベクトルでない実ベクトル$\mathbf{a}$について$\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a}&gt;0$が成立することである。</p>
+<p>【解法1】 参考：統計のための行列代数下巻 定理21.8.4の証明</p>
+<p>$(2.45)$式から$\mathbf{\Sigma}\mathbf{u}_i=\lambda_i\mathbf{u}_i$とする。$\lambda_i$は固有値である。</p>
+<p>$(2.45)$式の両辺に左から$\mathbf{u}_i^{\mathrm{T}}$をかけると</p>
+<p>$$
+\mathbf{u}_i^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i=\lambda_i\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i
+$$
+$$
+\lambda_i = \frac{\mathbf{u}_i^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i}{\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i} \tag{1}
+$$</p>
+<p>ここで、$\mathbf{u}_i^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i,\ \mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i$はともにスカラーである。一方で、$\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i$は実ベクトルの自身の2乗なので常に$\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i&gt;0$となる（※特にこの問題設定では$\mathbf{u}_i$は直交行列なので$\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i=1$となる）。</p>
+<p>よって、もし任意の$i$について$\lambda_{i}&gt;0$ならば$(1)$式から$\mathbf{u}_i^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i&gt;0$となる。すなわち、$\mathbf{\Sigma}$が正定値行列となる。反対に、もし$\mathbf{\Sigma}$が正定値行列ならば任意の$i$について$\mathbf{u}_i^{\mathrm{T}}\mathbf{\Sigma}\mathbf{u}_i&gt;0$となるので、すべての固有値$\lambda_i$が正となる。</p>
+<p>以上から題意は示された。</p>
+<p>【解法2】 PRML公式解答例による方法</p>
+<p>$\mathbf{u}<em>{1}, \mathbf{u}</em>{2}, \ldots, \mathbf{u}_{D}$は$\mathbb{R}^D$の基底を張るので任意のベクトル$\mathbf{a}$は係数$a_1, \ldots, a_D$を使って</p>
+<p>$$
+\mathbf{a}=a_{1} \mathbf{u}<em>{1}+a</em>{2} \mathbf{u}<em>{2}+\ldots+a</em>{D} \mathbf{u}_{D}
+$$</p>
+<p>と書くことができる。これより、</p>
+<p>$$
+\begin{aligned}
+\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a}
+&amp;= (a_{1} \mathbf{u}<em>{1}^{\mathrm{T}}+a</em>{2} \mathbf{u}<em>{2}^{\mathrm{T}}+\ldots+a</em>{D} \mathbf{u}<em>{D}^{\mathrm{T}})\mathbf{\Sigma}(a</em>{1} \mathbf{u}<em>{1}+a</em>{2} \mathbf{u}<em>{2}+\ldots+a</em>{D} \mathbf{u}<em>{D}) \
+&amp;= \left(a</em>{1} \mathbf{u}<em>{1}^{\mathrm{T}}+\ldots+a</em>{D} \mathbf{u}<em>{D}^{\mathrm{T}}\right)\left(a</em>{1} \lambda_{1} \mathbf{u}<em>{1}+\ldots+a</em>{D} \lambda_{D} \mathbf{u}_{D}\right)\hspace{2em}(\because (2.45))
+\end{aligned}
+$$</p>
+<p>となる。今、$i=j$ならば$\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_j=1$でそれ以外のとき$\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_j=0$であることを利用すれば、</p>
+<p>$$
+\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a} = a_{1}^{2} \lambda_{1}+\ldots+a_{D}^{2} \lambda_{D}
+$$</p>
+<p>が得られる。よって、もしすべての固有値が正ならば（$\lambda_i&gt;0$）$\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a}&gt;0$となるため、$\mathbf{\Sigma}$が正定値行列であることがわかる。</p>
+<p>反対に$\mathbf{\Sigma}$が正定値行列であるならばすべての固有値が正となることを示す。このために対偶「ある1つの固有値が0以下でならば、$\mathbf{\Sigma}$は正定置行列ではない」ことを示す。</p>
+<p>もしある$\lambda_i$について$\lambda_i \le 0$となるようなものが存在した場合、$\mathbf{a}  = \mathbf{u}_i$とすれば$\mathbf{a}^{\mathrm{T}}\mathbf{\Sigma}\mathbf{a} = \lambda_i\mathbf{u}_i^{\mathrm{T}}\mathbf{u}_i \le 0$となり、$\mathbf{\Sigma}$は正定置行列ではないことが示される。よって対偶を取ると「$\mathbf{\Sigma}$が正定値行列であるならばすべての固有値が正となる」が示される。</p>
+<p>以上から必要十分条件が示された。</p>
+<h2 id="演習-221"><a class="header" href="#演習-221">演習 2.21</a></h2>
+<div class="panel-primary">
+<p>大きさが$D\times D$の実対称行列の独立なパラメータは、$D(D+1)/2$個であることを示せ．</p>
+</div>
+<p>大きさが$D\times D$の実対称行列の全成分の個数は当然$D^2$個である。このうち、対角成分の$D$個を除いて残りのパラメータ（非対角成分）は対角成分に対して対称な値になっていなければならないので、そのパラメータの自由度は$\displaystyle \frac{D^2-D}{2}$個である。これに$D$個を足して</p>
+<p>$$
+\frac{D^2-D}{2}+D = \frac{D(D+1)}{2}
+$$</p>
+<p>つまり独立なパラメータは$\displaystyle \frac{D(D+1)}{2}$個である。</p>
+<h2 id="演習-222"><a class="header" href="#演習-222">演習 2.22</a></h2>
+<div class="panel-primary">
+<p>対称行列の逆行列も対称であることを示せ．</p>
+</div>
+<p>ある任意の対称行列$\mathbf{A}$があり、逆行列が存在する場合それを$\mathbf{A}^{-1}$とすると、</p>
+<p>$$
+\mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
+$$</p>
+<p>となる（$\mathbf{I}$は単位行列）。両辺の転置を取り、$\mathbf{A}$は対称行列なので$\mathbf{A} = \mathbf{A}^{\mathrm{T}}$であることに注意すると</p>
+<p>$$
+(\mathbf{A}\mathbf{A}^{-1})^{\mathrm{T}} = (\mathbf{A}^{-1})^{\mathrm{T}}\mathbf{A}^{\mathrm{T}} = (\mathbf{A}^{-1})^{\mathrm{T}}\mathbf{A} = \mathbf{I}
+$$</p>
+<p>ここで第3項について、逆行列の定義から</p>
+<p>$$
+(\mathbf{A}^{-1})^{\mathrm{T}} = \mathbf{A}^{-1}
+$$</p>
+<p>とならなければならないことがわかる。これは対称行列の逆行列$\mathbf{A}^{-1}$も対称行列となっていることを表している。</p>
+<h2 id="演習-223"><a class="header" href="#演習-223">演習 2.23</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbf{\Sigma}=\sum_{i=1}^{D} \lambda_{i} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm{T}} \tag{2.48}
+$$
+の固有ベクトル展開を用いて座標系を対角化することで，マハラノビス距離$\Delta$が定数になる超楕円体の内部の体積が，</p>
+<p>$$
+V_{D}|\mathbf{\Sigma}|^{1 / 2} \Delta^{D} \tag{2.286}
+$$</p>
+<p>になることを示せ．ただし，$V_{D}$は$D$次元単位球の体積で，マハラノビス距離は $(2.44)$で定義される．</p>
+</div>
+<p>※ PRML第2章 <strong>2.3 ガウス分布</strong>の議論にある<strong>ガウス分布の幾何的な形状</strong>についての理解を深めるための問題です。</p>
+<p>※ そもそも超楕円体って何？って調べてみても意外とGoogleでヒットしないのですが、以下の定義を使います。</p>
+<blockquote> 楕円体は，2次曲面の一種です．2次元において，次の方程式：
+<p>$$
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+$$</p>
+<p>で表現される図形を楕円と呼びますが，これの$n$次元へ拡張したものと捉えて問題ありません．より厳密な呼び分けとしては，$n=3$のときのみ楕円体と呼び，$n\ge4$のとき<strong>超楕円体</strong>と呼ぶ場合もあるようです．
+http://ssr-yuki.hatenablog.com/entry/2020/04/26/230647 </blockquote></p>
+<p>マハラノビス距離の2乗$\displaystyle \Delta^2 = (\mathbf{x}-\mathbf{\mu})^{\mathrm{T}}\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu})$は、P.78の手続きから固有ベクトル展開を用いて座標系を対角化することで$(2.50)$式$\displaystyle \Delta^2 = \sum_{i=1}^{D}\frac{y_i^2}{\lambda_i}$と書くことができる。例として$D=2$であれば</p>
+<p>$$
+\frac{y_1^2}{\lambda_1}+\frac{y_2^2}{\lambda_2}=\Delta^2
+$$</p>
+<p>と書ける。これは平面図形の楕円である（P.79の図2.7のイメージ）。ちなみに$D=3$では楕円体（<a href="https://ja.wikipedia.org/wiki/%E6%A5%95%E5%86%86%E4%BD%93">Wikipediaの楕円体を参照</a>）を表す式になり、$D \ge 4$では超楕円体を表す。</p>
+<p>$D$次元の超楕円体の体積$V_e$は以下の式で定義される。</p>
+<p>$$
+V_e = \int\int\cdots\int dy_1dy_2\cdots dy_D
+$$</p>
+<p>これは3次元の場合の式$V_3 = \int\int\int dxdydz$の拡張です。この辺についての説明は <a href="http://takun-physics.net/3284">楕円の面積と楕円体の体積の求め方</a>のページも参考にしてみてください。</p>
+<p>今、マハラノビス距離$\Delta$は定数ということになっているので、超楕円体は$a_i^2=y_i^2/\lambda_i$の変数変換を行うことで、半径$\Delta$の超球へと変換させることができる。つまりヤコビアン$\mathbf{J}$を使って表現すると</p>
+<p>$$
+\begin{aligned}
+V_e &amp;= \int\int\cdots\int dy_1dy_2\cdots dy_D \
+&amp;= \int\int\cdots\int |\mathbf{J}|da_1da_2\cdots da_D
+\end{aligned}
+$$</p>
+<p>となる。ここでヤコビアンは$(2.53)-(2.55)$での議論から</p>
+<p>$$
+\mathbf{J}=\left(\begin{array}{ccc}\frac{\partial y_{1}}{\partial a_{1}} &amp; \cdots &amp; \frac{\partial y_{1}}{\partial a_{D}} \ \vdots &amp; \ddots &amp; \vdots \ \frac{\partial y_{D}}{\partial a_{1}} &amp; \cdots &amp; \frac{\partial y_{0}}{\partial a_{2}}\end{array}\right)=\left(\begin{array}{ccc}
+\sqrt{\lambda_{1}} &amp;  &amp;  &amp; 0 \
+&amp; \sqrt{\lambda_{2}} \
+&amp; &amp; \ddots &amp; \
+0 &amp; &amp; &amp; \sqrt{\lambda_{D}}
+\end{array}\right)
+$$</p>
+<p>なので、$|\mathbf{J}| = \prod_{i=1}^{D}\lambda_i^{1/2} =|\mathbf{\Sigma}|^{1/2}$となる。</p>
+<p>一方、$\displaystyle \int\int\cdots\int da_1da_2\cdots da_D = \int \prod_{i=1}^{D}da_i$部分は、半径$\Delta$の$D$次元超球の体積を表しているので（超球は演習問題1.18でも登場。各変数$a_i$の定義域は$-\Delta \le a_i \le \Delta$である）、問題文の通りに$V_D$を$D$次元単位球の体積とすると、</p>
+<p>$$
+\int\int\cdots\int da_1da_2\cdots da_D = V_D\Delta^D
+$$</p>
+<p>となる。</p>
+<p>以上から求める超楕円体の内部の体積$V_e$は$(2.286)$式の通りに</p>
+<p>$$
+V_e = V_D|\mathbf{\Sigma}|^{1/2}\Delta^D
+$$</p>
+<p>となることが示された。</p>
+<blockquote>
+<p>マハラノビス距離の直感的な理解としては、例えば https://mathwords.net/mahalanobis などのサイトの説明を読んでください。多次元からなるデータ群の中で例えば<strong>外れ値</strong>を検出したい場合、データの各次元への分散まで考慮した<strong>データ群からの距離</strong>を考える必要があります。これを実現するのが<strong>マハラノビス距離</strong>です。マハラノビス距離が大きい → その点での確率密度が小さい → <strong>異常度が高い</strong>と考えることができます。</p>
+</blockquote>
+<h2 id="演習-224"><a class="header" href="#演習-224">演習 2.24</a></h2>
+<div class="panel-primary">
+<p>$$
+\left(\begin{array}{cc}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D}\end{array}\right)^{-1}=\left(\begin{array}{cc}\mathbf{M} &amp; -\mathbf{M B D}^{-1} \ -\mathbf{D}^{-1} \mathbf{C M} &amp; \mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{C M B D}^{-1}\end{array}\right) \tag{2.76}
+$$
+の両辺に次の行列$\displaystyle \left(\begin{array}{ll}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D}\end{array}\right) \ (2.287)$を掛け，また，</p>
+<p>$$
+\mathbf{M}=\left(\mathbf{A}-\mathbf{B} \mathbf{D}^{-1} \mathbf{C}\right)^{-1} \tag{2.77}
+$$</p>
+<p>の定義を用いることで，$(2.76)$の恒等式を証明せよ．</p>
+</div>
+<p>指示通り$(2.76)$の右辺に左から$\displaystyle \left(\begin{array}{cc}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D} \end{array}\right)$をかけたものを$\mathbf{X}$とおく。これが左辺に左から$\displaystyle \left(\begin{array}{cc}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D} \end{array}\right)$をかけたもの、すなわち単位行列$\mathbf{I}$になっていることを示せば良い。</p>
+<p>$$
+\begin{aligned} \mathbf{X}
+&amp;=\left(\begin{array}{cc}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D} \end{array}\right)
+\left(\begin{array}{cc}\mathbf{M} &amp; -\mathbf{MBD}^{-1} \ -\mathbf{D}^{-1} \mathbf{CM} &amp; \mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{CMBD}^{-1}\end{array}\right) \
+&amp;=\left(\begin{array}{cc}\mathbf{AM}-\mathbf{BD}^{-1}\mathbf{CM} &amp; -\mathbf{AMBD}^{-1}+\mathbf{B}\left(\mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{CMBD}^{-1}\right) \ \mathbf{CM}-\mathbf{DD}^{-1} \mathbf{CM} &amp; -\mathbf{CMBD}^{-1}+\mathbf{D}\left(\mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{CMBD}^{-1}\right)\end{array}\right)
+\end{aligned}
+$$</p>
+<p>このそれぞれの部分行列成分について計算していくと</p>
+<p>$$
+\begin{aligned}
+\mathbf{X}_{11}
+&amp;=\mathbf{AM}-\mathbf{BD}^{-1} \mathbf{CM} \
+&amp;=\left(\mathbf{A}-\mathbf{BD}^{-1} \mathbf{C}\right) \mathbf{M} \ &amp;=\left(\mathbf{A}-\mathbf{B D}^{-1} \mathbf{C}\right) \left(\mathbf{A}-\mathbf{BD}^{-1} \mathbf{C}\right)^{-1} \ &amp;=\mathbf{I}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{X}_{12}
+&amp;=-\mathbf{A M B D}^{-1}+\mathbf{B}\left(\mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{C M B D}^{-1}\right) \
+&amp;=-\mathbf{A M B D}^{-1}+\mathbf{B D}^{-1}+\mathbf{B D}^{-1}\mathbf{C M B D}^{-1} \
+&amp;=-\left(\mathbf{A}-\mathbf{B D}^{-1} \mathbf{C}\right) \mathbf{M B D}^{-1}+\mathbf{B D}^{-1} \
+&amp;=-\left(\mathbf{A}-\mathbf{B D}^{-1} \mathbf{C}\right)\left(\mathbf{A}-\mathbf{B D}^{-1} \mathbf{C}\right)^{-1} \mathbf{B D}^{-1}+\mathbf{B D}^{-1} \
+&amp;=-\mathbf{B D}^{-1}+\mathbf{B D}^{-1} \
+&amp;=\mathbf{O}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{X}_{21}
+&amp;=\mathbf{CM}-\mathbf{DD}^{-1}\mathbf{CM} \
+&amp;=\mathbf{O}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+X_{22}
+&amp;=-\mathbf{C M B D}^{-1}+\mathbf{D}\left(\mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{C M B D}^{-1}\right) \
+&amp;=-\mathbf{C M B D}^{-1}+\mathbf{I}+\mathbf{C M B D}^{-1} \ &amp;=\mathbf{I}
+\end{aligned}
+$$</p>
+<p>よって全体として$\mathbf{X} = \mathbf{I}$となっていることが示せたので、$(2.76)$の恒等式は示された。</p>
+<h2 id="演習-225"><a class="header" href="#演習-225">演習 2.25</a></h2>
+<div class="panel-primary">
+<p>2.3.1節や2.3.2節では，多変量ガウス分布の条件付き分布や周辺分布について考察した．より一般的に，$\mathbf{x}$の要素を$\mathbf{x}_a, \mathbf{x}_b$,および$\mathbf{x}_c$の3つに分けることを考える．この分割により，対応する平均ベクトル$\boldsymbol{\mu}$と共分散行列$\mathbf{\Sigma}$は</p>
+<p>$$
+\boldsymbol{\mu}=\left(\begin{array}{c}\boldsymbol{\mu}<em>{a} \ \boldsymbol{\mu}</em>{b} \ \boldsymbol{\mu}<em>{c}\end{array}\right), \quad \mathbf{\Sigma}=\left(\begin{array}{ccc}\mathbf{\Sigma}</em>{a a} &amp; \mathbf{\Sigma}<em>{a b} &amp; \mathbf{\Sigma}</em>{a c} \ \mathbf{\Sigma}<em>{b a} &amp; \mathbf{\Sigma}</em>{b b} &amp; \mathbf{\Sigma}<em>{b c} \ \mathbf{\Sigma}</em>{c a} &amp; \mathbf{\Sigma}<em>{c b} &amp; \mathbf{\Sigma}</em>{c c}\end{array}\right)
+$$</p>
+<p>のように分割される. 2.3節の結果を用いて$\mathbf{x}_c$を周辺化で消去した条件付き分布$p(\mathbf{x}_a|\mathbf{x}_b)$の式を求めよ．</p>
+</div>
+<p>$\mathbf{x}_c$を消去したときの同時分布$p(\mathbf{x}_a,\mathbf{x}_b)$は、平均ベクトルと共分散行列が</p>
+<p>$$
+\boldsymbol{\mu}=\left(\begin{array}{c}\boldsymbol{\mu}<em>{a} \ \boldsymbol{\mu}</em>{b} \end{array}\right), \quad \mathbf{\Sigma}=\left(\begin{array}{ccc}\mathbf{\Sigma}<em>{a a} &amp; \mathbf{\Sigma}</em>{a b} \ \mathbf{\Sigma}<em>{b a} &amp; \mathbf{\Sigma}</em>{b b} \end{array}\right)
+$$</p>
+<p>のガウス分布となる。よって条件付き分布$p(\mathbf{x}_a|\mathbf{x}_b)$もガウス分布であり、その平均は$(2.81)(2.82)$で与えられ、式は$(2.96)$となる。</p>
+<h2 id="演習-226"><a class="header" href="#演習-226">演習 2.26</a></h2>
+<div class="panel-primary">
+<p>非常に有用な線形代数の結果であるWoodbury行列反転公式(Woodbury matrix inversion formula)は</p>
+<p>$$
+(\mathbf{A}+\mathbf{B C D})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1} \tag{2.289}
+$$</p>
+<p>である．この両辺に$(\mathbf{A}+\mathbf{B C D})$を掛けて，この公式を証明せよ.</p>
+</div>
+<p>右辺に$(\mathbf{A}+\mathbf{B C D})$を掛けると</p>
+<p>$$
+\begin{aligned}
+&amp; (\mathbf{A}+\mathbf{B C D}) (\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1}) \
+&amp;= \mathbf{I} - \mathbf{B}\left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1} + \mathbf{B C D}\mathbf{A}^{-1} - \mathbf{B C D} \mathbf{A}^{-1} \mathbf{B}\left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1}\
+&amp;= \mathbf{I} + \mathbf{B C D}\mathbf{A}^{-1} - \mathbf{B}\left(\mathbf{I}+\mathbf{C D} \mathbf{A}^{-1} \mathbf{B}\right) \left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1} \
+&amp;= \mathbf{I} + \mathbf{B C D}\mathbf{A}^{-1} - \mathbf{B C}\left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right) \left(\mathbf{C}^{-1}+\mathbf{D} \mathbf{A}^{-1} \mathbf{B}\right)^{-1} \mathbf{D} \mathbf{A}^{-1} \
+&amp;= \mathbf{I} + \mathbf{B C D}\mathbf{A}^{-1} - \mathbf{B C D}\mathbf{A}^{-1} \
+&amp;= \mathbf{I}
+\end{aligned}
+$$</p>
+<p>となり示された。</p>
+<h2 id="演習-227"><a class="header" href="#演習-227">演習 2.27</a></h2>
+<div class="panel-primary">
+<p>$\mathbf{x}$と$\mathbf{z}$を２つの独立な確率ベクトル，すなわち，$p(\mathbf{x, z}) = p(\mathbf{x})p(\mathbf{z})$であるとする．これらの和$\mathbf{y}=\mathbf{x}+\mathbf{z}$の平均が，それぞれの変数について個別に求めた平均の和となることを示せ．同様に，$\mathbf{y}$の共分散行列が，$\mathbf{x}$と$\mathbf{z}$それぞれの共分散行列の和であることを示せ．これが，演習問題1.10の結果と一致することを確認せよ．</p>
+</div>
+<p>$\mathbb{E}[\mathbf{y}] = \mathbb{E}[\mathbf{x}+\mathbf{z}]=\int\int(\mathbf{x}+\mathbf{z})p(\mathbf{x},\mathbf{z})d\mathbf{x}d\mathbf{z}$</p>
+<p>$\mathbf{x}$と$\mathbf{z}$は独立であるから
+$$
+\begin{aligned}
+\int\int(\mathbf{x}+\mathbf{z})p(\mathbf{x},\mathbf{z})d\mathbf{x}d\mathbf{z} &amp;= \int\int(\mathbf{x}+\mathbf{z})p(\mathbf{x})p(\mathbf{z})d\mathbf{x}d\mathbf{z}\
+&amp;= \int\int \mathbf{x}p(\mathbf{x})p(\mathbf{z})d\mathbf{x}d\mathbf{z} + \int\int \mathbf{z}p(\mathbf{z})p(\mathbf{x})d\mathbf{x}d\mathbf{z} \
+&amp;=\int \mathbf{x}p(\mathbf{x})d\mathbf{x} + \int \mathbf{z}p(\mathbf{z})d\mathbf{z} \
+&amp;=\mathbb{E}[\mathbf{x}]+\mathbb{E}[\mathbf{z}]
+\end{aligned}
+$$
+以上より$\mathbb{E}[\mathbf{y}]=\mathbb{E}[\mathbf{x}]+\mathbb{E}[\mathbf{z}]$</p>
+<p>共分散行列の定義より
+$$
+\begin{aligned}
+cov[y]
+&amp;= \mathbb{E}[(y-\mathbb{E}[y])(y-\mathbb{E}[y])^T]\
+&amp;= \mathbb{E}[(x-\mathbb{E}[\mathbf{x}]+z-\mathbb{E}[z])(x-\mathbb{E}[\mathbf{x}]+z-\mathbb{E}[z])^T]\
+\end{aligned}
+$$
+$\mathbf{x}-\mathbb{E}[\mathbf{x}]=A$、$\mathbf{z}-\mathbb{E}[\mathbf{z}]=B$と置くと
+$$
+\begin{aligned}
+cov[\mathbf{y}]
+&amp;= \mathbb{E}[(A+B)(A+B)^T]\
+&amp;= \mathbb{E}[AA^T]+\mathbb{E}[AB^T]+\mathbb{E}[BA^T]+\mathbb{E}[BB^T]
+\end{aligned}
+$$
+独立な変数同士の共分散は0になることから
+$$
+\operatorname{cov}[\mathbf{y}] = \mathbb{E}[AA^T]+\mathbb{E}[BB^T] = \operatorname{cov}[\mathbf{x}]+\operatorname{cov}[\mathbf{z}]
+$$</p>
+<h2 id="演習-228"><a class="header" href="#演習-228">演習 2.28</a></h2>
+<div class="panel-primary">
+<p>平均と共分散がそれぞれ
+$$
+\mathbb{E}[\mathbf{z}]=
+\left(\begin{array}{c}\boldsymbol{\mu} \ \mathbf{A} \boldsymbol{\mu}+\mathbf{b}\end{array}\right) \tag{2.108}
+$$
+と
+$$
+\operatorname{cov}[\mathbf{z}]=\mathbf{R}^{-1}=\left(\begin{array}{cc}\mathbf{\Lambda}^{-1} &amp; \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathbf{T}} \ \mathbf{A} \mathbf{\Lambda}^{-1} &amp; \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathbf{T}}\end{array}\right) \tag{2.105}
+$$
+であるような，次の変数上の同時分布を考える．</p>
+<p>$$
+\mathbf{z}=\left(\begin{array}{l}\mathbf{x} \ \mathbf{y}\end{array}\right) \tag{2.190}
+$$</p>
+<p>$(2.92)\ \mathbb{E}[\mathbf{x}_a] = \boldsymbol{\mu}_a$と$(2.93)\ \operatorname{cov}[\mathbf{x}<em>a] = \mathbf{\Sigma}</em>{aa}$の結果を用いて，周辺分布$p(\mathbf{x})$が$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}, \mathbf{\Lambda}^{-1})\ (2.99)$となることを示せ．</p>
+<p>同様に，
+$$
+\boldsymbol{\mu}<em>{a \mid b}=\boldsymbol{\mu}</em>{a}+\mathbf{\Sigma}<em>{ab} \mathbf{\Sigma}</em>{bb}^{-1}\left(\mathbf{x}<em>{b}-\boldsymbol{\mu}</em>{b}\right) \tag{2.81}
+$$
+と
+$$
+\mathbf{\Sigma}<em>{a \mid b}=\mathbf{\Sigma}</em>{a a}-\mathbf{\Sigma}<em>{a b} \mathbf{\Sigma}</em>{b b}^{-1} \mathbf{\Sigma}_{b a} \tag{2.82}
+$$
+の結果を用いて，条件付き分布$p(\mathbf{y}|\mathbf{x})$が</p>
+<p>$$
+p(\mathbf{y|x}) = \mathcal{N}(\mathbf{y}|\mathbf{Ax+b}, \mathbf{L}^{-1}) \tag{2.100}
+$$</p>
+<p>となることを示せ．</p>
+</div>
+<p>$(2.92)$と$(2.93)$を$(2.98)$に代入すると，$p(\mathbf{x})=\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}, \mathbf{\Lambda}^{-1})$であることが簡単に示された．</p>
+<p>また</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\mathbf{z}] &amp;= \left(
+\begin{array}{c}
+\mu\
+\mathbf{A}\mu+\mathbf{b}\
+\end{array}
+\right)\
+cov[\mathbf{z}] &amp;= \left(
+\begin{array}{cc}
+\Lambda^{-1} &amp; \Lambda^{-1}\mathbf{A}^\top \
+\mathbf{A}\Lambda^{-1} &amp; \mathbf{L}^{-1} + \mathbf{A}\Lambda^{-1}\mathbf{A}^\top\
+\end{array}
+\right)
+\end{aligned}
+$$</p>
+<p>を$(2.81)$と$(2.82)$に代入すると</p>
+<p>$$
+\begin{aligned}
+\mu_{\mathbf{y}|\mathbf{x}} &amp;= \mu_{\mathbf{y}} + \Lambda_{\mathbf{yx}}\Lambda_{\mathbf{xx}}^{-1}(\mathbf{x} - \mu_{\mathbf{x}})\
+&amp;= \mathbf{A}\mu + \mathbf{b} + \mathbf{A}\Lambda^{-1}\Lambda(\mathbf{x}-\mu)\
+&amp;= \mathbf{A}\mu + \mathbf{b} + \mathbf{Ax} - \mathbf{A\mu}\
+&amp;= \mathbf{Ax+b}\
+\Sigma_{\mathbf{y}|\mathbf{x}} &amp;= \Sigma_{\mathbf{yy}} - \Sigma_{\mathbf{yx}}\Sigma_{xx}^{-1}\Sigma_{\mathbf{xy}}\
+&amp;= \mathbf{L}^{-1} + \mathbf{A}\Lambda^{-1}\mathbf{A}^\top - \mathbf{A}\Lambda^{-1}\Lambda\Lambda^{-1}\mathbf{A}^\top \
+&amp;= \mathbf{L}^{-1}\
+\end{aligned}
+$$</p>
+<p>となって，$p(\mathbf{y|x}) = \mathcal{N}(\mathbf{y}|\mathbf{Ax+b}, \mathbf{L}^{-1})$も示された．</p>
+<h2 id="演習-229"><a class="header" href="#演習-229">演習 2.29</a></h2>
+<div class="panel-primary">
+<p>分割行列の逆行列の公式</p>
+<p>$$
+\left(\begin{array}{cc}\mathbf{A} &amp; \mathbf{B} \ \mathbf{C} &amp; \mathbf{D}\end{array}\right)^{-1}=\left(\begin{array}{cc}\mathbf{M} &amp; -\mathbf{M B D}^{-1} \ -\mathbf{D}^{-1} \mathbf{C M} &amp; \mathbf{D}^{-1}+\mathbf{D}^{-1} \mathbf{C M B D}^{-1}\end{array}\right) \tag{2.76}
+$$</p>
+<p>を用いて，精度行列</p>
+<p>$$
+\mathbf{R}=\left(\begin{array}{cc}\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{A} &amp; -\mathbf{A}^{\mathrm{T}} \mathbf{L} \ -\mathbf{LA} &amp; \mathbf{L}\end{array}\right) \tag{2.104}
+$$</p>
+<p>の逆行列が，共分散行列</p>
+<p>$$
+\operatorname{cov}
+[\mathbf{z}]=\mathbf{R}^{-1}=\left(\begin{array}{cc}\mathbf{\Lambda}^{-1} &amp; \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \ \mathbf{A} \mathbf{\Lambda}^{-1} &amp; \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\end{array}\right) \tag{2.105}
+$$</p>
+<p>となることを示せ．</p>
+</div>
+<p>$$
+\mathbf{M}=\left(\mathbf{A}-\mathbf{B} \mathbf{D}^{-1} \mathbf{C}\right)^{-1}
+$$</p>
+<p>$(2.76)$より、$\mathbf{R}^{-1}$について</p>
+<p>$$\begin{aligned}( \text{左上} ) &amp;= ( \mathbf{\Lambda} + \mathbf{A}^T \mathbf{L} \mathbf{A} - (- \mathbf{A}^T \mathbf{L}) \mathbf{L}^{-1} \mathbf{L} \mathbf{A})^{-1} \&amp;= ( \mathbf{\Lambda} + \mathbf{A}^T \mathbf{L} \mathbf{A} - \mathbf{A}^T \mathbf{L} \mathbf{A} )^{-1} \&amp;= \mathbf{\Lambda}^{-1} \end{aligned}$$</p>
+<p>$$\begin{aligned}( \text{右上} ) &amp;= - \mathbf{\Lambda}^{-1} (- \mathbf{A}^T \mathbf{L}) \mathbf{L}^{-1} \&amp;= \mathbf{\Lambda}^{-1} \mathbf{A}^T \end{aligned}$$</p>
+<p>$$\begin{aligned}( \text{左下} ) &amp;= - \mathbf{L}^{-1} (- \mathbf{L} \mathbf{A}) \mathbf{\Lambda}^{-1} \&amp;= \mathbf{A} \mathbf{\Lambda}^{-1} \end{aligned}$$</p>
+<p>$$\begin{aligned}( \text{右下} ) &amp;= \mathbf{L}^{-1} + \mathbf{L}^{-1} (- \mathbf{L} \mathbf{A}) \mathbf{\Lambda}^{-1} (- \mathbf{A}^T \mathbf{L}) \mathbf{L}^{-1} \&amp;= \mathbf{L}^{-1} + \mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^T \end{aligned}$$</p>
+<p>これは共分散行列(2.105)と一致する。</p>
+<h2 id="演習-230"><a class="header" href="#演習-230">演習 2.30</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbb{E}[\mathbf{z}]=\mathbf{R}^{-1}\left(\begin{array}{c}\mathbf{\Lambda} \boldsymbol{\mu}-\mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b} \ \mathbf{Lb}\end{array}\right) \tag{2.107}
+$$</p>
+<p>に，</p>
+<p>$$
+\operatorname{cov}
+[\mathbf{z}]=\mathbf{R}^{-1}=\left(\begin{array}{cc}\mathbf{\Lambda}^{-1} &amp; \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \ \mathbf{A} \mathbf{\Lambda}^{-1} &amp; \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\end{array}\right) \tag{2.105}
+$$
+の結果を用いて，
+$$
+\mathbb{E}[\mathbf{z}]=\left(\begin{array}{c}\boldsymbol{\mu} \
+\mathbf{A} \boldsymbol{\mu}+\mathbf{b}\end{array}\right) \tag{2.108}
+$$
+を確かめよ．</p>
+</div>
+<p>単純に計算するだけ</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\mathbf{z}] &amp;= \mathbf{R}^{-1}\left(\begin{array}{c}\mathbf{\Lambda} \boldsymbol{\mu}-\mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b} \ \mathbf{Lb}\end{array}\right) \
+&amp;= \left(\begin{array}{cc}\mathbf{\Lambda}^{-1} &amp; \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \ \mathbf{A} \mathbf{\Lambda}^{-1} &amp; \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\end{array}\right)\left(\begin{array}{c}\mathbf{\Lambda} \boldsymbol{\mu}-\mathbf{A}^{\mathrm{T}} \mathbf{L b} \ \mathbf{L b}\end{array}\right) \
+&amp;=\left(\begin{array}{c}\mathbf{\Lambda}^{-1}\left(\mathbf{\Lambda} \boldsymbol{\mu}-\mathbf{A}^{\mathrm{T}} \mathbf{L b}\right)+\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L b} \
+\mathbf{A} \mathbf{\Lambda}^{-1}\left(\mathbf{\Lambda} \boldsymbol{\mu}-\mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b}\right)+\left(\mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \mathbf{L b}\end{array}\right) \
+&amp;=\left(\begin{array}{c}\boldsymbol{\mu}-\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b}+\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b}
+\ \mathbf{A} \boldsymbol{\mu}-\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b}+\mathbf{b}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L} \mathbf{b}\end{array}\right) \
+&amp;=\left(\begin{array}{c}\boldsymbol{\mu} \
+\mathbf{A} \boldsymbol{\mu}+\mathbf{b}\end{array}\right)
+\end{aligned}
+$$</p>
+<h2 id="演習-231"><a class="header" href="#演習-231">演習 2.31</a></h2>
+<div class="panel-primary">
+<p>2つの多次元確率ベクトル$\mathbf{x}$と$\mathbf{z}$を考える．これらは，それぞれガウス分布$p(\mathbf{x}) = \mathcal{N}(\mathbf{x}| \boldsymbol{\mu}<em>{\mathbf{x}}, \mathbf{\Sigma_x})$と$p(\mathbf{z}) = \mathcal{N}(\mathbf{z}| \boldsymbol{\mu}</em>{\mathbf{z}}, \mathbf{\Sigma_z})$に従い，これらの和は$\mathbf{y} = \mathbf{x} + \mathbf{z}$であるとする．周辺分布$p(\mathbf{x})$と条件付き分布$p(\mathbf{y|x})$の積からなる線形ガウスモデルを用いて，</p>
+<p>$$
+\mathbb{E}[\mathbf{y}] =\mathbf{A} \boldsymbol{\mu}+\mathbf{b} \tag{2.109}
+$$</p>
+<p>$$
+\operatorname{cov}[\mathbf{y}] = \mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1}\mathbf{A}^{\mathrm{T}} \tag{2.110}
+$$</p>
+<p>から周辺分布$p(\mathbf{y})$についての式を求めよ．</p>
+</div>
+<p>※ まず条件付き確率分布$p(\mathbf{y|x})$の解釈を考える。これは$\mathbf{x}$が与えられた中での$\mathbf{y}$の確率分布なので、$\mathbf{x}$は定数として考えることができる。さらに周辺分布$p(\mathbf{y})$は$p(\mathbf{y}) = p(\mathbf{y|x})p(\mathbf{x})$から計算することができる。ここの議論はPRMLテキストのP.88 2.3.3 <strong>ガウス変数に対するベイズの定理</strong>でしっかり行っている。また、周辺分布$p(\mathbf{x})$と条件付き分布$p(\mathbf{y|x})$がともにガウス分布であれば周辺分布$p(\mathbf{y})$もガウス分布になるので、平均と分散パラメータを求めてガウス分布の形の式にすれば良い。</p>
+<p>条件付き確率分布$p(\mathbf{y|x})$は$\mathbf{x}$が与えられた（つまり定数とした）中での$\mathbf{y} = \mathbf{x}+\mathbf{z}$の確率分布を表しているので、$\mathbf{y}$の平均は$\boldsymbol{\mu}<em>{\mathbf{z}}$に$\mathbf{x}$を足したもの、$\mathbf{y}$の分散は$\mathbf{\Sigma}</em>{\mathbf{z}}$となるので、</p>
+<p>$$
+p(\mathbf{y|x}) = \mathcal{N}(\mathbf{y}| \boldsymbol{\mu}_{\mathbf{z}}+\mathbf{x}, \mathbf{\Sigma_z})
+$$</p>
+<p>と表すことができる。</p>
+<p>以降、pp.88〜90の線形ガウスモデルの議論とまとめ$(2.113)$〜$(2.117)$と、この問題設定の</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}) &amp;= \mathcal{N}(\mathbf{x}|\boldsymbol{\mu}<em>{\mathbf{x}},\mathbf{\Sigma}</em>{\mathbf{x}}) \
+p(\mathbf{y|x}) &amp;= \mathcal{N}(\mathbf{y}|\mathbf{x}+\boldsymbol{\mu}<em>{\mathbf{z}},\mathbf{\Sigma}</em>{\mathbf{z}})
+\end{aligned}
+$$
+を比較すると、
+$$
+\boldsymbol{\mu} \to \boldsymbol{\mu}<em>{\mathbf{x}}, \mathbf{\Lambda}^{-1} \to \mathbf{\Sigma}</em>{\mathbf{x}}, \mathbf{A} \to \mathbf{I}, \mathbf{b} \to \boldsymbol{\mu}<em>{\mathbf{z}}, \mathbf{L}^{-1} \to \mathbf{\Sigma}</em>{\mathbf{z}}
+$$
+と置換することで、$(2.115)$式から
+$$
+p(\mathbf{y}) = \mathcal{N}(\mathbf{y}|\boldsymbol{\mu}<em>{\mathbf{x}}+\boldsymbol{\mu}</em>{\mathbf{z}}, \mathbf{\Sigma}<em>{\mathbf{x}}+\mathbf{\Sigma}</em>{\mathbf{z}})
+$$</p>
+<p>となる。これは演習2.27の結果と同じである。</p>
+<h2 id="演習-232"><a class="header" href="#演習-232">演習 2.32</a></h2>
+<div class="panel-primary">
+<p>これと次の演習問題で，線形ガウスモデル中の二次形式の操作を練習し，また，本文中で導いた結果も検証する．周辺分布</p>
+<p>$$
+p(\mathbf{x})=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}^{-1}\right) \tag{2.99}
+$$</p>
+<p>と条件付き分布</p>
+<p>$$
+p(\mathbf{y} \mid \mathbf{x})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{Ax}+\mathbf{b}, \mathbf{L}^{-1}\right) \tag{2.100}
+$$</p>
+<p>で定義される同時確率$p(\mathbf{x},\mathbf{y})$を考える．同時確率の指数部分の二次形式に，2.3節で述べた平方完成の技法を適用して，変数$\mathbf{x}$を積分消去した周辺分布$p(\mathbf{y})$の平均と共分散の式を求めよ．これには，Woodbury行列反転公式</p>
+<p>$$
+(\mathbf{A}+\mathbf{BCD})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{C}^{-1}+\mathbf{DA}^{-1} \mathbf{B}\right)^{-1} \mathbf{DA}^{-1} \tag{2.289}
+$$</p>
+<p>を用いる．これらが，2章の結果を用いて得た結果</p>
+<p>$$
+\mathbb{E}[\mathbf{y}] =\mathbf{A} \boldsymbol{\mu}+\mathbf{b} \tag{2.109}
+$$</p>
+<p>$$
+\operatorname{cov}[\mathbf{y}] = \mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1}\mathbf{A}^{\mathrm{T}} \tag{2.110}
+$$
+と一致することを確かめよ．</p>
+</div>
+<p>※ 2.3.3 <strong>ガウス変数に対するベイズの定理</strong>における導出の流れに則りつつも、問題文の指示によれば途中から二次形式を使ったやり方で導出するよう求めているため、2.3.2 <strong>周辺ガウス分布</strong>で行ったような二次形式を使ったやり方で求めていきます。結果は当然変わらないですが、こちらの方が2.3.3の行列形式を使ったやり方よりも計算量がものすごく増えます。</p>
+<p>演習2.31の内容と同様に、$p(\mathbf{x,y}) = p(\mathbf{y|x})p(\mathbf{x})$から</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{y}) &amp;= \int p(\mathbf{x}, \mathbf{y}) d\mathbf{x} \
+&amp;= \int \mathcal{N}\left(\mathbf{y} \mid \mathbf{Ax}+\mathbf{b}, \mathbf{L}^{-1}\right) \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}^{-1}\right) d\mathbf{x}
+\end{aligned}
+$$</p>
+<p>となる。正規化係数を無視して指数部分だけを考えると</p>
+<p>$$
+\exp \left{-\frac{1}{2}\left(\mathbf{y}-\mathbf{Ax}-\mathbf{b}\right)^{\mathrm{T}}\mathbf{L}(\mathbf{y}-\mathbf{Ax}-\mathbf{b})-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}}\mathbf{\Lambda}(\mathbf{x}-\boldsymbol{\mu})\right}
+$$</p>
+<p>となるので、二次形式を展開すると</p>
+<p>$$
+\begin{aligned}
+&amp;-\frac{1}{2}\left{\mathbf{y}^{\mathrm{T}}\mathbf{L}\mathbf{y}-2\mathbf{y}^{\mathrm{T}}\mathbf{L}(\mathbf{Ax}+\mathbf{b})+(\mathbf{Ax}+\mathbf{b})^{\mathrm{T}}\mathbf{L}(\mathbf{Ax}+\mathbf{b})+\mathbf{x}^{\mathrm{T}}\mathbf{\Lambda}\mathbf{x}-2\boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Lambda} \mathbf{x}+\boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Lambda} \boldsymbol{\mu} \right} \
+=&amp;-\frac{1}{2}\left{\mathbf{y}^{\mathrm{T}} \mathbf{L} \mathbf{y}-2 \mathbf{y}^{\mathrm{T}} \mathbf{L} \mathbf{Ax}-2 \mathbf{y}^{\mathrm{T}} \mathbf{L} \mathbf{b}+\mathbf{x}^{\mathrm{T}} \mathbf{A}^{\mathrm{T}} \mathbf{LAx}+2 \mathbf{b}^{\mathrm{T}} \mathbf{LAx}+\mathbf{b}^{\mathrm{T}} \mathbf{Lb}\right. \
+&amp;+\left.\mathbf{x}^{\mathrm{T}} \mathbf{\Lambda} \mathbf{x}-2 \boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Lambda} \mathbf{x}+\boldsymbol{\mu}^{\mathrm{T}} \mathbf{A} \boldsymbol{\mu} \right}
+\end{aligned}
+$$</p>
+<p>ここで2.3.2の技法に則り、$\mathbf{x}$を積分消去することを目標として$\mathbf{x}$の関わる項をまとめてから積分を容易にするために平方完成の技法を使う。</p>
+<p>$\mathbf{x}$の関わる項を上式から抽出すると</p>
+<p>$$
+\begin{aligned}
+&amp;-\frac{1}{2}\left{\mathbf{x}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{x}-2\left(\left(\mathbf{y}^{\mathrm{T}}-\mathbf{b}^{\mathrm{T}}\right) \mathbf{LA}+\boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Lambda}\right) \mathbf{x}\right} \
+=&amp;-\frac{1}{2}(\mathbf{x}-\mathbf{m})^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)(\mathbf{x}-\mathbf{m})+\frac{1}{2} \mathbf{m}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{m}
+\end{aligned}
+$$</p>
+<p>ここで$\mathbf{m}=\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1}(\mathbf{\Lambda}^{\mathrm{T}} \boldsymbol{\mu}+\mathbf{A}^{\mathrm{T}}\mathbf{L}(\mathbf{y}-\mathbf{b}))$とした。</p>
+<p>指数内に戻して考えると</p>
+<p>$$
+\int\exp\left{
+-\frac{1}{2}(\mathbf{x}-\mathbf{m})^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)(\mathbf{x}-\mathbf{m})
+\right}d\mathbf{x}
+$$</p>
+<p>この積分は正規化されていないガウス分布の標準的な二次形式になっているので、正規化係数の逆数になる。その逆数は$|(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}}\mathbf{L A})^{-1}|$、つまり共分散行列のみに依存することがガウス分布の性質から分かるので$\mathbf{x}$には依存しなくなっている。つまりこれは$\mathbf{x}$が積分によって消去されていることを意味する。</p>
+<p>まだ$\frac{1}{2} \mathbf{m}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{m}$部分が残っているので、これを$\mathbf{y}$に依存する項とあわせて再び計算すると（$\mathbf{y}$に依存しない項は$\text{const.}$とした）</p>
+<p>$$
+\begin{aligned}
+&amp;=-\frac{1}{2}\left{\mathbf{y}^{\mathrm{T}} \mathbf{Ly}-2 \mathbf{y}^{\mathrm{T}} \mathbf{Lb}+\mathbf{m}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{m}\right}+\text { const. } \
+&amp;=-\frac{1}{2}\left{\mathbf{y}^{\mathrm{T}} \mathbf{Ly}-2 \mathbf{y}^{\mathrm{T}} \mathbf{Lb}+\mathbf{y}^{\mathrm{T}} \mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{Ly}-2 \mathbf{y}^{\mathrm{T}}\left[\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1}\left(\mathbf{\Lambda} \mu-\mathbf{A}^{\mathrm{T}} \mathbf{Lb}\right)\right] + \text{const.} \right} \
+&amp;=-\frac{1}{2} \mathbf{y}^{\mathrm{T}}\left[\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}\right] \mathbf{y}+\mathbf{y}^{\mathrm{T}}\left[\left(\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}\right)\mathbf{b}+ \mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{T}\mathbf{LA}\right)^{-1}\mathbf{\Lambda} \boldsymbol{\mu}\right]
+\end{aligned}
+$$</p>
+<p>これが周辺分布$p(\mathbf{y})$の指数部分となっているので、二次形式部分の$\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}$が$p(\mathbf{y})$の精度行列に相当することがわかる。</p>
+<p>Woodburyの反転公式を使うと、共分散行列$\operatorname{cov}[\mathbf{y}]$は</p>
+<p>$$
+\operatorname{cov}[\mathbf{y}] = (\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L})^{-1} = \mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1}\mathbf{A}^{\mathrm{T}}
+$$</p>
+<p>となる。</p>
+<p>最後に平均$\mathbb{E}[\mathbf{y}]$は、$(2.71), (2.75), (2.89)$で議論したように、$\mathbf{y}^{\mathrm{T}}$の係数$\left[\left(\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}\right)\mathbf{b}+\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{T} \mathbf{LA}\right)^{-1}\mathbf{\Lambda} \boldsymbol{\mu}\right]$が${\operatorname{cov}[\mathbf{y}]}^{-1}\mathbb{E}[\mathbf{y}]$に一致することから求められる。</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\mathbf{y}] &amp;= \operatorname{cov}[\mathbf{y}]\left[\left(\mathbf{L}-\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}\right)\mathbf{b}+\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{T} \mathbf{LA}\right)^{-1}\mathbf{\Lambda} \boldsymbol{\mu}\right] \
+&amp;=\left(\mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right)\left(\left(\mathbf{L}-\mathbf{LA}(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA})^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{L}\right) \mathbf{b}+\mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{\Lambda} \boldsymbol{\mu}\right) \
+&amp;=\left(\mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right)\left(\left(\mathbf{L}^{-1}+\mathbf{A}\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right)^{-1} \mathbf{b}+\mathbf{LA}\left(\Lambda+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{\Lambda} \boldsymbol{\mu}\right) \
+&amp;=\mathbf{b}+\left(\mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \mathbf{LA}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{\Lambda} \boldsymbol{\mu} \
+&amp;=\mathbf{b}+\left(\mathbf{A}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)\left(\mathbf{\Lambda}\left(\mathbf{I}+\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)\right)^{-1} \mathbf{\Lambda} \boldsymbol{\mu} \
+&amp;=\mathbf{b}+\left{\mathbf{A}\left(\mathbf{I}+\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)\left(\mathbf{I}+\mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \mathbf{\Lambda}^{-1} \mathbf{\Lambda} \boldsymbol{\mu}\right} \
+&amp;=\mathbf{A}\boldsymbol{\mu}+\mathbf{b}
+\end{aligned}
+$$</p>
+<p>よって$(2.109)$の平均が求められた。</p>
+<h2 id="演習-233"><a class="header" href="#演習-233">演習 2.33</a></h2>
+<div class="panel-primary">
+<p>演習問題2.32と同じ同時分布について考えるが，今度は，平方完成の技法によって，条件付き分布$p(\mathbf{x|y})$の平均と共分散の式を求める．この結果も，</p>
+<p>$$
+\mathbb{E}[\mathbf{x} \mid \mathbf{y}] =\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \boldsymbol{\mu}\right} \tag{2.111}
+$$</p>
+<p>$$
+\operatorname{cov}[\mathbf{x} \mid \mathbf{y}] =\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \tag{2.112}
+$$</p>
+<p>の式と一致することを確かめよ．</p>
+</div>
+<p>※条件付き分布$p(\mathbf{x\mid y})$の場合、$\mathbf{y}$は固定である。演習2.32と同様に考えると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}\mid \mathbf{y}) &amp;= \frac{p(\mathbf{x},\mathbf{y})}{p(\mathbf{y})}\
+&amp;= \frac{p(\mathbf{x}, \mathbf{y})}{\int p(\mathbf{x}, \mathbf{y}) d\mathbf{x}}
+\end{aligned}
+$$</p>
+<p>であり、分母は$\mathbf{y}$が固定で$\mathbf{x}$について積分するので定数となる。よって、$\mathbf{y}$が固定された状態（定数とみなせる状態）で$p(\mathbf{x},\mathbf{y})$について平方完成し、指数部分を調べれば共分散$\operatorname{cov}[\mathbf{x} \mid \mathbf{y}]$が求まり、そこから平均$\mathbb{E}[\mathbf{x} \mid \mathbf{y}]$も求まる。</p>
+<p>ここについては演習2.32と同じ流れで</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}\mid \mathbf{y}) &amp;= \frac{p(\mathbf{x}, \mathbf{y})}{\int p(\mathbf{x}, \mathbf{y}) d\mathbf{x}} \
+&amp;= C_1 \mathcal{N}\left(\mathbf{y} \mid \mathbf{Ax}+\mathbf{b}, \mathbf{L}^{-1}\right) \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}^{-1}\right) \
+&amp;= C_2 \exp\left{-\frac{1}{2}\left{\mathbf{x}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{x}-2\left(\left(\mathbf{y}^{\mathrm{T}}-\mathbf{b}^{\mathrm{T}}\right) \mathbf{LA}+\boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Lambda}\right) \mathbf{x} + C_3 \right} \right}\
+&amp;= C_4 \exp \left{ -\frac{1}{2}(\mathbf{x}-\mathbf{m})^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)(\mathbf{x}-\mathbf{m})+\frac{1}{2} \mathbf{m}^{\mathrm{T}}\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right) \mathbf{m} \right}
+\end{aligned}
+$$</p>
+<p>ここで$C_1$, $C_2$, $C_3$, $C_4$はそれぞれ定数で、$\mathbf{m}=\left(\mathbf{\Lambda}+\mathbf{A}^{\top} \mathbf{LA}\right)^{-1}(\mathbf{\Lambda} \boldsymbol{\mu}+\mathbf{A}^{\mathrm{T}}\mathbf{L}(\mathbf{y}-\mathbf{b}))$であるから、結局$p(\mathbf{x}\mid \mathbf{y})$の共分散は</p>
+<p>$$
+\operatorname{cov}[\mathbf{x} \mid \mathbf{y}] =\left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1} \tag{2.112}
+$$</p>
+<p>となり、</p>
+<p>$$
+\mathbb{E}[\mathbf{x} \mid \mathbf{y}] = \mathbf{m} = \left(\mathbf{\Lambda}+\mathbf{A}^{\mathrm{T}} \mathbf{LA}\right)^{-1}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \boldsymbol{\mu}\right}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-234"><a class="header" href="#演習-234">演習 2.34</a></h2>
+<div class="panel-primary">
+<p>多変量ガウス分布の共分散行列の最尤推定解を求めるには，共分散行列が対称で正定値である制約の下で$\mathbf{\Sigma}$について対数尤度関数</p>
+<p>$$\ln p(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma})=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right) \tag{2.118}
+$$</p>
+<p>を最大化しなくてはならない．ここでは，こうした制約を無視して，ただ最大化することにする．付録Cの$(C.21)$，$(C.26)$，および$(C.28)$の結果を用いて，対数尤度関数$(2.118)$を最大化する共分散行列$\mathbf{\Sigma}$が，サンプル共分散</p>
+<p>$$
+\mathbf{\Sigma}<em>{\mathbf{ML}}=\frac{1}{N} \sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathbf{ML}}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathbf{ML}}\right)^{\mathrm{T}} \tag{2.122}
+$$</p>
+<p>となることを示せ．なお，（サンプル共分散が非特異なら）最終結果は対称かつ，正定値である必要がある．</p>
+</div>
+<p>※ 公式解答集では共分散行列$\mathbf{\Sigma}$が対称行列であること（$\mathbf{\Sigma}^{-1}=({\mathbf{\Sigma}^{-1}})^{\mathrm{T}}$）の制約を無視して〜と書いてあるのに、その対称性を利用した解答例になっているが、それを利用しなくても答えを出すことはできる。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{\Sigma}} \ln p(\mathbf{X} | \boldsymbol{\mu}, \mathbf{\Sigma}) &amp;=-\frac{N}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \ln |\mathbf{\Sigma}|-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}}\left{\sum_{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)^{\mathrm{T}} \Sigma^{-1} \left(\mathbf{x}<em>n-\boldsymbol{\mu} \right)\right} \
+&amp;=-\frac{N}{2}\left(\mathbf{\Sigma}^{-1}\right)^{\mathrm{T}}-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}}\left{\sum</em>{n=1}^{N} \operatorname{Tr}\left(\mathbf{\Sigma}^{-1}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}<em>n-\boldsymbol{\mu} \right)^{\mathrm{T}}\right)\right} \
+&amp;=-\frac{N}{2}\left(\mathbf{\Sigma}^{-1}\right)^{\mathrm{T}} - \frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \operatorname{Tr}\left( \mathbf{\Sigma}^{-1} \sum</em>{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}_n-\boldsymbol{\mu} \right)^{\mathrm{T}}\right)
+\end{aligned}
+$$</p>
+<p>ここで第2項について、$\mathbf{A}=\mathbf{\Sigma}$, $\mathbf{B}=\sum_{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}_n-\boldsymbol{\mu} \right)^{\mathrm{T}}$とすると、求めるべきは$\displaystyle \frac{\partial}{\partial \mathbf{A}}{\mathrm{Tr}}(\mathbf{A}^{-1}\mathbf{B})$である。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial A_{ij}}{\mathrm{Tr}}(\mathbf{A}^{-1}\mathbf{B}) =&amp; \operatorname{Tr}\left(\left(\frac{\partial}{\partial A_{i j}} \mathbf{A}^{-1} \right) \mathbf{B}\right) \
+=&amp;- \operatorname{Tr}\left(\mathbf{A}^{-1}\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right) \mathbf{A}^{-1} \mathbf{B}\right)\hspace{1em}(\because 付録(C.21))\
+=&amp;-\operatorname{Tr}\left(\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right) \mathbf{A}^{-1} \mathbf{B} \mathbf{A}^{-1}\right)\hspace{1em}(\because \operatorname{Tr}(\mathbf{ABCD}) = \operatorname{Tr}(\mathbf{BCDA}))
+\end{aligned}
+$$</p>
+<p>なので、$\mathbf{C}=\mathbf{A^{-1}BA^{-1}}$とすると</p>
+<p>$$
+\begin{aligned} \operatorname{Tr}\left(\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right) \mathbf{C}\right) &amp;=\sum_{s}\left(\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right) \mathbf{C}\right)<em>{ss} \
+&amp;= \sum</em>{s}\left(\sum_{t}\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right)<em>{s t} c</em>{ts}\right) \
+&amp;=\sum_{s, t} \delta_{is} \delta_{jt} c_{ts}=c_{ji}
+\end{aligned}
+$$</p>
+<p>最後は$s=i$かつ$t=j$のときのみクロネッカーのデルタ$\delta_{is}\delta_{jt}$が$1$になり、その他は$0$となることを表している。
+ここについては、付録(C.23)に書かれてある定理に則って</p>
+<p>$$
+\begin{aligned} \operatorname{Tr}\left(\left(\frac{\partial}{\partial A_{ij}} \mathbf{A}\right) \mathbf{C}\right)
+&amp;=\frac{\partial}{\partial A_{ij}} \operatorname{Tr}\left(\mathbf{AC} \right) \
+&amp;=c_{ji}
+\end{aligned}
+$$</p>
+<p>としても良い。</p>
+<p>（※ 一般に正方行列$\mathbf{F}$の行列の$ij$成分$f_{ij}$について$\operatorname{Tr}(\mathbf{F})=\sum_{i=1}f_{ii}$より、</p>
+<p>$$
+\frac{\partial}{\partial f_{ij}}\operatorname{Tr}(\mathbf{F}) = \frac{\partial f_{11}}{\partial f_{ij}}+\frac{\partial f_{22}}{\partial f_{ij}}+\cdots= \operatorname{Tr}\left(\frac{\partial}{\partial f_{ij}} \mathbf{F}\right)
+$$</p>
+<p>が成立する）</p>
+<p>これより、$\displaystyle \frac{\partial}{\partial A_{ij}}{\mathrm{Tr}}(\mathbf{A}^{-1}\mathbf{B})=-c_{ji}$となるので、付録(C.24)のように</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{A}}{\mathrm{Tr}}(\mathbf{A}^{-1}\mathbf{B}) &amp;= -\mathbf{C}^{\mathrm T} \
+&amp;=-(\mathbf{A^{-1}BA^{-1}})^{\mathrm T} \
+&amp;=-(\mathbf{\Sigma^{-1}B\Sigma^{-1}})^{\mathrm T}
+\end{aligned}
+$$</p>
+<p>よって、最大値を求めるために$\frac{\partial}{\partial \mathbf{\Sigma}} \ln p(\mathbf{X} | \boldsymbol{\mu}, \mathbf{\Sigma}) = 0$とすると</p>
+<p>$$
+\begin{aligned}
+-\frac{N}{2}\left(\mathbf{\Sigma}^{-1}\right)^{\mathrm{T}} - \frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}} \operatorname{Tr}\left( \mathbf{\Sigma}^{-1} \sum_{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}<em>n-\boldsymbol{\mu} \right)^{\mathrm{T}}\right)
+=0 \
+\frac{N}{2}\left(\mathbf{\Sigma}^{-1}\right)^{\mathrm{T}} = \frac{1}{2} \left( \mathbf{\Sigma^{-1}} \sum</em>{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}_n-\boldsymbol{\mu} \right)^{\mathrm{T}} \mathbf{\Sigma^{-1}}  \right) ^{\mathrm T}
+\end{aligned}
+$$</p>
+<p>互いの転置をとって移項すると、</p>
+<p>$$
+\mathbf{\Sigma} = \frac{1}{N}\sum_{n=1}^{N}\left(\mathbf{x}_n-\boldsymbol{\mu}\right)\left(\mathbf{x}_n-\boldsymbol{\mu} \right)^{\mathrm{T}}
+$$</p>
+<p>となり、これは式$(2.122)$となる。また、これによって$\mathbf{\Sigma}$についての対称性を仮定せずに$\mathbf{\Sigma}$が対称行列になることがわかった。</p>
+<h2 id="演習-235"><a class="header" href="#演習-235">演習 2.35</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbb{E}[\mathbf{x}] = \boldsymbol{\mu} \tag{2.59}
+$$</p>
+<p>の結果を用いて，</p>
+<p>$$
+\mathbb{E}[\mathbf{xx}^{\mathrm{T}}] = \boldsymbol{\mu\mu}^{\mathrm{T}}+\mathbf{\Sigma} \tag{2.62}
+$$</p>
+<p>を証明せよ．そして，$(2.59)$と$(2.62)$の結果から，</p>
+<p>$$
+\mathbb{E}\left[\mathbf{x}<em>{n} \mathbf{x}</em>{m}^{\mathrm{T}}\right]=\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+I_{n m} \mathbf{\Sigma} \tag{2.291}
+$$</p>
+<p>を示せ．ただし，$\mathbf{x}<em>{n}$は，平均が$\boldsymbol{\mu}$で共分散が$\mathbf{\Sigma}$のガウス分布からサンプリングされたデータ点，$I</em>{nm}$は単位行列の$(n,m)$要素を表す．これから，</p>
+<p>$$
+\mathbb{E}[\mathbf{\Sigma}_{\mathrm{ML}}] = \frac{N-1}{N}\mathbf{\Sigma} \tag{2.124}
+$$</p>
+<p>の結果を証明せよ.</p>
+</div>
+<p>$(2.59)$と$(2.62)$から、$m=n$であれば$\mathbb{E}\left[\mathbf{x}<em>{n} \mathbf{x}</em>{m}\right]=\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\mathbf{\Sigma}$となる。
+一方で、$m \ne n$だったときには2つのデータセット$\mathbf{x}<em>n$と$\mathbf{x}<em>m$は独立なので$\mathbb{E}\left[\mathbf{x}</em>{n} \mathbf{x}</em>{m}\right]=\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}$となる。
+よって、$I_{nm}$を使うと$\mathbb{E}[\mathbf{x}_n\mathbf{x}<em>m^{\mathrm T}] = \boldsymbol{\mu}\boldsymbol{\mu}^{\mathrm{T}} + I</em>{nm}\mathbf{\Sigma}$となる。</p>
+<p>$(2.124)$式 $\displaystyle \mathbb{E}\left[\mathbf{\Sigma}_{\mathrm{ML}}\right]=\frac{N-1}{N} \mathbf{\Sigma}$を示す。</p>
+<p>$(2.122)$式より</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\mathbf{\Sigma}<em>{\mathrm{ML}}\right] &amp;=\frac{1}{N} \sum</em>{n=1}^{N} \mathbb{E}\left[\left(\mathbf{x}<em>{n}-\frac{1}{N} \sum</em>{m=1}^{N} \mathbf{x}<em>{m}\right)\left(\mathbf{x}</em>{n}^{\mathrm{T}}-\frac{1}{N} \sum_{l=1}^{N} \mathbf{x}<em>{l}^{\mathrm{T}}\right)\right] \
+&amp;=\frac{1}{N} \sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-\frac{2}{N} \mathbf{x}<em>{n} \sum</em>{m=1}^{N} \mathbf{x}<em>{m}^{\mathrm{T}}+\frac{1}{N^{2}} \sum</em>{m=1}^{N} \sum_{l=1}^{N} \mathbf{x}<em>{m} \mathbf{x}</em>{l}^{\mathrm{T}}\right] \
+&amp;=\frac{1}{N}\sum_{n=1}^{N}\left{ \mathbb{E}[\mathbf{x}<em>n\mathbf{x}<em>n^{\mathrm{T}}]-\frac{2}{N}\mathbb{E}\left[ \mathbf{x}</em>{n} \sum</em>{m=1}^{N} \mathbf{x}<em>{m}^{\mathrm{T}} \right] +\frac{1}{N^2}\mathbb{E}\left[ \sum</em>{m=1}^{N} \sum_{l=1}^{N} \mathbf{x}<em>{m} \mathbf{x}</em>{l}^{\mathrm{T}} \right] \right} \
+&amp;=\frac{1}{N}\sum_{n=1}^{N}\left{\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\mathbf{\Sigma}-2\left(\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\frac{1}{N} \mathbf{\Sigma}\right)+\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+\frac{1}{N} \mathbf{\Sigma}\right} \
+&amp;=\frac{N-1}{N} \mathbf{\Sigma}
+\end{aligned}
+$$</p>
+<h2 id="演習-236"><a class="header" href="#演習-236">演習 2.36</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>{\mathrm{ML}}^{(N)} &amp;=\frac{1}{N} \sum</em>{n=1}^{N} \mathbf{x}<em>{n} \
+&amp;=\frac{1}{N} \mathbf{x}</em>{N}+\frac{1}{N} \sum_{n=1}^{N-1} \mathbf{x}<em>{n} \
+&amp;=\frac{1}{N} \mathbf{x}</em>{N}+\frac{N-1}{N} \boldsymbol{\mu}<em>{\mathrm{ML}}^{(N-1)} \
+&amp;=\boldsymbol{\mu}</em>{\mathrm{ML}}^{(N-1)}+\frac{1}{N}\left(\mathbf{x}<em>{N}-\boldsymbol{\mu}</em>{\mathrm{ML}}^{(N-1)}\right) \tag{2.126}
+\end{aligned}
+$$</p>
+<p>を得たのと同様の手続きで，次の最尤推定の式から，1変数ガウス分布の分散の逐次推定の式を導出せよ．</p>
+<p>$$
+\sigma_{\mathrm{ML}}^{2}=\frac{1}{N} \sum_{n=1}^{N}\left(x_{n}-\mu\right)^{2} \tag{2.292}
+$$</p>
+<p>Robbins-Monroの逐次推定の式</p>
+<p>$$
+\theta^{(N)}=\theta^{(N-1)}-a_{N-1} \frac{\partial}{\partial \theta^{(N-1)}}\left[-\ln p\left(x_{N} \mid \theta^{(N-1)}\right)\right] \tag{2.135}
+$$</p>
+<p>にガウス分布を代入すると，これと同じ式になることを確かめ，ここから対応する係数$a_N$の式を求めよ．</p>
+</div>
+<p>※ この問題の主題は$(2.292)$式から$(2.126)$式のような手続きによって1変数ガウス分布の分散を求めるというのが前半で、後半はこの式とRobbins-Monroアルゴリズムによる$(2.135)$式が係数$a_N$を適切に定めることで同型になることを示すことである。</p>
+<p>まずは$(2.292)$式から分散の逐次更新式を求める。
+$$
+\begin{aligned}
+\sigma^2_{(N)}  &amp;=\frac{1}{N} \sum_{n=1}^{N}\left(x_{n}-\mu\right)^{2} \
+&amp;=\frac{1}{N}\left{\sum_{n=1}^{N-1}\left(x_{n}-\mu\right)^{2}+\left(x_{N}-\mu\right)^{2}\right} \
+&amp;=\frac{N-1}{N} \cdot \frac{1}{N-1} \sum_{n=1}^{N-1}\left(x_{n}-\mu \right)^{2}+\frac{1}{N}\left(x_{N}-\mu\right)^{2} \
+&amp;=\frac{N-1}{N} \sigma^2_{(N-1)}+\frac{1}{N}\left(x_{N}-\mu \right)^{2} \
+&amp;=\sigma^2_{(N-1)}+\frac{1}{N}\left( (x_N-\mu)^2-\sigma^2_{(N-1)}\right) \hspace{2em} \cdots (1)
+\end{aligned}
+$$</p>
+<p>一方、Robbins-Monroの式ガウス分布の式を代入すると</p>
+<p>$$
+\begin{aligned}
+\sigma_{(N)}^{2}
+&amp;=\sigma_{(N-1)}^{2}-a_{N-1} \frac{\partial}{\partial \sigma_{(N-1)}^{2}}\left[-\ln \left{\frac{1}{\sqrt{2 \pi \sigma_{(N-1)}^{2}}} \exp \left(-\frac{\left(x_{N}-\mu\right)^{2}}{2 \sigma_{(N-1)}^{2}}\right)\right}\right]\
+&amp;=\sigma_{(N-1)}^{2}-a_{N-1} \frac{\partial}{\partial \sigma_{(N-1)}^{2}}\left[\frac{1}{2} \ln \left(2 \pi \sigma_{(N-1)}^{2}\right)+\frac{\left(x_{N}-\mu\right)^{2}}{2 \sigma_{(N-1)}^{2}}\right] \
+&amp;=\sigma_{(N-1)}^{2}-a_{N-1}\left{\frac{1}{2} \cdot \frac{1}{\sigma_{(N-1)}^{2}}-\frac{\left(x_{N}-\mu\right)^{2}}{2 \sigma_{(N-1)}^{4}}\right} \
+&amp;=\sigma_{(N-1)}^{2}+\frac{a_{N-1}}{2 \sigma_{(N-1)}^{4}}\left{-\sigma^2_{(N-1)}+\left(x_{N}-\mu\right)^{2}\right} \hspace{2em} \cdots (2)
+\end{aligned}
+$$</p>
+<p>$(1), (2)$式を比較すると$\displaystyle a_{N-1} = \frac{2\sigma^4_{(N-1)}}{N} \hspace{1em} \left( a_{N} = \frac{2\sigma^4_{(N)}}{N+1} \right)$が得られる。</p>
+<blockquote>
+<p>Robbins-Monroアルゴリズムについて本文の説明P.93はわかりにくいので補足すると、パラメータ$\theta$が与えられた時に、条件付き確率$p(z|\theta)$に従って、変数$z$が観測される状況を考えてください。図2.10でいうと、まずパラメータ$\theta$を決めると、$z$の観測値(青い点)が得られるという感じです。<br>
+この時、$z$の観測値(青い点)の出方は、$z$の条件付き期待値$\mathrm{E}[z|\theta]=f(\theta)$(赤い曲線)に従います。<br>
+今、$z$と$\theta$の大規模データはないので、私たちはこの条件付き期待値$\mathrm{E}[z|\theta]$(赤い曲線)の形を知りません。もし大規模データがあれば、直接曲線をフィッティングできますが、今は逐次的にのみ$z$が観測されるといった状態です。<br>
+Robbins-Monroアルゴリズムで求めるのは、この$\mathrm{E}[z|\theta]$の値が$0$になるようなパラメータ$\theta$の値です。（というか、期待値が任意の値をとるようなパラメータを見つけるように簡単に拡張できます。(Robbins and Monro, 1951)）<br>
+$(2.128)$のように条件つき分散(青点のちらばり具合)が有限であるなら, $(2.129)$のような簡単な手続きで$\theta$が求まります。<br>
+つまり、ある$\theta$で$z$を観測してみて、$0$より大きければ$\theta$を小さく、小さければ大きくしてあげるだけです。もし$z$の観測の分散が無限に大きいならそれが無理なのもわかると思います。<br>
+問題はこれを最尤推定にどうあてはめるかですが、とにかく、$0$に持っていきたい関数が条件付き期待値になっていれば良いのです。
+パラメータの最尤推定は、尤度関数をパラメータで微分して$0$とおくことで、尤度関数が最小値をとるようなパラメータを求める方法です。なので、尤度関数をパラメータで微分したもの(0にしたいもの：$(2.133)$左辺)が上で言う$f(\theta)$になりそうです。そして、それが条件付き期待値の形になっていれば良いのですが、$(2.134)$のようにちゃんとなってますよ、ということです。</p>
+</blockquote>
+<h2 id="演習-237"><a class="header" href="#演習-237">演習 2.37</a></h2>
+<div class="panel-primary">
+<p>$(2.126)$を得たのと同様の手続きで、最尤推定の式</p>
+<p>$$
+\mathbf{\Sigma}<em>{\mathbf{ML}}=\frac{1}{N} \sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathbf{ML}}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathbf{ML}}\right)^{\mathrm{T}} \tag{2.122}
+$$</p>
+<p>から，多変量ガウス分布の共分散の逐次推定の式を導出せよ．Robbins-Monroの逐次推定の式$(2.135)$にガウス分布を代入すると，これと同じ式になることを確かめ，ここから係数$a_N$の式を求めよ．</p>
+</div>
+<p>※<strong>問題設定が悪く、解けない可能性が高い</strong>。</p>
+<p>$(2.122)$式</p>
+<p>$$
+\Sigma_{\mathrm{ML}} = \frac{1}{N}\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathrm{ML}}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathrm{ML}}\right)^{\mathrm{T}}
+$$</p>
+<p>から多次元ガウス分布の分散の逐次更新式を求める。</p>
+<p>$$
+\begin{aligned}
+\Sigma_{(N)} &amp;= \frac{1}{N}\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}} \
+&amp;= \frac{N-1}{N}\cdot\frac{1}{N-1}\left{ \sum_{n=1}^{N-1}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}}+\left(\mathbf{x}<em>{N}-\boldsymbol{\mu}\right)\left(\mathbf{x}</em>{N}-\boldsymbol{\mu}\right)^{\mathrm{T}} \right} \
+&amp;= \frac{N-1}{N}\Sigma_{(N-1)}+\frac{1}{N}(\mathbf{x}<em>{N}-\boldsymbol{\mu})(\mathbf{x}</em>{N}-\boldsymbol{\mu})^{\mathrm{T}} \
+&amp;= \Sigma_{(N-1)}+\frac{1}{N}\left{ (\mathbf{x}<em>{N}-\boldsymbol{\mu})(\mathbf{x}</em>{N}-\boldsymbol{\mu})^{\mathrm{T}} - \Sigma_{(N-1)}\right} \hspace{2em} \cdots (1)
+\end{aligned}
+$$</p>
+<p>一方、Robbins-Monroの式に多変量ガウス分布を当てはめると、</p>
+<p>$$
+\Sigma_{(N)} = \Sigma_{(N-1)}-a_{N-1}\frac{\partial}{\partial \Sigma_{(N-1)}}\left[ -\ln \left{ \frac{1}{(2\pi)^{D/2}}\frac{1}{|\Sigma_{(N-1)}|^{1/2}}\exp\left{ -\frac{1}{2}(\mathbf{x}<em>N-\boldsymbol{\mu})^{\mathrm{T}}\Sigma</em>{(N-1)}(\mathbf{x}_N-\boldsymbol{\mu}) \right} \right} \right]\hspace{2em} \cdots (2)
+$$</p>
+<p>この微分項について考える。</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial \Sigma_{(N-1)}}\left[ -\ln \left{ \frac{1}{(2\pi)^{D/2}}\frac{1}{|\Sigma_{(N-1)}|^{1/2}}\exp\left{ -\frac{1}{2}(\mathbf{x}<em>N-\boldsymbol{\mu})^{\mathrm{T}}\Sigma</em>{(N-1)}(\mathbf{x}<em>N-\boldsymbol{\mu}) \right} \right} \right] \
+=&amp; \frac{1}{2}\Sigma</em>{(N-1)}^{-1}-\frac{1}{2}\left{ \Sigma_{(N-1)}^{-1}(\mathbf{x}<em>{N}-\boldsymbol{\mu})(\mathbf{x}</em>{N}-\boldsymbol{\mu})^{\mathrm{T}}\Sigma_{(N-1)}^{-1} \right} \
+=&amp; -\frac{1}{2}\Sigma_{(N-1)}^{-1}\left{ (\mathbf{x}<em>{N}-\boldsymbol{\mu})(\mathbf{x}</em>{N}-\boldsymbol{\mu})^{\mathrm{T}} -\Sigma_{(N-1)} \right}\Sigma_{(N-1)}^{-1}
+\end{aligned}
+$$</p>
+<p>$(2)$式に当てはめれば</p>
+<p>$$
+\Sigma_{(N)} = \Sigma_{(N-1)}+\frac{a_{N-1}\Sigma_{(N-1)}^{-1}}{2}\left{ (\mathbf{x}<em>{N}-\boldsymbol{\mu})(\mathbf{x}</em>{N}-\boldsymbol{\mu})^{\mathrm{T}} -\Sigma_{(N-1)} \right}\Sigma_{(N-1)}^{-1}
+$$</p>
+<p>ここまではわかったけれど係数$a_{N-1}$がきれいな式にならない……。解答例では、追加で共分散行列がdiagonal（対角行列？）ならば$\displaystyle a_{N-1} = \frac{2}{N}\left( \Sigma_{(N-1)}\right)^2$とすれば良いと書いてあるが、仮にdiagonalでも合わない気がする。Googleで調べてみたけれどよくわからない。</p>
+<blockquote>
+<p>参考：https://math.stackexchange.com/questions/1558016/deriving-mle-for-covariance-matrix-using-robbins-monro</p>
+</blockquote>
+<h2 id="演習-238"><a class="header" href="#演習-238">演習 2.38</a></h2>
+<div class="panel-primary">
+<p>二次形式を平方完成することで，</p>
+<p>$$
+\mu_{N} =\frac{\sigma^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \sigma_{0}^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}} \tag{2.141}
+$$</p>
+<p>$$
+\frac{1}{\sigma_{N}^{2}} =\frac{1}{\sigma_{0}^{2}}+\frac{N}{\sigma^{2}} \tag{2.142}
+$$</p>
+<p>の結果を導出せよ．</p>
+</div>
+<p>$$
+p(\mu \mid \mathbf{x}) \propto p(\mathbf{x} \mid \mu) p(\mu) \tag{2.139}
+$$</p>
+<p>について、</p>
+<p>$$
+p(\mathbf{x} \mid \mu)=\prod_{n=1}^{N} p\left(x_{n} \mid \mu\right)=\frac{1}{\left(2 \pi \sigma^{2}\right)^{N / 2}} \exp \left{-\frac{1}{2 \sigma^{2}} \sum_{n=1}^{N}\left(x_{n}-\mu\right)^{2}\right} \tag{2.137}
+$$</p>
+<p>と$p(\mu) = \mathcal{N}(\mu | \mu_0, \sigma_0^2) \hspace{1em}(2.138)$式で変形する。</p>
+<p><strong>$\mu$についての式</strong>としての$p(\mathbf{X}|\mu)p(\mu)$の指数部分について考えると</p>
+<p>$$
+\begin{aligned}
+&amp; \exp \left{ -\frac{1}{2\sigma^2}\sum_{n=1}^{N}(x_n-\mu)^2 \right}\cdot \exp \left{ -\frac{1}{2\sigma_0^2}(\mu-\mu_0)^2 \right} \
+=&amp;\exp \left { -\frac{1}{2\sigma^2} \sum_{n=1}^{N}(x_n^2 -2x_n \mu + \mu^2) - \frac{1}{2\sigma_0^2} (\mu^2 - 2\mu\mu_0 + \mu_0^2)\right} \
+=&amp;\exp \left{ -\frac{1}{2}\left( \frac{N}{\sigma^2}+\frac{1}{\sigma_0^2}\right)\mu^2  + \left( \frac{1}{\sigma^2}\sum_{n=1}^{N}x_n+\frac{\mu_0}{\sigma_0^2} \right)\mu + \cdots  \right}
+\end{aligned}
+$$</p>
+<p>となる。ここで、$\cdots$の部分は$\mu$に依存しない項なので考えなくても良い。一方で、$(2.140)$の右辺の指数部分について考えると、</p>
+<p>$$
+\begin{aligned}
+&amp; \exp \left{ -\frac{1}{2\sigma_N^2}(\mu - \mu_N)^2 \right} \
+=&amp; \exp \left{ -\frac{1}{2}\left( \frac{1}{\sigma_N^2} \right)\mu^2+\frac{\mu_N}{\sigma_N^2}\mu+\cdots \right}
+\end{aligned}
+$$</p>
+<p>$\displaystyle \sum_{n=1}^{N}x_n = N\mu_{\mathrm{ML}}$に注意して、これら2つの式を比較すると</p>
+<p>$$
+\begin{aligned}
+\frac{1}{\sigma_N^2}&amp;=\frac{1}{\sigma_0^2}+\frac{N}{\sigma^2},\hspace{2em}\left( \sigma_N^2 = \frac{\sigma^2\sigma_0^2}{\sigma^2+N\sigma_0^2} \right) \
+\frac{\mu_N}{\sigma_N^2}&amp;=\frac{\mu_0}{\sigma_0^2}+\frac{N}{\sigma^2}\mu_{\mathrm{ML}}
+\end{aligned}
+$$</p>
+<p>2式めを変形して</p>
+<p>$$
+\begin{aligned}
+\mu_{N}&amp;=\left( \frac{\mu_0}{\sigma_0^2}+\frac{N\mu_{\mathrm{ML}}}{\sigma^2} \right)\sigma_{N}^2 \
+&amp;=\left( \frac{\mu_0}{\sigma_0^2}+\frac{N\mu_{\mathrm{ML}}}{\sigma^2} \right) \left( \frac{\sigma^2\sigma_0^2}{\sigma^2+N\sigma_0^2} \right) \
+&amp;=\frac{\sigma^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \sigma_{0}^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}}
+\end{aligned}
+$$</p>
+<p><strong>ベイズ推定では、事前知識を決め打ちではなく分布の形で表す。</strong></p>
+<h2 id="演習-239"><a class="header" href="#演習-239">演習 2.39</a></h2>
+<div class="panel-primary">
+<p>ガウス確率変数の平均の事後分布についての結果
+$$
+\mu_{N} =\frac{\sigma^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \sigma_{0}^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}} \tag{2.141}
+$$</p>
+<p>$$
+\frac{1}{\sigma_{N}^{2}} =\frac{1}{\sigma_{0}^{2}}+\frac{N}{\sigma^{2}} \tag{2.142}
+$$
+を元に，最初の$N-1$個のデータ点の影響を分離し$\mu_{N}$と$\sigma^2_{N}$の逐次更新の式を求めよ．そして，事後分布$p\left(\mu | x_{1}, \ldots, x_{N-1}\right)=\mathcal{N}\left(\mu | \mu_{N-1}, \sigma_{N-1}^{2}\right)$に尤度関数$p(x_N|\mu) = \mathcal{N}(x_N|\mu, \sigma^2)$を掛けた後,平方完成と正規化をすることで，$N$個の観測値を得た後の事後分布と同じ結果を導出せよ．</p>
+</div>
+<p>問題文の通り、$N-1$個のデータ点との影響を分離する。ただし、分散$\sigma^2$は既知であることに注意する。</p>
+<p>$(2.141)$と$(2.142)$式と、演習問題2.38の結果から、$\mu_0 \to \mu_{N-1}$, $\sigma_0 \to \sigma_{N-1}$, $\mu_{\mathrm{ML}}=x_N$, $N=1$の場合に当てはまるので、$\displaystyle \mu_N = \left( \frac{\mu_{N-1}}{\sigma_{N-1}^2}+\frac{x_N}{\sigma^2} \right)\sigma_N^2$の形になるはずである。これを示す。</p>
+<p>$$
+\begin{aligned}
+\frac{1}{\sigma_N^2}&amp;=\frac{1}{\sigma_0^2}+\frac{N}{\sigma^2}=\frac{1}{\sigma_0^2}+\frac{N-1}{\sigma^2}+\frac{1}{\sigma^2} = \frac{1}{\sigma_{N-1}^2}+\frac{1}{\sigma^2} \
+\sigma_N^2 &amp;= \frac{\sigma^2+\sigma_{N-1}^2}{\sigma^2\sigma_{N-1}^2}
+\end{aligned}
+$$</p>
+<p>平均$\mu_N$について</p>
+<p>$$
+\begin{aligned}
+\mu_N &amp;= \frac{\sigma^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \sigma_{0}^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}} \
+&amp;= \frac{\mu_0}{\sigma_0^2}\sigma_N^2+\frac{\sigma_N^2}{\sigma^2}\left( \sum_{n=1}^{N-1}x_n + x_N \right) \
+&amp;= \left( \frac{\mu_0}{\sigma_0^2}+\frac{1}{\sigma^2}\sum_{n=1}^{N-1}x_n \right)\sigma_N^2 + \frac{x_N}{\sigma^2}\sigma_N^2
+\end{aligned}
+$$</p>
+<p>ここで$\displaystyle \frac{\mu_0}{\sigma_0^2}+\frac{1}{\sigma^2}\sum_{n=1}^{N-1}x_n$について、演習2.38の途中式で出てきたように</p>
+<p>$$
+\frac{\mu_0}{\sigma_0^2}+\frac{1}{\sigma^2}\sum_{n=1}^{N-1}x_n = \frac{\mu_{N-1}}{\sigma_{N-1}^2}
+$$</p>
+<p>と書けるので、</p>
+<p>$$
+\mu_N = \left( \frac{\mu_{N-1}}{\sigma_{N-1}^2} + \frac{x_N}{\sigma^2} \right)\sigma_N^2, \hspace{2em}\left( \frac{\mu_N}{\sigma_N^2} = \frac{\mu_{N-1}}{\sigma_{N-1}^2}+\frac{x_N}{\sigma^2} \right)
+$$</p>
+<p>となる。これが逐次更新の式となる。</p>
+<p>事後分布に尤度関数をかけて、平方完成と正規化〜の部分は演習問題2.38の解き方と同じであり、得られる結果は上記となる。</p>
+<h2 id="演習-240"><a class="header" href="#演習-240">演習 2.40</a></h2>
+<div class="panel-primary">
+<p>$D$次元ガウス確率変数$\mathbf{x}$を考える．この分布$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}, \mathbf{\Sigma})$の共分散$\mathbf{\Sigma}$は既知としたとき，観測値集合$\mathbf{X} = { \mathbf{x}<em>1, \ldots, \mathbf{x}<em>N }$から平均$\boldsymbol{\mu}$を推定したいとする．事前分布$p(\boldsymbol{\mu})=\mathcal{N}\left(\boldsymbol{\mu} | \boldsymbol{\mu}</em>{0}, \mathbf{\Sigma</em>{0}} \right)$について、これに対応する事後分布$p(\boldsymbol{\mu} | \mathbf{X})$を求めよ．</p>
+</div>
+<p>事後分布$p(\boldsymbol{\mu} | \mathbf{X})$は事前分布$\prod_{n=1}^{N} p\left(\mathbf{x}_{n} | \boldsymbol{\mu}, \mathbf{\Sigma}\right)$に尤度関数$p(\boldsymbol{\mu})$をかけたものに比例するので、</p>
+<p>$$
+p(\boldsymbol{\mu} | \mathbf{X}) \propto \prod_{n=1}^{N} p\left(\mathbf{x}_{n} | \boldsymbol{\mu}, \mathbf{\Sigma}\right) p(\boldsymbol{\mu})
+$$</p>
+<p>先の演習問題と同様に指数部分を考えると</p>
+<p>$$
+\begin{aligned}
+&amp;-\frac{1}{2}\left(\boldsymbol{\mu}-\boldsymbol{\mu}<em>{0}\right)^{\mathrm{T}} \mathbf{\Sigma}</em>{0}^{-1}\left(\boldsymbol{\mu}-\boldsymbol{\mu}<em>{0}\right)-\frac{1}{2} \sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right) \
+=&amp;-\frac{1}{2} \boldsymbol{\mu}^{\mathrm{T}}\left(\mathbf{\Sigma}<em>{0}^{-1}+N \mathbf{\Sigma}^{-1}\right) \boldsymbol{\mu}+\boldsymbol{\mu}^{\mathbf{T}}\left(\mathbf{\Sigma}</em>{0}^{-1} \boldsymbol{\mu}<em>{0}+\mathbf{\Sigma}^{-1} \sum</em>{n=1}^{N} \mathbf{x}_{n}\right)+\mathrm{const.}
+\end{aligned}
+$$
+ここで、$\mathrm{const.}$は$\boldsymbol{\mu}$と独立な項であり、正規化時に吸収される。</p>
+<p>求める事後分布の形を$\mathcal{N}(\boldsymbol{\mu}|\boldsymbol{\mu}<em>N,\mathbf{\Sigma}</em>{N})$とすると、この指数部分は</p>
+<p>$$
+-\frac{1}{2}(\boldsymbol{\mu}-\boldsymbol{\mu}_N)^{\mathrm{T}}\mathbf{\Sigma}_N^{-1}(\boldsymbol{\mu}-\boldsymbol{\mu}_N)=-\frac{1}{2}\boldsymbol{\mu}^{\mathrm{T}}\mathbf{\Sigma}_N^{-1}\boldsymbol{\mu}+\boldsymbol{\mu}^{\mathrm{T}}\mathbf{\Sigma}_N^{-1}\boldsymbol{\mu}_N+\textrm{const.}
+$$</p>
+<p>となるので、まず$\boldsymbol{\mu}$の二次形式部分について</p>
+<p>$$
+\mathbf{\Sigma}<em>{N}^{-1} =\mathbf{\Sigma}</em>{0}^{-1}+N \mathbf{\Sigma}^{-1}
+$$</p>
+<p>となり、$\boldsymbol{\mu}^{\mathrm{T}}$の係数について
+$$
+\begin{aligned}
+\boldsymbol{\mu}<em>{N} &amp;=\mathbf{\Sigma}<em>N\left(\mathbf{\Sigma}</em>{0}^{-1} \boldsymbol{\mu}</em>{0}+\mathbf{\Sigma}^{-1} N \boldsymbol{\mu}<em>{\mathrm{ML}}\right) \
+&amp;=\left(\mathbf{\Sigma}</em>{0}^{-1}+N \boldsymbol{\Sigma}^{-1}\right)^{-1}\left(\mathbf{\Sigma}<em>{0}^{-1} \boldsymbol{\mu}</em>{0}+\mathbf{\Sigma}^{-1} N \boldsymbol{\mu}_{\mathrm{ML}}\right)
+\end{aligned}
+$$</p>
+<p>となる。ただし、ここで$\displaystyle \sum_{n=1}^{N}\mathbf{x}<em>n=N\boldsymbol{\mu}</em>{\mathrm{ML}}$とした。</p>
+<p>すなわち、事後分布$p(\boldsymbol{\mu} | \mathbf{X})$は$\mathcal{N}(\boldsymbol{\mu}|\boldsymbol{\mu}<em>N,\mathbf{\Sigma}</em>{N}) = \mathcal{N}(\boldsymbol{\mu}\mid \left(\mathbf{\Sigma}<em>{0}^{-1}+N \boldsymbol{\Sigma}^{-1}\right)^{-1}\left(\mathbf{\Sigma}</em>{0}^{-1} \boldsymbol{\mu}<em>{0}+\mathbf{\Sigma}^{-1} N \boldsymbol{\mu}</em>{\mathrm{ML}}\right), (\mathbf{\Sigma}_{0}^{-1}+N \mathbf{\Sigma}^{-1})^{-1})$の形で書ける。</p>
+<h2 id="演習-241"><a class="header" href="#演習-241">演習 2.41</a></h2>
+<div class="panel-primary">
+<p>ガンマ関数</p>
+<p>$$
+\Gamma(a) \equiv \int_{0}^{\infty} u^{a-1} e^{-u} \mathrm{d} u \tag{1.141}
+$$</p>
+<p>の定義から，ガンマ分布</p>
+<p>$$
+\operatorname{Gam}(\lambda | a, b)=\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) \tag{2.146}
+$$</p>
+<p>が正規化されていることを示せ．</p>
+</div>
+<p>ガンマ分布が正規化されている$\displaystyle \left(\int_0^{\infty}\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) d\lambda = 1\right)$ことを示す。</p>
+<p>これには$b\lambda = u$という変数変換を使うと（$d\lambda = b^{-1}du$）、</p>
+<p>$$
+\begin{aligned}
+&amp;\int_0^{\infty}\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) d\lambda \
+=&amp;\frac{1}{\Gamma(a)}\int_0^{\infty}b^a\lambda^{a-1}\exp(-u)b^{-1}du \
+=&amp;\frac{1}{\Gamma(a)}\int_0^{\infty}u^{a-1}e^{-u}du = \frac{\Gamma(a)}{\Gamma(a)} = 1
+\end{aligned}
+$$</p>
+<p>となるので、正規化されていることが示された。</p>
+<h2 id="演習-242"><a class="header" href="#演習-242">演習 2.42</a></h2>
+<div class="panel-primary">
+<p>ガンマ分布</p>
+<p>$$
+\operatorname{Gam}(\lambda | a, b)=\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) \tag{2.146}
+$$</p>
+<p>の平均，分散，およびモードを求めよ．</p>
+</div>
+<p>まず，平均を求める．</p>
+<p>$$
+\begin{aligned}
+\mathbb E \left[\lambda \right] =&amp; \int_0^{\infty} \frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) \lambda \mathrm{d} \lambda \
+=&amp; \frac{1}{\Gamma(a)} \int_0^{\infty} b^{a} \lambda^a \exp (-b \lambda) \mathrm{d} \lambda \
+\end{aligned}
+$$</p>
+<p>ここで$b\lambda = u$と変数変換すると，$\mathrm{d} \lambda = b^{-1} \mathrm{d} u$であるから</p>
+<p>$$
+\begin{aligned}
+\mathbb E \left[\lambda \right] =&amp; \frac{1}{\Gamma(a)} \int_0^{\infty} u^a \exp (-u) b^{-1} \mathrm{d} u \
+=&amp; \frac{1}{\Gamma(a)} b^{-1} \int_0^{\infty} u^a e^{-u} \mathrm{d} u \
+=&amp; \frac{1}{\Gamma(a)} b^{-1} \Gamma(a+1) \
+=&amp; \frac{1}{\Gamma(a)} b^{-1} a\Gamma(a) \
+=&amp; \frac{a}{b}
+\end{aligned}
+$$</p>
+<p>となる．</p>
+<p>次に，分散を求める．</p>
+<p>$$
+\begin{aligned}
+\mathbb E \left[\lambda^2 \right] =&amp; \int_0^{\infty} \frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) \lambda^2 \mathrm{d} \lambda \
+=&amp; \frac{1}{\Gamma(a)} \int_0^{\infty} b^{a} \lambda^{a+1} \exp (-b \lambda) \mathrm{d} \lambda \
+\end{aligned}
+$$</p>
+<p>ここで$b\lambda = u$と変数変換すると，$\mathrm{d} \lambda = b^{-1} \mathrm{d} u$であるから</p>
+<p>$$
+\begin{aligned}
+\mathbb E \left[\lambda^2 \right] =&amp; \frac{1}{\Gamma(a)} \int_0^{\infty} b^{-1} u^{a+1} \exp (-u) b^{-1} \mathrm{d} u \
+=&amp; \frac{1}{\Gamma(a)} b^{-2} \int_0^{\infty} u^{a+1} e^{-u} \mathrm{d} u \
+=&amp; \frac{1}{\Gamma(a)} b^{-2} \Gamma(a+2) \
+=&amp; \frac{1}{\Gamma(a)} b^{-2} (a+1)\Gamma(a+1) \
+=&amp; \frac{1}{\Gamma(a)} b^{-2} a(a+1)\Gamma(a) \
+=&amp; \frac{a(a+1)}{b^2}
+\end{aligned}
+$$</p>
+<p>となる．したがって分散は</p>
+<p>$$
+\begin{aligned}
+\operatorname{var}\left[\lambda \right] =&amp; \mathbb E \left[\lambda^2 \right] - \mathbb E \left[\lambda \right]^2 \
+=&amp; \frac{a(a+1)}{b^2} - \frac{a^2}{b^2} \
+=&amp; \frac{a}{b^2}
+\end{aligned}
+$$</p>
+<p>となる．</p>
+<p>次に，モードを求める．モードは分布の停留点を求めれば良いので$(2.146)$を$\lambda$で微分して0とおく．</p>
+<p>$$
+\begin{aligned}
+&amp; \frac{\mathrm{d}}{\mathrm{d}\lambda} \operatorname{Gam}(\lambda | a, b) = 0 \
+\Leftrightarrow ~ &amp; \frac{\mathrm{d}}{\mathrm{d}\lambda} \frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) = 0 \
+\Leftrightarrow ~ &amp; \frac{\mathrm{d}}{\mathrm{d}\lambda} \lambda^{a-1} e^{-b \lambda} = 0 \
+\Leftrightarrow ~ &amp; (a-1) \lambda^{a-2} e^{-b \lambda} + \lambda^{a-1} e^{-b \lambda} (-b) = 0 \
+\Leftrightarrow ~ &amp; \lambda^{a-2} e^{-b \lambda} (a-1-b\lambda) = 0 \
+\Leftrightarrow ~ &amp; \lambda = \frac{a-1}{b} \
+\end{aligned}
+$$</p>
+<p>したがってモードは$\displaystyle \frac{a-1}{b}$となる．</p>
+<h2 id="演習-243"><a class="header" href="#演習-243">演習 2.43</a></h2>
+<div class="panel-primary">
+<p>次の分布は，1変数ガウス分布を一般化したものである．</p>
+<p>$$
+p\left(x | \sigma^{2}, q\right)=\frac{q}{2\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \exp \left(-\frac{|x|^{q}}{2 \sigma^{2}}\right) \tag{2.293}
+$$</p>
+<p>この分布が，次のように正規化されていることを示せ．</p>
+<p>$$
+\int_{-\infty}^{\infty} p\left(x | \sigma^{2}, q\right) \mathrm{d} x=1 \tag{2.294}
+$$
+そして,$q=2$で$(2.293)$がガウス分布となることを示せ．目的変数が$t=y(\mathbf{x}, \mathbf{w})+\epsilon$で，ランダムノイズ変数$\epsilon$が分布$(2.293)$に従う回帰モデルを考える．入力ベクトル集合$\mathbf{X} = { \mathbf{x}_1, \cdots, \mathbf{x}_N }$と，目的変数に相当する観測値が$\mathbf{t} = (t_1, \ldots, t_N)^{\mathrm{T}}$であるとき，$\mathbf{w}$と$\sigma^2$についての対数尤度関数が</p>
+<p>$$
+\ln p\left(\mathbf{t} | \mathbf{X}, \mathbf{w}, \sigma^{2}\right)=-\frac{1}{2 \sigma^{2}} \sum_{n=1}^{N}\left|y\left(\mathbf{x}<em>{n}, \mathbf{w}\right)-t</em>{n}\right|^{q}-\frac{N}{q} \ln \left(2 \sigma^{2}\right)+\mathrm{const} \tag{2.295}
+$$</p>
+<p>になることを示せ．ただし，$\mathrm{const}$は$\mathbf{w}$と$\sigma^2$の両方と独立な項である．なお，これは$\mathbf{w}$の関数として見た場合，1.5.5節で扱った$L_q$誤差関数である．</p>
+</div>
+<p>まず$(2.293)$について</p>
+<p>$$
+\begin{aligned}
+\int_{-\infty}^{\infty} p(x | \sigma^2, q)dx &amp;= \int_{-\infty}^{\infty} \frac{q}{2\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \exp \left(-\frac{|x|^{q}}{2 \sigma^{2}}\right) d x
+\
+&amp;=\frac{q}{2\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \cdot 2 \int_{0}^{\infty} \exp \left(-\frac{|x|^{q}}{2 \sigma^{2}}\right) d x \
+&amp;=\frac{q}{\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \int_{0}^{\infty} \exp \left(-\frac{x^{q}}{2 \sigma^{2}}\right) d x
+\end{aligned}
+$$</p>
+<p>ここで$\displaystyle u = \frac{x^q}{2\sigma^2}$とおくと、$\displaystyle du = \frac{q}{2\sigma^2}x^{q-1}dx$, $x=(2\sigma^2u)^{1/q}$となるので、</p>
+<p>$$
+\begin{aligned}
+\int_{0}^{\infty} \exp \left(-\frac{x^{2}}{2 \sigma^{2}}\right) d x
+&amp;=\int_{0}^{\infty} \frac{2 \sigma^{2}}{q x^{q-1}} e^{-u} du \
+&amp;=\frac{2 \sigma^{2}}{q} \int_{0}^{\infty} \frac{1}{\left(2 \sigma^{2} u\right)^{\frac{q-1}{q}}} e^{-u} d u \
+&amp;=\frac{2 \sigma^{2}}{q} \cdot \frac{\left(2 \sigma^{2}\right)^{\frac{1}{q}}}{2 \sigma^{2}} \int_{0}^{\infty} u^{\frac{1}{q}-1} e^{-u} d u \
+&amp;=\frac{\left(2 \sigma^{2}\right)^{\frac{1}{q}}}{q} \Gamma(1 / q)
+\end{aligned}
+$$</p>
+<p>よって</p>
+<p>$$
+\int_{-\infty}^{\infty} p\left(x \mid \sigma^{2}, q\right) d x=\frac{q}{\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \cdot \frac{\left(2 \sigma^{2}\right)^{\frac{1}{q}}}{q} \Gamma(1 / q)=1
+$$</p>
+<p>正規化されていることが示された。
+また、$q=2$のとき$\Gamma(1/2) = \sqrt{\pi}$を代入すれば</p>
+<p>$$
+\int_{-\infty}^{\infty} p\left(x \mid \sigma^{2}, 2 \right) dx = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( -\frac{x^2}{2\sigma^2}\right)
+$$</p>
+<p>となり、ガウス分布の形になる。</p>
+<p>最後に、ランダムノイズが$\epsilon$が$p(x|\sigma^2,q)$に従うとすると、$\epsilon = t-y(\mathbf{x}, \mathbf{w})$が$(2.293)$式の$x$に相当する。
+$\mathbf{X} = {\mathbf{x}_1, \ldots, \mathbf{x}_N}$を入力として目的変数に相当する観測値が$\mathbf{t} = (t_1, \ldots, t_N)^{\mathrm{T}}$とするとき、1.2.5節での議論から</p>
+<p>$$
+p(\mathbf{t} | \mathbf{X}, \mathbf{w}, \sigma^2) = \prod_{n=1}^N p(t_n | \mathbf{x}_n, \mathbf{w}, \sigma^2)
+$$</p>
+<p>となるので、これの対数尤度は</p>
+<p>$$
+\begin{aligned}
+\ln p\left(\mathbf{t} | \mathbf{X}, \mathbf{w}, \sigma^2 \right) &amp;=\ln \left{\prod_{n=1}^{N} \frac{q}{2\left(2 \sigma^{2}\right)^{1 / q} \Gamma(1 / q)} \exp \left(-\frac{\mid t_n-y\left(\mathbf{x}<em>n, \mathbf{w} \right) \mid^q}{2 \sigma^{2}}\right)\right } \
+&amp;=-\frac{1}{2 \sigma^{2}} \sum</em>{n=1}^{N}\left|y\left(\mathbf{x}<em>n, \mathbf{w} \right)-t</em>{n}\right|^{q}-\frac{N}{q} \ln \left(2 \sigma^{2}\right)+\operatorname{const}
+\end{aligned}
+$$</p>
+<p>となる($\textrm{const}$は$\mathbf{w}$と$\sigma^2$の両方に独立な項である)。</p>
+<blockquote>
+<p>$(2.295)$を、パラメータ $\mathbf w$ についての式と見れば、1.5.5節の$L_q$損失(ミンコフスキー損失)と同値になります。</p>
+<p>1.2.5節にあるように、回帰において、二乗損失($L_2$損失)の総和を最小化するパラメータ $\mathbf w$ を求める（＝最小二乗法）ことと、データのノイズにガウス分布を仮定して最尤推定によりパラメータ $\mathbf w$を求めることとは、$\mathbf w$ を決定する意味では結果的に同じになりました。</p>
+<p>これと同様に、回帰問題において、$L_q$損失を最小化することと、ノイズに一般化ガウス分布を仮定して最尤推定することとは、$\mathbf w$を決定する意味においては同じ事になります。</p>
+</blockquote>
+<h2 id="演習-244"><a class="header" href="#演習-244">演習 2.44</a></h2>
+<div class="panel-primary">
+<p>1変数ガウス分布$\mathcal{N}\left(x | \mu, \tau^{-1}\right)$について考える．共役事前分布はガウス–ガンマ分布</p>
+<p>$$
+p(\mu, \lambda)=\mathcal{N}\left(\mu \mid \mu_{0},(\beta \lambda)^{-1}\right) \operatorname{Gam}(\lambda \mid a, b) \tag{2.154}
+$$</p>
+<p>で，独立同分布な観測値集合が$\mathbf{x}=\left{x_{1}, \ldots, x_{N}\right}$であるとする．事後分布も，事前分布と同じガウスーガンマ分布になることを示し，各パラメータに対する事後分布の式を書き下せ．</p>
+</div>
+<p>事後分布は$p(\mu,\lambda|\mathbf{X})$、尤度関数は$p(\mathbf{X}|\mu, \lambda)$と書ける。
+このとき共役事前分布$p(\mu,\lambda)$と合わせて、ベイズの定理から
+$$
+p(\mu,\lambda|\mathbf{X}) \propto p(\mathbf{X}|\mu, \lambda)p(\mu,\lambda)
+$$
+と書ける。また、$(2.152)$式のように尤度関数は</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{X} \mid \mu, \lambda)&amp;=\prod_{n=1}^{N}\left(\frac{\lambda}{2 \pi}\right)^{1 / 2} \exp \left{-\frac{\lambda}{2}\left(x_{n}-\mu\right)^{2}\right} \
+&amp;\propto\left[\lambda^{1 / 2} \exp \left(-\frac{\lambda \mu^{2}}{2}\right)\right]^{N} \exp \left{\lambda \mu \sum_{n=1}^{N} x_{n}-\frac{\lambda}{2} \sum_{n=1}^{N} x_{n}^{2}\right}
+\end{aligned}
+$$</p>
+<p>の形で書ける。これと</p>
+<p>$$
+p(\mu, \lambda) \propto (\beta\lambda)^{1/2}\exp\left( -\frac{\beta\lambda}{2}(\mu-\mu_0)^2 \right)\lambda^{a-1}\exp(-b\lambda)
+$$</p>
+<p>を利用して、事後分布$p(\mu,\lambda|\mathbf{X})$の指数部を計算してみてガウス-ガンマ分布のそれと同型になることを示せば良い（正規化定数を求めるのはキツイ）。</p>
+<p>$$
+\begin{aligned}
+p(\mu,\lambda|\mathbf{X}) &amp;= \lambda^{\frac{N}{2}}(\beta \lambda)^{\frac{1}{2}} \lambda^{a-1} \exp \left{-\frac{N \lambda \mu^{2}}{2}-\frac{\beta \lambda}{2}\left(\mu-\mu_{0}\right)^{2}-b \lambda+\lambda \mu \sum_{n=1}^{N} x_{n}-\frac{\lambda}{2} \sum_{n=1}^{N} x_{n}^{2}\right} \
+&amp;= \beta^{\frac{1}{2}} \lambda^{\frac{N}{2}+\frac{1}{2}+a-1} \exp \left{\mu^{2} \left( -\frac{N \lambda}{2}-\frac{\beta \lambda}{2}\right)+\mu\left(\beta \lambda \mu_{0}+\lambda \sum_{n=1}^{N} x_{n}\right)-b \lambda-\frac{\lambda}{2} \sum_{n=1}^{N} x_{n}^{2}-\frac{\beta \lambda}{2} \mu_{0}^{2}\right} \
+&amp;=\beta^{\frac{1}{2}} \lambda^{\frac{N}{2}+\frac{1}{2}+a-1} \exp \left{ -\frac{\lambda(N+\beta)}{2} \mu^{2}+\mu \lambda\left(\beta \mu_{0}+\sum_{n=1}^{N} x_{n}\right)-\lambda\left(b+\frac{1}{2} \sum_{n=1}^{N} x_{n}^{2}-\frac{\beta}{2} \mu_{0}^{2}\right)\right} \
+&amp;=\beta^{\frac{1}{2}} \lambda^{\frac{N}{2}+\frac{1}{2}+a-1} \exp \left{-\frac{\lambda(N+\beta)}{2}\left(\mu-\frac{\beta\mu_0+\sum_{n=1}^{N} x_{n}}{N+\beta}\right)^{2}\right}
+\exp \left{-\lambda\left(b+\frac{1}{2} \sum_{n=1}^N x_{n}^{2}+\frac{\beta}{2} \mu_{0}^{2}-\frac{\left(\beta\mu_0+\sum_{n=1}^{N} x_{n}\right)^{2}}{2(N+\beta)}\right)\right} \
+&amp;\propto (\lambda(N+\beta))^{\frac{1}{2}}\exp \left{-\frac{\lambda(N+\beta)}{2}\left(\mu-\frac{\beta\mu_0+\sum_{n=1}^{N} x_{n}}{N+\beta}\right)^{2}\right}\lambda^{a+\frac{N}{2}-1}\exp \left{-\left(b+\frac{1}{2} \sum_{n=1}^N x_{n}^{2}+\frac{\beta}{2} \mu_{0}^{2}-\frac{\left(\beta\mu_0+\sum_{n=1}^{N} x_{n}\right)^{2}}{2(N+\beta)}\right)\lambda\right}
+\end{aligned}
+$$</p>
+<p>これは
+$$
+\begin{aligned}
+\mu_{N} &amp;=\frac{\beta \mu_{0}+\sum_{n=1}^{N} x_{n}}{N+\beta} \
+\lambda_{N}^{-1} &amp;= (\lambda(N+\beta))^{-1} \
+a_{N} &amp;=a+\frac{N}{2} \
+b_{N} &amp;=b+\frac{1}{2} \sum_{n=1}^N x_{n}^{2}+\frac{\beta}{2} \mu_{0}^{2}-\frac{\left(\beta\mu_0+\sum_{n=1}^{N} x_{n}\right)^{2}}{2(N+\beta)}
+\end{aligned}
+$$
+としたときの$\mathcal{N}(\mu|\mu_N,\lambda_N^{-1})\operatorname{Gam}(\lambda|a_N, b_N)$の指数部分と同型になる。</p>
+<p>したがって、事後分布もガウス-ガンマ分布の形になっていることが示された。</p>
+<h2 id="演習-245"><a class="header" href="#演習-245">演習 2.45</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathcal{W}(\mathbf{\Lambda} \mid \mathbf{W}, \nu)=B|\mathbf{\Lambda}|^{(\nu-D-1) / 2} \exp \left(-\frac{1}{2} \operatorname{Tr}\left(\mathbf{W}^{-1} \mathbf{\Lambda}\right)\right) \tag{2.155}
+$$</p>
+<p>で定義されたウィシャート分布が確かに，多変量ガウス分布の精度行列の共役事前分布であることを確かめよ．</p>
+</div>
+<p>事前分布と尤度と掛け合わせて事後分布を求めたとき，目的とする変数についての形式が変わらないような事前分布が共役事前分布である．したがって，尤度を求め，精度$\mathbf \Lambda$についてウィシャート分布の形になっていることを確認すれば良い．</p>
+<p>$\mathbf{X} = {\mathbf{x}_1, \mathbf{x}_2, \cdots,\mathbf{x}_N}$が与えられたとき，精度$\mathbf \Lambda$のガウス分布$\mathcal{N}(\mathbf{X}|\boldsymbol{\mu},\mathbf{\Lambda}^{-1})$の尤度関数は</p>
+<p>$$
+\begin{aligned}
+&amp; \prod_{n=1}^N \mathcal{N}(\mathbf{x}<em>n|\boldsymbol{\mu},\mathbf{\Lambda}^{-1}) \
+\propto &amp; |\mathbf{\Lambda}|^{\frac{1}{2}} \exp{\left( -\frac{1}{2} \sum</em>{n=1}^N (\mathbf{x}_n - \boldsymbol{\mu})^{\mathrm{T}} \mathbf{\Lambda} (\mathbf{x}<em>n - \boldsymbol{\mu}) \right)} \
+=&amp; |\mathbf{\Lambda}|^{\frac{1}{2}} \exp{\left( -\frac{1}{2} \sum</em>{n=1}^N \operatorname{Tr} \left[(\mathbf{x}_n - \boldsymbol{\mu})^{\mathrm{T}} \mathbf{\Lambda} (\mathbf{x}<em>n - \boldsymbol{\mu})  \right]\right)} \
+=&amp; |\mathbf{\Lambda}|^{\frac{1}{2}} \exp{\left( -\frac{1}{2} \sum</em>{n=1}^N \operatorname{Tr} \left[(\mathbf{x}_n - \boldsymbol{\mu}) (\mathbf{x}<em>n - \boldsymbol{\mu})^{\mathrm{T}} \mathbf{\Lambda} \right]\right)} \
+=&amp; |\mathbf{\Lambda}|^{\frac{1}{2}} \exp{\left( -\frac{1}{2} \operatorname{Tr} \left[ \sum</em>{n=1}^N (\mathbf{x}_n - \boldsymbol{\mu}) (\mathbf{x}_n - \boldsymbol{\mu})^{\mathrm{T}} \mathbf{\Lambda} \right]\right)} \
+=&amp; |\mathbf{\Lambda}|^{\frac{1}{2}} \exp{\left( -\frac{1}{2} \operatorname{Tr} \left[\mathrm{S} \mathbf{\Lambda} \right]\right)} \
+\end{aligned}
+$$</p>
+<p>となり，ウィシャート分布と同じ形であることがわかる．ただし$\displaystyle \sum_{n=1}^N (\mathbf{x}_n - \boldsymbol{\mu}) (\mathbf{x}_n - \boldsymbol{\mu})^{\mathrm{T}} = \mathrm{S}$とおいた．</p>
+<p>以上より，ウィシャート分布$(2.156)$は多変量ガウス分布の精度行列の共役事前分布となっていることが確認できた．</p>
+<h2 id="演習-246"><a class="header" href="#演習-246">演習 2.46</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}
+p(x|\mu,a,b)&amp;=\int_{0}^{\infty} \mathcal{N} (x | \mu, \tau^{-1}) \operatorname{Gam}(\tau | a, b) d \tau \
+&amp;=\int_{0}^{\infty} \frac{b^{a} e^{(-b \tau)} \tau^{a-1}}{\Gamma(a)}\left(\frac{\tau}{2 \pi}\right)^{1 / 2} \exp \left{-\frac{\tau}{2}(x-\mu)^{2}\right} \mathrm{d} \tau\
+&amp;=\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}} \int_{0}^{\infty} \tau^{a-\frac{1}{2}} \exp \left{-\tau\left(b+\frac{(x-\mu)^{2}}{2}\right)\right} d \tau \tag{2.146}
+\end{aligned}
+$$</p>
+<p>の積分を計算し</p>
+<p>$$
+\operatorname{St}(x \mid \mu, \lambda, \nu)=\frac{\Gamma(\nu / 2+1 / 2)}{\Gamma(\nu / 2)}\left(\frac{\lambda}{\pi \nu}\right)^{1 / 2}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\nu / 2-1 / 2} \tag{2.159}
+$$</p>
+<p>になることを確かめよ．</p>
+</div>
+<p>まず$(2.158)$式に$\displaystyle \operatorname{Gam} ( \lambda |a, b)=\frac{1}{r(a)} b^{a} \lambda^{a-1} \exp (-b \lambda), \quad \Gamma(x)=\int_{0}^{\infty} u^{x-1} e^{-u} dx$を適用する。</p>
+<p>$$
+\begin{aligned}
+&amp;\int_{0}^{\infty} \mathcal{N} (x | \mu, \tau^{-1}) \operatorname{Gam}(\tau | a, b) d \tau \
+=&amp;\int_{0}^{\infty} \frac{\sqrt{\tau}}{\sqrt{2 \pi}} \exp \left{ -\frac{\tau}{2}(x-\mu)^{2}\right} \frac{b^{a}}{\Gamma(a)} \tau^{a-1} \exp (-b \tau) d \tau \
+=&amp;\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}} \int_{0}^{\infty} \tau^{a-\frac{1}{2}} \exp \left{-\tau\left(b+\frac{(x-\mu)^{2}}{2}\right)\right} d \tau
+\end{aligned}
+$$
+ここで、$\displaystyle b+\frac{(x-\mu)^2}{2}=c$とおき、$\tau c = u$とすると、$d\tau = c^{-1}du$</p>
+<p>$$
+\begin{aligned}
+=&amp;\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}} \int_{0}^{\infty}\left(\frac{u}{c}\right)^{a-\frac{1}{2}} \exp (-u) \cdot c^{-1} d u \
+=&amp;\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}} c^{-a-\frac{1}{2}} \int_{0}^{\infty} u^{a-\frac{1}{2}} e^{-u} d u \
+=&amp;\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}}\left[b+\frac{(x-\mu)^{2}}{2}\right]^{-a-\frac{1}{2}} \Gamma\left(a+\frac{1}{2}\right)
+\end{aligned}
+$$</p>
+<p>よって$(2.158)$の式変形が示された。次に$\displaystyle \nu=2a,\quad \lambda=\frac{a}{b}$とおくと, $\displaystyle b^a = \left( \frac{\nu}{2\lambda} \right)^\frac{\nu}{2}= \left( \frac{2\lambda}{\nu} \right)^{- \frac{\nu}{2}}$</p>
+<p>$$
+\begin{aligned}
+&amp;=\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{1}{2 \pi}\right)^{\frac{1}{2}}\left( \frac{2\lambda}{\nu} \right)^{- \frac{\nu}{2}}\left[\frac{\nu}{2 \lambda}+\frac{(x-\mu)^{2}}{2}\right]^{-\frac{\nu}{2}-\frac{1}{2}} \
+&amp;=\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)} \left(\frac{\lambda}{\pi \nu}\right)^{\frac{1}{2}}  \left(\frac{2 \lambda}{\nu} \cdot \frac{\nu+\lambda(x-\mu)^{2}}{2 \lambda}\right)^{-\frac{\nu}{2}-\frac{1}{2}} \
+&amp;=\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{\lambda}{\pi \nu}\right)^{\frac{1}{2}}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}}
+\end{aligned}
+$$
+となり、$(2.159)$式に変形できることが示された。</p>
+<h2 id="演習-247"><a class="header" href="#演習-247">演習 2.47</a></h2>
+<div class="panel-primary">
+<p>$\nu \to \infty$の極限で，t分布</p>
+<p>$$
+\operatorname{St}(x \mid \mu, \lambda, \nu)=\frac{\Gamma(\nu / 2+1 / 2)}{\Gamma(\nu / 2)}\left(\frac{\lambda}{\pi \nu}\right)^{1 / 2}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\nu / 2-1 / 2} \tag{2.159}
+$$</p>
+<p>がガウス分布になることを示せ．ヒント: 正規化係数を無視し，$x$への依存性だけに注目する．</p>
+</div>
+<p>スチューデントのt分布が$\nu \to \infty$の極限で$\displaystyle \mathcal{N}(x|\mu, \lambda^{-1})=\sqrt{\frac{\lambda}{2\pi}} \exp \left{ -\frac{\lambda(x-\mu)^2}{2} \right}$になることを示す。</p>
+<p>$\displaystyle \left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}}$の部分を$\exp(\cdot)$で表すように変形させることを意識する。また、$\displaystyle \frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)\left(\frac{\nu}{2}\right)^{1/2}}$が$\nu \to \infty$の極限で1に収束することを示す。このために$\displaystyle \lim_{n\to\infty}\frac{\Gamma(x+n)}{\Gamma(n)n^x} = 1$であることを示す（※公式の解答集や問題文のヒントから、ここはどうせ規格化定数で吸収するので考えなくても良いことになっているけれど、一応示す）。</p>
+<p>まずガンマ関数の定義から</p>
+<p>$$
+\Gamma(x) = \lim_{n\to\infty}\frac{(n-1)!n^x}{\prod_{k=0}^{n-1}(x+k)}
+$$</p>
+<p>逆数をとって</p>
+<p>$$
+\frac{1}{\Gamma(x)}=\lim_{n\to\infty}\frac{\prod_{k=0}^{n-1}(x+k)}{(n-1)!n^x}
+$$</p>
+<p>よって</p>
+<p>$$
+\begin{aligned}
+1 &amp;= \lim_{n\to\infty}\Gamma(x)\frac{\prod_{k=0}^{n-1}(x+k)}{(n-1)!n^x} \
+&amp;= \lim_{n\to\infty}\frac{\Gamma(x)\Gamma(x+n)}{\Gamma(n)\Gamma(x)n^x} \
+&amp;= \lim_{n\to\infty}\frac{\Gamma(x+n)}{\Gamma(n)n^x}
+\end{aligned}
+$$</p>
+<p>ここで、$x = 1/2, n=\nu/2$とすれば、$\displaystyle \lim_{n\to\infty}\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)\left(\frac{\nu}{2}\right)^{1/2}} = 1$となることが示された。</p>
+<p>ちなみにガンマ関数の定義をWikipediaにならって</p>
+<p>$$
+\Gamma(x) = \lim_{n\to\infty}\frac{n!n^x}{\prod_{k=0}^{n}(x+k)}
+$$</p>
+<p>とした場合、上の式変形を進めていくと</p>
+<p>$$
+1 = \lim_{n\to\infty}\left( 1+\frac{x}{n+1}\right)\frac{\Gamma(x+n)}{\Gamma(n)n^x}
+$$</p>
+<p>となる。$n\to\infty$で$\displaystyle 1+\frac{x}{n+1} \to 1$となることを使えば結果は同様となる（ということであってるかな……？）。</p>
+<p>続いて$\displaystyle \left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}}$ について</p>
+<p>$$
+\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}}= \exp \left{ -\frac{\nu + 1}{2}\ln \left( 1+ \frac{\lambda(x-\mu)^2}{\nu}\right)\right}
+$$</p>
+<p>ここでテイラー展開$\ln (1+\epsilon) = \epsilon+O(\epsilon^2)$を用いると</p>
+<p>$$
+\begin{aligned}
+&amp;\exp \left{ -\frac{\nu + 1}{2}\ln \left( 1+ \frac{\lambda(x-\mu)^2}{\nu}\right)\right} \
+=&amp;\exp\left{ -\frac{\nu+1}{\nu}\cdot \left( \frac{\lambda(x-\mu)^2}{2}+O(\nu^{-2})\right)\right} \
+=&amp;\exp\left{ -\frac{\nu+1}{\nu}\cdot \frac{\lambda(x-\mu)^2}{2}+O(\nu^{-1})\right}
+\end{aligned}
+$$</p>
+<p>$\nu \to \infty$の極限で、上式は$\displaystyle \exp\left{ -\frac{\lambda(x-\mu)^2}{2}\right}$となる。</p>
+<p>したがって以上をまとめると、$\nu \to \infty$の極限で</p>
+<p>$$
+\begin{aligned}
+&amp;\lim_{\nu\to\infty}\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{\lambda}{\pi \nu}\right)^{\frac{1}{2}}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}} \
+=&amp;\lim_{\nu\to\infty}\frac{\Gamma\left(\frac{\nu}{2}+\frac{1}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)\left(\frac{\nu}{2}\right)^\frac{1}{2}} \left(\frac{\lambda}{2\pi}\right)^{\frac{1}{2}}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu}{2}-\frac{1}{2}} \
+=&amp;1\cdot\left(\frac{\lambda}{2\pi}\right)^{\frac{1}{2}}\exp\left{ -\frac{\lambda(x-\mu)^2}{2}\right} \
+=&amp;\mathcal{N}(x|\mu,\lambda^{-1})
+\end{aligned}
+$$</p>
+<p>となる。よってガウス分布となることが示された。</p>
+<p><strong>別解</strong></p>
+<p>ネイピア数の定義($\lim_{n\to\infty}(1 + n^{-1})^{n}=e$)に基づいて示す方法</p>
+<p>$$
+\begin{aligned}
+\lim_{\nu\to\infty}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\frac{\nu+1}{2}}=&amp; \lim_{\nu\to\infty}\left{\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{\frac{\nu}{\lambda(x-\mu)^{2}}}\right}^{\frac{\lambda(x-\mu)^{2}}{\nu}({-\frac{\nu+1}{2}})}\
+=&amp;\displaystyle \exp\left{ -\frac{\lambda(x-\mu)^2}{2}\right}
+\end{aligned}
+$$</p>
+<p>{} の中身は $\nu\to\infty$ で exp になり {} の外側の指数部分は $\nu\to\infty$ で $\frac{\lambda(x-\mu)^{2}}{2}$ となることを用いた</p>
+<h2 id="演習-248"><a class="header" href="#演習-248">演習 2.48</a></h2>
+<div class="panel-primary">
+<p>1変数のスチューデントのt分布</p>
+<p>$$
+\operatorname{St}(x \mid \mu, \lambda, \nu)=\frac{\Gamma(\nu / 2+1 / 2)}{\Gamma(\nu / 2)}\left(\frac{\lambda}{\pi \nu}\right)^{1 / 2}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\nu / 2-1 / 2} \tag{2.159}
+$$</p>
+<p>の導出で用いたのと同様の手続きで，スチューデントのt分布の多変量形式である</p>
+<p>$$
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\frac{\Gamma(D / 2+\nu / 2)}{\Gamma(\nu / 2)} \frac{|\mathbf{\Lambda}|^{1 / 2}}{(\pi \nu)^{D / 2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2} \tag{2.162}
+$$</p>
+<p>の結果を，</p>
+<p>$$
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\int_{0}^{\infty} \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu},(\eta \mathbf{\Lambda})^{-1}\right) \operatorname{Gam}(\eta \mid \nu / 2, \nu / 2) \mathrm{d} \eta \tag{2.161}
+$$</p>
+<p>の変数$\eta$を周辺化することで確かめよ．定義$(2.161)$を用いて，積分変数の順序を交換することで，多変量t分布が正規化されていることを示せ．</p>
+</div>
+<p>$(2.161)$の積分表現から$(2.162)$を得ることを目的とする。途中で以下の定理を用いる。</p>
+<blockquote>
+<p>任意の$n\times n$行列$\mathbf{A}$と任意のスカラー値$k$に対して
+$|k\mathbf{A}| = k^n|\mathbf{A}|$
+が成り立つ（統計のための行列代数P.217, 系13.2.4）</p>
+</blockquote>
+<p>途中でマハラノビス距離$\Delta^2 = (\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}}\mathbf{\Lambda}(\mathbf{x}-\boldsymbol{\mu})$を用いると</p>
+<p>$$
+\begin{aligned}
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, v)
+&amp;=\int_{0}^{\infty} \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu},(\eta \mathbf{\Lambda})^{-1}\right) \operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d \eta \
+&amp;=\int_{0}^{\infty} \frac{1}{(2 \pi)^{D/2}}|\eta \mathbf{\Lambda}|^{\frac{1}{2}} \exp \left{-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}}(\eta \mathbf{\Lambda})(\mathbf{x}-\boldsymbol{\mu})\right} \frac{1}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{\nu}{2}\right)^{\frac{\nu}{2}} \eta^{\frac{\nu}{2}-1} \exp \left{-\frac{\nu}{2} \eta\right} d\eta \
+&amp;=\frac{|\mathbf{\Lambda}|^{\frac{1}{2}}}{(2 \pi)^{D/2}} \frac{\left(\frac{\nu}{2}\right)^{\nu/2}}{\Gamma\left(\frac{\nu}{2}\right)} \int_{0}^{\infty} \eta^{\frac{D}{2}} \cdot \eta^{\frac{\nu}{2}-1} \exp \left{-\frac{\nu}{2} \eta-\frac{\eta}{2} \Delta^{2}\right} d\eta
+\end{aligned}
+$$
+ここで$\displaystyle \tau = \left( \frac{\nu}{2}+\frac{\Delta^2}{2} \right)$とおくと、$\displaystyle d\tau = \left( \frac{\nu}{2}+\frac{\Delta^2}{2}\right)d\eta$で、</p>
+<p>$$
+\begin{aligned}
+(与式)
+&amp;=\frac{|\mathbf{\Lambda}|^{\frac{1}{2}}}{(2 \pi)^{D/2}} \frac{\left(\frac{\nu}{2}\right)^{\nu/2}}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{\nu}{2}+\frac{\Delta^{2}}{2}\right)^{-\frac{D}{2}-\frac{\nu}{2}} \int_{0}^{\infty} \tau^{\frac{D}{2}+\frac{\nu}{2}-1} e^{-\tau} d \tau \
+&amp;=\frac{|\mathbf{\Lambda}|^{\frac{1}{2}}}{(2 \pi)^{D/2}} \frac{\left(\frac{\nu}{2}\right)^{\nu/2}}{\Gamma\left(\frac{\nu}{2}\right)}\left(\frac{\nu}{2}+\frac{\Delta^{2}}{2}\right)^{-\frac{D}{2}-\frac{\nu}{2}} \Gamma\left(\frac{D}{2}+\frac{\nu}{2}\right) \
+&amp;=\frac{\Gamma\left(\frac{D}{2}+\frac{\nu}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)} \cdot \frac{\left(\frac{\nu}{2}\right)^{\nu/2}}{(2 \pi)^{D/2}} | \mathbf{\Lambda} |^{\frac{1}{2}}\left(\frac{\nu}{2}\right)^{-\frac{D}{2}-\frac{\nu}{2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-\frac{D}{2}-\frac{\nu}{2}} \
+&amp;=\frac{\Gamma\left(\frac{D}{2}+\frac{\nu}{2}\right)}{\Gamma\left(\frac{\nu}{2}\right)} \frac{|\mathbf{\Lambda}|^{\frac{1}{2}}}{(\nu \pi)^{D/2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-\frac{D}{2}-\frac{\nu}{2}}
+\end{aligned}
+$$</p>
+<p>よって$(2.162)$式が得られた。</p>
+<p>また、この多変数t分布が正規化されていることを示す。すなわち、</p>
+<p>$$
+\int_{-\infty}^{\infty}\operatorname{St}(\mathbf{x}|\boldsymbol{\mu},\mathbf{\Lambda},\nu) d\mathbf{x} = 1
+$$</p>
+<p>であることを示す。（問題文のヒントから）積分が交換可能であることを利用すると、定義から</p>
+<p>$$
+\begin{aligned}
+&amp; \int_{-\infty}^{\infty} \operatorname{St}(\mathbf{x}|\boldsymbol{\mu},\mathbf{\Lambda},\nu) d\mathbf{x} \
+=&amp; \int_{-\infty}^{\infty} \int_{0}^{\infty} \mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\left(\eta\mathbf{\Lambda}^{-1}\right)\right) \operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta d\mathbf{x} \
+=&amp; \int_{0}^{\infty} \underbrace{\int_{-\infty}^{\infty} \mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\left(\eta \mathbf{\Lambda}^{-1}\right)\right) d\mathbf{x}}<em>{1} \operatorname{Gam}\left(n \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d \eta \
+=&amp; \int</em>{0}^{\infty} \operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta \
+=&amp; 1
+\end{aligned}
+$$</p>
+<p>ガンマ分布が正規化されていることは演習問題2.41で示した。</p>
+<h2 id="演習-249"><a class="header" href="#演習-249">演習 2.49</a></h2>
+<div class="panel-primary">
+<p>ガウス分布とガンマ分布のたたみ込みである多変量スチューデントt分布の定義$(2.161)$を用いて，$(2.162)$で定義される多変量t分布の平均，共分散，およびモード</p>
+<p>$$
+\mathbb{E}[\mathbf{x}] = \boldsymbol{\mu} \hspace{2em} (\mu &gt; 1のとき)\tag{2.164}
+$$</p>
+<p>$$
+\operatorname{cov}[\mathbf{x}] = \frac{\nu}{\nu -2} \mathbf{\Lambda}^{-1} \hspace{2em} (\mu &gt; 2のとき)\tag{2.165}
+$$</p>
+<p>$$
+\operatorname{mode}[\mathbf{x}] = \boldsymbol{\mu} \tag{2.166}
+$$</p>
+<p>を確かめよ．</p>
+</div>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\mathbf{x}] &amp;= \int_{0}^{\infty} \underbrace{\int
+\mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\left(\eta\mathbf{\Lambda}\right)^{-1}\right) \mathbf{x} d\mathbf{x}}<em>{\boldsymbol{\mu}(\because{(2.58)式})}\operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta  \
+&amp;= \int</em>{0}^{\infty} \boldsymbol{\mu}\operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta \
+&amp;=\boldsymbol{\mu} (\because 演習2.41)
+\end{aligned}
+$$</p>
+<hr />
+<p>$$
+\begin{aligned}
+\operatorname{cov}[\mathbf{x}] &amp;= \int\int_{0}^{\infty}
+\mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\left(\eta\mathbf{\Lambda}\right)^{-1}\right) \operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\mathrm{T} d\mathbf{x} \
+&amp;= \int_{0}^{\infty}\underbrace{\int
+\mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\left(\eta\mathbf{\Lambda}\right)^{-1}\right) (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\mathrm{T} d\mathbf{x}}<em>{\left(\eta\mathbf{\Lambda}\right)^{-1}} \operatorname{Gam}\left(\eta \left| \frac{\nu}{2}, \frac{\nu}{2}\right.\right) d\eta  \
+&amp;=\int</em>{0}^{\infty}\left(\eta\mathbf{\Lambda}\right)^{-1} \frac{1}{\Gamma(\frac{\nu}{2})}\left(\frac{\nu}{2}\right)^\frac{\nu}{2}\eta^{\left(\frac{\nu}{2}-1\right)} e^{{-\frac{\nu}{2}}\eta} d\eta \
+&amp;=\mathbf{\Lambda}^{-1} \frac{\frac{\nu}{2}^\frac{\nu}{2}}{\Gamma(\frac{\nu}{2})} \int_{0}^{\infty}\eta^{\left(\frac{\nu}{2}-2\right)}e^{-\frac{\nu}{2}\eta}d\eta \\
+&amp;ここで\frac{\nu}{2}\eta = uとおく。d\eta=\frac{2}{\nu}du \\
+&amp;=\mathbf{\Lambda}^{-1} \frac{\frac{\nu}{2}^\frac{\nu}{2}}{\Gamma(\frac{\nu}{2})} \int_{0}^{\infty}\left(\frac{2u}{\nu}\right)^{\left(\frac{\nu}{2}-2\right)}e^{-u}\frac{2}{\nu}du \
+&amp;=\mathbf{\Lambda}^{-1} \frac{\frac{\nu}{2}^\frac{\nu}{2}}{\Gamma(\frac{\nu}{2})}\left(\frac{2}{\nu}\right)^{\left(\frac{\nu}{2}-1\right)} \underbrace{\int_{0}^{\infty}u^{\left(\frac{\nu}{2}-2\right)}e^{-u}du}_{\Gamma(\frac{\nu}{2}-1)} \
+&amp;=\mathbf{\Lambda}^{-1} \frac{\Gamma(\frac{\nu}{2}-1)}{\Gamma(\frac{\nu}{2})}\frac{\nu}{2} \
+&amp;=\mathbf{\Lambda}^{-1} \frac{\Gamma(\frac{\nu}{2}-1)}{\Gamma(\frac{\nu}{2}-1)\left(\frac{\nu}{2}-1\right)}\frac{\nu}{2}\
+&amp;=\frac{\nu}{\nu-2}\Lambda^{-1}\
+\end{aligned}
+$$</p>
+<hr />
+<p>$mode[x]=\boldsymbol{\mu}$ を示す</p>
+<p>$$
+\begin{aligned}\
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\frac{\Gamma(D / 2+\nu / 2)}{\Gamma(\nu / 2)} \frac{|\mathbf{\Lambda}|^{1 / 2}}{(\pi \nu)^{D / 2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2}\
+\end{aligned}
+$$</p>
+<p>このようにかけるので</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial\mathbf{x}}\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)\propto \frac{\partial}{\partial\mathbf{x}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2}\
+&amp;=\left(-\frac{D}{2}-\frac{\nu}{2}\right)\left[1+\frac{\Delta^2}{\nu}\right]^{-D/2-\nu/2-1}\frac{2}{\nu}\mathbf{\Lambda}(\mathbf{x}-\boldsymbol{\mu})\
+\end{aligned}
+$$
+これが$\mathbf{0}$となるのは$\mathbf{x}=\boldsymbol{\mu}$のとき</p>
+<h2 id="演習-250"><a class="header" href="#演習-250">演習 2.50</a></h2>
+<div class="panel-primary">
+<p>$\nu \to \infty$の極限で，多変量スチューデントt分布</p>
+<p>$$
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\frac{\Gamma(D / 2+\nu / 2)}{\Gamma(\nu / 2)} \frac{|\mathbf{\Lambda}|^{1 / 2}}{(\pi \nu)^{D / 2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2} \tag{2.162}
+$$</p>
+<p>が，平均が$\boldsymbol{\mu}$で精度が$\mathbf{\Lambda}$のガウス分布になることを示せ．</p>
+</div>
+<p>$\lim_{\nu \to \infty} \operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\mathbf{\Lambda}\right)$を示す。スチューデントのt分布の形は</p>
+<p>$$
+\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu)=\frac{\Gamma(D / 2+\nu / 2)}{\Gamma(\nu / 2)} \frac{|\mathbf{\Lambda}|^{1 / 2}}{(\pi \nu)^{D / 2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2}
+$$</p>
+<p>ここで$\displaystyle \lim_{\nu \to \infty}\frac{\Gamma(D/2+\nu/2)}{\Gamma(\nu/2)\left(\nu/2\right)^{D/2}}=1$であるので(演習2.47を参照)、</p>
+<p>$$
+\begin{aligned}\
+\lim_{\nu\to\infty}\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu) &amp;= \lim_{\nu\to\infty}\frac{|\mathbf{\Lambda}|^{1 / 2}}{(2\pi)^{D / 2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2-\nu / 2} \
+&amp;=\frac{|\mathbf{\Lambda}|^{1 / 2}}{(2\pi)^{D / 2}}\lim_{\nu\to\infty}\underbrace{\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D / 2}}_{\to1}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-\nu / 2}
+\end{aligned}
+$$</p>
+<p>ここで$\displaystyle u=-\frac{\nu}{2}$と置換し$\displaystyle \exp(x)=\lim_{n\to\infty}\left[1+\frac{x}{n}\right]^{n}=\lim_{n\to-\infty}\left[1+\frac{x}{n}\right]^{n}$を用いると</p>
+<p>$$
+\begin{aligned}
+\lim_{\nu\to\infty}\operatorname{St}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}, \nu) &amp;= \frac{|\mathbf{\Lambda}|^{1 / 2}}{(2\pi)^{D / 2}}\lim_{u\to-\infty}\left[1-\frac{\Delta^{2}}{2u}\right]^{u}\
+&amp;=\frac{|\mathbf{\Lambda}|^{1 / 2}}{(2\pi)^{D / 2}}\exp\left(-\frac{\Delta^{2}}{2}\right)\
+&amp;=\mathcal{N}\left(\mathbf{x} | \boldsymbol{\mu},\mathbf{\Lambda}\right)
+\end{aligned}
+$$</p>
+<h2 id="演習-251"><a class="header" href="#演習-251">演習 2.51</a></h2>
+<div class="panel-primary">
+<p>本章の周期変数の議論で用いた，いろいろな三角関数の公式は，次の関係を用いて容易に証明できる．</p>
+<p>$$
+\exp(iA) = \cos A+i\sin A \tag{2.296}
+$$</p>
+<p>ただし$i$は$-1$の平方根である．</p>
+<p>$$
+\cos^2 A+\sin^2 A = 1 \tag{2.177}
+$$</p>
+<p>の結果を</p>
+<p>$$
+\exp(iA) \exp(-iA)=1 \tag{2.297}
+$$</p>
+<p>から証明せよ．同様に</p>
+<p>$$
+\cos (A-B)=\Re \exp {i(A-B)} \tag{2.298}
+$$</p>
+<p>を用いて</p>
+<p>$$
+\cos A \cos B+\sin A \sin B=\cos (A-B) \tag{2.178}
+$$</p>
+<p>を証明せよ．ただし，$\Re$は実部を示す．最後に，$\sin (A-B) = \Im \exp{i(A-B)}$から，</p>
+<p>$$
+\sin (A-B)=\sin A \cos B-\cos A \sin B \tag{2.183}
+$$</p>
+<p>を証明せよ．ただし，$\Im$は虚部を示す．</p>
+</div>
+(2.296)を(2.297)に代入すると
+<p>$$\begin{aligned}( \text{左辺} ) &amp;= \exp(iA)\exp(-iA) \&amp;= (\cos A + i \sin iA)(\cos A - i \sin iA) \&amp;= \cos^2 A + \sin^2 A \end{aligned}$$
+よって、(2.177)は示された。</p>
+<p>(2.298)より</p>
+<p>$$\begin{aligned} \cos (A-B) &amp;= \Re \exp { i(A-B) } \&amp;= \Re \exp(iA) \exp(-iB) \&amp;= \Re (\cos A + i \sin iA)(\cos B - i \sin iB) \&amp;= \cos A \cos B + \sin A \sin B \end{aligned}$$</p>
+<p>また</p>
+<p>$$\begin{aligned} \sin (A-B) &amp;= \Im \exp { i(A-B) } \&amp;= \Im \exp(iA) \exp(-iB) \&amp;= \Im (\cos A + i \sin iA)(\cos B - i \sin iB) \&amp;= \sin A \cos B - \cos A \sin B \end{aligned}$$</p>
+<h2 id="演習-252"><a class="header" href="#演習-252">演習 2.52</a></h2>
+<div class="panel-primary">
+<p>フォン・ミーゼス分布</p>
+<p>$$
+p\left(\theta \mid \theta_{0}, m\right)=\frac{1}{2 \pi I_{0}(m)} \exp \left{m \cos \left(\theta-\theta_{0}\right)\right} \tag{2.179}
+$$</p>
+<p>は，$m$が大きいとき，モード$\theta_0$の周囲で鋭く尖る．$\xi = m^{1/2}(\theta-\theta_0)$と定義し，余弦関数のテイラー展開が</p>
+<p>$$
+\cos \alpha = 1-\frac{\alpha^2}{2}+O(\alpha^4)　\tag{2.299}
+$$
+であるとして，$m \to \infty$でフォン・ミーゼス分布がガウス分布になることを示せ．</p>
+</div>
+<p>$\xi = m^{1/2}(\theta-\theta_0)$より、$\theta-\theta_0 = \xi m^{-1/2}$。</p>
+<p>これをフォン・ミーゼス分布(2.179)に代入すると、</p>
+<p>$$\begin{aligned} p\left(\theta \mid \theta_{0}, m\right) &amp;\propto \exp \left{m \cos \left(\theta-\theta_{0}\right)\right} \&amp;= \exp \left{m \cos \left(\xi m^{-1/2}\right)\right} \&amp;= \exp \left{m \left( 1 - \frac{1}{2} \xi^2 m^{-1} + O(\xi^4 m^{-2}) \right) \right} \&amp;\propto \exp \left( -\frac{\xi^2}{2} \right) \&amp;= \exp \left{ - \frac{m(\theta - \theta_{0})^2}{2} \right} \end{aligned}$$</p>
+<p>これはガウス分布の形になっているので示された。</p>
+<h2 id="演習-253"><a class="header" href="#演習-253">演習 2.53</a></h2>
+<div class="panel-primary">
+<p>三角関数の公式
+$$
+\sin (A-B)=\sin A \cos B-\cos A \sin B \tag{2.183}
+$$
+を用いて，$\theta_0$についての</p>
+<p>$$
+\sum_{n=1}^{N} \sin \left(\theta_{n}-\theta_{0}\right)=0 \tag{2.182}
+$$</p>
+<p>の解が</p>
+<p>$$
+\theta_{0}^{\mathrm{ML}}=\tan ^{-1}\left{\frac{\sum_{n} \sin \theta_{n}}{\sum_{n} \cos \theta_{n}}\right} \tag{2.184}
+$$</p>
+<p>となることを示せ．</p>
+</div>
+<p>$(2.183)$で示されている加法定理$\sin(A-B) = \sin A \cos B- \cos A \sin B$を用いて$(2.182)$式を解いて</p>
+<p>$$
+\sum_{n=1}^{N}\sin(\theta_n-\theta_0)=0 \
+$$
+$$
+\sum_{n=1}^{N}\left( \sin \theta_n \cos \theta_0 -\cos \theta_n \sin\theta_0 \right) =0 \
+$$
+$$sin\theta_0\sum_{n=1}^{N}\cos(\theta_n)=cos\theta_0\sum_{n=1}^{N}\sin(\theta_n)$$
+$$
+\tan \theta_0 = \frac{\sum_{n}\sin\theta_n}{\sum_{n}\cos\theta_n}
+$$</p>
+<p>なので、最尤推定量$\theta_0^{\mathrm{ML}}$は</p>
+<p>$$
+\theta_0^{\mathrm{ML}} = \tan^{-1}\left{ \frac{\sum_{n}\sin\theta_n}{\sum_{n}\cos\theta_n} \right}
+$$</p>
+<p>となり、$(2.184)$式を得ることができた。</p>
+<h2 id="演習-254"><a class="header" href="#演習-254">演習 2.54</a></h2>
+<div class="panel-primary">
+<p>フォン・ミーゼス分布
+$$
+p\left(\theta \mid \theta_{0}, m\right)=\frac{1}{2 \pi I_{0}(m)} \exp \left{m \cos \left(\theta-\theta_{0}\right)\right} \tag{2.179}
+$$
+の1階と2階の導関数を求め，さらに$m&gt;0$で$I_0(m) &gt; 0$であることを用いて，分布は$\theta = \theta_0$で最大になり，$\theta = \theta_0 + \pi, (\mathrm{mod}\ 2\pi)$で最小になることを示せ．</p>
+</div>
+<p>1階の導関数は
+$$
+\frac{\partial}{\partial \theta} p\left(\theta \mid \theta_{0}, m\right)=\frac{1}{2 \pi I_{0}(m)} \exp \left(m \cos \left(\theta-\theta_{0}\right)\right)\left(-m \sin \left(\theta-\theta_{0}\right)\right)
+$$
+2階の導関数は
+$$
+\begin{aligned}
+\frac{\partial^{2}}{\partial \theta^{2}} p\left(\theta \mid \theta_{0}, m\right) &amp;=
+\frac{1}{2 \pi I_{0}(m)} \exp \left(m \cos\left(\theta-\theta_{0}\right)\left(-m \sin \left(\theta-\theta_{0}\right)\right)\left(-m \sin \left(\theta-\theta_{0}\right)\right)\right. \ &amp;\left.\left.+\exp \left(m\cos \left(\theta-\theta_{0}\right)\right)( -m\cos \left(\theta-\theta_{0}\right)\right)\right} \ &amp;=\frac{1}{2 \pi I_{0}(m)} \exp \left(m\cos \left(\theta-\theta_{0}\right)\right)\left(m^{2} \sin ^{2}\left(\theta-\theta_{0}\right)-m \cos \left(\theta-\theta_{0}\right)\right)
+\end{aligned}
+$$</p>
+<p>上の結果より$\displaystyle \frac{\partial p}{\partial \theta} = 0$となるのは$\displaystyle \frac{1}{2\pi I_0(m)}\exp (m \cos (\theta - \theta_0))&gt;0, m&gt;0$より$\sin(\theta - \theta_0)=0$のとき、つまり$\theta = \theta_0, \theta = \theta_0 + \pi\ (\textrm{mod}\ 2\pi)$のとき。</p>
+<p>$\theta = \theta_0$では</p>
+<p>$$
+\frac{\partial^{2} p}{\partial \theta^{2}}=\frac{1}{2 \pi I_{0}(m)} \exp \left(m \cos \left(\theta-\theta_{0}\right)\right)(-m)&lt;0
+$$</p>
+<p>なので、$\theta = \theta_0$が$P(\theta \mid \theta_0,m)$の極大点。</p>
+<p>$\theta = \theta_0 + \pi$では</p>
+<p>$$\frac{\partial^2 p}{\partial \theta^2} = \frac{1}{2\pi I_0(m)}\exp (m \cos (\theta - \theta_0))$$</p>
+<p>$m&gt;0$より$\theta = \theta_0 + \pi\ (\mathrm{mod}\ 2\pi)$が$P(\theta \mid \theta_0, m)$の極小点となる。</p>
+<h2 id="演習-255"><a class="header" href="#演習-255">演習 2.55</a></h2>
+<div class="panel-primary">
+<p>$$
+\bar{x}<em>{1}=\bar{r} \cos \bar{\theta}=\frac{1}{N} \sum</em>{n=1}^{N} \cos \theta_{n}, \quad \bar{x}<em>{2}=\bar{r} \sin \bar{\theta}=\frac{1}{N} \sum</em>{n=1}^{N} \sin \theta_{n} \tag{2.168}
+$$
+の結果を，</p>
+<p>$$
+\theta_{0}^{\mathrm{ML}}=\tan ^{-1}\left{\frac{\sum_{n} \sin \theta_{n}}{\sum_{n} \cos \theta_{n}}\right} \tag{2.184}
+$$</p>
+<p>と三角関数の公式</p>
+<p>$$
+\cos A \cos B+\sin A \sin B=\cos (A-B) \tag{2.178}
+$$</p>
+<p>と共に用いて，フォン・ミーゼス分布の集中度の最尤推定解$m_{\mathrm{ML}}$が，$A(m_{\mathrm{ML}})=\bar{r}$を満たすことを示せ．ただし，$\bar{r}$は，図2.17のように，2次元ユークリッド平面中の単位ベクトルによって表した観測値の平均の半径である．</p>
+</div>
+(2.187)より
+<p>$$\begin{aligned} A(m_{\mathrm{ML}}) &amp;= \left( \frac{1}{N} \sum_{n=1}^{N} \cos \theta_n \right) \cos \theta_{0}^{\mathrm{ML}} + \left( \frac{1}{N} \sum_{n=1}^{N} \sin \theta_n \right) \sin \theta_{0}^{\mathrm{ML}} \&amp;= \bar{r} \cos \bar{\theta} \cos \theta_{0}^{\mathrm{ML}} + \bar{r} \sin \bar{\theta} \sin \theta_{0}^{\mathrm{ML}} \&amp;= \bar{r} \cos \theta_{0}^{\mathrm{ML}} \cos \theta_{0}^{\mathrm{ML}} + \bar{r} \sin \theta_{0}^{\mathrm{ML}} \sin \theta_{0}^{\mathrm{ML}} \&amp;= \bar{r} \end{aligned}$$</p>
+<h2 id="演習-256"><a class="header" href="#演習-256">演習 2.56</a></h2>
+<div class="panel-primary">
+<p>ベータ分布</p>
+<p>$$
+\operatorname{Beta}(\mu \mid a, b)=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} \tag{2.13}
+$$</p>
+<p>ガンマ分布</p>
+<p>$$
+\operatorname{Gam}(\lambda \mid a, b)=\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) \tag{2.146}
+$$</p>
+<p>およびフォン・ミーゼス分布
+$$
+p\left(\theta \mid \theta_{0}, m\right)=\frac{1}{2 \pi I_{0}(m)} \exp \left{m \cos \left(\theta-\theta_{0}\right)\right} \tag{2.179}
+$$
+を指数型分布族の形</p>
+<p>$$
+p(\mathbf{x} \mid \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathbf{T}} \mathbf{u}(\mathbf{x})\right} \tag{2.194}
+$$</p>
+<p>に変形し，これらの分布の自然パラメータを求めよ．</p>
+</div>
+<p>※ 与えられた各分布の形を無理やり指数型分布族の一般形に変形していけば求まる。パラメータの変数名は各分布にしたがって適切に置き換える。</p>
+<p>まずベータ分布は</p>
+<p>$$
+\begin{aligned}
+\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1}
+&amp;= \frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)}\exp\left{ (a-1)\ln \mu +(b-1) \ln(1-\mu) \right}
+\
+&amp;= \frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)}\exp\left{ \left(\begin{array}{c}a-1 \ b-1\end{array}\right)^{\mathrm{T}} \left(\begin{array}{c}\ln \mu \ \ln (1-\mu)\end{array}\right) \right}
+\end{aligned}
+$$</p>
+<p>これより、一般形と照らし合わせると、$\mathbf{x}\to\mu$, $\eta \to a,b$として</p>
+<p>$$
+h(\mu) = 1,\ g(a,b) = \frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)},\ \boldsymbol{\eta}(a,b) = \left(\begin{array}{c}a-1 \ b-1\end{array}\right),\ \mathbf{u}(\mu) = \left(\begin{array}{c}\ln \mu \ \ln (1-\mu)\end{array}\right)
+$$</p>
+<p>同様にしてガンマ分布は</p>
+<p>$$
+\begin{aligned}
+\frac{1}{\Gamma(a)} b^{a} \lambda^{a-1} \exp (-b \lambda) &amp;= \frac{1}{\Gamma(a)} b^{a} \exp {(a-1)\ln\lambda - b\lambda} \
+&amp;= \frac{b^a}{\Gamma(a)} \exp \left{ \begin{pmatrix}a-1 \ -b \end{pmatrix}^{\mathrm{T}} \begin{pmatrix}\ln \lambda \ \lambda \end{pmatrix}\right}
+\end{aligned}
+$$</p>
+<p>これより</p>
+<p>$$
+h(\lambda) = 1,\ g(a,b) = \frac{b^a}{\Gamma(a)},\ \boldsymbol{\eta}(a,b) = \left(\begin{array}{c}a-1 \ -b\end{array}\right),\ \mathbf{u}(\lambda) = \left(\begin{array}{c}\ln \lambda \ \lambda \end{array}\right)
+$$</p>
+<p>フォン・ミーゼス分布は</p>
+<p>$$
+\begin{aligned}
+\frac{1}{2 \pi I_{0}(m)} \exp \left{m \cos \left(\theta-\theta_{0}\right)\right}
+&amp;= \frac{1}{2 \pi I_{0}(m)} \exp { m\cos \theta \cos\theta_0 + m\sin\theta \sin\theta_0 } \
+&amp;= \frac{1}{2 \pi I_{0}(m)} \exp \left{ \left(\begin{array}{c}m\cos\theta_0 \ m\sin\theta_0 \end{array}\right)^{\mathrm{T}} \left(\begin{array}{c}\cos\theta \ \sin\theta \end{array}\right) \right}
+\end{aligned}
+$$</p>
+<p>これより、
+$$
+h(\theta) = 1,\ g(\theta_0, m) = \frac{1}{2\pi I_0(m)},\ \boldsymbol{\eta}(\theta_0, m) = \left(\begin{array}{c}m\cos\theta_0 \ m\sin\theta_0 \end{array}\right),\ \mathbf{u}(\theta) = \left(\begin{array}{c}\cos\theta \ \sin\theta \end{array}\right)
+$$</p>
+<h2 id="演習-257"><a class="header" href="#演習-257">演習 2.57</a></h2>
+<div class="panel-primary">
+<p>多変量ガウス分布は，指数型分布族の形式</p>
+<p>$$
+p(\mathbf{x} \mid \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathbf{T}} \mathbf{u}(\mathbf{x})\right} \tag{2.194}
+$$</p>
+<p>に変形できることを示し，$(2.220)–(2.223)$と同様に，$\boldsymbol{\eta}, \mathbf{u}(\mathbf{x}), h(\mathbf{x})$および$g(\boldsymbol{\eta})$の式を導出せよ．</p>
+</div>
+<p>多変量ガウス分布の式</p>
+<p>$$
+\begin{aligned}
+N(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Sigma})
+&amp;=\frac{1}{(2 \pi)^{D / 2}} \frac{1}{|\mathbf{\Sigma}|^{1 / 2}} \exp \left{-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}) \mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}}\right} \
+&amp;=\frac{1}{(2 \pi)^{D / 2}} \frac{1}{|\mathbf{\Sigma}|^{1 / 2}} \exp\left{-\frac{1}{2} \boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}\right} \exp \left{-\frac{1}{2} \mathbf{x}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{x}+\mathbf{x}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}\right}
+\
+&amp;= \frac{1}{(2 \pi)^{D / 2}} \frac{1}{|\mathbf{\Sigma}|^{1 / 2}} \exp\left{-\frac{1}{2} \boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}\right} \exp \left{-\frac{1}{2}\operatorname{Tr}[\mathbf{xx}^{\mathrm{T}}\mathbf{\Sigma}^{-1}] + \boldsymbol{\mu}^{\mathrm{T}}\mathbf{\Sigma}^{-1}\mathbf{x}\right}
+\end{aligned}
+$$
+からはじめて、指数型分布族の一般形と比較すると、
+$$
+h(\mathbf{x}) = (2\pi)^{-D/2}, g(\boldsymbol{\eta}) = |\mathbf{\Sigma}|^{-1 / 2}\exp\left{-\frac{1}{2} \boldsymbol{\mu}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}\right}
+$$
+となる。（$g(\boldsymbol{\eta})$が$\boldsymbol{\eta}$の関数になっていないことについては後述。）</p>
+<p>指数部分について$\boldsymbol{\eta}(\boldsymbol{\mu}, \mathbf{\Sigma})$と$\mathbf{u}(\mathbf{x})$の形に分離できるようにすることを考える。</p>
+<p>まず$\boldsymbol{\mu}^{\mathrm{T}}\mathbf{\Sigma}^{-1}\mathbf{x}$を作るため、</p>
+<p>$$
+\boldsymbol{\eta}(\mu, \mathbf{\Sigma})^{\mathrm{T}} =
+\begin{pmatrix}
+\mathbf{A} \
+\mathbf{\Sigma}^{-1}\boldsymbol{\mu}
+\end{pmatrix}^{\mathrm{T}},\ \mathbf{u}(\mathbf{x}) =
+\begin{pmatrix}
+\mathbf{B} \
+\mathbf{x}
+\end{pmatrix}
+$$
+とすれば（<strong>区分行列</strong>（または<strong>分割行列、ブロック行列</strong>とも）$\mathbf{A}, \mathbf{B}$の上下の位置は逆でもよい）、$\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u} = \mathbf{A}^{\mathrm{T}}\mathbf{B}+\boldsymbol{\mu}^{\mathrm{T}}\mathbf{\Sigma}^{-1}\mathbf{x}$となるので、$\exp$の第2項ができる（$\because \mathbf{\Sigma}^{-1} = (\mathbf{\Sigma}^{-1})^{\mathrm{T}}$）。</p>
+<p>問題は$\mathbf{A}^{\mathrm{T}}\mathbf{B} = \operatorname{Tr}[\mathbf{xx}^{\mathrm{T}}\mathbf{\Sigma}^{-1}]$となるような区分行列$\mathbf{A}, \mathbf{B}$を求めることである。</p>
+<p>ここで$\mathbf{xx}^{\mathrm{T}} = \mathbf{M}$とおくと</p>
+<p>$$
+\begin{aligned}
+\operatorname{Tr}[\mathbf{xx}^{\mathrm{T}}\mathbf{\Sigma}^{-1}] &amp;= \sum_{j=1}^{D}\mathbf{M}<em>j\mathbf{\Sigma}^{-1}<em>j \
+&amp;= \begin{pmatrix}\mathbf{m}</em>{1}^{\mathrm{T}} \mathbf{m}</em>{2}^{\mathrm{T}}  \ldots \mathbf{m}<em>{n}^{\mathrm{T}}\end{pmatrix} \begin{pmatrix}\boldsymbol{\sigma}</em>{1}^{-1} \ \boldsymbol{\sigma}<em>{2}^{-1} \ \vdots \ \boldsymbol{\sigma}</em>{n}^{-1}\end{pmatrix} \
+&amp;= \begin{pmatrix}\mathbf{m}<em>{1} \ \mathbf{m}</em>{2} \ \vdots \ \mathbf{m}<em>{n}\end{pmatrix}^{\mathrm{T}}\begin{pmatrix}\boldsymbol{\sigma}</em>{1}^{-1} \ \boldsymbol{\sigma}<em>{2}^{-1} \ \vdots \ \boldsymbol{\sigma}</em>{n}^{-1}\end{pmatrix} \
+&amp;= (\operatorname{vec}(\mathbf{M}))^{\mathrm{T}}(\operatorname{vec}(\mathbf{\mathbf{\Sigma}^{-1}})) \
+&amp;= (\operatorname{vec}(\mathbf{xx}^{\mathrm{T}}))^{\mathrm{T}}(\operatorname{vec}(\mathbf{\mathbf{\Sigma}^{-1}}))
+\end{aligned}
+$$</p>
+<p>ここで$\operatorname{vec}(\mathbf{A})$は任意の$m\times n$行列$\mathbf{A}$について要素$\mathbf{A} = { a_{ij} }$を$mn$次元列ベクトルに再配列したものである（※<strong>vec作用素</strong>と呼ばれる。統計のための行列代数下巻 16.2と定理16.2.2を参照。）</p>
+<blockquote>
+<p>たとえば， $m = 2$, $n = 3$ の行列$\mathbf{A}$にvec作用素を適用すると，
+$$
+\operatorname{vec}(\mathbf{A}) = \begin{pmatrix} \mathbf{a}<em>{1} \ \mathbf{a}</em>{2} \ \vdots \ \mathbf{a}<em>{n} \end{pmatrix}=\begin{pmatrix}a</em>{11} \ a_{21} \ a_{12} \ a_{22} \ a_{13} \ a_{23}\end{pmatrix}
+$$
+である</p>
+</blockquote>
+<p>これを用いると、求める$\boldsymbol{\eta}(\boldsymbol{\mu}, \mathbf{\Sigma}), \mathbf{u}(\mathbf{x})$は</p>
+<p>$$
+\boldsymbol{\eta}(\boldsymbol{\mu}, \mathbf{\Sigma}) =
+\begin{pmatrix}
+\operatorname{vec}(\mathbf{\Sigma}^{-1}) \
+\mathbf{\Sigma}^{-1}\boldsymbol{\mu}
+\end{pmatrix},\ \mathbf{u}(\mathbf{x}) =
+\begin{pmatrix}
+-\frac{1}{2}\operatorname{vec}(\mathbf{xx}^{\mathrm{T}}) \
+\mathbf{x}
+\end{pmatrix}
+$$</p>
+<p>となる。</p>
+<p>（$g(\boldsymbol{\eta})$が$\boldsymbol{\eta}$についての式になっていないけれど大丈夫か？という疑問が残るが、vecを作用させる前の$\mathbf{\Sigma}^{-1}$を$\eta_1$,$\mathbf{\Sigma}^{-1}\boldsymbol{\mu}$を$\eta_2$とすれば, $\eta_1, \eta_2$の関数として$g(\boldsymbol{\eta})$を表現することは可能なのでセーフという理屈らしい……）</p>
+<h2 id="演習-258"><a class="header" href="#演習-258">演習 2.58</a></h2>
+<div class="panel-primary">
+<p>$$
+-\nabla \ln g(\boldsymbol{\eta})=\mathbb{E}[\mathbf{u}(\mathbf{x})] \tag{2.226}
+$$</p>
+<p>は，指数型分布族では$\ln g(\boldsymbol{\eta})$の負の勾配が，$\mathbf{u}(\mathbf{x})$の期待値になることを示している．</p>
+<p>$$
+g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right} \mathrm{d} \mathbf{x}=1 \tag{2.195}
+$$</p>
+<p>の2階微分を取ることで</p>
+<p>$$
+-\nabla \nabla \ln g(\boldsymbol{\eta})=\mathbb{E}\left[\mathbf{u}(\mathbf{x}) \mathbf{u}(\mathbf{x})^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{u}(\mathbf{x})] \mathbb{E}\left[\mathbf{u}(\mathbf{x})^{\mathrm{T}}\right]=\operatorname{cov}[\mathbf{u}(\mathbf{x})] \tag{2.300}
+$$</p>
+<p>を示せ．</p>
+</div>
+<p>※ 先に<strong>スカラーについてのベクトルでの微分</strong>、<strong>ベクトルについてのベクトルでの微分</strong>のやり方を知っておく必要がある。
+$g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathrm{d}\mathbf{x} = 1$なので$g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathbf{u}(\mathbf{x})$はスカラーである。一方で$\mathbf{u}(\mathbf{x})$は列ベクトルである。$\boldsymbol{\eta}$でそれぞれを微分する場合、得られる結果はそれぞれ列ベクトルと行列になることに注意する。
+スカラーをベクトルで微分する場合は
+$$
+\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}=
+\begin{pmatrix}
+\frac{\partial f}{\partial x_{1}} \ \vdots \ \frac{\partial f}{\partial x_{D}}
+\end{pmatrix}
+$$
+これは便宜的に以下のように考えることができる。
+$$
+\frac{\partial}{\partial \mathbf{x}} f(\mathbf{x})=
+\begin{pmatrix}
+\frac{\partial}{\partial x_{1}} \ \vdots \ \frac{\partial}{\partial x_{D}}
+\end{pmatrix} f(\mathbf{x})
+$$</p>
+<p>これより、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \boldsymbol{\eta}}\underbrace{\exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x}))}<em>{\textrm{scalar}}
+&amp;= \begin{pmatrix}
+\frac{\partial}{\partial \eta</em>{1}} \ \vdots \ \frac{\partial}{\partial \eta_{D}}
+\end{pmatrix} \exp \left( \sum_{i=1}^{D}\eta_{i}u_i(\mathbf{x}) \right) \
+&amp;= \begin{pmatrix}
+\exp \left( \sum_{i=1}^{D}\eta_{i}u_i(\mathbf{x}) \right) u_1(\mathbf{x}) \ \vdots \ \exp \left( \sum_{i=1}^{D}\eta_{i}u_i(\mathbf{x}) \right) u_D(\mathbf{x})
+\end{pmatrix} \
+&amp;= \exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) \mathbf{u}(\mathbf{x})
+\end{aligned}
+$$
+となる。また、ベクトルをベクトルで微分する場合は、教科書によって微分する変数側を行ベクトルとするか、微分される関数側を行ベクトルとするか2通りの表現があるが、ここでは変数側を行ベクトルとする。微分される関数を$\mathbf{f}(\mathbf{x})$とすると
+$$
+\frac{\partial}{\partial \mathbf{x}} \mathbf{f}(\mathbf{x})=
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_{1}} &amp; \cdots &amp;\frac{\partial f_1}{\partial x_{D}} \ \vdots &amp; &amp; \vdots  \ \frac{\partial f_D}{\partial x_1} &amp; \ldots &amp; \frac{\partial f_D}{\partial x_D}
+\end{pmatrix}
+$$
+これは便宜的に以下のように考えることができる。
+$$
+\frac{\partial}{\partial \mathbf{x}} \mathbf{f}(\mathbf{x})=
+\begin{pmatrix}
+\frac{\partial}{\partial x_{1}} \ \vdots \ \frac{\partial}{\partial x_{D}}
+\end{pmatrix}
+\begin{pmatrix}
+f_1(\mathbf{x}) &amp; \ldots &amp; f_D(\mathbf{x})
+\end{pmatrix}
+$$
+これより
+$$
+\begin{aligned}
+\frac{\partial}{\partial \boldsymbol{\eta}}\underbrace{\exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x}))\mathbf{u}(\mathbf{x})}<em>{\textrm{vector}}
+&amp;= \begin{pmatrix}
+\frac{\partial}{\partial \eta</em>{1}} \ \vdots \ \frac{\partial}{\partial \eta_{D}}
+\end{pmatrix}
+\begin{pmatrix}
+\exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_1(\mathbf{x}) &amp; \ldots &amp; \exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_D(\mathbf{x})
+\end{pmatrix} \
+&amp;= \begin{pmatrix}
+\exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_1(\mathbf{x}) u_1(\mathbf{x}) &amp; \ldots &amp; \exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_D(\mathbf{x}) u_1(\mathbf{x})
+\ \vdots &amp; \ddots &amp; \vdots \
+\exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_1(\mathbf{x}) u_D(\mathbf{x}) &amp; \ldots &amp; \exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) u_D(\mathbf{x}) u_D(\mathbf{x})
+\end{pmatrix} \
+&amp;= \exp (\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})) \mathbf{u}(\mathbf{x}) \mathbf{u}(\mathbf{x})^{\mathrm{T}}
+\end{aligned}
+$$
+となる。</p>
+<p>※ PRML P.110の$(2.194), (2.195)$を用いて$(2.224)-(2.226)$までの式変形をまず検証する。</p>
+<p>$(2.195)$の両辺を$\boldsymbol{\eta}$で微分すると</p>
+<p>$$
+\begin{aligned}
+\nabla g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right} \mathrm{d}\mathbf{x}
+&amp;+g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathbf{u}(\mathbf{x}) \mathrm{d}\mathbf{x} = 0 \
+\nabla g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right} \mathrm{d}\mathbf{x} &amp;=
+-g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathbf{u}(\mathbf{x}) \mathrm{d}\mathbf{x} \
+-\frac{\nabla g(\boldsymbol{\eta})}{g(\boldsymbol{\eta})} &amp;= \frac{\int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathbf{u}(\mathbf{x}) \mathrm{d}\mathbf{x}}{\int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathrm{d}\mathbf{x}}
+\end{aligned}
+$$</p>
+<p>ここで再度$(2.195)$式を使うと</p>
+<p>$$
+-\frac{\nabla g(\boldsymbol{\eta})}{g(\boldsymbol{\eta})} = g(\boldsymbol{\eta})\int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}}\mathbf{u}(\mathbf{x})\right}\mathbf{u}(\mathbf{x}) \mathrm{d}\mathbf{x} = \mathbb{E}[\mathbf{u}(\mathbf{x})]
+$$</p>
+<p>これより$(2.226)$式の$-\nabla \ln g(\boldsymbol{\eta}) = \mathbb{E}[\mathbf{u}(\mathbf{x})]$が得られる。</p>
+<p>続いて2階微分を行うと</p>
+<p>$$
+\begin{aligned}
+-\nabla \nabla \ln g(\boldsymbol{\eta}) &amp;=\nabla g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right} \mathbf{u}(\mathbf{x})^{\mathrm{T}} \mathrm{d}\mathbf{x} \
+&amp;+g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right} \mathbf{u}(\mathbf{x}) \mathbf{u}(\mathbf{x})^{\mathrm{T}} \mathrm{d}\mathbf{x} \
+&amp;=-\mathbb{E}[\mathbf{u}(\mathbf{x})] g(\boldsymbol{\eta}) \int h(\mathbf{x}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right} \mathbf{u}(\mathbf{x})^{\mathrm{T}} \mathrm{d}\mathbf{x} \
+&amp;+\mathbb{E}\left[\mathbf{u}(\mathbf{x}) \mathbf{u}(\mathbf{x})^{\mathrm{T}}\right] \ &amp;=\mathbb{E}\left[\mathbf{u}(\mathbf{x}) \mathbf{u}(\mathbf{x})^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{u}(\mathbf{x})]\mathbb{E}\left[\mathbf{u}(\mathbf{x})^{\mathrm{T}}\right] \
+&amp;=\operatorname{cov}[\mathbf{u}(\mathbf{x})]
+\end{aligned}
+$$</p>
+<p>となり、共分散が求まる。</p>
+<h2 id="演習-259"><a class="header" href="#演習-259">演習 2.59</a></h2>
+<div class="panel-primary">
+<p>$f(x)$が正規化されていれば，密度</p>
+<p>$$
+p(x|\sigma) = \frac{1}{\sigma}f\left( \frac{x}{\sigma} \right) \tag{2.236}
+$$</p>
+<p>も正規化されていることを，$y=x/\sigma$と変数を変換することで示せ．</p>
+</div>
+<p>$\displaystyle \int f(x) dx = 1$が成立するときに$\displaystyle \int p(x | \sigma) dx = 1$であることを示せば良い。</p>
+<p>$y=x/\sigma$とすると、$dy = \frac{1}{\sigma} dx$なので</p>
+<p>$$
+\int p(x|\sigma) dx = \int \sigma \cdot \frac{1}{\sigma}f(y) dy = \int f(y) dy = 1 \hspace{1em} \left( \because \int f(x)dx = 1\right)
+$$</p>
+<p>したがって$p(x|\sigma)$が正規化されていることが示された。</p>
+<h2 id="演習-260"><a class="header" href="#演習-260">演習 2.60</a></h2>
+<div class="panel-primary">
+<p>空間$\mathbf{x}$がいくつかの固定された領域に分割されているとする．このとき，$i$番目の領域中での密度$p(\mathbf{x})$は一定の値$h_i$であり，領域$i$の体積が$\Delta_i$であるような，ヒストグラム型の密度モデルを考える．$N$個の$\mathbf{x}$の観測値集合があり，領域$i$に入る観測値が、$n_i$個であるとする．このとき，密度の正規化制約条件をラグランジュ乗数法によって実現し，${ h_i }$の最尤推定量の式を導出せよ．</p>
+</div>
+<p>※ ノンパラメトリック法に関連した問題だが、手法として最尤推定を使うので、2.2 多値変数の手法を見直しながらラグランジュ未定乗数法で対数尤度関数の最大化を目指し、${ h_i }$の最尤推定量を求めていく。しかし、その上で観測データ点$\mathbf{x}_n$が領域$j$にあることを示す変数$j(n)$を使うというのは発想として難しいと思われる。</p>
+<p>観測データ点$\mathbf{x}_n$が領域$j$にあることを示す変数$j(n)$を定義すると、点$\mathbf{x}<em>n$での密度$p(\mathbf{x})$の値は$h</em>{j(n)}$で与えられることになる。これを用いると、観測データセット$\mathbf{X} = { \mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n}$が発生する尤度関数は</p>
+<p>$$
+\prod_{n=1}^{N}p(\mathbf{x}<em>n) = \prod</em>{n=1}^{N}h_{j(n)}
+$$</p>
+<p>と表せる。すると、この対数尤度関数は</p>
+<p>$$
+\ln \prod_{n=1}^{N}h_{j(n)} = \sum_{n=1}^{N}\ln h_{j(n)}
+$$</p>
+<p>となる。</p>
+<p>${h_i}$の最尤推定解を求めるには、制約条件として$\displaystyle \sum_{i=1}^{N} h_i \Delta_i = 1$となることを考慮しつつ、$h_i$についての対数尤度関数$\displaystyle \sum_{n=1}^{N}\ln h_{j(n)}$を最大化する必要がある。すなわちラグランジュ乗数$\lambda$を使って</p>
+<p>$$
+L = \sum_{n=1}^{N}\ln h_{j(n)} + \lambda\left( \sum_{i=1}^{N} h_i \Delta_i - 1 \right)
+$$</p>
+<p>を最大化する。$h_i$についての導関数を0とおくと</p>
+<p>$$
+\frac{\partial L}{\partial h_i} = \frac{\partial}{\partial h_i}\sum_{n=1}^{N}\ln h_{j(n)}+\lambda \Delta_i = 0
+$$</p>
+<p>ここで$\displaystyle \frac{\partial}{\partial h_i}\sum_{n=1}^{N}\ln h_{j(n)}$について、$j(n)=i$となるような観測値は問題文の設定から$n_i$個なので</p>
+<p>$$
+\frac{\partial}{\partial h_i}\sum_{n=1}^{N}\ln h_{j(n)} = n_i \cdot \frac{1}{h_i}
+$$</p>
+<p>よって$\displaystyle \frac{n_i}{h_i}+\lambda \Delta_i = 0$。変形すると$n_i + \lambda \Delta_i h_i= 0$。</p>
+<p>$i$について和を取ると$\sum_i (n_i + \lambda \Delta_i h_i)= N + \lambda = 0$となるので、$\lambda = -N$が求まる。</p>
+<p>以上から、$h_i$の最尤推定解の式は</p>
+<p>$$
+h_i = -\frac{n_i}{\lambda \Delta_i} = \frac{n_i}{N\Delta_i}
+$$</p>
+<p>となる。</p>
+<h2 id="演習-261"><a class="header" href="#演習-261">演習 2.61</a></h2>
+<div class="panel-primary">
+<p>$K$近傍密度モデルでは，全空間上での積分が発散する変則分布になることを示せ．</p>
+</div>
+<p>【解法1】 ざっくりとしたやり方</p>
+<p>ある$D$次元ユークリッド空間上での未知の確率密度$p(\mathbf{x})$から観測値の集合が得られていて、この集合から$p(\mathbf{x})$の値を推定したいとする。$(2.246)$までの議論から、K近傍法では密度$p(\mathbf{x})$を推定したい点$\mathbf{x}$を中心とした半径$r$の$D$次元小球の体積$V(r)$中に$K$個のデータ点が存在する時（これは言い換えれば$r$は$N$個の観測値からなるデータセット内で$\mathbf{x}$から見て$K$番目に近い点までの距離$r$をとった時）、密度$p(\mathbf{x})$の推定値が</p>
+<p>$$
+p(\mathbf{x}) = \frac{K}{NV(r)}
+$$</p>
+<p>で与えられることになる。</p>
+<p>この問題の題意は「全空間上での積分が発散する」ことを示すことなので、$\displaystyle \int p(\mathbf{x})d\mathbf{x} \to \infty$を示せば良い。</p>
+<p>ここで、この$p(\mathbf{x})$を極座標中で考えると、もし十分に大きな半径の値$r$をとったとき、上式から$p(\mathbf{x}) \propto r^{-D}$となることがわかる。また、$D$次元直交座標から極座標に変換するときのヤコビアンは（参考：https://wasan.hatenablog.com/entry/20110321/1300733907）</p>
+<p>$$
+\begin{aligned}
+\left|\frac{\partial\left(x_{1}, \cdots, x_{D}\right)}{\partial\left(r, \theta_{1}, \cdots, \theta_{D-1}\right)}\right| &amp;=\left|\frac{\partial\left(x_{1}, \cdots, x_{D}\right)}{\partial\left(x_{1}, \rho, \theta_{2}, \cdots, \theta_{D-1}\right)}\right|\left|\frac{\partial\left(x_{1}, \rho, \theta_{2}, \cdots, \theta_{D-1}\right)}{\partial\left(r, \theta_{1}, \cdots, \theta_{D-1}\right)}\right| \ &amp;=\left{\rho^{D-2} \prod_{i=2}^{D-1}\left(\sin \theta_{i}\right)^{D-i-1}\right} r \ &amp;=r\left(r \sin \theta_{1}\right)^{D-2} \prod_{i=2}^{D-1}\left(\sin \theta_{i}\right)^{D-i-1} \quad\left(\because \rho=r \sin \theta_{1}\right) \ &amp;=r^{D-1} \prod_{i=1}^{D-1}\left(\sin \theta_{i}\right)^{D-i-1} \end{aligned}
+$$</p>
+<p>より、</p>
+<p>$$
+d\mathbf{x} = d x_{1} \cdots d x_{D}=r^{D-1}\left{\prod_{i=1}^{D-1}\left(\sin \theta_{i}\right)^{D-i-1}\right} d r d \theta_{1} \cdots d \theta_{D-1}
+$$
+となるので、</p>
+<p>$$
+\int p(\mathbf{x})d \mathbf{x} \propto \int r^{-D}d\mathbf{x} \propto \int r^{-D}r^{D-1} dr d \theta_{1} \cdots d \theta_{D-1} \propto \int r^{-1}dr = \ln r
+$$</p>
+<p>これは$r\to \infty$の無限大で$\ln r \to \infty$ となるため全空間上での積分は発散することが示された。すなわち、$K$近傍密度モデルは変則分布であることが示された。</p>
+<p>【解法2】より厳密な解き方</p>
+<p>https://qiita.com/r-takahama/items/cc03cffd49ad4732ebd3 に書かれてあります。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch03.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch03.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

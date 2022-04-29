@@ -1,0 +1,1430 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第12章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html" class="active"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第12章演習問題解答1215"><a class="header" href="#prml第12章演習問題解答1215">PRML第12章演習問題解答（〜12.15）</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-121"><a class="header" href="#演習-121">演習 12.1</a></h2>
+<div class="panel-primary">
+<p>この演習問題では，帰納法を使って，射影されたデータの分散を最大化するような$M$次元部分空間の上への線形写像がデータ共分散行列$\mathbf{S}$,</p>
+<p>$$\mathbf{S}=\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm{T}} \tag{12.3}$$</p>
+<p>の上位$M$個の固有値に属する$M$本の固有ベクトルにより定義されることを証明する．12.1節では，$M=1$に対してこの結果を証明した．今度は，ある一般的な値$M$に対してこの結果が成り立つと仮定して，その下で$M+1$次元に対しても成り立つことを示す．これを行うため，最初に，射影されたデータの分散の，ベクトル$\mathbf{u}<em>{M+1}$に対する微分を$0$とおく．$\mathbf{u}</em>{M+1}$はデータ空間における新しい方向を定義する．このとき，次の2つの制約を同時に満足しなければならない．ひとつは，$\mathbf{u}<em>{M+1}$がすでに求めたベクトル$\mathbf{u}</em>{1},\ldots,\mathbf{u}<em>{M}$と直交するという制約であり，もうひとつは単位長さに規格化しておかなければならないという制約である．この制約を取り込むためにラグランジュ乗数(付録E)を使ってみよ．そうして，新しいベクトル$\mathbf{u}</em>{M+1}$が$\mathbf{S}$の固有ベクトルであることを示すために，ベクトル$\mathbf{u}<em>{1},\ldots,\mathbf{u}</em>{M}$の正規直交性を利用せよ．最後に，固有値が大きい順に並べられているときに，その固有ベクトル$\mathbf{u}<em>{M+1}$を$\lambda</em>{M+1}$に対応する固有ベクトルに選べば，分散が最大化されることを示せ．</p>
+</div>
+<p>※P.278下部の「一般の場合として$M$次元の射影空間を考えればデータ分散行列$\mathbf{S}$の, 大きい順に$M$個の固有値$\lambda_{1},\ldots,\lambda_{M}$に対応する$M$個の固有ベクトル$\mathbf{u}<em>{1},\ldots,\mathbf{u}</em>{M}$により，射影されたデータの分散を最大にする最適な線形射影が得られる」ことを帰納法で示す。</p>
+<p>(i) $M=1$のとき、P.278の$(12.4)-(12.6)$の手続きによって$\mathbf{Su}<em>{1} = \lambda</em>{1}\mathbf{u}<em>{1}$となり、このとき$\mathbf{u}</em>{1}^{\mathrm T}\mathbf{Su}<em>{1}$は$\lambda</em>{1}$で最大となることが示される（本文参照）。</p>
+<p>(ii) $M$次元についてもP.278の議論が成立していると仮定する。すなわち、
+$$
+\mathbf{S}\mathbf{u}<em>{M} = \lambda</em>{M}\mathbf{u}<em>{M}
+$$
+である。この条件下で、$\mathbf{u}</em>{M+1}\mathbf{S}\mathbf{u}<em>{M+1}$を$\mathbf{u}</em>{M+1}$に対して最大化したとき、$\mathbf{S}\mathbf{u}<em>{M+1} = \lambda</em>{M+1}\mathbf{u}<em>{M+1}$が成立することを示す。（この式から$\lambda</em>{M+1}$は$\lambda_{1},\ldots,\lambda_{M}$に次ぐ最大の$\mathbf{S}$の固有値となり、$\mathbf{u}<em>{M+1}\mathbf{S}\mathbf{u}</em>{M+1} = \lambda_{M+1}$となることは示される。）</p>
+<p>2つの制約をラグランジュ未定乗数法を用いて導入する。1つは$\mathbf{u}<em>{M+1}$が正規直交基底であることの
+$$
+\mathbf{u}</em>{M+1}^{\mathrm T}\mathbf{u}<em>{M+1} = 1
+$$
+であり、もう1つは$\mathbf{u}</em>{M+1}$がすでに求めたベクトル$\mathbf{u}<em>{1},\ldots,\mathbf{u}</em>{M}$と直交することの
+$$
+\mathbf{u}<em>{i}^{\mathrm T}\mathbf{u}</em>{M+1} = 0 \quad \textrm{for} \quad i=1,\ldots, M
+$$
+である。これらの制約をそれぞれ未定乗数$\lambda, \eta_{i}$を用いてラグランジュ関数にすると</p>
+<p>$$
+\mathbf{u}<em>{M+1}\mathbf{S}\mathbf{u}</em>{M+1} + \lambda_{M+1}\left( 1-\mathbf{u}<em>{M+1}^{\mathrm T}\mathbf{u}</em>{M+1} \right) + \sum_{i=1}^{M}\eta_{i}\mathbf{u}<em>{i}^{\mathrm T}\mathbf{u}</em>{M+1}
+$$</p>
+<p>この関数の停留点を求める。$\mathbf{u}_{M+1}$についてこのラグランジュ関数を微分すると</p>
+<p>$$
+2\mathbf{S}\mathbf{u}<em>{M+1} - 2\lambda</em>{M+1}\mathbf{u}<em>{M+1} + \sum</em>{i=1}^{M}\eta_{i}\mathbf{u}_{i} = 0
+$$</p>
+<p>この式に左から$\mathbf{u}_{j}^{\mathrm T}\ (j=1,\ldots, M)$をかけると、第2項は正規直交基底の性質から$0$となる。第1項については</p>
+<p>$$
+\begin{aligned}
+\mathbf{u}<em>{j}^{\mathrm T}\mathbf{S}\mathbf{u}</em>{M+1} &amp;= \mathbf{u}<em>{M+1}^{\mathrm T}\mathbf{S}\mathbf{u}</em>{j} \quad (\because \textrm{scholar}) \
+&amp;=\mathbf{u}<em>{M+1}^{\mathrm T}\lambda</em>{j}\mathbf{u}_{j} \quad (\because \textrm{仮定}) \
+&amp;=0
+\end{aligned}
+$$</p>
+<p>より$0$となる。よって第3項について、$i \neq j$では$0$, $i=j$では$\eta_{j}$となるので、</p>
+<p>$$
+\eta_{i} = 0 \quad \textrm{for} \quad i=1,\ldots, M
+$$</p>
+<p>となる。すなわち停留点は</p>
+<p>$$
+\mathbf{S}\mathbf{u}<em>{M+1} = \lambda</em>{M+1}\mathbf{u}_{M+1}
+$$</p>
+<p>のときに得られる。以上(i), (ii)から任意の$M$次元について$\mathbf{S}\mathbf{u}<em>{M} = \lambda</em>{M}\mathbf{u}<em>{M}$が成立するときに射影された分散$\mathbf{u}</em>{M}^{\mathrm T}\mathbf{S}\mathbf{u}_{M}$が最大化されることが帰納的に示された。</p>
+<p>最後に、$\mathbf{u}_{M+1}^{\mathrm T}$を左からかければ</p>
+<p>$$
+\mathbf{u}<em>{M+1}^{\mathrm T}\mathbf{S}\mathbf{u}</em>{M+1} = \lambda_{M+1}
+$$</p>
+<p>がただちに得られ、$\mathbf{u}<em>{M+1}$ベクトルに対して射影されたデータの分散$\mathbf{u}</em>{M+1}^{\mathrm T}\mathbf{S}\mathbf{u}<em>{M+1}$は$\lambda</em>{M+1}$で最大値をとることが得られる。</p>
+<h2 id="演習-122"><a class="header" href="#演習-122">演習 12.2</a></h2>
+<div class="panel-primary">
+<p>$$
+J=\frac{1}{N} \sum_{n=1}^{N} \sum_{i=M+1}^{D}\left(\mathbf{x}<em>{n}^{\mathrm{T}} \mathbf{u}</em>{i}-\overline{\mathbf{x}}^{\mathrm{T}} \mathbf{u}<em>{i}\right)^{2}=\sum</em>{i=M+1}^{D} \mathbf{u}<em>{i}^{\mathrm{T}} \mathbf{S} \mathbf{u}</em>{i} \tag{12.15}
+$$</p>
+<p>で与えられる主成分分析の歪み尺度$J$の，正規直交条件</p>
+<p>$$
+\mathbf{u}<em>{i}^{\mathrm T}\mathbf{u}</em>{j} = \delta_{ij} \tag{12.7}
+$$</p>
+<p>の下での$\mathbf{u}<em>{i}$に対する最小値は，$\mathbf{u}</em>{i}$がデータ共分散行列$\mathbf{S}$の固有ベクトルであるときに得られることを示せ．これを行うために，ラグランジュ乗数の行列$\mathbf{H}$を導入し制約条件のそれぞれを取り込む．その結果，歪み尺度の式は修正を受け，行列形式で表すと</p>
+<p>$$\tilde{J}=\operatorname{Tr}\left{\widehat{\mathbf{U}}^{\mathrm{T}} \mathbf{S} \widehat{\mathbf{U}}\right}+\operatorname{Tr}\left{\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm{T}} \widehat{\mathbf{U}}\right)\right} \tag{12.93}$$</p>
+<p>のようになる．ここで，$\widehat{\mathbf{U}}$は$D \times (D - M)$行列で，その列ベクトルは$\mathbf{u}_{i}$で与えられる．$\widehat{\mathbf{U}}$についてこの$\tilde{J}$を最小化しその解が$\mathbf{S\widehat{U}}=\widehat{\mathbf{U}} \mathbf{H}$を満たすことを示せ．明らかに，可能なひとつの解は，$\widehat{\mathbf{U}}$の列ベクトルが$\mathbf{S}$の固有ベクトルとなっている場合である．その場合， $\mathbf{H}$は対応する固有値を持った対角行列となる．一般的な解を得るために，$\mathbf{H}$が対称行列と仮定できることを示し，その固有ベクトル展開を用いることで，$\mathbf{S\widehat{U}}=\widehat{\mathbf{U}} \mathbf{H}$の一般解が，$\mathbf{U}$の列ベクトルを$\mathbf{S}$の固有ベクトルに選ぶという特解と同じ$\tilde{J}$の値を与えることを示せ．これらの解は等価なので固有ベクトルの方の解を選んだ方が楽である．</p>
+</div>
+<p>※ P.280下部の議論は$M=1, D=2$の特別な場合であり、これを任意の$D$と$D&lt;M$条件下に拡張する。</p>
+<p>（前半）
+演習12.1のように、ラグランジュ未定乗数法を用いてラグランジュ関数$\tilde{J}$を定義する。</p>
+<p>$$
+\tilde{J} = \underbrace{\sum_{i=M+1}^D \mathbf{u}<em>{i} \mathbf{S} \mathbf{u}</em>{i}}<em>{歪み尺度J} +
+\underbrace{\sum</em>{i=M+1}^D \lambda_i (1-\mathbf{u}<em>{i}^{\mathrm T} \mathbf{u}</em>{i})}<em>{\mathbf{u}</em>{i} が規格化されている条件} +
+\underbrace{\sum_{i=M+1}^{D-1}\sum_{j=i+1}^{D}\mu_{ij}(-\mathbf{u}<em>{j}\mathbf{u}</em>{i})}<em>{\mathbf{u}</em>{j} と \mathbf{u}_{i} が直交している条件}
+$$</p>
+<p>これを展開していくと$(12.93)$が得られることを示す。問題文の設定から</p>
+<p>$$
+\widehat{\mathbf{U}} = \begin{pmatrix} \mathbf{u}<em>{M+1} &amp; \mathbf{u}</em>{M+2} &amp; \cdots &amp; \mathbf{u}_{D} \end{pmatrix}
+$$</p>
+<p>ラグランジュ乗数の行列$\mathbf{H}$を以下のように設定する。</p>
+<p>$$
+\mathbf{H}=\begin{pmatrix}
+\lambda_{M+1} &amp; \frac{1}{2} \mu_{M+1, M+2} &amp; \ldots &amp; \frac{1}{2} \mu_{M+1, D} \
+\frac{1}{2} \mu_{M+1, M+2} &amp; \lambda_{M+2} &amp; \ldots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+\frac{1}{2} \mu_{M+1, D} &amp; \ldots &amp; \ldots &amp; \lambda_{D}
+\end{pmatrix} \quad (\mathbf{H}は対称行列)
+$$</p>
+<p>まず$(12.93)$の第1項の歪み尺度$\displaystyle \sum_{i=M+1}^D \mathbf{u}<em>{i} \mathbf{S} \mathbf{u}</em>{i}$が$\operatorname{Tr}\left{\widehat{\mathbf{U}}^{\mathrm{T}} \mathbf{S} \widehat{\mathbf{U}}\right}$と一致することを示す。これは</p>
+<p>$$
+\begin{aligned}
+\hat{\mathbf{U}}^{\mathrm T} \mathbf{S} \hat{\mathbf{U}} &amp;=\begin{pmatrix}
+\mathbf{u}<em>{M+1}^{\mathrm T} \
+\mathbf{u}</em>{M+2}^{\mathrm T} \
+\vdots \
+\mathbf{u}<em>{D}^{\mathrm T}
+\end{pmatrix} \mathbf{S} \begin{pmatrix} \mathbf{u}</em>{M+1} &amp; \mathbf{u}<em>{M+2} &amp; \ldots &amp;\mathbf{u}</em>{D}
+\end{pmatrix}\
+&amp;=\begin{pmatrix}
+\mathbf{u}<em>{M+1}^{\mathrm T} \
+\mathbf{u}</em>{M+2}^{\mathrm T} \
+\vdots \
+\mathbf{u}<em>{D}^{\mathrm T}
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{S} \mathbf{u}</em>{M+1} &amp; \mathbf{S} \mathbf{u}<em>{M+2} &amp; \ldots &amp; \mathbf{S} \mathbf{u}</em>{D}
+\end{pmatrix}
+\
+&amp;=\begin{pmatrix}
+\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{S u}</em>{M+1} &amp; \mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{S u}</em>{M+2} &amp; \ldots &amp; \mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{S u}</em>{D} \
+\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{S u}</em>{M+1} &amp; \mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{S u}</em>{M+2} &amp; \ldots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+\mathbf{u}<em>{D}^{\mathrm T} \mathbf{S u}</em>{M+1} &amp; \ldots &amp; \ldots &amp; \mathbf{u}<em>{D}^{\mathrm T} \mathbf{S u}</em>{D}
+\end{pmatrix}
+\end{aligned}
+$$</p>
+<p>これより$\displaystyle \sum_{i=M+1}^D \mathbf{u}<em>{i} \mathbf{S} \mathbf{u}</em>{i} = \operatorname{Tr}\left{\widehat{\mathbf{U}}^{\mathrm{T}} \mathbf{S} \widehat{\mathbf{U}}\right}$が示された。</p>
+<p>続いて残りを計算する</p>
+<p>$$
+\begin{aligned}
+&amp;\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right) \
+=\ &amp;\mathbf{H}\left(\mathbf{I}-\begin{pmatrix}
+\mathbf{u}<em>{M+1}^{\mathrm T} \
+\mathbf{u}</em>{M+2}^{\mathrm T} \
+\vdots \
+\mathbf{u}<em>{D}^{\mathrm T}
+\end{pmatrix}\begin{pmatrix}
+\mathbf{u}</em>{M+1} &amp; \mathbf{u}<em>{M+2} &amp; \ldots &amp; \mathbf{u}</em>{D}
+\end{pmatrix}\right)\
+=\ &amp; \mathbf{H}\left(\begin{pmatrix}
+1 &amp; 0 &amp; \ldots &amp; 0 \
+0 &amp; 1 &amp; \ldots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+0 &amp; \ldots &amp; \ldots &amp; 1
+\end{pmatrix}-\begin{pmatrix}
+\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; \mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+2} &amp; \ldots &amp; \mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{D} \
+\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; \mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+2} &amp; \ldots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+\mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; \ldots &amp; \ldots &amp; \mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{D}
+\end{pmatrix}\right) \
+=\ &amp;\begin{pmatrix}
+\lambda_{M+1} &amp; \frac{1}{2} \mu_{M+1, M+2} &amp; \cdots &amp; \frac{1}{2} \mu_{M+1, D} \
+\frac{1}{2} \mu_{M+1, M+2} &amp; \lambda_{M+2} &amp; \cdots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+\frac{1}{2} \mu_{M+1, D} &amp; \cdots &amp; \cdots &amp; \lambda_{D}
+\end{pmatrix}\begin{pmatrix}
+1-\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; -\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+2} &amp; \cdots &amp; -\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{D} \
+-\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; 1-\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+2} &amp; \cdots &amp; \vdots \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+-\mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{M+1} &amp; \cdots &amp; \cdots &amp; 1-\mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{D}
+\end{pmatrix}
+\end{aligned}
+$$</p>
+<p>これより</p>
+<p>$$
+\begin{aligned}
+&amp; \operatorname{Tr}\left(\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right)\right) \
+=\ &amp; \lambda_{M+1}\left(1-\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+1}\right)+\frac{1}{2} \mu_{M+1, M+2}\left(-\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+1}\right)+\ldots+\frac{1}{2} \mu_{M+1, D}\left(-\mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{M+1}\right) \
+&amp;+\frac{1}{2} \mu_{M+1, M+2}\left(-\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{M+2}\right)+\lambda_{M+2}\left(1-\mathbf{u}<em>{M+2}^{\mathrm T} \mathbf{u}</em>{M+2}\right)+\ldots \
+&amp; \quad\quad\quad \vdots \
+&amp;+\frac{1}{2} \mu_{M+1, D}\left(-\mathbf{u}<em>{M+1}^{\mathrm T} \mathbf{u}</em>{D}\right)+\ldots+\lambda_{D}\left(1-\mathbf{u}<em>{D}^{\mathrm T} \mathbf{u}</em>{D}\right) \
+=\ &amp; \sum_{i=M+1}^{D} \lambda_{i}\left(1-\mathbf{u}<em>{i}^{\mathrm T} \mathbf{u}</em>{i}\right)+\sum_{i=M+1}^{D-1} \sum_{j=i+1}^{D} \mu_{i j}\left(-\mathbf{u}<em>{j}^{\mathrm T} \mathbf{u}</em>{i}\right)
+\end{aligned}
+$$</p>
+<p>以上から$(12.93)$式が示された。</p>
+<p>（2）「$\widehat{\mathbf{U}}$についてこの$\tilde{J}$を最小化しその解が$\mathbf{S\widehat{U}}=\widehat{\mathbf{U}} \mathbf{H}$を満たすことを示せ」</p>
+<p>$(12.93)$式を$\widehat{\mathbf{U}}$で微分すると、Matrix Cookbookの公式(108),(112)を使って</p>
+<p>$$
+\begin{aligned}
+\frac{\partial\tilde{J}}{\partial \widehat{\mathbf{U}}}&amp;=
+\frac{\partial}{\partial \widehat{\mathbf{U}}}\operatorname{Tr}\left{\widehat{\mathbf{U}}^{\mathrm{T}} \mathbf{S} \widehat{\mathbf{U}}\right}+\frac{\partial}{\partial \widehat{\mathbf{U}}}\operatorname{Tr}\left{\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm{T}} \widehat{\mathbf{U}}\right)\right} \
+&amp;=(\mathbf{S} \widehat{\mathbf{U}}+\mathbf{S}^{\mathrm T} \widehat{\mathbf{U}}) - (\widehat{\mathbf{U}}\mathbf{H}^{\mathrm T}+\widehat{\mathbf{U}}\mathbf{H}) \
+&amp;=2\mathbf{S} \widehat{\mathbf{U}} - 2\widehat{\mathbf{U}}\mathbf{H}
+\end{aligned}
+$$</p>
+<p>これを$0$とすれば、$\mathbf{S} \widehat{\mathbf{U}} = \widehat{\mathbf{U}}\mathbf{H}$を満たす$\widehat{\mathbf{U}}$が解となり、このとき$\tilde{J}$は最小値
+$$
+\begin{aligned} \tilde{J} &amp;=\operatorname{Tr}\left(\widehat{\mathbf{U}}^{\mathrm T} \mathbf{S} \widehat{\mathbf{U}}\right)+\operatorname{Tr}\left(\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right)\right) \ &amp;=\operatorname{Tr}\left(\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}} \mathbf{H}\right)+\operatorname{Tr}\left(\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right)\right) \ &amp;=\operatorname{Tr}(\mathbf{H})=\sum_{i=M+1}^{D} \lambda_{i} \end{aligned}
+$$
+を得る。これはすなわち$\mathbf{S}$の固有値のうち大きい順から$M+1\sim D$番目の固有値となるときに最小となる。</p>
+<p>(3) 一般的な解を得るために，$\mathbf{H}$が対称行列と仮定できることを示し，その固有ベクトル展開を用いることで，$\mathbf{S\widehat{U}}=\widehat{\mathbf{U}} \mathbf{H}$の一般解が，$\mathbf{U}$の列ベクトルを$\mathbf{S}$の固有ベクトルに選ぶという特解と同じ$\tilde{J}$の値を与えることを示せ．</p>
+<p>$\mathbf{H}$の一般解を議論するために、すでに上で設定した対称行列$\mathbf{H}$を用いる。$\mathbf{\Phi}$を$(D-M)\times(D-M)$の対角行列、すなわち$\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi} = \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T}=\mathbf{I}$を満たす行列とすれば、<strong>任意の対称行列の異なる固有値に対応する固有ベクトルは直交する</strong>ので、</p>
+<p>$$
+\mathbf{H\Psi} = \mathbf{\Psi L}
+$$</p>
+<p>と書ける。ここで$\mathbf{L}$は対角成分が$\mathbf{H}$の固有値となっている対角行列である（※ここでは固有値は縮退している可能性がある）。</p>
+<p>$\mathbf{S} \widehat{\mathbf{U}} = \widehat{\mathbf{U}}\mathbf{H}$に右から$\mathbf{\Psi}$をかけ、新たに$\widetilde{\mathbf{U}} = \widehat{\mathbf{U}}\mathbf{\Psi}$を定義すると</p>
+<p>$$
+\mathbf{SU\Psi} =\widehat{\mathbf{U}} \mathbf{H\Psi} =\widehat{\mathbf{U}} \mathbf{\Psi L} \
+\mathbf{S}\widetilde{\mathbf{U}} = \widetilde{\mathbf{U}}\mathbf{L}
+$$</p>
+<p>となる。よって$\widetilde{\mathbf{U}}$の列ベクトルは$\mathbf{S}$の固有ベクトルになり、$\mathbf{L}$の対角成分が固有値となる。</p>
+<p>最後に$\mathbf{S}\widetilde{\mathbf{U}} = \widetilde{\mathbf{U}}\mathbf{L}$を用いたときに$\tilde{J}$の最小値が$\mathbf{S} \widehat{\mathbf{U}} = \widehat{\mathbf{U}}\mathbf{H}$を用いたときと等価になることを示す。</p>
+<p>$$
+\begin{aligned}
+\tilde{J} &amp;=\operatorname{Tr}\left(\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right)+\operatorname{Tr}\left(\mathbf{H}\left(\mathbf{I}-\widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}}\right)\right) \
+&amp;=\operatorname{Tr}\left(\widehat{\mathbf{U}}^{\mathrm T} \mathbf{S} \widehat{\mathbf{U}} \mathbf{\Psi \Psi}^{\mathrm T}\right)+\operatorname{Tr}\left(\mathbf{H \Psi \Psi}^{\mathrm T}\right)-\operatorname{Tr}\left(\mathbf{H} \widehat{\mathbf{U}}^{\mathrm T} \widehat{\mathbf{U}} \mathbf{\Psi \Psi}^{\mathrm T}\right) \
+&amp;=\operatorname{Tr}\left(\widetilde{\mathbf{U}}^{\mathrm T} \mathbf{S} \widetilde{\mathbf{U}}\right)+\operatorname{Tr}\left(\mathbf{\Psi S \Psi}^{\mathrm T}\right)-\operatorname{Tr}\left(\mathbf{L \Psi}^{\mathrm T} \widehat{\mathbf{U}}^{\mathrm T} \widetilde{\mathbf{U}}\right) \
+&amp;=\operatorname{Tr}(\mathbf{L})+\operatorname{Tr}(\mathbf{L})-\operatorname{Tr}(\mathbf{L}) \
+&amp;=\operatorname{Tr}(\mathbf{L}) \
+&amp;=\sum_{i=1}^{D-m} \lambda_{i}
+\end{aligned}
+$$</p>
+<p>これより、$\tilde{J}$を最小化するためには小さい順に$\mathbf{S}$の$D-m$個の固有値を選べば良い。この結果は一般的な対称行列$\mathbf{H}$を用いた場合の値と等価である。</p>
+<h2 id="演習-123"><a class="header" href="#演習-123">演習 12.3</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbf{u}<em>{i}=\frac{1}{\left(N \lambda</em>{i}\right)^{1 / 2}} \mathbf{X}^{\mathrm{T}} \mathbf{v}_{i} \tag{12.30}
+$$</p>
+<p>で定義される固有ベクトルが単位長さに規格化されていることを示せ．ただし固有ベクトル$\mathbf{v}_{i}$は単位長さを持っていると仮定する．</p>
+</div>
+<p>$| \mathbf{u}<em>{i}|^{2}=1$であることを示せば良い。P.286の$\mathbf{v}</em>{i} = \mathbf{Xu}_{i}$の定義と</p>
+<p>$$
+\frac{1}{N} \mathbf{X X}^{\mathrm{T}} \mathbf{v}<em>{i}=\lambda</em>{i} \mathbf{v}_{i} \tag{12.28}
+$$</p>
+<p>を利用する。</p>
+<p>$$
+\begin{aligned}
+\mathbf{u}<em>{i}^{\mathrm T} \mathbf{u}</em>{i} &amp;=\left(\frac{1}{\left(N \lambda_{i}\right)^{1/2}}\right)^{2} \mathbf{v}<em>{i}^{\mathrm T} \mathbf{X} \mathbf{X}^{\mathrm T} \mathbf{v}</em>{i} \
+&amp;=\frac{1}{N \lambda_{i}} \mathbf{v}<em>{i}^{\mathrm T}\left(N \lambda</em>{i}\right) \mathbf{v}<em>{i} \quad (\because(12.28)) \
+&amp;=\mathbf{v}</em>{i}^{\mathrm T} \mathbf{v}<em>{i}=1 \quad \left(\because\left|\mathbf{v}</em>{i}\right|^{2}=1\right)
+\end{aligned}
+$$</p>
+<p>以上で示された。</p>
+<h2 id="演習-124"><a class="header" href="#演習-124">演習 12.4</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルの潜在変数の空間分布
+$$
+p(\mathbf{z})=\mathcal{N}(\mathbf{z} \mid \mathbf{0}, \mathbf{I}) \tag{12.31}
+$$
+では，平均$0$で単位共分散のものが仮定されている．それを，より一般的なガウス分布$\mathcal{N}(\mathbf{z}\mid \mathbf{m},\mathbf{\Sigma})$で置き換えるものとしよう．モデルのパラメータの再定義により，$\mathbf{m}$と$\mathbf{\Sigma}$の任意の選択が，観測変数についての同ーの周辺分布$p(\mathbf{x})$を導くことを示せ．</p>
+</div>
+<p>$(2.113)-(2.115)$式より、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}) &amp;= \mathcal{N}(\mathbf{Wm} + \boldsymbol{\mu}, \sigma^2\mathbf{I} + \mathbf{W\Sigma W}^T)
+\end{aligned}
+$$</p>
+<p>ここで、</p>
+<p>$$
+\begin{aligned}
+\tilde{\boldsymbol{\mu}} &amp;= \mathbf{Wm} + \boldsymbol{\mu} \
+\tilde{\mathbf{W}} &amp;= \mathbf{W\Sigma}^{1/2}
+\end{aligned}
+$$</p>
+<p>とおくと、$p(\mathbf{x})$は</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}) &amp;= \mathcal{N}(\tilde{\boldsymbol{\mu}}, \sigma^2\mathbf{I} + \tilde{\mathbf{W}}\tilde{\mathbf{W}}^{T})
+\end{aligned}
+$$
+と表すことができ、これは</p>
+<p>$$
+p(\mathbf{x})=\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{C}) \tag{12.35}
+$$</p>
+<p>と同じ形である。</p>
+<h2 id="演習-125"><a class="header" href="#演習-125">演習 12.5</a></h2>
+<div class="panel-primary">
+<p>$\mathbf{x}$を$D$次元のガウス分布$\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu},\mathbf{\Sigma})$に従う確率変数とし，$\mathbf{y}$を$M \times D$行列$\mathbf{A}$によって$\mathbf{y} = \mathbf{Ax} + \mathbf{b}$で定義される$M$次元確率変数とする．$\mathbf{y}$もまたガウス分布を持つことを示し，その平均と分散に対する表現を見出せ．$M \lt D$，$M = D$および$M \gt D$の各場合に対し，そのガウス分布の形がどうなるか考察せよ．</p>
+</div>
+<p>$\mathbf{A}$の「第$i$行、第$j$列」成分を$a_{ij}$、$\mathbf{\Sigma}$の「第$i$行、第$j$列」成分を$\sigma_{ij}$とおく。以降は、$\mathbf{A}$が正方行列ではないケースも包含した議論（のつもり）。</p>
+<p>ガウス分布の線型性から、線型結合で得られる$\mathbf{y}$がガウス分布に従うことは明らか。
+また、期待値に関する線型性から、
+$$
+\begin{aligned}
+\mathbb{E}[\mathbf{A}\mathbf{x}+\mathbf{b}]
+= \mathbf{A} \mathbb{E}[\mathbf{x} ] +\mathbf{b}
+= \mathbf{A} \boldsymbol{\mu} +\mathbf{b}
+\end{aligned}
+$$</p>
+<p>である。</p>
+<p>共分散行列$\mathbb{V}[\mathbf{Ax}+\mathbf{b}]=\mathbb{V}[\mathbf{Ax}]$の「第$i$行、第$j$列」成分に関しては、</p>
+<p>$$
+\begin{aligned}
+\big( \mathbb{V}[\mathbf{Ax}]\big)<em>{ij}
+&amp;= {\rm E} \left[ \sum</em>{k=1}^D a_{ik}x_k \sum_{l=1}^D a_{jl}x_l \right] - {\rm E} \left[ \sum_{k=1}^D a_{ik}x_k \right] E\left[ \sum_{l=1}^D a_{jl}x_l \right] \
+&amp;=  \sum_{k,l=1}^D a_{ik}a_{jl}{\rm E} \left[x_k x_l \right] -  \sum_{k,l=1}^D a_{ik} a_{jl}{\rm E} \left[ x_k \right]E\left[ x_l \right] \
+&amp;=  \sum_{k,l=1}^D a_{ik}a_{jl} \left( {\rm E}\left[x_k x_l \right] -  {\rm E} \left[ x_k \right]E\left[ x_l \right]
+\right)\
+&amp;=  \sum_{k,l=1}^D a_{ik}a_{jl} \sigma_{kl}\
+&amp;= \left( \mathbf{A}\boldsymbol{\Sigma} \mathbf{A}^{\rm T} \right)_{ij}
+\end{aligned}
+$$</p>
+<p>であり、この式変形は$\mathbf{A}$が正方行列でなくても成立する・・・ような気がするのですが。</p>
+<h2 id="演習-126"><a class="header" href="#演習-126">演習 12.6</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルに対する有向確率グラフを描け．有向確率グラフについては12.2節に説明がある．観測変数$\mathbf{x}$の各要素は明示的に分離したノードとして示されるはずであり，したがって確率的主成分分析モデルでは，8.2.2節で議論したナイーブベイズモデルと同様の独立構造を持っていることを確かめよ．</p>
+</div>
+<p>確率的主成分分析モデルの有向確率グラフは図12.10のようになり，この図中のパラメータを省略し確率変数$z, x$のみに着目すると，8.2.2節の図8.24のナイーブベイズの有向グラフと同一の構造になることがわかる．このことから同様な独立構造を持っていることがわかる．
+<img src="https://i.imgur.com/tcwfg97.png" alt="" /></p>
+<h2 id="演習-127"><a class="header" href="#演習-127">演習 12.7</a></h2>
+<div class="panel-primary">
+<p>一般的な分布の平均と分散に対する</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[x] &amp;=\mathbb{E}<em>{y}\left[\mathbb{E}</em>{x}[x \mid y]\right] &amp; (2.270)\ \operatorname{var}[x] &amp;=\mathbb{E}<em>{y}\left[\operatorname{var}</em>{x}[x \mid y]\right]+\operatorname{var}<em>{y}\left[\mathbb{E}</em>{x}[x \mid y]\right] &amp; (2.271)
+\end{aligned}
+$$</p>
+<p>の結果を利用して。確率的主成分分析モデルの周辺分布$p(\mathbf{x})$に対する結果</p>
+<p>$$
+p(\mathbf{x})=\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{C}) \tag{12.35}
+$$
+を導け．</p>
+</div>
+<p>※
+$$
+\begin{aligned}
+\mathbb{E}[\mathbf{x}] &amp;= \mathbb{E}_z[\mathbb{E}_x[\mathbf{x}|\mathbf{z}]] \notag \
+&amp;= \mathbb{E}_z[\mathbf{Wz} + \mathbf{\mu}] \notag \
+&amp;= \mathbf{\mu}. \notag
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+cov[\mathbf{x}] &amp;= \mathbb{E}_z[cov_x[\mathbf{x}|\mathbf{z}]] + cov_z[\mathbb{E}_x[\mathbf{x}|\mathbf{z}]] \notag \
+&amp;= \mathbb{E}_z[\sigma^2\mathbf{I}] + cov_z[\mathbf{Wz} + \mathbf{\mu}] \notag \
+&amp;= \sigma^2\mathbf{I} + \mathbb{E}_z[\mathbf{Wz}\mathbf{z}^T\mathbf{W}^T] \notag \
+&amp;= \sigma^2\mathbf{I} + \mathbf{W}\mathbf{W}^T \notag
+\end{aligned}
+$$</p>
+<h2 id="演習-128"><a class="header" href="#演習-128">演習 12.8</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{x} \mid \mathbf{y})=\mathcal{N}\left(\mathbf{x} \mid \mathbf{\Sigma}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \boldsymbol{\mu}\right}, \mathbf{\Sigma}\right) \tag{2.116}
+$$
+の結果を利用して確率的主成分分析モデルで出てくる事後分布$p(\mathbf{z}\mid \mathbf{x})$が</p>
+<p>$$
+p(\mathbf{z} \mid \mathbf{x})=\mathcal{N}\left(\mathbf{z} \mid \mathbf{M}^{-1} \mathbf{~W}^{\mathbf{T}}(\mathbf{x}-\boldsymbol{\mu}), \sigma^{2} \mathbf{M}^{-1}\right) \tag{12.42}
+$$</p>
+<p>で与えられることを示せ．</p>
+</div>
+<p>※
+(2.113), (2.114), (2.116), (2.117), (12.31), (12.32)式より、
+$$
+\begin{aligned}
+p(\mathbf{z}|\mathbf{x}) &amp;= \mathcal{N}(\mathbf{z}|(\mathbf{I} + \sigma^{-2}\mathbf{W}^T\mathbf{W})^{-1}\mathbf{W}^T\sigma^{-2}\mathbf{I}(\mathbf{x} - \mathbf{\mu}), (\mathbf{I} + \sigma^{-2}\mathbf{W}^T\mathbf{W})^{-1}) \notag
+\end{aligned}
+$$</p>
+<p>ここで、
+$$
+\begin{aligned}
+(\mathbf{I} + \sigma^{-2}\mathbf{W}^T\mathbf{W})^{-1} &amp;= (\sigma^{-2}\mathbf{M})^{-1}\ \ (\because \mathrm{Eq}(12.41)) \notag \
+&amp;= \sigma^2\mathbf{M}^{-1}, \notag
+\end{aligned}
+$$</p>
+<p>であることから、
+$$
+\begin{aligned}
+p(\mathbf{z}|\mathbf{x}) &amp;= \mathcal{N}(\mathbf{z}|\mathbf{M}^{-1}\mathbf{W}^T(\mathbf{x} - \mathbf{\mu}), \sigma^2\mathbf{M}^{-1}) \notag
+\end{aligned}
+$$</p>
+<h2 id="演習-129"><a class="header" href="#演習-129">演習 12.9</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルの対数尤度
+$$
+\begin{aligned}
+\ln p\left(\mathbf{X} \mid \boldsymbol{\mu}, \mathbf{W}, \sigma^{2}\right) &amp;= \sum_{n=1}^{N} \ln p\left(\mathbf{x}<em>{n} \mid \mathbf{W}, \boldsymbol{\mu}, \sigma^{2}\right) \
+&amp;=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln |\mathbf{C}|-\frac{1}{2} \sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}} \mathbf{C}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)
+\end{aligned}
+\tag{12.43}
+$$
+をパラメータ$\boldsymbol{\mu}$に対して最大化すると，$\boldsymbol{\mu}_{\mathrm{ML}}=\overline{\mathbf{x}}$の結果になることを確かめよ．ただし$\overline{\mathbf{x}}$はデータベクトルの平均である．</p>
+</div>
+<p>対数尤度を$\ln L = \ln p(\mathbf{X}\mid \boldsymbol{\mu}, \mathbf{W}, \sigma^2)$とし、$\frac{\partial \ln L}{\partial \boldsymbol{\mu}} = 0$を求める。$(12.36)$の定義より$\mathbf{C}=\mathbf{W} \mathbf{W}^{\mathrm{T}}+\sigma^{2} \mathbf{I}$である。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial \ln L}{\partial \boldsymbol{\mu}} &amp;=-\frac{1}{2} \sum_{n=1}^{N} \frac{\partial}{\partial \boldsymbol{\mu}}\left(\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm T} \mathbf{C}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)\right) \
+&amp;=-\frac{1}{2} \sum_{n=1}^{N}\left(-2 \mathbf{C}^{-1}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)\right) \
+&amp;=-\sum</em>{n=1}^{N} \mathbf{C}^{-1} \boldsymbol{\mu}+\sum_{n=1}^{N} \mathbf{C}^{-1} \mathbf{x}<em>{n} \
+&amp;= -N\mathbf{C}^{-1} \boldsymbol{\mu}+\sum</em>{n=1}^{N} \mathbf{C}^{-1} \mathbf{x}_{n}=0
+\end{aligned}
+$$</p>
+<p>これを解くと</p>
+<p>$$
+\boldsymbol{\mu} = \frac{1}{N}\sum_{n=1}^{N}\mathbf{x}_{n} = \overline{\mathbf{x}}
+$$</p>
+<p>すなわちデータベクトルの平均が得られた。</p>
+<h2 id="演習-1210"><a class="header" href="#演習-1210">演習 12.10</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルの対数尤度関数
+$$
+\begin{aligned}
+\ln p\left(\mathbf{X} \mid \boldsymbol{\mu}, \mathbf{W}, \sigma^{2}\right) &amp;= \sum_{n=1}^{N} \ln p\left(\mathbf{x}<em>{n} \mid \mathbf{W}, \boldsymbol{\mu}, \sigma^{2}\right) \
+&amp;=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln |\mathbf{C}|-\frac{1}{2} \sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}} \mathbf{C}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)
+\end{aligned}
+\tag{12.43}
+$$
+のパラメータ$\boldsymbol{\mu}$に対する2次微分を求めることにより，停留点$\boldsymbol{\mu}_{\mathrm{ML}}=\overline{\mathbf{x}}$が唯一の最大値を与える点となることを示せ．</p>
+</div>
+<p>演習問題12.9の続きで、もう一度$\boldsymbol{\mu}$で微分すると</p>
+<p>$$
+\frac{\partial}{\partial \boldsymbol{\mu}}\left(\frac{\partial \ln L}{\partial \boldsymbol{\mu}}\right) = -N\mathbf{C}^{-1}
+$$</p>
+<p>となる。ここで$\mathbf{C}$は正定値対称行列なので$-N\mathbf{C}^{-1}$は負定値対称行列になる。これはすなわち対数尤度関数が$\boldsymbol{\mu}$の値によらず上に凸であることを表すため、12.9で求めた点は極大かつ最大となる。</p>
+<h2 id="演習-1211"><a class="header" href="#演習-1211">演習 12.11</a></h2>
+<div class="panel-primary">
+<p>$\sigma^{2}\to 0$の極限において，確率的主成分分析モデルの事後平均が，通常の主成分分析と同様に主部分空間の上への直交射影となることを示せ．</p>
+</div>
+<p>※
+$\sigma^2 \rightarrow 0$のとき、 (12.41)式を(12.48)式に代入すると、
+$$
+\begin{aligned}
+\mathbb{E}[\mathbf{z}|\mathbf{x}] = (\mathbf{W}<em>{ML}^T\mathbf{W}</em>{ML})^{-1}\mathbf{W}_{ML}^T (\mathbf{x} - \bar{\mathbf{x}}) \notag
+\end{aligned}
+$$</p>
+<p>を得る。$\mathbf{R} = \mathbf{I}$として、(12.45)式を代入する。
+$$
+\begin{aligned}
+(\mathbf{W}<em>{ML}^T\mathbf{W}</em>{ML})^{-1}\mathbf{W}_{ML}^T (\mathbf{x} - \bar{\mathbf{x}}) &amp;= \left[\left{(\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2}\right}^T\mathbf{U}_M^T\mathbf{U}_M(\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2}\right]\mathbf{W}^T (\mathbf{x} - \bar{\mathbf{x}}) \notag \
+&amp;= (\mathbf{L}_M - \sigma^2\mathbf{I})^{-1}(\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2}\mathbf{U}_M^T (\mathbf{x} - \bar{\mathbf{x}}) \notag \
+&amp;= (\mathbf{L}_M - \sigma^2\mathbf{I})^{-1/2}\mathbf{U}_M^T (\mathbf{x} - \bar{\mathbf{x}}). \notag
+\end{aligned}
+$$</p>
+<p>ここで1行目から2行目は$(\mathbf{L}_M - \sigma^2\mathbf{I})$が対称行列であること及び定義より$\mathbf{U}_M^T\mathbf{U}_M = \mathbf{I}$であることを用いた。$\sigma^2 \rightarrow 0$のとき上式は
+$$
+\begin{aligned}
+\mathbf{L}_M^{-1/2}\mathbf{U}_M^T (\mathbf{x} - \bar{\mathbf{x}}) \notag
+\end{aligned}
+$$</p>
+<p>となるが、これは非確率的な主成分分析について得られた結果 ((12.24)式) に等しい。</p>
+<h2 id="演習-1212"><a class="header" href="#演習-1212">演習 12.12</a></h2>
+<div class="panel-primary">
+<p>$\sigma^{2}\gt 0$のとき，確率的主成分分析モデルの事後平均が，直交射影の結果と比べると，原点に向かってシフトしていることを示せ．</p>
+</div>
+<p>※
+演習12.11の結果を用い、$\sigma^2 \rightarrow 0$のとき及び$\sigma^2 &gt; 0$のときの$\mathbf{z}$の期待値 ($\mathbf{z}_0$及び$\mathbf{z}_1$と表記する) のノルム (の2乗) を比較する。
+$$
+\begin{aligned}
+|\mathbf{z}_0|^2 - |\mathbf{z}_1|^2 &amp;= (\mathbf{x} - \bar{\mathbf{x}})^T(\mathbf{U}_M\mathbf{L}<em>M^{-1}\mathbf{U}<em>M^T - \mathbf{W}</em>{ML}\mathbf{M}^{-1}\mathbf{M}^{-1}\mathbf{W}</em>{ML})(\mathbf{x} - \bar{\mathbf{x}}). \notag
+\end{aligned}
+$$</p>
+<p>ここで、
+$$
+\begin{aligned}
+\mathbf{M}^{-1} &amp;= (\mathbf{W}<em>{ML}^T\mathbf{W}</em>{ML} + \sigma^2\mathbf{I})^{-1} \notag \
+&amp;= ((\mathbf{L}_M - \sigma^2\mathbf{I}) + \sigma^2\mathbf{I})^{-1} \notag \
+&amp;= \mathbf{L}_M^{-1}. \notag
+\end{aligned}
+$$</p>
+<p>よって、
+$$
+\begin{aligned}
+|\mathbf{z}_0|^2 - |\mathbf{z}_1|^2 &amp;= (\mathbf{x} - \bar{\mathbf{x}})^T(\mathbf{U}_M\mathbf{L}_M^{-1}\mathbf{U}<em>M^T - \mathbf{W}</em>{ML}\mathbf{L}<em>M^{-2}\mathbf{W}</em>{ML})(\mathbf{x} - \bar{\mathbf{x}}) \notag \
+&amp;= (\mathbf{x} - \bar{\mathbf{x}})^T\mathbf{U}_M(\mathbf{L}_M^{-1} - (\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2}\mathbf{L}_M^{-2}(\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2})\mathbf{U}_M^T(\mathbf{x} - \bar{\mathbf{x}}) \tag{*}
+\end{aligned}
+$$</p>
+<p>となる。ここで、行列$(\mathbf{L}_M^{-1} - (\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2}\mathbf{L}_M^{-2}(\mathbf{L}_M - \sigma^2\mathbf{I})^{1/2})$は、定義より$i$番目の対角要素が
+$$
+\begin{aligned}
+\frac{1}{\lambda_i} - \frac{\lambda_i - \sigma^2}{\lambda_i^2} = \frac{\sigma^2}{\lambda_i^2} &gt; 0 \notag
+\end{aligned}
+$$</p>
+<p>に等しい対角行列である。よって二次形式$(*)$は正。つまり、$|\mathbf{z}_0| &gt; |\mathbf{z}_1|$となり、$\sigma^{2}\gt 0$のときに事後平均が原点に向かってシフトしていることが示された。</p>
+<h2 id="演習-1213"><a class="header" href="#演習-1213">演習 12.13</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析の下でもともとのデータ点を再現する際，通常の主成分分析の最小2乗射影のコスト関数を使うと，最適な再現点は以下で与えられることを示せ．</p>
+<p>$$\widetilde{\mathbf{x}}=\mathbf{W}<em>{\mathrm{ML}}\left(\mathbf{W}</em>{\mathrm{ML}}^{\mathrm{T}}\mathbf{W}_{\mathrm{ML}}\right)^{-1} \mathbf{M} \mathbb{E}[\mathbf{z} \mid \mathbf{x}] \tag{12.94}$$</p>
+</div>
+<p>$$
+\mathbb{E}[\mathbf{z} \mid \mathbf{x}]=\mathbf{M}^{-1} \mathbf{W}_{\mathrm{ML}}^{\mathrm{T}}(\mathbf{x}-\overline{\mathbf{x}}) \tag{12.48}
+$$
+の右辺を$(12.94)$に代入すると、次のようになる。</p>
+<p>$$
+\widetilde{\mathbf{x}}<em>{n}=\mathbf{W}</em>{\mathrm{ML}}\left(\mathbf{W}<em>{\mathrm{ML}}^{\mathrm{T}} \mathbf{W}</em>{\mathrm{ML}}\right)^{-1} \mathbf{W}<em>{\mathrm{ML}}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)
+$$</p>
+<p>$$
+\mathbf{W}<em>{\mathrm{ML}}=\mathbf{U}</em>{M}\left(\mathbf{L}_{M}-\sigma^{2} \mathbf{I}\right)^{1 / 2} \mathbf{R} \tag{12.45}
+$$</p>
+<p>より</p>
+<p>$$
+\left(\mathbf{W}<em>{\mathrm{ML}}^{\mathrm{T}} \mathbf{W}</em>{\mathrm{ML}}\right)^{-1}=\left(\mathbf{L}_{M}-\sigma^{2} \mathbf{I}\right)^{-1}
+$$</p>
+<p>そして</p>
+<p>$$
+\widetilde{\mathbf{x}}<em>{n}=\mathbf{U}</em>{M} \mathbf{U}<em>{M}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)
+$$</p>
+<p>これは、M個の最大固有値に対応するM個の固有ベクトルを使って$x_n - x$を再構成したもので、12.1.2節から最小二乗射影コスト(12.11)を最小にすることがわかる。</p>
+<h2 id="演習-1214"><a class="header" href="#演習-1214">演習 12.14</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルの共分散行列の中にある独立なパラメータの数は，
+$$
+D M+1-M(M-1) / 2 \tag{12.51}
+$$
+で与えられる．ただし，潜在変数空間が$M$次元データ空間が$D$次元である．$M = D-1$の場合に，独立なパラメータの数が一般的な共分散行列を持つガウス分布と一致することを確かめよ．一方，$M=0$のときにそれが等方的な共分散を持つガウス分布と同じであることも確かめよ．</p>
+</div>
+<p>※
+$M = D - 1$のとき、パラメータの数は
+$$
+\begin{aligned}
+DM + 1 - \frac{M(M - 1)}{2} &amp;= D(D - 1) + 1 - \frac{(D - 1)(D - 2)}{2} \notag \
+&amp;= \frac{1}{2}(D^2 + D) \notag \
+&amp;= \frac{1}{2}(D^2 - D) + D. \notag
+\end{aligned}
+$$</p>
+<p>となる。また、式(12.51)に$M = 0$を代入すると、このときパラメータの数は1となる (i.e., パラメータは$\sigma^2$のみ) ことがわかる。</p>
+<h2 id="演習-1215"><a class="header" href="#演習-1215">演習 12.15</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}\mathbb{E}\left[\ln p\left(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \mathbf{W}, \sigma^{2}\right)\right]=&amp;-\sum_{n=1}^{N}\left{\frac{D}{2} \ln \left(2 \pi \sigma^{2}\right)+\frac{1}{2} \operatorname{Tr}\left(\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right)\right. \
+&amp;+\frac{1}{2 \sigma^{2}}\left|\mathbf{x}<em>{n}-\boldsymbol{\mu}\right|^{2}-\frac{1}{\sigma^{2}} \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}} \mathbf{W}^{\mathrm{T}}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right) \
+&amp;+\frac{1}{2 \sigma^{2}} \operatorname{Tr}\left(\mathbb{E}\left[\mathbf{z}</em>{n} \mathbf{z}<em>{n}^{\mathrm{T}}\right] \mathbf{W}^{\mathrm{T}} \mathbf{W}\right)+\left.\frac{M}{2} \ln (2 \pi)\right}
+\end{aligned} \tag{12.53}
+$$
+で与えられる完全データの対数尤度関数の期待値を最大化することにより、確率的主成分分析モデルのMステップの式
+$$
+\mathbf{W}</em>{\text {new }}=\left[\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}}\right]\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right]^{-1} \tag{12.56}
+$$
+と
+$$
+\begin{aligned} \sigma_{\text {new }}^{2}=&amp; \frac{1}{N D} \sum_{n=1}^{N}\left{\left|\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right|^{2}-2 \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}} \mathbf{W}<em>{\text {new }}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)\right.\ &amp;\left.+\operatorname{Tr}\left(\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right] \mathbf{W}<em>{\text {new }}^{\mathrm{T}} \mathbf{W}</em>{\text {new }}\right)\right} \end{aligned} \tag{12.57}
+$$
+を導け．</p>
+</div>
+<p>※
+Mステップの更新式を求めるためには、(12.53)式を$\mathbf{W}$及び$\sigma^2$について微分する必要がある。
+まず、
+$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{W}}\mathbb{E}[\ln p (\mathbf{X}, \mathbf{Z}|\mathbf{\mu}, \mathbf{W}, \sigma^2)] &amp;= \sum_{n = 1}^N \left{\frac{1}{\sigma^2}(\mathbf{x}_n - \mathbf{\mu})\mathbb{E}[\mathbf{z}_n]^T - \frac{1}{\sigma^2}\mathbf{W}\mathbb{E}[\mathbf{z}_n\mathbf{z}_n^T]\right}. \notag
+\end{aligned}
+$$</p>
+<p>ここでは<a href="https://www.math.uwaterloo.ca/%7Ehwolkowi/matrixcookbook.pdf">The Matrix Cookbook</a>の(71)式及びPRML(C.24)式を用いた。
+また、
+$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{\sigma^2}}\mathbb{E}[\ln p (\mathbf{X}, \mathbf{Z}|\mathbf{\mu}, \mathbf{W}, \sigma^2)] &amp;= \sum_{n = 1}^N \left{\frac{D}{2\sigma^2} - \frac{1}{2\sigma^4}|\mathbf{x}_n - \mathbf{\mu}|^2 + \frac{1}{\sigma^4}\mathbb{E}[\mathbf{z}_n]\mathbf{W}^T(\mathbf{x}_n - \mathbf{\mu}) - \frac{1}{2\sigma^4}\mathrm{Tr}(\mathbb{E}[\mathbf{z}_n\mathbf{z}_n^T]\mathbf{W}^T\mathbf{W}) \right}. \notag
+\end{aligned}
+$$</p>
+<p>これらの式を0とおき、$\mathbf{\mu} = \bar{\mathbf{x}}$を代入したうえで方程式を解くと(12.56)式及び(12.57)式を得る。</p>
+<h2 id="演習-1216"><a class="header" href="#演習-1216">演習 12.16</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/kXPibhJ.png" alt="" />
+図12.11においていくつかのデータの値がランダムに欠損しているデータ集合に確率的主成分分析を適用する例を説明した．この状況において，確率的主成分分析モデルの尤度関数を最大化するEMアルゴリズムを導け．${\mathbf{z}_n}$に加えて，ベクトル${\mathbf{x}_n}$の要素である欠損データ値も潜在変数として扱う必要があることに注意せよ．すべてのデータ値が観測される特別な場合に，このアルゴリズムが12.2.2節で導かれた確率的主成分分析のEMアルゴリズムに帰着することを示せ．</p>
+</div>
+<p>まず、尤度を各データの各要素の和の形に分解する。</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{X}|\mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) &amp;= \int p(\mathbf{Z}) p(\mathbf{X}| \mathbf{Z}, \mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) d \mathbf{Z} \
+&amp;= \prod_n^N \int p(\mathbf{z}_{n}) p(\mathbf{x}_n| \mathbf{z}<em>n, \mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) d \mathbf{z}<em>n \
+&amp;= \prod_n^N \int p(\mathbf{z}</em>{n})\prod_i^D \mathcal{N}(x</em>{ni}| \mathbf{w}_i \mathbf{z}_n+ \mathbf{\mu}_i, \mathbf{\sigma^2}) d \mathbf{z}_n \
+\end{aligned}
+$$</p>
+<p>今、$x_{ni}$は、$\mathbf{x}_n$の$i$番目の要素を示す。$\mathbf{\mu}_i$は$\mathbf{\mu}$の$i$番目の要素を、$\mathbf{w}_i$は、$\mathbf{W}$の$i$行目を指す。ランダム欠損であると仮定すると、上の式から欠損を積分消去できることによって尤度を求められる。よって、観察された変数、欠損した変数をそれぞれ$\mathbf{x}_n^o$、$\mathbf{x}_n^m$として書き直すと、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{X}|\mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) &amp;=
+\prod_n^N \int p(\mathbf{z}<em>{n})\prod</em>{x_{ni} \in \mathbf{x}<em>n^o} \mathcal{N}(x</em>{ni}| \mathbf{w}_i \mathbf{z}<em>n+ \mathbf{\mu}<em>i, \mathbf{\sigma^2}) \int \prod</em>{x</em>{ni} \in \mathbf{x}<em>n^m} \mathcal{N}(x</em>{ni}| \mathbf{w}_i \mathbf{z}_n+ \mathbf{\mu}<em>i, \mathbf{\sigma^2})
+d \mathbf{x}<em>n^m d \mathbf{z}<em>n\
+&amp;= \prod_n^N \int p(\mathbf{z}</em>{n})\prod</em>{x</em>{ni} \in \mathbf{x}<em>n^o} \mathcal{N}(x</em>{ni}| \mathbf{w}_i \mathbf{z}_n+ \mathbf{\mu}<em>i, \mathbf{\sigma^2})  d \mathbf{z}<em>n \
+&amp;= \prod_n^N \int p(\mathbf{z}</em>{n}) \mathcal{N}(\mathbf{x</em>{n}^o}| \mathbf{z}_n, \mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2})  d \mathbf{z}_n \
+&amp;= \prod_n p(\mathbf{x}_n^o|\mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2})
+\end{aligned}
+$$</p>
+<p>すなわち、観察された$\mathbf{x}_n^o$から求められる。</p>
+<p>ここで、観察/欠損を区別するために$\iota_{ni}$を導入する。これは$x_{ni}$が観察されたときに1を取り、欠損の時に0を取る変数である。よって、(12.32)式を書き直すと、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}|\mathbf{z}) = \prod_i^D \mathcal{N}(x_{ni}|\mathbf{w}<em>i\mathbf{z}+ \mu_i, \sigma^2)^{\iota</em>{ni}}  \space \space (Ex12.16.1)
+\end{aligned}
+$$</p>
+<p>になり、完全データ対数尤度は、これを用いて、
+$$
+\begin{aligned}
+\ln p(\mathbf{X}, \mathbf{Z}|\mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) &amp;=  \sum_n^N { \ln p(\mathbf{z}<em>n) + \sum_i^D \ln \iota</em>{ni} \mathcal{N}(x_{ni}| \mathbf{w}_i\mathbf{z}+ \mu_i, \sigma^2) }
+\end{aligned}
+$$</p>
+<p>と書ける。あとは、欠損がない場合(p. 295)の通り、$p(\mathbf{z})  = \mathcal{N}(\mathbf{z}|\mathbf{0}, \mathbf{I})(12.31)$ と(Ex.12.16.1)を用いて、完全データ対数尤度の期待値をとると、
+$$
+\begin{aligned}
+E[\ln p(\mathbf{X}, \mathbf{Z}|\mathbf{\mu}, \mathbf{W}, \mathbf{\sigma^2}) ] = -\sum_n{\frac{M}{2} \ln (2\pi) + \frac{1}{2}Tr(E[\mathbf{z}<em>n\mathbf{z}<em>n^T]) + \sum_i^D \iota</em>{ni}{\ln (2\pi \sigma) + \frac{1}{2\sigma^2}(x</em>{ni}-\mu_{ni})^2 - \frac{1}{\sigma^2} E[\mathbf{z}<em>n]^T\mathbf{w}<em>i^T(x</em>{ni}-\mu</em>{ni})+ \frac{1}{2\sigma^2}Tr(E[\mathbf{z}\mathbf{z}^T]\mathbf{w}_i^T\mathbf{w}_i) }}
+\end{aligned}
+$$</p>
+<p>あとはこの式を更新するEMアルゴリズムを求めていけば良い。教科書と同様に$\mu$で微分して0を取る$\mu$を求めると、
+$$
+\begin{aligned}
+\mu_i^{new} = \frac{1}{\sum_m^M \iota_{mi}} \sum_n \iota_{ni} x_{ni}
+\end{aligned}
+$$</p>
+<p>そしてEステップにおいて(12.54)、(12.55)相当を求めると、
+$$
+\begin{aligned}
+E[\mathbf{z}_n] = \mathbf{M}^{-1}\mathbf{W}^T\mathbf{y}_n
+\end{aligned}
+$$</p>
+<p>なお、$y_n$は、$\mathbf{x}_n - \mathbf{\bar{x}}$の観察された部分である。$\mathbf{W}_n$も$\mathbf{W}$の観察された$\mathbf{x}_n$に対応する。(12.41)に対応するのは、
+$$
+\begin{aligned}
+\mathbf{M}_n = \mathbf{W}_n^T\mathbf{W}_n + \sigma^2 \mathbf{I}
+\end{aligned}
+$$</p>
+<p>である。そして、(12.55)式も
+$$
+\begin{aligned}
+E[\mathbf{z}_n \mathbf{z}_n^T ] = \sigma^2 \mathbf{M}_n^{-1} + E[\mathbf{z}_n]E[ \mathbf{z}_n]^T
+\end{aligned}
+$$</p>
+<p>そして、Mステップも同様に、
+$$
+\begin{aligned}
+\mathbf{W}_{new} = [\sum_n^N \mathbf{y}_n E[\mathbf{z}_n]^T][\sum_n^N E[\mathbf{z}_n \mathbf{z}_n^T] ]^{-1}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\sigma_{new}^2 =  \frac{1}{\sum_n^N \sum_i^D \iota_{ni}} \sum_n^N \sum_i^D \iota_{ni} { (x_{ni}-\mu_{ni}^{new})^2 - 2 E[\mathbf{z}<em>n]^T(\mathbf{w}<em>i^{new})^T(x</em>{ni}-\mu</em>{ni}^{new})+ Tr(E<a href="%5Cmathbf%7Bw%7D_i%5E%7Bnew%7D">\mathbf{z}\mathbf{z}^T</a>^T\mathbf{w}_i^{new}) }}
+\end{aligned}
+$$</p>
+<p>なお、$\mathbf{w}<em>i^{bew}$は$\mathbf{W}</em>{new}$の$i$番目の行である。</p>
+<p>そして、もし全て観察された場合には、$\iota_{ni}$は全て1であり、$\mathbf{y}_n = \mathbf{x}_n$であり、$\mathbf{W}_n = \mathbf{W}$であり、$\mu^{new} = \bar{\mathbf{x}}$である。この時、教科書12.54-12.57になる。</p>
+<h2 id="演習-1217"><a class="header" href="#演習-1217">演習 12.17</a></h2>
+<div class="panel-primary">
+<p>$D\times M$行列を$\mathbf{W}$とおき，その列ベクトルが，$D$次元のデータ空間に埋め込まれた$M$次元の線型部分空間を定義するものとする．$\boldsymbol{\mu}$を$D$次元ベクトルとおく．$n=1,\ldots,N$に対しデータ集合$\mathbf{x}_n$が与えられたものとする．このとき，各$\mathbf{x}_n$を，$M$次元ベクトルの集合$\mathbf{z}_n$からの線形写像を用いて$\mathbf{W}\mathbf{z}_n + \boldsymbol{\mu}$で近似することを考える．再構成のコスト関数は，二乗和からなる</p>
+<p>$$
+J=\sum_{n=1}^{N}\left|\mathbf{x}<em>{n}-\boldsymbol{\mu}-\mathbf{W}{\mathbf{z}</em>{n}}\right|^{2} \tag{12.95}
+$$</p>
+<p>を使う．まず，$\boldsymbol{\mu}$についての$J$の最小化が，$\mathbf{x}_n$と$\mathbf{z}_n$をそれぞれ平均$0$の変数$\mathbf{x}_n - \overline{\mathbf{x}}$と$\mathbf{z}_n - \overline{\mathbf{z}}$で置き換えたのと同様な表現に導くことを示せ．ただし$\overline{\mathbf{x}}$と$\overline{\mathbf{z}}$はサンプル平均を表す．次に，$\mathbf{W}$を固定したまま$J$を$\mathbf{z}_n$について最小化すると，主成分分析のEステップ(12.58)が出ることを示せ．また{$\mathbf{z}_n$}を固定したまま$J$を$\mathbf{W}$について最小化すると，主成分分析のM ステップ(12.59)が出ることを示せ．</p>
+</div>
+<p>(i) $\boldsymbol{\mu}$による$J$の最小化
+$$
+\begin{aligned}
+\frac{\partial J}{\partial \boldsymbol{\mu}} &amp;=\sum_{n=1}^{N} 2\left(\boldsymbol{\mu}-\left(\mathbf{x}<em>{n}-\mathbf{W}\mathbf{z}</em>{n}\right)\right} \
+&amp;=2 N{\boldsymbol{\mu}-(\overline{\mathbf{x}}-\mathbf{W} \overline{\mathbf{z}})}
+\end{aligned}
+$$
+より$J$を最小化する$\boldsymbol{\mu}$は
+$$
+\boldsymbol{\mu}=\mathbf{x}-\mathbf{W} \overline{\mathbf{z}}
+$$
+であり、このとき、
+$$
+J=\sum_{n=1}^{N}\left|\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)-\mathbf{W}\left(\mathbf{z}</em>{n}-\overline{\mathbf{z}}\right)\right|^{2}
+$$
+となる。
+ここで
+$$
+\mathbf{u}<em>{n}=\mathbf{x}</em>{n}-\overline{\mathbf{x}}\
+\mathbf{v}<em>{n}=\mathbf{z}</em>{n}-\overline{\mathbf{z}}
+$$
+とすると
+$$
+J=\sum_{n=1}^{N}\left|\mathbf{u}<em>{n}-\mathbf{W}\mathbf{v}</em>{n}\right|^{2}
+$$
+と表せる。</p>
+<p>(ii) $\mathbf{z}<em>{n}$による$J$の最小化
+$$
+\begin{aligned}
+\frac{\partial J}{\partial \mathbf{z}</em>{n}}
+&amp;=\frac{\partial J}{\partial \mathbf{v}<em>{n}} \&amp;=\frac{\partial}{\partial \mathbf{v}</em>{n}}\left|\mathbf{u}<em>{n}-\mathbf{W}\mathbf{v}</em>{n}\right|^{2} \
+&amp;=-2 \mathbf{W}^{T}\left(\mathbf{u}<em>{n}-\mathbf{W}\mathbf{v}</em>{n}\right)
+\end{aligned}
+$$
+より、
+$$
+\mathbf{u}<em>n=\mathbf{W}\mathbf{v}</em>{n}
+$$
+すなわち
+$$
+\mathbf{v}<em>n=\left(\mathbf{W}^{T}\mathbf{W}\right)\mathbf{W}^T\mathbf{u}</em>{n}
+$$
+が$J$を最小化する$\mathbf{v}<em>{n}$であり、これは
+$$
+\tilde{\mathbf{X}}^{T}=\left(\mathbf{u}</em>{1} \mathbf{u}<em>{2} \cdots \mathbf{u}</em>{N}\right)\
+\mathbf{\Omega}=\left(\mathbf{v}<em>{1} \mathbf{v}</em>{2} \cdots \mathbf{v}_{N}\right)
+$$
+とすると(12.58)式である
+$$
+\mathbf{\Omega}=\left(\mathbf{W}^{T}\mathbf{W}\right)\mathbf{W}^T\tilde{\mathbf{X}}^{T}
+$$
+と等しい。</p>
+<p>(iii) $\mathbf{W}$による$J$の最小化
+$$
+\frac{\partial J}{\partial \mathbf{W}}=-2 \sum_{n=1}^{N}\left(\mathbf{u}<em>{n}-\mathbf{W} \mathbf{v}</em>{n}\right) \mathbf{v}<em>{n}^{T}
+$$
+より、$J$を最小化する$\mathbf{W}$は
+$$
+W \sum</em>{n=1}^{N} \mathbf{v}<em>{n}\mathbf{v}</em>{n}^{T}=\sum_{n=1}^{N} \mathbf{u}<em>{n} \mathbf{v}</em>{n}^{T}\
+\mathbf{W}  \mathbf{\Omega} \mathbf{\Omega}^{T}=\tilde{\mathbf{X}}^{T} \mathbf{\Omega}^{T}\
+\mathbf{W}=\tilde{\mathbf{X}}^{T} \mathbf{\Omega}^{T}\left(\mathbf{\Omega} \mathbf{\Omega}^{T}\right)^{-1}
+$$
+となりこれは(12.59)式に一致する</p>
+<h2 id="演習-1218"><a class="header" href="#演習-1218">演習 12.18</a></h2>
+<div class="panel-primary">
+<p>12.2.4節で説明された因子分析モデルについて，独立なパラメータの数の表現を与える式を導け．</p>
+</div>
+<p>※</p>
+<p>因子分析における共分散行列 (式12.65)　より、独立なパラメータの数は</p>
+<ul>
+<li>$D \times M$行列$\mathbf{W}$</li>
+</ul>
+<p>及び</p>
+<ul>
+<li>$M \times M$次元の対角行列$\mathbf{\Psi}$</li>
+</ul>
+<p>に依存する。また、確率的主成分分析における議論 (pp.293-294) と同様に、$M(M - 1)/2$個のパラメータは回転に関して冗長。つまり、因子分析モデルにおける独立なパラメータの数は</p>
+<p>$$
+\begin{aligned}
+&amp; DM + D - M(M - 1)/2 \
+=&amp; D(M + 1) - M(M - 1)/2
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<h2 id="演習-1219"><a class="header" href="#演習-1219">演習 12.19</a></h2>
+<div class="panel-primary">
+<p>12.2.4節で説明した因子分析モデルが潜在変数空間の座標の回転に対して不変であることを示せ．</p>
+</div>
+<p>※P.302の観測変数の周辺分布$p(\mathbf{x}) = \mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}, \mathbf{WW}^{\mathrm T}+\mathbf{\Psi})$が、潜在変数空間$\mathbf{z}$での回転$\mathbf{z} \to \mathbf{\tilde{z}}$としても不変、すなわち同じ式となることを示す。</p>
+<p>P.289のような$M \times M$の直交行列（回転行列）$\mathbf{R}$を定義し（$\mathbf{RR}^{\mathrm T} = \mathbf{I}$）、潜在変数空間上で$\mathbf{z}$を$\mathbf{R}$で回転させた$\mathbf{\tilde{z}}$を考える。すなわち$\mathbf{\tilde{z}} = \mathbf{Rz}$となる。潜在変数上の事前分布は</p>
+<p>$$
+p(\mathbf{\tilde{z}}) = \mathcal{N}(\mathbf{\tilde{z}} \mid \mathbf{0}, \mathbf{I}) \tag{12.31}
+$$</p>
+<p>であり、これについて展開していくと</p>
+<p>$$
+\begin{aligned}
+p(\widetilde{\mathbf{z}}) &amp;=\mathcal{N}\left(\mathbf{R}\mathbf{z} \mid \mathbf{0}, \mathbf{I}\right) \
+&amp;=\left(\frac{1}{2 \pi}\right)^{M / 2} \exp \left{-\frac{1}{2}\left(\mathbf{R}\mathbf{z}\right)^{\mathrm T}\left(\mathbf{R}\mathbf{z}\right)\right} \
+&amp;=\left(\frac{1}{2 \pi}\right)^{M / 2} \exp \left{-\frac{1}{2} \mathbf{z}^{\mathrm T} \mathbf{z}\right} \
+&amp;=\mathcal{N}(\mathbf{z} \mid \mathbf{0}, \mathbf{I}) \
+&amp;=p(\mathbf{z})
+\end{aligned}
+$$</p>
+<p>であり、事前分布は回転不変である。また、潜在変数$\mathbf{z}$を与えられたときの観測変数$\mathbf{x}$の条件付き分布$p(\mathbf{x}\mid \mathbf{z})$について、P.289で用いた$\mathbf{\widetilde{W}} = \mathbf{WR}$を用いると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x} \mid \widetilde{\mathbf{z}}) &amp;=N(\mathbf{x} \mid \mathbf{W} \tilde{\mathbf{z}}+\boldsymbol{\mu}, \mathbf{\Psi}) \
+&amp;=\mathcal{N}(\mathbf{x} \mid \mathbf{WRz}+\boldsymbol{\mu}, \mathbf{\Psi}) \
+&amp;=\mathcal{N}(\mathbf{x} \mid \widetilde{\mathbf{W}}\mathbf{z}+\boldsymbol{\mu}, \mathbf{\Psi}) \end{aligned}
+$$</p>
+<p>$(2.115)$を用いて周辺分布$p(\mathbf{x})$を計算すると</p>
+<p>$$
+\begin{aligned} p(\mathbf{x})
+&amp;=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Psi}+\widetilde{\mathbf{W}} \mathbf{I} \widetilde{\mathbf{W}}^{\mathrm T}\right) \
+&amp;=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Psi}+\mathbf{WRR}^{\mathrm T} \mathbf{W}^{\mathrm T}\right) \
+&amp;=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Psi}+\mathbf{WW}^{\mathrm T}\right) \end{aligned}
+$$</p>
+<p>これは回転しない場合でも同式である。したがって潜在変数空間における回転不変性が示された。</p>
+<h2 id="演習-1220"><a class="header" href="#演習-1220">演習 12.20</a></h2>
+<div class="panel-primary">
+<p>2次導関数を考えることによって12.2.4節で説明した因子分析モデルの対数尤度関数の，パラメータ$\boldsymbol{\mu}$に対する唯一の停留点が，</p>
+<p>$$
+\overline{\mathbf{x}}=\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n} \tag{12.1}
+$$</p>
+<p>で定義されたサンプル平均で与えられることを示せ．さらに，この停留点が最大値を与えることを示せ．</p>
+</div>
+<p>※対数尤度関数$\ln L$の$\boldsymbol{\mu}$に対する微分を計算すれば良い。</p>
+<p>$$
+\begin{aligned} \ln L &amp;=\ln p\left(\mathbf{X} \mid \boldsymbol{\mu}, \mathbf{W}, \sigma^{2}\right) \
+&amp;=\sum_{n=1}^{N} \ln p\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}, \mathbf{W}, \sigma^{2}\right) \end{aligned}
+$$</p>
+<p>今、因子分析モデルでは$p(\mathbf{x}) = \mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}, \mathbf{C})$と置いているので</p>
+<p>$$
+\begin{aligned} \ln L &amp;=\sum_{n=1}^{N} \ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}, \mathbf{C} \right) \
+&amp;=\sum</em>{n=1}^{N} \ln \left(\left(\frac{1}{2 \pi}\right)^{D / 2}\left|\mathbf{C}^{-1}\right|^{1 / 2} \exp \left(-\frac{1}{2}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm T} \mathbf{C}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)\right)\right) \
+&amp;=\sum_{n=1}^{N}\left{-\frac{D}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{C}|-\frac{1}{2}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm T} \mathbf{C}^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)\right) \end{aligned}
+$$</p>
+<p>$\boldsymbol{\mu}$について微分すると</p>
+<p>$$
+\frac{\partial \ln L}{\partial \boldsymbol{\mu}} = \sum_{n=1}^{N}\mathbf{C}^{-1}(\mathbf{x}<em>{n}-\boldsymbol{\mu}) = 0 \
+N\boldsymbol{\mu} = \sum</em>{n=1}^{N}\mathbf{x}_{n}
+$$</p>
+<p>よって停留点はサンプル平均である$\displaystyle \overline{\mathbf{x}}=\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}$となる。</p>
+<p>また対数尤度関数のヘッセ行列$\mathbf{H}$を計算すると</p>
+<p>$$
+\mathbf{H} = \nabla \otimes \nabla \ln L = -N\mathbf{C}^{-1}
+$$</p>
+<p>$\mathbf{C} = \mathbf{WW}^{\mathrm T} + \mathbf{\Psi}$は正定置行列なので、ヘッセ行列は負定置になる。これより停留点は極大値となり、唯一の停留点なので極大かつ最大となる。</p>
+<h2 id="演習-1221"><a class="header" href="#演習-1221">演習 12.21</a></h2>
+<div class="panel-primary">
+<p>因子分析についてのEMアルゴリズムのEステップに対する公式</p>
+<p>$$
+\mathbb{E}\left[\mathbf{z}<em>{n}\right] =\mathbf{G} \mathbf{W}^{\mathrm{T}} \mathbf{\Psi}^{-1}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right) \tag{12.66}
+$$</p>
+<p>$$\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right] =\mathbf{G}+\mathbb{E}\left[\mathbf{z}<em>{n}\right] \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}} \tag{12.67}
+$$</p>
+<p>を導け．演習問題12.20の結果から，パラメータ$\boldsymbol{\boldsymbol{\mu}}$はサンプル平均$\overline{\mathbf{x}}$で置き換えられることに注意せよ．</p>
+</div>
+<p>事前分布は、$p(\mathbf{z}) = \mathcal{N}(\mathbf{z}\mid \mathbf{0}, \mathbf{I})$
+因子分析モデルでは$p(\mathbf{x} \mid \mathbf{z})=\mathcal{N}(\mathbf{x} \mid \mathbf{W z}+\boldsymbol{\mu}, \Psi)$</p>
+<p>またここでは$\boldsymbol{\mu} = \mathbf{\bar{x}}$と置き換えられる。$(2.116)$式を利用して事後分布を求めると</p>
+<p>$$
+p(\mathbf{z} \mid \mathbf{x})=\mathcal{N}\left(\mathbf{z} \mid \mathbf{G}\left{\mathbf{w}^{\mathrm T} \mathbf{\Psi}^{-1}(\mathbf{x}-\bar{\mathbf{x}})\right}, \mathbf{G}\right)
+$$</p>
+<p>ただし、ここで</p>
+<p>$$
+\mathbf{G}=\left(\mathbf{I}+\mathbf{W}^{\mathrm{T}} \mathbf{\Psi}^{-1} \mathbf{W}\right)^{-1} \tag{12.68}
+$$</p>
+<p>である。</p>
+<p>この事後分布の期待値を計算すると</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}<em>{\mathbf{z}</em>{n} \sim p\left(\mathbf{z}<em>{n} \mid \mathbf{x}</em>{n}\right)}\left[\mathbf{z}<em>{n}\right] &amp;=\mathbb{E}\left[\mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{G}\left(\mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1}(\mathbf{x}<em>{n}-\bar{\mathbf{x}})\right), \mathbf{G}\right)\right] \
+&amp;=\mathbf{G}\mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1}(\mathbf{x}</em>{n}-\bar{\mathbf{x}})
+\end{aligned}
+$$</p>
+<p>また</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}<em>{\mathbf{z}</em>{n} \sim p\left(\mathbf{z}<em>{n} \mid \mathbf{x}</em>{n}\right)}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right] &amp;=\operatorname{cov}\left[\mathbf{z}<em>{n}\right]+\mathbb{E}\left[\mathbf{z}</em>{n}\right] \mathbb{E}\left[\mathbf{z}<em>{n}\right]^{\mathrm T} \
+&amp;=\mathbf{G}+\mathbb{E}\left[\mathbf{z}</em>{n}\right] \mathbb{E}\left[\mathbf{z}_{n}\right]^{\mathrm T}
+\end{aligned}
+$$</p>
+<p>以上で導かれた。</p>
+<h2 id="演習-1222"><a class="header" href="#演習-1222">演習 12.22</a></h2>
+<div class="panel-primary">
+<p>因子分析モデルの完全データ対数尤度関数の期待値の式を書き下せ．また，対応するMステップの式</p>
+<p>$$
+\mathbf{W}<em>{\text {new }}=\left[\sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}}\right]\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right]^{-1} \tag{12.69}
+$$</p>
+<p>と</p>
+<p>$$
+\mathbf{\Psi}<em>{\text {new }}=\operatorname{diag}\left{\mathbf{S}-\mathbf{W}</em>{\text {new }} \frac{1}{N} \sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm{T}}\right} \tag{12.70}
+$$</p>
+<p>を導け．</p>
+</div>
+<p>※P.294のような形でまず完全データの対数尤度関数$\ln L$を書くと（途中で演習12.20の結果である$\boldsymbol{\mu} = \mathbf{\overline{x}}$を用いている）</p>
+<p>$$
+\begin{aligned} \ln L=&amp; \sum_{n=1}^{N}\left{\ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) + \ln p\left(\mathbf{z}<em>{n}\right)\right} \
+=&amp; \sum</em>{n=1}^{N}\left{\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Wz}</em>{n} + \boldsymbol{\mu}, \mathbf{\Psi}\right) + \ln \mathcal{N}\left( \mathbf{z}<em>{n}\mid \mathbf{0}, \mathbf{I}\right) \right} \
+=&amp; \sum</em>{n=1}^{N}\left[-\frac{D}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{\Psi}|-\frac{1}{2}\left{\left(\mathbf{x}<em>{n}-\mathbf{Wz}</em>{n}-\boldsymbol{\mu}\right)^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{x}<em>{n}-\mathbf{Wz}</em>{n}-\boldsymbol{\mu}\right)\right}\right. \
+&amp;\left.-\frac{M}{2} \ln (2 \pi)-\frac{1}{2} \mathbf{z}<em>{n}^{\mathrm T} \mathbf{z}</em>{n}\right] \
+=&amp;\ \frac{1}{2} \sum_{n=1}^{N}\left{-M \ln (2 \pi)-\mathbf{z}<em>{n}^{\mathrm{T}} \mathbf{z}</em>{n}-D \ln (2 \pi)-\ln |\mathbf{\Psi}|\right.\ &amp;\left.-\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}-\mathbf{W} \mathbf{z}</em>{n}\right)^{\mathrm{T}} \mathbf{\Psi}^{-1}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}-\mathbf{W} \mathbf{z}</em>{n}\right)\right} \end{aligned}
+$$</p>
+<p>この対数尤度関数について期待値をとると</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\ln L]&amp;=\frac{1}{2} \sum_{n=1}^{N}\left{-\ln |\mathbf{\Psi}|-\mathbb{E}\left[\left(\mathbf{Wz}<em>{n}\right)^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{Wz}</em>{n}\right)\right] \right.\
+&amp;\left.+\ 2 \mathbb{E}\left[\left(\mathbf{Wz}<em>{n}\right)^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)\right]-\mathbb{E}\left[\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)\right]\right}+\text { const } \
+&amp;=\frac{1}{2} \sum_{n=1}^{N}\left{-\ln |\mathbf{\Psi}|-\operatorname{Tr}\left[\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right] \mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1} \mathbf{W}\right] \right.\
+&amp;\left.+\ 2 \mathbb{E}\left[\mathbf{z}<em>{n}\right]^{\mathrm T} \mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)\right} -\frac{1}{2} N \operatorname{Tr}\left[\mathbf{S} \mathbf{\Psi}^{-1}\right]+\text { const }
+\end{aligned}
+$$</p>
+<p>途中でトレースと期待値演算子の交換、またデータ共分散行列$\mathbf{S}$</p>
+<p>$$
+\mathbf{S}=\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm{T}} \tag{12.3}
+$$</p>
+<p>を利用した。</p>
+<p>この$\mathbb{E}[\ln L]$について$\mathbf{W}$の更新を行うために微分を取る。用意として</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{W}} \operatorname{Tr}\left[\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right] \mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1} \mathbf{W}\right] &amp;=\ \frac{\partial}{\partial \mathbf{W}} \operatorname{Tr}\left[\mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]\right] \
+&amp;=\ \mathbf{\Psi}^{-1} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]+\left(\mathbf{\Psi}^{-1}\right)^{\mathrm T} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n}\mathbf{z}</em>{n}^{\mathrm T}\right]^{\mathrm T} (\because \textrm{Matrix Cookbook (117)})\
+&amp;=\ 2 \mathbf{\Psi}^{-1} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n} ^{\mathrm T}\right] (\because \mathbf{\Psi}と\mathbb{E}[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}]は対称行列)
+\end{aligned}
+$$</p>
+<p>$$
+\frac{\partial}{\partial \mathbf{W}}\mathbb{E}\left[\mathbf{z}<em>{n}\right]^{\mathrm T} \mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right) = 2\mathbf{\Psi}^{-1}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)\mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T} (\because \textrm{Matrix Cookbook (71)})
+$$</p>
+<p>これらを用いると</p>
+<p>$$
+\frac{\partial}{\partial \mathbf{W}}\mathbb{E}[\ln L] = \frac{1}{2}\sum_{n=1}^{N}
+\left{
+-2 \mathbf{\Psi}^{-1} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n} ^{\mathrm T}\right] + 2\mathbf{\Psi}^{-1}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)\mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T}
+\right}
+$$</p>
+<p>となり、停留点を求めるため$\displaystyle \frac{\partial}{\partial \mathbf{W}}\mathbb{E}[\ln L] = 0$として$\mathbf{W} \to \mathbf{W}_{\textrm{new}}$とすると</p>
+<p>$$
+\mathbf{\Psi}^{-1} \mathbf{W}<em>{\textrm{new}}\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]=\mathbf{\Psi}^{-1} \sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T}
+$$</p>
+<p>$$
+\mathbf{W}<em>{\text {new }}=\left[\sum</em>{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm{T}}\right]\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right]^{-1} \tag{12.69}
+$$</p>
+<p>を得られる。</p>
+<p>次に$\mathbf{\Psi}$の更新について、同様に$\mathbf{\Psi}$の微分を計算すると</p>
+<p>$$
+\begin{aligned} \frac{\partial}{\partial \mathbf{\Psi}} \mathbb{E}\left[\ln L\right]=\frac{1}{2} \sum_{n=1}^{N}{&amp;-\mathbf{\Psi}^{-\mathrm T}+\left(\mathbf{\Psi}^{-1} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right] \mathbf{W}^{\mathrm T} \mathbf{\Psi}^{-1}\right)^{\mathrm T} \ &amp;\left.-2 \mathbf{\Psi}^{-\mathrm T} \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T} \mathbf{\Psi}^{-\mathrm T}\right} \ &amp;-\frac{N}{2}\left(-\mathbf{\Psi}^{-\mathrm T} \mathbf{S}^{\mathrm T} \mathbf{\Psi}^{-\mathrm T}\right) \end{aligned}
+$$</p>
+<p>上の変形にはMatrix Cookbookの(57), (61), (63)の公式を利用した。左と右からそれぞれ$\mathbf{\Psi}^{\mathrm T}$をかけ、$0$に等しいとすると</p>
+<p>$$
+\frac{1}{2} \sum_{n=1}^{N}\left{-\mathbf{\Psi}^{\mathrm T}+\left(\mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]^{\mathrm T} \mathbf{W}^{\mathrm T}\right)-2 \mathbf{W} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T}\right}+\frac{N}{2} \mathbf{S}^{\mathrm T}=0
+$$</p>
+<p>$$
+N \mathbf{\Psi}^{\mathrm T}-\mathbf{W}\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]^{\mathrm T}\right] \mathbf{W}^{\mathrm T}+2 \mathbf{W}\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T}\right] -N \mathbf{S}^{\mathrm T}=0
+$$</p>
+<p>転置をとり、$\mathbf{\Psi}$を分離しつつ、$\mathbf{W} \to \mathbf{W}<em>{\text{new}}, \mathbf{\Psi} \to \mathbf{\Psi}</em>{\text{new}}$とすると(対称行列なので$\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right] = \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]^{\mathrm T}$である)</p>
+<p>$$
+\mathbf{\Psi}<em>{\text {new }}=\mathbf{S}-\frac{2}{N} \mathbf{W}</em>{\text{new}}\left[\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T}\right]+\frac{1}{N} \mathbf{W}<em>{\text{new}}\left[\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]\right] \mathbf{W}_{\text{new}}^{\mathrm T}
+$$</p>
+<p>$(12.69)$を上式の最後の$\mathbf{W}_{\text{new}}^{\mathrm T}$にのみ適用させると</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Psi}<em>{\text {new }} &amp;=\mathbf{S}-\frac{2}{N} \mathbf{W}</em>{\text{new}}\left[\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T}\right] \ &amp;+\frac{1}{N} \mathbf{W}<em>{\text{new}}\left[\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]\right]\left[\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]\right]^{-\mathrm T}\left[\sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right) \mathbb{E}\left[\mathbf{z}</em>{n}\right]^{\mathrm T}\right]^{\mathrm T} \ &amp;=\mathbf{S}-\frac{2}{N} \mathbf{W}<em>{\text{new}}\left[\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n}\right]^{\mathrm T}\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)\right]+\frac{1}{N} \mathbf{W}<em>{\text{new}}\left[\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T}\right] \ &amp;=\mathbf{S}-\frac{1}{N} \mathbf{W}<em>{\text{new}}\left[\sum</em>{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n}\right]\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm T}\right]
+\end{aligned}
+$$</p>
+<p>$\mathbf{\Psi}$はもとより対角行列なので、$\textrm{diag}$演算子をつければ$(12.70)$式を得る。</p>
+<h2 id="演習-1223"><a class="header" href="#演習-1223">演習 12.23</a></h2>
+<div class="panel-primary">
+<p>確率的主成分分析モデルの離散個の混合を考え，その確率的有向グラフィカルモデルを描け．個々の主成分分析モデルは$\mathbf{W},\boldsymbol{\mu},\sigma^2$という独自のパラメータ値を持つ．次に，これらのパラメータ値が混合モデルの各要素に共有される場合のグラフを描け．</p>
+</div>
+<p>離散個（$K$個）の主成分分析モデルが存在し、混合係数$\pi_{k}$によって1つの確率的主成分分析モデルが構成されていることを考える。</p>
+<p>前半は「個々の主成分分析モデルは$\mathbf{W},\boldsymbol{\mu},\sigma^2$という独自のパラメータ値を持つ」場合、後半はこれらが共通している場合を考える。</p>
+<p>確率的有向グラフィカルモデルは以下の通り。左が独立な場合。右が共通の場合。
+<img src="https://i.imgur.com/QqRtN8I.png" alt="" /></p>
+<p>（公式解答によれば$\mathbf{s}$はパラメータ$\boldsymbol{\pi}$によって規定される、各主成分分析モデルの混合比を規定する$K$値の潜在変数……と言っているが、これまで扱ってきた混合係数$\pi_{k}$とは違うんだろうか？）</p>
+<h2 id="演習-1224"><a class="header" href="#演習-1224">演習 12.24</a></h2>
+<div class="panel-primary">
+<p>2.3.7節において，スチューデントのt分布が，連続的潜在変数について周辺化されたガウス分布の無限個の混合とみなされることを学んだ．この表現を利用して，多変数のスチューデントt分布の対数尤度関数を，与えられた観測データ集合に対して最大化し， EステップとMステップの形を導け．</p>
+</div>
+<p>(2.161)式の離散変数バージョンで$\eta$を潜在変数とみなすと、完全データ対数尤度関数は、</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{X}, \boldsymbol{\eta} | \boldsymbol\mu , \boldsymbol\Lambda , \nu ) = \sum _{n=1}^N \left{ \ln \mathcal{N} \big( \mathbf{x}_n | \boldsymbol\mu , (\eta_n \boldsymbol\Lambda ) ^{-1} \big) + \ln {\rm Gam} (\eta_n |\frac{\nu}{2},\frac{\nu}{2}) \right}
+\end{aligned}
+$$</p>
+<p>となる。（$\boldsymbol{\eta}$は、$N$個の潜在変数$\eta_n$を並べたベクトル）</p>
+<p>$\boldsymbol{\eta}$は潜在変数なので$\boldsymbol{\eta}$で期待値を取ると、</p>
+<p>$$
+\begin{aligned} \mathbb{E}<em>{\eta}[\ln p(\mathbf{X}, \boldsymbol{\eta} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}, \nu)] &amp;=-\frac{1}{2} \sum</em>{n=1}^{N}\left{D\left(\ln (2 \pi)-\mathbb{E}\left[\ln \eta_{n}\right]\right)-\ln |\Lambda|+\mathbb{E}\left[\eta_{n}\right]\left(\mathbf{x}<em>{n}^{\mathrm{T}} \boldsymbol{\Lambda} \mathbf{x}</em>{n}-2 \mathbf{x}<em>{n}^{\mathrm{T}} \boldsymbol{\Lambda} \boldsymbol{\mu}+\boldsymbol{\mu}^{\mathrm{T}} \boldsymbol{\Lambda} \boldsymbol{\mu}\right)(*)\right.\ &amp;\left.+2 \ln \Gamma\left(\frac{\nu}{2}\right)-\nu(\ln \nu-\ln 2)-(\nu-2) \mathbb{E}\left[\ln \eta</em>{n}\right]+\nu \mathbb{E}\left[\eta_{n}\right]\right} \end{aligned}
+$$</p>
+<p>と、(12.53)式に対応する式が導かれる。（第１行はガウス分布の展開から、第２行はガンマ分布の展開から出てくる。）</p>
+<p>次に、Eステップでの$\mathbb{E} [\eta_n]$、$\mathbb{E} [\ln\eta_n]$の更新式を導く。$\boldsymbol\eta$の確率分布は、</p>
+<p>$$
+\begin{aligned}
+p(\boldsymbol{\eta} | \mathbf{X}, \boldsymbol\mu , \boldsymbol\Lambda , \nu )
+&amp;= \prod _{n=1}^N p(\eta_n | \mathbf{x}_n, \boldsymbol\mu , \boldsymbol\Lambda , \nu ) \
+&amp;\propto \prod _{n=1}^N p(\mathbf{x}_n | \eta_n, \boldsymbol\mu , \boldsymbol\Lambda , \nu ) p( \eta_n | \boldsymbol\mu , \boldsymbol\Lambda , \nu )\
+&amp;= \prod _{n=1}^N \mathcal{N} (\mathbf{x}_n | \boldsymbol\mu , (\eta_n \boldsymbol\Lambda ^{-1})) {\rm Gam} (\eta_n |\frac{\nu}{2},\frac{\nu}{2})
+\end{aligned}
+$$</p>
+<p>となる。ガウス分布の精度$\eta_n$の事前分布がGam$(\eta_n |\nu/2,\nu/2)$であるときの事後分布を表すから、積の中身はガンマ分布Gam$(\eta_n | a_n, b_n)$に従う。パラメータ$a_n, b_n$の値は、(2.150)式と(2.151)式より、
+$$
+\begin{aligned}
+a_n &amp;= \frac{\nu+D}{2}\
+b_n &amp;= \frac{\nu + (\mathbf{x}_n - \boldsymbol\mu)^{\rm T}\boldsymbol\Lambda (\mathbf{x}_n - \boldsymbol\mu) }{2}
+\end{aligned}
+$$</p>
+<p>である。このパラメータ$a_n, b_n$を用いると、ガンマ分布の公式(B.27)と(B.30)より、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E} [\eta_n] &amp;= \frac{a_n}{b_n}\
+\mathbb{E} [\ln\eta_n] &amp;= \psi (a_n)-\ln b_n
+\end{aligned}
+$$</p>
+<p>と書ける。（$\psi( \cdot )$は、(B.25)で定義されるディガンマ関数）</p>
+<p><strong>Mステップの更新式(1/3)</strong>
+上記の(*)式を$\boldsymbol{\mu}$で微分した値をゼロとおくと、</p>
+<p>$$
+\begin{aligned} \frac{\partial}{\partial \boldsymbol{\mu}} \mathbb{E}<em>{\boldsymbol{\eta}}[\ln p(\mathbf{X}, \boldsymbol{\eta} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}, \nu)] &amp;=-\frac{1}{2} \sum</em>{n=1}^{N}\left{\mathbb{E}\left[\eta_{n}\right]\left(-2 \mathbf{\Lambda} \mathbf{x}<em>{n}+2 \boldsymbol{\Lambda} \boldsymbol{\mu}\right)\right} \ &amp;=\mathbf{\Lambda}\left(\sum</em>{n=1}^{N} \mathbb{E}\left[\eta_{n}\right] \mathbf{x}<em>{n}-\boldsymbol{\mu} \sum</em>{n=1}^{N} \mathbb{E}\left[\eta_{n}\right]\right)=0 \end{aligned}
+$$</p>
+<p>$\boldsymbol{\Lambda}$は精度行列なので、逆行列（＝分散行列）が存在する。その逆行列を左から乗じて整理すると、
+$$
+\begin{aligned}
+\boldsymbol\mu_{\rm ML}
+= \frac{\sum_{n=1}^N \mathbb{E} [\eta_n] \mathbf{x}<em>n }{\sum</em>{n=1}^N \mathbb{E}[\eta_n]}
+\end{aligned}
+$$</p>
+<p><strong>Mステップの更新式(2/3)</strong>
+上記の(*)式を$\boldsymbol{\Lambda}$で微分した値をゼロと置くのだが、準備として任意のベクトル$\boldsymbol\xi,\boldsymbol\zeta$に対して、
+$$
+\begin{aligned}
+\frac{\partial}{\partial \boldsymbol\Lambda}
+(\boldsymbol\xi^{\rm T}\boldsymbol\Lambda\boldsymbol\zeta )
+&amp;= \frac{\partial}{\partial \boldsymbol\Lambda}
+{\rm Tr} (\boldsymbol\xi^{\rm T}\boldsymbol\Lambda\boldsymbol\zeta )\
+&amp;= \frac{\partial}{\partial \boldsymbol\Lambda}
+{\rm Tr} (\boldsymbol\Lambda\boldsymbol\zeta \boldsymbol\xi^{\rm T})\
+&amp;= \boldsymbol\zeta \boldsymbol\xi^{\rm T}
+\tag{C.25より}
+\end{aligned}
+$$</p>
+<p>であることに注目すると、
+$$
+\begin{aligned} \frac{\partial}{\partial \boldsymbol{\Lambda}} \mathbb{E}<em>{\boldsymbol{\eta}}[\ln p(\mathbf{X}, \boldsymbol{\eta} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}, \nu)] &amp;=-\frac{1}{2} \sum</em>{n=1}^{N}\left{-\Lambda^{-1}+\mathbb{E}\left[\eta_{n}\right]\left(\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-2 \boldsymbol{\eta} \mathbf{x}<em>{n}^{\mathrm{T}}+\boldsymbol{\eta} \boldsymbol{\eta}^{\mathrm{T}}\right)\right}=0 \ &amp; \Leftrightarrow \Lambda</em>{\mathrm{ML}}=\left(\frac{1}{N} \sum_{n=1}^{N} \mathbb{E}\left[\eta_{n}\right]\left(\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-2 \boldsymbol{\eta} \mathbf{x}_{n}^{\mathrm{T}}+\boldsymbol{\eta} \boldsymbol{\eta}^{\mathrm{T}}\right)\right)^{-1} \end{aligned}
+$$</p>
+<p><strong>Mステップの更新式(3/3)</strong>
+上記の(*)式を$\nu$で微分した値をゼロと置くと、
+$$
+\begin{aligned} \frac{\partial}{\partial \nu} \mathbb{E}<em>{\eta}[\ln p(\mathbf{X}, \boldsymbol{\eta} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}, \nu)] &amp;=-\frac{1}{2} \sum</em>{n=1}^{N}\left{\frac{2}{\Gamma\left(\frac{\nu}{2}\right)} \frac{\partial}{\partial \nu} \Gamma(\nu / 2)-(\ln \nu-\ln 2)-1-\mathbb{E}\left[\ln \eta_{n}\right]+\mathbb{E}\left[\eta_{n}\right]\right}=0 \ &amp; \Leftrightarrow \frac{\psi(\nu / 2)}{\Gamma(\nu / 2)}-(\ln \nu-\ln 2)-1-\frac{1}{N} \sum_{n=1}^{N}\left(\mathbb{E}\left[\ln \eta_{n}\right]-\mathbb{E}\left[\eta_{n}\right]\right)=0 \end{aligned}
+$$</p>
+<p>となる。これは$\nu$について解析的に解くことはできない。</p>
+<h2 id="演習-1225"><a class="header" href="#演習-1225">演習 12.25</a></h2>
+<div class="panel-primary">
+<p>潜在変数の空間分布$p(\mathbf{z}) = \mathcal{N}(\mathbf{x}\mid \mathbf{0}, \mathbf{I})$を持つ線形ガウス潜在変数モデルを考える．観測変数に対する条件付き分布を$p(\mathbf{x} \mid \mathbf{z})=\mathcal{N}(\mathbf{x} \mid \mathbf{W z}+\boldsymbol{\mu}, \mathbf{\Phi})$とおく．ただし$\mathbf{\Phi}$はノイズ項の対称かつ正定値の任意の共分散行列である．$D \times D$行列$\mathbf{A}$を使ってデータ変数に非特異的な線形変換$\mathbf{x} \to \mathbf{Ax}$を行うものとする．もし$\boldsymbol{\mu}<em>{\mathrm{ML}}$と$\mathbf{W}</em>{\mathrm{ML}}$と$\mathbf{\Phi}<em>{\mathrm{ML}}$がもともとの非変換データに対応した最尤解を表すものとすれば，$\mathbf{A} \mu</em>{\mathrm{ML}}$と$\mathbf{AW}<em>{\mathrm{ML}}$と$\mathbf{A} \mathbf{\Phi}</em>{\mathrm{ML}} \mathbf{A}^{\mathrm{T}}$が。変換されたデータ集合の最尤解に対応していることを示せ．最後に，以下の2つの場合にモデルの形が保存されることを示せ．(i) $\mathbf{A}$が対角行列で，$\mathbf{\Phi}$も対角行列．これは因子分析に対応する．変換された$\mathbf{\Phi}$は対角的なままであり，したがって，因子分析モデルは，データ変数の要素ごとの尺度変更に<strong>共変的(covariant)</strong> である．(ii) $\mathbf{A}$が対角的で，$\mathbf{\Phi}$が単位行列に比例する場合，つまり$\mathbf{\Phi} = \sigma^2\mathbf{I}$である場合，これは確率的主成分分析に対応している．変換された$\mathbf{\Phi}$行列は単位行列に比例したままとなり，それゆえ確率的主成分分析は通常の主成分分析がそうであるように，データ空間の軸の回転の下で共変的である．</p>
+</div>
+<p>※
+確率的主成分分析の対数尤度関数は12.2節の議論から以下のようにかける．</p>
+<p>$$
+\begin{aligned}
+L(\boldsymbol{\mu}, \mathbf{W}, \mathbf{\Phi})=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln \left|\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right|
+-\frac{1}{2} \sum_{n=1}^{N}\left{\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}}\left(\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right)^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}\right)\right}
+\end{aligned}
+$$</p>
+<p>いま$\mathbf{x} \to \mathbf{Ax}$の変換を考えているので</p>
+<p>$$
+\begin{aligned}
+&amp;L_{\mathbf{A}}(\boldsymbol{\mu}, \mathbf{W}, \mathbf{\Phi})=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln \left|\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right|-\frac{1}{2} \sum_{n=1}^{N}\left{\left(\mathbf{A} \mathbf{x}<em>{n}-\boldsymbol{\mu}\right)^{\mathrm{T}}\left(\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right)^{-1}\left(\mathbf{A} \mathbf{x}</em>{n}-\boldsymbol{\mu}\right)\right}
+\end{aligned}
+$$</p>
+<p>以上のように書き換えることができる．ここで$\boldsymbol{\mu}$の最尤解を求めるので$\boldsymbol{\mu}$についての微分を0とおいて$\boldsymbol{\mu}$について解くと</p>
+<p>$$
+\boldsymbol{\mu}<em>{\mathrm{A}}=\frac{1}{N} \sum</em>{n=1}^{N} \mathbf{A} \mathbf{x}<em>{n}=\mathbf{A} \overline{\mathbf{x}}=\mathbf{A} \boldsymbol{\mu}</em>{\mathrm{ML}}
+$$</p>
+<p>が得られる．これを対数尤度関数に代入して$\displaystyle \mathbf{S}=\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{x}<em>{n}-\overline{\mathbf{x}}\right)\left(\mathbf{x}</em>{n}-\overline{\mathbf{x}}\right)^{\mathrm{T}}$を用いると</p>
+<p>$$
+\begin{aligned}
+L_{\mathbf{A}}(\boldsymbol{\mu}, \mathbf{W}, \mathbf{\Phi})=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln \left|\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right|-\frac{1}{2} \sum_{n=1}^{N} \operatorname{Tr}\left{\left(\mathbf{W} \mathbf{W}^{\mathrm{T}}+\mathbf{\Phi}\right)^{-1} \mathbf{A} \mathbf{S} \mathbf{A}^{\mathrm{T}}\right}
+\end{aligned}
+$$</p>
+<p>以上のように書ける．ここで以下の定義を用いることで</p>
+<p>$$
+\mathbf{\Phi}<em>{\mathbf{A}}=\mathbf{A} \mathbf{\Phi}^{-1} \mathbf{A}^{\mathrm{T}}, \quad \mathbf{W}</em>{\mathbf{A}}=\mathbf{A} \mathbf{W}
+$$</p>
+<p>対数尤度関数の最終項について変換$A$をあらわに用いない形で書き換えることができる</p>
+<p>$$
+\begin{aligned}
+&amp;L_{\mathbf{A}}\left(\boldsymbol{\mu}<em>{\mathbf{A}}, \mathbf{W}</em>{\mathbf{A}}, \mathbf{\Phi}<em>{\mathbf{A}}\right)=-\frac{N D}{2} \ln (2 \pi)-\frac{N}{2} \ln \left|\mathbf{W}</em>{\mathbf{A}} \mathbf{W}<em>{\mathbf{A}}^{\mathrm{T}}+\mathbf{\Phi}</em>{\mathbf{A}}\right|-\frac{1}{2} \sum_{n=1}^{N}\left{\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{\mathbf{A}}\right)^{\mathrm{T}}\left(\mathbf{W}<em>{\mathbf{A}} \mathbf{W}</em>{\mathbf{A}}^{\mathrm{T}}+\mathbf{\Phi}<em>{\mathbf{A}}\right)^{-1}\left(\mathbf{x}</em>{n}-\boldsymbol{\mu}_{\mathbf{A}}\right)\right}-N \ln |\mathbf{A}|
+\end{aligned}
+$$</p>
+<p>いまこの式は最初の対数尤度関数と比べて$-\ln A$の項だけが異なっている．従って変換$A$をによるデータセットの$\mathbf{W}, \mathbf{\Phi}$の最尤解は変換前の最尤解と同じ形で書け，</p>
+<p>$$
+\mathbf{W}<em>{\mathbf{A}}=\mathbf{AW}</em>{\mathrm{ML}}
+$$</p>
+<p>$$
+\mathbf{\Phi}<em>{\mathbf{A}}=\mathbf{A} \mathbf{\Phi}</em>{\mathrm{ML}} \mathbf{A}^{\mathrm{T}}
+$$</p>
+<p>となることがわかる．</p>
+<p>．
+次にこの変換の前後で$\mathbf{\Phi}$についての制約が保たれるか確認する．</p>
+<p>(i) $\mathbf{A}$が対角行列で$\mathbf{\Phi}$ も対角行列のとき(因子分析に対応)</p>
+<p>このとき</p>
+<p>$$
+\mathbf{\Phi}_{A}=\mathbf{A}\mathbf{\Phi}^{-1}\mathbf{A}^{\mathrm{T}}
+$$</p>
+<p>と書くことができて，これは対角行列同士の積であるため，$\mathbf{\Phi}_A$も対角行列であることがわかる．
+従ってこの場合データベクトルの要素ごとの尺度を変更すると対応する$\mathbf{\Phi}_A$の要素の尺度変更にデータの尺度変更が吸収されることがわかる．</p>
+<p>(ii) $\mathbf{A}$が対角行列で$\mathbf{\Phi}$ が単位行列に比例する場合(確率的主成分分析に対応)</p>
+<p>このとき</p>
+<p>$$
+\mathbf{\Phi}_{A}=\mathbf{A}\mathbf{\Phi}^{-1}\mathbf{A}^{\mathrm{T}}
+$$</p>
+<p>であることから変換$\mathbf{A}$の前後ともに$\mathbf{\Phi}=\sigma^2\mathbf{I}$を満たすとき</p>
+<p>$$
+\mathbf{A}\mathbf{A}^{\mathrm{T}}=\mathbf{I}
+$$</p>
+<p>となるので$\mathbf{A}$は直交行列である必要がある．このとき変換$\mathbf{A}$は座標系の回転に相当する
+<img src="https://i.imgur.com/dNe3lFQ.png" alt="" /></p>
+<h2 id="演習-1226"><a class="header" href="#演習-1226">演習 12.26</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbf{K} \mathbf{a}<em>{i}=\lambda</em>{i} N \mathbf{a}_{i} \tag{12.80}
+$$</p>
+<p>を満たす任意のベクトル$\mathbf{a}_i$が</p>
+<p>$$
+\mathbf{K}^{2} \mathbf{a}<em>{i}=\lambda</em>{i} N \mathbf{K} \mathbf{a}_{i} \tag{12.79}
+$$</p>
+<p>も満たすことを示せ．また固有値$\lambda$を持つ$(12.80)$の任意の解に，$\mathbf{K}$のゼロ固有値に属する固有ベクトルのいかなる定数倍を加えたものもまた固有値$\lambda$を持つ$(12.79)$の解であることを示せ．最後にゼロ固有値に属する固有ベクトルの成分を加える変更が，</p>
+<p>$$
+y_{i}(\mathbf{x})=\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{v}<em>{i}=\sum</em>{n=1}^{N} a_{i n} \boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)=\sum</em>{n=1}^{N} a_{i n} k\left(\mathbf{x}, \mathbf{x}_{n}\right) \tag{12.82}
+$$</p>
+<p>で与えられる主成分による射影に影響しないことを示せ．</p>
+</div>
+<p>※ （復習）$\mathbf{K}$は6章のP.3で定義されているグラム行列であり、$n$番目の行が$\boldsymbol{\phi}(\mathbf{x}_{n}^{\mathrm T})$で表される計画行列$\mathbf{\Phi}$に対して$\mathbf{K} = \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T}$で定義される。これは$N \times N$の対称行列であり、その要素は</p>
+<p>$$
+K_{n m}=\boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{m}\right)=k\left(\mathbf{x}<em>{n}, \mathbf{x}</em>{m}\right) \tag{6.6}
+$$</p>
+<p>である。</p>
+<p>$(1)$
+$(12.80)$が成立する前提で$(12.79)$が成立することを示す。$(12.79)$の左辺に$(12.80)$を代入すると</p>
+<p>$$
+\mathbf{K}^2\mathbf{a}<em>{i} = \mathbf{K}(\lambda</em>{i}N\mathbf{a}<em>{i}) = \lambda</em>{i}N\mathbf{Ka}_{i}
+$$</p>
+<p>となるので成立する。</p>
+<p>$(2)$
+$(12.80)$の解のうち、固有値$\lambda_{i}$に対応する固有ベクトルを$\mathbf{a}<em>{i}$とし、$\mathbf{K}$のゼロ固有値に属する固有ベクトルを$\mathbf{b}</em>{i}$とおく。このとき定数$m$を用いた線形結合のベクトル$\widetilde{\mathbf{a}<em>{i}} = \mathbf{a}</em>{i} + m\mathbf{b}_{i}$を$(12.79)$の左辺に代入したとき、右辺が得られることを示す。</p>
+<p>設定から$\mathbf{Kb}<em>{i} = \lambda</em>{i}N\mathbf{b}_{i}( = \mathbf{0})$となるので</p>
+<p>$$
+\begin{aligned}
+\mathbf{K}^{2}\widetilde{\mathbf{a}<em>{i}} &amp;= \mathbf{K}^{2}(\mathbf{a}</em>{i} + m\mathbf{b}<em>{i}) \
+&amp;=\mathbf{K}^{2}\mathbf{a}</em>{i} + m\mathbf{K}^{2}\mathbf{b}<em>{i} \
+&amp;=\lambda</em>{i}N\mathbf{K}\mathbf{a}<em>{i} + m\mathbf{K}(\lambda</em>{i}N\mathbf{b}<em>{i}) \
+&amp;=\lambda</em>{i}N\mathbf{K}(\mathbf{a}<em>{i} + m\mathbf{b}</em>{i}) \
+&amp;=\lambda_{i}N\mathbf{K}\widetilde{\mathbf{a}_{i}}
+\end{aligned}
+$$</p>
+<p>よって$\widetilde{\mathbf{a}_{i}}$は$(12.79)$の解であることが示された。</p>
+<p>$(3)$ $(12.82)$の$a_{in}$を$\widetilde{\mathbf{a}<em>{i}}$の成分$\tilde{a}</em>{in}$に置き換えても$(12.82)$の結果が変化しないことを示す。$(2)$で用いた$\mathbf{K}\mathbf{b}<em>{i}=0$より、$\sum</em>{n=1}^{N} b_{in}k(\mathbf{x}, \mathbf{x}_{n}) = 0$であるから、</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \tilde{\mathbf{v}}<em>{i}&amp;=\sum</em>{n=1}^{N} \tilde{a}<em>{i n} \boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right) \
+&amp;=\sum_{n=1}^{N} (a_{in}+mb_{in}) \boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right) \
+&amp;=\sum</em>{n=1}^{N} a_{in}k(\mathbf{x}, \mathbf{x}<em>{n}) + m\sum</em>{n=1}^{N} b_{in}k(\mathbf{x}, \mathbf{x}<em>{n})\
+&amp;=\sum</em>{n=1}^{N} a_{in}k(\mathbf{x}, \mathbf{x}_{n})
+\end{aligned}
+$$</p>
+<p>よって変化しないことが示された。</p>
+<h2 id="演習-1227"><a class="header" href="#演習-1227">演習 12.27</a></h2>
+<div class="panel-primary">
+<p>$k(\mathbf{x}, \mathbf{x}^{\prime}) = \mathbf{x}^{\mathrm T}\mathbf{x}^{\prime}$で与えられる線形のカーネル関数を選択すれば，カーネル主成分分析の特別な場合として普通の主成分分析アルゴリズムが再現できることを示せ．</p>
+</div>
+<p>※カーネル関数$k(\mathbf{x},\mathbf{x}^{\prime}) = \mathbf{x}^{\mathrm T}\mathbf{x}^{\prime}$を用いて、あるデータ点$\mathbf{x}_{m}$について$(12.82)$を用いた固有ベクトル$i$への射影</p>
+<p>$$
+y_{i}(\mathbf{x}) = \sum_{n=1}^{N} a_{i n} k\left(\mathbf{x}, \mathbf{x}_{n}\right)\tag{12.82}
+$$</p>
+<p>が、通常の主成分分析での射影と同じ結果、すなわち、あるデータ点$\mathbf{x}<em>{m}$が固有ベクトル$\mathbf{u}</em>{i}$へ射影された$\mathbf{u}<em>{i}^{\mathrm T}\mathbf{x}</em>{m}$に一致することを示せば良い。これは</p>
+<p>$$
+\begin{aligned} \sum_{n=1}^{N} a_{i n} k\left(\mathbf{x}<em>{m}, \mathbf{x}</em>{n}\right) &amp;=\sum_{n=1}^{N} a_{m} \mathbf{x}<em>{m}^{\mathrm T} \mathbf{x}</em>{n} \
+&amp;=\left(\sum_{n=1}^{N} a_{i n} \mathbf{x}<em>{n}^{\mathrm T}\right) \mathbf{x}</em>{m} \
+&amp;\equiv {\mathbf{u}<em>{i}^{\star}}^{\mathrm T}\mathbf{x}</em>{m}
+\end{aligned}
+$$</p>
+<p>この$\displaystyle {\mathbf{u}<em>{i}^{\star}}\equiv \sum</em>{n=1}^{N} a_{i n} \mathbf{x}<em>{n}$が、通常の主成分分析の主成分の定義である$\mathbf{Su}</em>{i} = \lambda_{i}\mathbf{u}<em>{i}$によって定義される$\mathbf{u}</em>{i}$と一致することを示す。左辺から展開していって</p>
+<p>$$
+\begin{aligned}
+\mathbf{Su}<em>{i} &amp;=\left(\frac{1}{N} \sum</em>{m=1}^{N} \mathbf{x}<em>{m} \mathbf{x}</em>{m}^{\mathrm T}\right)\left(\sum_{n=1}^{N} a_{i n} \mathbf{x}<em>{n}\right) \
+&amp;=\frac{1}{N} \sum</em>{m=1}^{N} \mathbf{x}<em>{m} \sum</em>{n=1}^{N} a_{i n} \mathbf{x}<em>{m}^{\mathrm T} \mathbf{x}</em>{n} \
+&amp;=\frac{1}{N} \sum_{m=1}^{N} \mathbf{x}<em>{m} \sum</em>{n=1}^{N} a_{i n} k\left(\mathbf{x}<em>{m}, \mathbf{x}</em>{n}\right) \
+&amp;=\frac{1}{N} \sum_{m=1}^{N} \mathbf{x}<em>{m} \mathbf{K} \mathbf{a}</em>{i} \
+&amp;=\frac{1}{N} \sum_{m=1}^{N} \mathbf{x}<em>{m} \lambda</em>{i}N \mathbf{a}<em>{i} \quad(\because(12.80)) \
+&amp;=\lambda</em>{i} \sum_{m=1}^{N} a_{i m} \mathbf{x}<em>{m} \
+&amp;=\lambda</em>{i} \mathbf{u}_{i}^{\star}
+\end{aligned}
+$$</p>
+<p>以上から、題意が示された。</p>
+<h2 id="演習-1228"><a class="header" href="#演習-1228">演習 12.28</a></h2>
+<div class="panel-primary">
+<p>関数$f(x)$による非線形変数変換$y=f(x)$を施すことにより，ある固定された密度$q(x)$から，任意の密度関数$p(y)$が得られることを示せ．また$f(x)$が満足する微分方程式を書き下し，密度の変換を説明する図を描け．ただし$q(x)$はいたるところで非ゼロとし，$f(x)$は単調と仮定する．したがって$0\leqslant f^{\prime}(x) \lt \infty$である．上記を示す際，変数変換による確率密度の変換に関する性質</p>
+<p>$$
+\begin{aligned} p_{y}(y) &amp;=p_{x}(x)\left|\frac{\mathrm{d} x}{\mathrm{~d} y}\right| \ &amp;=p_{x}(g(y))\left|g^{\prime}(y)\right| \end{aligned} \tag{1.27}
+$$</p>
+<p>を使え．</p>
+</div>
+<p>固定された密度（確率密度）は$q(x) \gt 0$（非ゼロ）で、非線形変数変換$f(x)$は$0\leqslant f^{\prime}(x) \lt \infty$より単調増加関数。単調増加なので、逆関数が存在し、$x = f^{-1}(y)$が存在する。このとき1.2.1 確率密度や演習1.4でも見たように、$(1.27)$の変数変換を用いて</p>
+<p>$$
+p(y) = q(f^{-1}(y))\left|\frac{\mathrm{d} f^{-1}(y)}{\mathrm{~d} y}\right|
+$$</p>
+<p>と書くことができる。</p>
+<p>今、$f$の制約は単調であることのみなので、$x$に対する確率質量を$y$に任意に配分することができる。密度の変換はこんなイメージ（演習問題1.4のときの図を使用）
+<img src="https://i.imgur.com/FC9IHEz.png" alt="" /></p>
+<p>$(1.27)$について赤いガウス分布$p_{x}(x)$について$x=g(y)$（この場合はシグモイド曲線）で変換すると、緑の曲線$p_{x}(g(y))$が得られる。しかし$(1.27)$でやっているのはそれにさらに$|g^{\prime}(y)|$をかけており、これで微小区間$dx, dy$を用いて$p_y(y)dy = p_{x}(x)dx$の微小面積を保存するように変換している。これにより、紫の曲線が得られる。この問題では$p_{x}(x)$が$q(x)$、$g^{-1}(x) = f(x)$, $p_{y}(y) = p(y)$である。$f(x)$の傾きを$0\leqslant f^{\prime}(x) \lt \infty$の範囲で任意に調節すれば、自在に$p(y)$の形状を設定できる。</p>
+<p>$y=f(x)$が満足する微分方程式は、上式を変形して</p>
+<p>$$
+\left| \frac{dy}{dx}\right| = \left| \frac{dy}{df^{-1}(y)}\right| = \frac{q(f^{-1}(y))}{p(y)} = \frac{q(x)}{p(f(x))}
+$$</p>
+<p>である。</p>
+<h2 id="演習-1229"><a class="header" href="#演習-1229">演習 12.29</a></h2>
+<div class="panel-primary">
+<p>2つの変数$z_1$と$z_2$が独立で，$p(z_1,z_2) = p(z_1)p(z_2)$となると仮定する．これらの2つの変数に対する共分散行列が対角的であることを示せ．これは変数の独立性が，2つの変数が無相関となることの十分条件であることを示している．次に，2つの変数$y_1$と$y_2$を考え，$y_1$が$0$を中心に対称に分布しており，また，$y_2 = {y_1}^2$を満たすと仮定する．条件付き分布$p(y_2\mid y_1)$を書き下し，これが$y_1$に依存しており，2つの変数が独立とはならないことを示せ．次に，これら2つの変数に対する共分散行列が対角的であることを示せ．これを示すために，関係式$p\left(y_{1}, y_{2}\right)=p\left(y_{1}\right) p\left(y_{2} \mid y_{1}\right)$を用いて，非対角成分が$0$となることを示せ．この反例は，相関が$0$であることが，独立性の十分条件にはならないことを示している．</p>
+</div>
+<p>※前半は演習1.6とほぼ同じ</p>
+<p>$z_1, z_2$の共分散$\operatorname{cov}[z_1,z_2]$を求める。</p>
+<p>$$
+\begin{aligned} \operatorname{cov}\left[z_{1}, z_{2}\right] &amp;=\mathbb{E}\left[\left(z_{1}-\mathbb{E}\left[z_{1}\right]\right)\left(z_{2}-\mathbb{E}\left[z_{2}\right]\right)\right] \
+&amp;=\mathbb{E}\left[z_{1} z_{2}\right]-\mathbb{E}\left[z_{1}\right] \mathbb{E}\left[z_{2}\right] \
+&amp;=\iint z_{1} z_{2} p\left(z_{1}, z_{2}\right) d z_{1} d z_{2}-\mathbb{E}\left[z_{1}\right] \mathbb{E}\left[z_{2}\right] \
+&amp;=\iint z_{1} z_{2} p\left(z_{1}\right) p\left(z_{2}\right) d z_{1} d z_{2}\quad (\because p(z_1,z_2) = p(z_1)p(z_2))\
+&amp;=\int z_{1} p\left(z_{1}\right) d z_{1} \int z_{2} p\left(z_{2}\right) d z_{2}-\mathbb{E}\left[z_{1}\right] \mathbb{E}\left[z_{2}\right] \
+&amp;=\mathbb{E}\left[z_{1}\right] \mathbb{E}\left[z_{2}\right]-\mathbb{E}\left[z_{1}\right] \mathbb{E}\left[z_{2}\right] \
+&amp;=0 \end{aligned}
+$$</p>
+<p>$z_1, z_2$の共分散行列は</p>
+<p>$$
+\begin{aligned} \Sigma &amp;=\left(\begin{array}{cc}\operatorname{var}\left[z_{1}\right] &amp; \operatorname{cov}\left[z_{1}, z_{2}\right] \ \operatorname{cov}\left[z_{1}, z_{2}\right] &amp; \operatorname{var}\left[z_{2}\right]\end{array}\right) \
+&amp;=\left(\begin{array}{cc}\operatorname{var}\left[z_{1}\right] &amp; 0 \ 0 &amp; \operatorname{var}\left[z_{2}\right]\end{array}\right) \end{aligned}
+$$</p>
+<p>となるので、共分散行列が対角的であることになる。</p>
+<p>後半は、$\operatorname{cov}[y_1,y_2]=0$であっても$y_1, y_2$が独立でないことがあることを示す問題。</p>
+<p>問題設定から、$y_1$が$0$を中心に対称に分布し（$\mathbb{E}[y_1]=0$）、かつ$y_2 = {y_1}^{2}$の関係が成立する2変数について考えると、$y_1$が与えられた下での$y_2$の条件つき確率$p(y_2\mid y_1)$は、性質上$y_2 \neq y_1^2$ならば確率$0$で$y_2 = y_1^2$に常に存在するので、数式上</p>
+<p>$$
+p(y_2 \mid y_1) = \delta(y_2-y_1^{2})
+$$</p>
+<p>となる。</p>
+<p>これは明らかに$p(y_2\mid y_1)$が$y_1$に依存しているので、$y_1$と$y_2$は独立ではない。この共分散を求めると</p>
+<p>$$
+\begin{aligned} \operatorname{cov}\left[y_{1}, y_{2}\right] &amp;=\mathbb{E}\left[y_{1}, y_{2}\right]-\mathbb{E}\left[y_{1}\right] \mathbb{E}\left[y_{2}\right] \
+&amp;=\iint y_{1} y_{2} p\left(y_{1}, y_{2}\right) d y_{1} d y_{2}-0 \quad (\because \mathbb{E}[y_1]=0)\
+&amp;=\iint \delta\left(y_{2}-y_{1}^{2}\right) p\left(y_{1}\right) y_{1} y_{2} d y_{1} d y_{2} \
+&amp;=\int y_{1} p\left(y_{1}\right) \underbrace{\int \delta\left(y_{2}-y_{1}^{2}\right) y_{2} d y_{2}}<em>{y_1^2} d y</em>{1} \
+&amp;=\int y_{1} p\left(y_{1}\right) y_{1}^{2} d y_{1} \
+&amp;=\int y_{1}^{3} p\left(y_{1}\right) d y_{1} \end{aligned}
+$$</p>
+<p>最後に、$p(y_1)$は偶関数で$y_1^3$は奇関数であるから、この積分は$0$となる。すなわち、$y_1$と$y_2$は独立ではない場合でも共分散は$0$となることがあることが示された。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch11.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch13.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch11.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch13.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

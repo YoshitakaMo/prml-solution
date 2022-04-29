@@ -1,0 +1,993 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第8章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html" class="active"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第8章演習問題解答"><a class="header" href="#prml第8章演習問題解答">PRML第8章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-81"><a class="header" href="#演習-81">演習 8.1</a></h2>
+<div class="panel-primary">
+<p>変数を1つずつ周辺化することによって，有向グラフの同時分布の表現</p>
+<p>$$
+p(\mathbf{x})=\prod_{k=1}^{K} p\left(x_{k} \mid \mathrm{pa}_{k}\right) \tag{8.5}
+$$</p>
+<p>が正しく規格化されていることを示せ．ただし個々の条件付き分布は正しく規格化されていると仮定する．</p>
+</div>
+<p>$\int p(\mathbf{x}) d\mathbf{x} = 1$であることを示せばよい。</p>
+<p>\begin{align}
+\int p(\mathbf{x}) d\mathbf{x} &amp;= \int \prod^K_{k = 1} p(x_k|\mathrm{pa}_k) d\mathbf{x} \
+&amp;= \idotsint p(x_K|\mathrm{pa}<em>K) \prod^{K - 1}</em>{k = 1} p(x_k|\mathbf{pa}<em>k) dx_1x_2\cdots x_K \
+&amp;= \idotsint \Big[\prod^{K - 1}</em>{k = 1} p(x_k|\mathbf{pa}<em>k) \int p(x_K|\mathrm{pa}<em>K) dx_K\Big] dx_1x_2\cdots x</em>{K - 1} \
+&amp;= \idotsint \prod^{K - 1}</em>{k = 1} p(x_k|\mathbf{pa}<em>k) dx_1x_2\cdots x</em>{K - 1} \
+&amp;= \cdots \
+&amp;= 1.
+\end{align}</p>
+<h2 id="演習-82"><a class="header" href="#演習-82">演習 8.2</a></h2>
+<div class="panel-primary">
+<p>有向グラフにおいて，すべてのノードについて，自分より小さい番号を持つノードに向かうリンクが存在しないようにノードを順序付けることができるなら，有向閉路は存在しないことを示せ．</p>
+</div>
+<p>$N$個の変数$x_1, x_2, \cdots x_N$を仮定する。題意より
+\begin{align}
+x_1 \rightarrow \cdots \rightarrow x_N
+\end{align}
+となる経路は存在しうるが、
+\begin{align}
+x_N \rightarrow \cdots \rightarrow x_1
+\end{align}
+となる経路は存在しないため、有向閉路は存在しない。</p>
+<h2 id="演習-83"><a class="header" href="#演習-83">演習 8.3</a></h2>
+<div class="panel-primary">
+<p>表8.2で与えられる同時分布を持つ3つの2値変数$a,b,c \in {0, 1}$を考える．この分布が以下の特性を持つことを直接計算によって示せ．$a$および$b$は周辺依存である．すなわち$p(a, b) \neq p(a)p(b)$．しかし$c$で条件付けられると独立である．すなわち$c=0$および$c=1$のいずれの場合でも$p(a, b \mid c) = p(a\mid c)p(b\mid c)$である．
+<img src="https://i.imgur.com/FfoEAQa.png" alt="" /></p>
+</div>
+<p>各確率を周辺化することで地道に求めていく。</p>
+<p>$$
+\begin{aligned}
+p(a)&amp;=\sum_{b \in{0,1}} \sum_{c \in{0,1}} p(a, b, c) \
+p(b)&amp;=\sum_{a \in{0,1}} \sum_{c \in{0,1}} p(a, b, c) \
+p(a,b)&amp;=\sum_{c \in{0,1}} p(a,b,c)
+\end{aligned}
+$$</p>
+<p>これを$a=0, b=0$について求めると</p>
+<p>$$
+\begin{aligned}
+p(a=0) &amp;= \frac{192+144+48+216}{1000}=\frac{600}{1000},\ p(b=0) = \frac{192+144+192+64}{1000} =\frac{592}{1000} \
+p(a=0, b=0) &amp;= \frac{192+144}{1000} = \frac{336}{1000}
+\end{aligned}
+$$</p>
+<p>これより$p(a=0, b=0) \neq p(a=0)p(b=0)$であることが示された。同様にして、いずれの$a,b$の組み合わせでも$p(a, b) \neq p(a)p(b)$となる。</p>
+<p>次に$c$で条件付けられた場合、ベイズの定理から</p>
+<p>$$
+p(a, b \mid c)= \frac{p(a,b,c)}{p(c)} =\frac{p(a, b, c)}{\sum_{a \in{0,1}} \sum_{b \in{0,1}} p(a, b, c)}
+$$</p>
+<p>同様に</p>
+<p>$$
+\begin{aligned}
+p(a \mid c)&amp;=\frac{\sum_{b \in{0,1}} p(a, b, c)}{\sum_{a \in{0,1}} \sum_{b \in{0,1}} p(a, b, c)} \
+p(b \mid c)&amp;=\frac{\sum_{a \in{0,1}} p(a, b, c)}{\sum_{a \in{0,1}} \sum_{b \in{0,1}} p(a, b, c)}
+\end{aligned}
+$$</p>
+<p>である。それぞれ計算していくと</p>
+<p>$$
+\begin{aligned}
+p(c=0) &amp;= \frac{192+48+192+48}{1000} = \frac{480}{1000} \
+p(a=0, b=0 \mid c=0) &amp;= \frac{p(a=0, b=0, c=0)}{p(c=0)} = \frac{192}{480} = \frac{2}{5} \
+p(a=0 \mid c=0) &amp;= \frac{p(a=0, c=0)}{p(c=0)} = \frac{240}{480} = \frac{1}{2} \
+p(b=0 \mid c=0) &amp;= \frac{p(b=0, c=0)}{p(c=0)} = \frac{384}{480} = \frac{4}{5} \
+\end{aligned}
+$$</p>
+<p>これより、$p(a=0, b=0 \mid c=0) = p(a=0 \mid c=0)p(b=0 \mid c=0)$が成立していることがわかる。同様にしてすべて計算していくと結果は以下の表の通りになる。</p>
+<p>$$
+\begin{array}{|c|c|c|c|}\hline a &amp; b &amp; \mathrm{c} &amp; p(a, b \mid c) \ \hline \hline 0 &amp; 0 &amp; 0 &amp; 0.400 \ \hline 0 &amp; 1 &amp; 0 &amp; 0.100 \ \hline 1 &amp; 0 &amp; 0 &amp; 0.400 \ \hline 1 &amp; 1 &amp; 0 &amp; 0.100 \ \hline \hline 0 &amp; 0 &amp; 1 &amp; 0.277 \ \hline 0 &amp; 1 &amp; 1 &amp; 0.415 \ \hline 1 &amp; 0 &amp; 1 &amp; 0.123 \ \hline 1 &amp; 1 &amp; 1 &amp; 0.185 \ \hline\end{array} \hspace{2em} \begin{array}{|c|c|c|c|}\hline a &amp; b &amp; c &amp; p(a \mid c) p(b \mid c) \ \hline \hline 0 &amp; 0 &amp; 0 &amp; 0.400 \ \hline 0 &amp; 1 &amp; 0 &amp; 0.100 \ \hline 1 &amp; 0 &amp; 0 &amp; 0.400 \ \hline 1 &amp; 1 &amp; 0 &amp; 0.100 \ \hline \hline 0 &amp; 0 &amp; 1 &amp; 0.277 \ \hline 0 &amp; 1 &amp; 1 &amp; 0.415 \ \hline 1 &amp; 0 &amp; 1 &amp; 0.123 \ \hline 1 &amp; 1 &amp; 1 &amp; 0.185 \ \hline\end{array}
+$$</p>
+<p>これより$p(a,b\mid c) = p(a\mid c)p(b\mid c)$が成立していることが示された。つまり$c$で条件付けられた場合に$a,b$は独立である。</p>
+<h2 id="演習-84"><a class="header" href="#演習-84">演習 8.4</a></h2>
+<div class="panel-primary">
+<p>表8.2で与えられる同時分布に対して分布$p(a)$, $p(b\mid c)$および$p(c\mid a)$を計算せよ．その結果から$p(a, b, c) = p(a)p(c\mid a)p(b\mid c)$を直接計算して示し，対応する有向グラフを描け．</p>
+</div>
+<p>演習8.3と同様に$p(c|a)$を計算する。</p>
+<p>$$
+\begin{aligned}
+p(c=0|a=0) &amp;= \frac{192+48}{600} = 0.4\
+p(c=0|a=1) &amp;= \frac{192+48}{400} = 0.6\
+p(c=1|a=0) &amp;= \frac{144+216}{600} = 0.4\
+p(c=1|a=1) &amp;= \frac{64+96}{400} = 0.6\
+\end{aligned}
+$$
+これを用いて$p(a)p(c|a)p(b|c)$を計算すると、以下の通り表8.2の$p(a,b,c)$に一致する。
+$$
+\begin{array}{|c|c|c|c|}\hline a &amp; b &amp; \mathrm{c} &amp; p(a)p(c|a)p(b|c) \ \hline \hline 0 &amp; 0 &amp; 0 &amp; 0.6\times 0.4\times 0.8=0.192 \ \hline 0 &amp; 0 &amp; 1 &amp; 0.6\times 0.6\times 0.4=0.144 \ \hline 0 &amp; 1 &amp; 0 &amp; 0.6\times 0.4\times 0.2=0.048 \ \hline 0 &amp; 1 &amp; 1 &amp; 0.6\times 0.6\times 0.6=0.216 \ \hline \hline 1 &amp; 0 &amp; 0 &amp; 0.4\times 0.6\times 0.8=0.192 \ \hline 1 &amp; 0 &amp; 1 &amp; 0.4\times 0.4\times 0.4=0.064 \ \hline 1 &amp; 1 &amp; 0 &amp; 0.4\times 0.6\times 0.2=0.048 \ \hline 1 &amp; 1 &amp; 1 &amp; 0.4\times 0.4\times 0.6=0.096 \ \hline\end{array}
+$$
+従って、有向グラフは「a→c→b」となる。</p>
+<h2 id="演習-85"><a class="header" href="#演習-85">演習 8.5</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)=\prod_{n=1}^{N} p\left(t_{n} \mid \mathbf{x}_{n}, \mathbf{w}, \beta\right) \tag{7.79}
+$$</p>
+<p>および</p>
+<p>$$
+p(\mathbf{w} \mid \boldsymbol{\alpha})=\prod_{i=1}^{M} \mathcal{N} \left( w_i \mid 0, \alpha_i^{-1} \right) \tag{7.80}
+$$</p>
+<p>によって記述される．RVMに対応する有向確率的グラフィカルモデルを描け．</p>
+</div>
+<p>教科書P.57から</p>
+<blockquote>
+<p>RVMでは1つの超パラメータの代わりに個々の重みパラメータ$w_i$ごとに異なった超パラメータ$\alpha_i$を用いる</p>
+</blockquote>
+<p>ので$(7.80)$となっている。そこでこの式をまず有向グラフにすると</p>
+<p><img src="https://i.imgur.com/HTu4sfH.png" alt="" /></p>
+<p>のようになる。ノードは$M$個存在する。</p>
+<p>同様に$(7.79)$を有向グラフにすると</p>
+<p><img src="https://i.imgur.com/ABmm7oZ.png" alt="" /></p>
+<p>ノードは$N$個存在する。$t_n$は$\mathbf{x}_n$,$\mathbf{w}_i$, $\beta$より生成される。なお、$t_n$は観測変数なのでノードに影をつけておく。</p>
+<p>$(7.80)$で得た重み$\mathbf{w}$が$(7.79)$の$t_n$への親ノードになっているので、これらを繋いで</p>
+<p><img src="https://i.imgur.com/VjGdT1K.png" alt="" /></p>
+<p>という図を得る。</p>
+<h2 id="演習-86"><a class="header" href="#演習-86">演習 8.6</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/zX33hmn.png" alt="" /></p>
+<p>図8.13に示されるモデルにおいて，条件付き分布$p(y\mid x_1, \ldots, x_M)$（ただし$x_i \in {0,1}$）を規定するのに必要なパラメータ数は，ロジスティックシグモイド関数表現</p>
+<p>$$
+p\left(y=1 \mid x_{1}, \ldots, x_{M}\right)=\sigma\left(w_{0}+\sum_{i=1}^{M} w_{i} x_{i}\right)=\sigma\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}\right) \tag{8.10}
+$$</p>
+<p>を用いれば$2^M$から$M + 1$に減らせることを示した．別の表現(Pearl, 1988) として，</p>
+<p>$$
+p\left(y=1 \mid x_{1}, \ldots, x_{M}\right)=1-\left(1-\mu_{0}\right) \prod_{i=1}^{M}\left(1-\mu_{i}\right)^{x_{i}} \tag{8.104}
+$$</p>
+<p>で与えられるものもある．ただし，$0 \leqslant \mu_i \leqslant 1 (i = 0,\ldots, M)$であり，条件付き分布$(8. 104)$は<strong>noisy OR</strong>として知られる．この表現が論理的OR関数（すなわち，少なくとも1つの$i$に対して$x_i = 1$であれば常に$y=1$を与える関数）を「ソフト」 （確率的） にしたものであると解釈できることを示せ．また，$\mu_i$の解釈について論ぜよ．</p>
+</div>
+<p>まず、$\mu_0 = 0$、$\mu_i = 1$ for $i = 1, \ldots$の場合を考える。この時、8.104式は、
+$$
+p\left(y=1 \mid x_{1}, \ldots, x_{M}\right)=1- \prod_{i=1}^{M}0^{x_{i}} =
+\begin{cases}
+0 &amp;\text{if every } x_i = 0\
+1 &amp;\text{else}
+\end{cases}
+$$
+と表される。これは、論理的OR関数（すなわち，少なくとも1つの$i$に対して$x_i = 1$であれば常に$y=1$を与える関数）に等しい。そして、$\mu_0 \approx 0$,  $\mu_1 \approx 1$の時は、OR関数に近似できる。</p>
+<p>次に、$\mu_0, \mu_i$について考える。$\mathbf{x} = \mathbf{0}$の時、
+\begin{align}
+p(y = 1|\mathbf{x} = \mathbf{0}) = 1 - (1-\mu_0)\prod_i (1-\mu_i)^0 = 1 - (1-\mu_0) = \mu_0
+\end{align}
+すなわち、$\mu_0$は、$\mathbf{x} = \mathbf{0}$の時の$y = 1$の確率と見ることができる。</p>
+<p>次に、$x_i = 1$、$\mathbf{x}<em>{-i} = \mathbf{0}$を考えると、
+\begin{align}
+p(y = 1|x_i =1, \mathbf{x}</em>{-i} = \mathbf{0})  = 1 - (1-\mu_0)(1-\mu_i) = \mu_0 + \mu_i -\mu_0 \mu_i
+\end{align}</p>
+<p>今、$\mu_0 \approx 0$とすると、
+\begin{align}
+p(y = 1|x_i =1, \mathbf{x}<em>{-i}) \approx \mu_i
+\end{align}
+である。すなわち、$\mu_i$とは、$\mu_0 = 0$である時に、$x_i = 1$、$\mathbf{x}</em>{-i} = \mathbf{0}$である確率に等しい。以上から、8.104式は、論理的OR関数をソフトに(確率的に)したものであると言える。</p>
+<h2 id="演習-87"><a class="header" href="#演習-87">演習 8.7</a></h2>
+<div class="panel-primary">
+<p>再帰的関係</p>
+<p>$$
+\mathbb{E}\left[x_{i}\right]=\sum_{j \in \mathrm{pa}<em>{i}} w</em>{i j} \mathbb{E}\left[x_{j}\right]+b_{i} \tag{8.15}
+$$</p>
+<p>および</p>
+<p>$$
+\begin{aligned} \operatorname{cov}\left[x_{i}, x_{j}\right] &amp;=\mathbb{E}\left[\left(x_{i}-\mathbb{E}\left[x_{i}\right]\right)\left(x_{j}-\mathbb{E}\left[x_{j}\right]\right)\right] \ &amp;=\mathbb{E}\left[\left(x_{i}-\mathbb{E}\left[x_{i}\right]\right)\left{\sum_{k \in \mathrm{pa}<em>{j}} w</em>{j k}\left(x_{k}-\mathbb{E}\left[x_{k}\right]\right)+\sqrt{v_{j}} \epsilon_{j}\right}\right] \ &amp;=\sum_{k \in \mathrm{pa}<em>{j}} w</em>{j k} \operatorname{cov}\left[x_{i}, x_{k}\right]+I_{i j} v_{j} . \end{aligned} \tag{8.16}
+$$</p>
+<p>を用いて，図8.14に示されるグラフの同時分布の平均および共分散が，それぞれ</p>
+<p>$$
+\mu=\left(b_{1}, b_{2}+w_{21} b_{1}, b_{3}+w_{32} b_{2}+w_{32} w_{21} b_{1}\right)^{\mathrm{T}} \tag{8.17}
+$$</p>
+<p>および</p>
+<p>$$
+\Sigma=\left(\begin{array}{ccc}v_{1} &amp; w_{21} v_{1} &amp; w_{32} w_{21} v_{1} \ w_{21} v_{1} &amp; v_{2}+w_{21}^{2} v_{1} &amp; w_{32}\left(v_{2}+w_{21}^{2} v_{1}\right) \ w_{32} w_{21} v_{1} &amp; w_{32}\left(v_{2}+w_{21}^{2} v_{1}\right) &amp; v_{3}+w_{32}^{2}\left(v_{2}+w_{21}^{2} v_{1}\right)\end{array}\right) \tag{8.18}
+$$</p>
+<p>で与えられることを示せ．</p>
+<p><img src="https://i.imgur.com/mD7v5q8.png" alt="" /></p>
+</div>
+<p>図8.14のグラフに示された変数間の依存関係 ($x_1 \rightarrow x_2 \rightarrow x_3$) より、
+\begin{align}
+\mathbb{E}\left[x_1\right] &amp;= b_1 \
+\mathbb{E}\left[x_2\right] &amp;= w_{21} \mathbb{E}\left[x_1\right] + b_2 \
+&amp;= w_{21} b_1 + b_2 \
+\mathbb{E}\left[x_3\right] &amp;= w_{32} \mathbb{E}\left[x_2\right] + b_3 \
+&amp;= w_{32} w_{21} b_1 + w_{32} b_2 + b_3 \
+\mathrm{var}\left[x_1\right] &amp;= v_1 \
+\mathrm{cov}\left[x_1, x_2\right] &amp;= w_{21} \mathrm{cov}\left[x_1, x_1\right] \
+&amp;= w_{21} v_1 = \mathrm{cov}\left[x_2, x_1\right] \
+\mathrm{var}\left[x_2\right] &amp;= w_{21} \mathrm{cov}\left[x_2, x_1\right] + v_2 \
+&amp;= w^2_{21} v_1 + v_2 \
+\mathrm{cov}\left[x_1, x_3\right] &amp;= w_{32} \mathrm{cov}\left[x_1, x_2\right] \
+&amp;= w_{32}w_{21} v_1 = \mathrm{cov}\left[x_3, x_1\right] \
+\mathrm{cov}\left[x_2, x_3\right] &amp;= w_{32} \mathrm{cov}\left[x_2, x_2\right] \
+&amp;= w_{32}w^2_{21} v_1 + w_{32} v_2 = w_{32}(w^2_{21} v_1 + v_2) = \mathrm{cov}\left[x_3, x_2\right] \
+\mathrm{var}\left[x_3\right] &amp;= w_{32} \mathrm{cov}\left[x_3, x_2\right] + v_3 \
+&amp;= w^2_{32}(w^2_{21} v_1 + v_2) + v_3
+\end{align}</p>
+<h2 id="演習-88"><a class="header" href="#演習-88">演習 8.8</a></h2>
+<div class="panel-primary">
+<p>$a \perp !!! \perp b, c \mid d$ならば$a \perp !!! \perp b \mid d$であることを示せ．</p>
+</div>
+<p>$a \perp !!! \perp b, c \mid d$ より条件付き独立の定義から</p>
+<p>$$
+p(a, b, c \mid d)=p(a \mid d)p(b, c \mid d)
+$$</p>
+<p>である．両辺をcについて周辺化することで</p>
+<p>$$
+p(a,b \mid d) =p(a \mid d)p(b \mid d)
+$$</p>
+<p>が得られ，条件付き独立の定義から</p>
+<p>$$
+a \perp !!! \perp b \mid d
+$$</p>
+<p>である．以上により示された．</p>
+<h2 id="演習-89"><a class="header" href="#演習-89">演習 8.9</a></h2>
+<div class="panel-primary">
+<p>有向グラフにおいて，マルコフブランケット内のすべてのノードに条件付けられたノード$\mathbf{x}$の条件付き分布が，グラフの残りの変数に対して独立であることを有向分離規準を用いて示せ．</p>
+</div>
+<p>マルコフブランケット内のすべてのノードとは$\mathbf{x}$の親、子、共同親の全てのノードである。これらが全て条件付けられている時、$\mathbf{x}$が条件付けられていないノードに対して独立であることを示す。まず、条件付けられていないノードは、
+(1) $\mathbf{x}$の親ノードの親
+(2) $\mathbf{x}$の親ノードの子
+(3) $\mathbf{x}$の子ノードの子
+(4) $\mathbf{x}$の共同親ノードの親
+(5) $\mathbf{x}$の共同親ノードの子
+のいずれかが$\mathbf{x}$との経路に存在する。よって(1)~(5)のいずれも$\mathbf{x}$と独立であることを示せば良い。</p>
+<p>p.91の2条件を改めて示すと、
+ノード$\mathbf{y}$で経路が遮断されている条件は
+(a)$\mathbf{y}$が条件づけられていて、経路に含まれる矢印が$\mathbf{y}$でhead-to-tailもしくはtail-to-tail
+(b)$\mathbf{y}$がその子孫とともに条件づけられておらず、経路に含まれる矢印が$\mathbf{y}$でhead-to-head</p>
+<p>(1)について、(1)から$\mathbf{x}$への経路は、$\mathbf{x}$の親ノードが(a)に当てはまり(head-to-tail)、遮断されている。</p>
+<p>(2)について、(2)から$\mathbf{x}$への経路は、$\mathbf{x}$の親ノードが(a)に当てはまり(tail-to-tail)、遮断されている。</p>
+<p>(3)について、$\mathbf{x}$から(3)への経路は、$\mathbf{x}$の子ノードが(a)に当てはまり(tail-to-tail)、遮断されている。</p>
+<p>(4)について、(4)から$\mathbf{x}$への経路は、$\mathbf{x}$の共同親ノードが(a)に当てはまり(head-to-tail)、遮断されている。</p>
+<p>(5)について、(5)から$\mathbf{x}$への経路は、$\mathbf{x}$の共同親ノードが(a)に当てはまり(tail-to-tail)、遮断されている。</p>
+<p>以上により示された。</p>
+<h2 id="演習-810"><a class="header" href="#演習-810">演習 8.10</a></h2>
+<div class="panel-primary">
+<p>すべての変数が観測されていない図8.54に示される有向グラフを考える．$a \perp !!! \perp b \mid \emptyset$を示せ．今，$d$を観測したとする．一般に$a \not\perp !!! \perp b \mid d$であることを示せ．</p>
+<p><img src="https://i.imgur.com/TYGV2ye.png" alt="" /></p>
+</div>
+<p>まず、図8.54のグラフより、
+\begin{align}
+p(a, b, c, d) = p(a)p(b)p(c|a, b)p(d|c).
+\end{align}
+上式を$c$と$d$に関して周辺化することで、
+\begin{align}
+p(a, b) &amp;= p(a)p(b)\sum_{c}\sum_{d}p(c|a, b)p(d|c) \
+&amp;= p(a)p(b)\sum_{c}p(c|a, b)\sum_{d}p(d|c) \
+&amp;= p(a)p(b) \times 1 \times 1 \
+&amp;= p(a)p(b)
+\end{align}
+となるので、$a \perp !!! \perp b \mid \emptyset$。
+次に、
+\begin{align}
+p(a, b|d) &amp;= \frac{\sum_{c} p(a, b, c, d)}{\sum_{a}\sum_{b}\sum_{c} p(a, b, c, d)} \
+&amp;= \frac{p(d|a, b)p(a)p(b)}{p(d)} \
+&amp;= \frac{p(d|a, b)p(d)}{p(d)} \frac{p(a)p(b)}{p(d)}.
+\end{align}
+しかし、
+\begin{align}
+p(a|d)(b|d) &amp;= \frac{p(a, d)}{p(d)} \frac{p(b, d)}{p(d)} \
+&amp;= \frac{p(d|a)p(a)}{p(d)} \frac{p(d|b)p(b)}{p(d)} \
+&amp;= \frac{p(d|a)p(d|b)}{p(d)} \frac{p(a)p(b)}{p(d)} \
+&amp;\neq p(a, b|d)
+\end{align}
+なので、$a \not\perp !!! \perp b \mid d$。</p>
+<h2 id="演習-811"><a class="header" href="#演習-811">演習 8.11</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/oMm0sit.png" alt="" />
+図8.21 に示される車の燃料装置の例を考える．燃料計$G$の状態を直接観測する代わりに，燃料計が運転手$D$によって観測され，彼が燃料計の読みを我々に報告すると仮定する．この報告は 燃料計が満タンを指している$D = 1$かあるいは空を指している$D = 0$かのいずれかである．この運転手はいささか信頼性に欠け，以下の確率に従うとする．</p>
+<p>$$
+p(D=1 \mid G=1)=0.9 \tag{8.105}
+$$</p>
+<p>$$
+p(D=0 \mid G=0)=0.9 \tag{8.106}
+$$</p>
+<p>今運転手が燃料計が空を指していることを報告したとする．すなわち我々は$D=0$を観測した．この観測値だけが与えられたときの，タンクが空である確率を求めよ．同様に，バッテリが切れているという観測も得られたときのタンクが空である確率を求め，後者の確率の方が低いことを確認せよ．この結果の直感的解釈について議論し，図8.54との関係を説明せよ．</p>
+<p><img src="https://i.imgur.com/TYGV2ye.png" alt="" /></p>
+</div>
+<p>教科書P.89の問題設定から</p>
+<p>$$
+\begin{array}{l}p(G=1 \mid B=1, F=1)=0.8 \ p(G=1 \mid B=1, F=0)=0.2 \ p(G=1 \mid B=0, F=1)=0.2 \ p(G=1 \mid B=0, F=0)=0.1 .\end{array} \hspace{1em}
+\begin{array}{l}p(G=0 \mid B=1, F=1)=0.2 \ p(G=0 \mid B=1, F=0)=0.8 \ p(G=0 \mid B=0, F=1)=0.8 \ p(G=0 \mid B=0, F=0)=0.9 .\end{array}
+$$</p>
+<p>である。また$p(D=0\mid G=1) = 0.1, p(D=0 \mid G=0) = 0.9$である。</p>
+<p>求めたいのは$p(F=0 \mid D=0)$なので、式変形をすると</p>
+<p>$$
+p(F=0 \mid D=0)=\frac{p(D=0 \mid F=0) p(F=0)}{p(D=0)}=\frac{\sum_{G \in {0,1}} p(D=0, G \mid F=0) p(F=0)}{p(D=0)} \tag{*}
+$$</p>
+<p>である。まず$p(G=0)$を計算する。これは$(8.30)$にも出ているが</p>
+<p>$$
+\begin{aligned} p(G=0) &amp;=\sum_{B \in{0,1}}\sum_{F \in{0.1}} p(G=0 \mid B, F) p(B) p(F) \
+&amp;=p(G=0 \mid B=0, F=0)p(B=0)p(F=0) + p(G=0 \mid B=0, F=1)p(B=0)p(F=1) \
+&amp;+ p(G=0 \mid B=1, F=0)p(B=1)p(F=0) + p(G=0 \mid B=1, F=1)p(B=1)p(F=1) \
+&amp;=0.9 \times 0.1 \times 0.1+0.8 \times 0.1 \times 0.9+0.8 \times 0.9 \times 0.1+0.2 \times 0.9 \times 0.9 \ &amp;=0.315 \end{aligned}
+$$</p>
+<p>であり、$p(G=1) = 1-0.315 = 0.685$が求まる。</p>
+<p>$(*)$式の分母を計算すると</p>
+<p>$$
+\begin{aligned}
+p(D=0) &amp;=\sum_{G \in{0,1}} p(D=0 \mid G) p(G) \ &amp;=0.9 \times 0.315+0.1 \times 0.685=0.352
+\end{aligned}
+$$</p>
+<p>となる。次に$\sum_{G \in {0,1}} p(D=0, G \mid F=0)$を計算する。</p>
+<p>$$
+\begin{aligned}
+\sum_{G \in[0,1]} p(D=0, G \mid F=0) &amp;=\sum_{G \in{0,1}} p(D=0 \mid G, F=0) p(G \mid F=0) \
+&amp;=\sum_{G \in{0,1}} p(D=0 \mid G) p(G \mid F=0) \
+&amp;=0.9 \times 0.81+0.1 \times 0.19=0.748
+\end{aligned}
+$$</p>
+<p>ここで問題設定から$D$は$G$のみに依存しているので$p(D=0\mid G, F=0) = p(D=0 \mid G)$であることを用いた。よってこれらの値を用いることで、$(*)$式は</p>
+<p>$$
+p(F=0\mid D=0) =\frac{0.748 \times 0.1}{0.352} = 0.2125
+$$</p>
+<p>次に、$B=0$が観測されたときの求める確率は</p>
+<p>$$
+\begin{aligned}
+p(F=0 \mid D=0, B=0) &amp;=\frac{p(D=0, B=0, F=0)}{p(D=0, B=0)} \ &amp;=\frac{\sum_{G} p(D=0, B=0, F=0, G)}{\sum_{G} p(D=0, B=0, G)} \ &amp;=\frac{\sum_{G} p(B=0, F=0, G) p(D=0 \mid B=0, F=0, G)}{\sum_{G} p(B=0, G) p(D=0 \mid B=0, G)} \ &amp;=\frac{\sum_{G} p(B=0, F=0, G) p(D=0 \mid G)}{\sum_{G} p(B=0, G) p(D=0 \mid G)}
+\end{aligned}\tag{**}
+$$</p>
+<p>これを計算する。分子の$p(B=0, F=0, G)$について</p>
+<p>$$
+\begin{aligned} p(F=0, B=0, G=0) &amp;=p(G=0 \mid B=0, F=0) p(B=0, F=0) \ &amp;=0.9 \times p(B=0) \times p(F=0) \ &amp;=0.9 \times 0.1 \times 0.1=0.009 \
+p(F=0, B=0, G=1) &amp;=0.1 \times p(B=0) \times p(F=0) \ &amp;=0.001 \end{aligned}
+$$</p>
+<p>分母の$p(B=0, G)$について</p>
+<p>$$
+\begin{aligned} p(B=0, G=0) &amp;=\sum_{F} p(B=0, G=0, F) \
+&amp;=p(F=0, B=0, G=0)+p(F=1, B=0, G=0) \
+&amp;=0.009+p(G=0 \mid B=0, F=1) p(B=0) p(F=1) \
+&amp;=0.009+0.8 \times 0.1 \times 0.9 \ &amp;=0.081 \
+p(B=0, G=1) &amp;=p(F=0, B=0, G=1)+p(F=1, B=0, G=1) \ &amp;=0.1 \times 0.1 \times 0.1+0.2 \times 0.1 \times 0.9 \ &amp;=0.001+0.018=0.019
+\end{aligned}
+$$</p>
+<p>以上の計算から</p>
+<p>$$
+\begin{aligned} p(F=0 \mid D=0, B=0) &amp;=\frac{\sum_{G} p(D=0 \mid G) p(F=0, B=0, G)}{\sum_{G} p(D=0 \mid G) p(B=0, G)} \ &amp;=\frac{0.9 \times 0.009+0.1 \times 0.001}{0.9 \times 0.081+0.1 \times 0.019} \ &amp;=\frac{9 \times 9+1 \times 1}{9 \times 81+1 \times 19}=\frac{41}{374}=0.1096 \cdots \end{aligned}
+$$</p>
+<p>これらの計算から、$p(F=0 \mid D=0) \gt p(F=0 \mid D=0, B=0)$となっている。すなわちバッテリの状態を確認したことでタンクが空の確率は減少した。この減少はバッテリの状態$B=0$が$G=0$を弁明してしまうため、$F=0$の可能性が低くなる直感と一致する。</p>
+<p>また、図8.54と結びつけると、ノード$c$は$G$，ノード$d$は$D$に対応する。</p>
+<h2 id="演習-812"><a class="header" href="#演習-812">演習 8.12</a></h2>
+<div class="panel-primary">
+<p>$M$個の異なる確率変数集合に対して$2^{M(M-1)/2}$個の異なる無向グラフが存在することを示せ．$M=3$の場合における8個の可能なグラフをすべて描け．</p>
+</div>
+<p>※</p>
+<p><img src="https://i.imgur.com/X9gxRKa.png" alt="" /></p>
+<h2 id="演習-813"><a class="header" href="#演習-813">演習 8.13</a></h2>
+<div class="panel-primary">
+<p>反復条件付きモード(ICM) を使って</p>
+<p>$$
+E(\mathbf{x}, \mathbf{y})=h \sum_{i} x_{i}-\beta \sum_{{i, j}} x_{i} x_{j}-\eta \sum_{i} x_{i} y_{i} \tag{8.42}
+$$</p>
+<p>で与えられるエネルギー関数を最小化することを考える．すべての他の変数を固定して，ある1つの変数$x_j$に関する2状態のエネルギー値の差を書き下せ．またその表現が，グラフにおける$x_j$の近傍の局所的な量だけに依存することを示せ．</p>
+</div>
+<p>※PRML下巻pp.102~103を参照。</p>
+<p>教科書中の問題設定から、すべての$\mathbf{x}, \mathbf{y}$は${+1, -1}$の2値である。</p>
+<p>ある変数$x_k$がエネルギー関数$E(\mathbf{x, y})$に与える影響を考えるために、$(8.42)$式を変形すると</p>
+<p>$$
+E(\mathbf{x}, \mathbf{y})=h\left(\sum_{i \neq k} x_{i}+x_{k}\right)-\beta\left(\sum_{i\neq k} x_{i} x_{j}+x_{k} \sum_{l} x_{l}\right) - \eta \left( \sum_{i\neq k} x_i y_i + x_k y_k \right)
+$$</p>
+<p>となる。ここで問題設定から$x_l$は$x_k$に隣接する変数である。</p>
+<p>$\mathbf{x,y}$のうち、$x_j$のみ$1, -1$の2状態を考え、残りの変数は固定されているのならば、そのときのエネルギー差は</p>
+<p>$$
+\begin{aligned}
+E(\mathbf{x,y})|<em>{x_j=1} - E(\mathbf{x,y})|</em>{x_j=-1}
+&amp;=\left(h-\beta \sum_{l} x_{l}-\eta y_{j}\right)-\left(-h+\beta \sum_{l} x_{l}+\eta y_{j}\right) \
+&amp;=2h -2\beta \sum_{l}x_l -2\eta y_j
+\end{aligned}
+$$</p>
+<p>となる。このエネルギー差は確かにグラフにおける$x_j$の近傍の局所的な量だけに依存している。</p>
+<h2 id="演習-814"><a class="header" href="#演習-814">演習 8.14</a></h2>
+<div class="panel-primary">
+<p>エネルギー関数が</p>
+<p>$$
+E(\mathbf{x}, \mathbf{y})=h \sum_{i} x_{i}-\beta \sum_{{i, j}} x_{i} x_{j}-\eta \sum_{i} x_{i} y_{i} \tag{8.42}
+$$</p>
+<p>で与えられ，その係数が$\beta = h = 0$である場合を考える．最も確からしい潜在変数の値はすべての$i$に対して$x_i = y_i$であることを示せ．</p>
+</div>
+<p>エネルギー関数は</p>
+<p>$$
+E(\mathbf{x}, \mathbf{y}) = -\eta \sum_{i} x_{i} y_{i}
+$$</p>
+<p>となる。これは$x_i = y_i$であれば$E=-\eta$, $x_i \neq y_i$であれば$E=\eta$となる。</p>
+<p>潜在変数$x_i$と観測値$y_i$に対し、エネルギー関数$E$が負になれば$\mathbf{x}$,$\mathbf{y}$の同時分布</p>
+<p>$$
+p(\mathbf{x}, \mathbf{y})=\frac{1}{Z} \exp {-E(\mathbf{x}, \mathbf{y})} \tag{8.43}
+$$</p>
+<p>が大きくなり、$\mathbf{y}$が観測されているので$p(\mathbf{x}\mid \mathbf{y}) = p(\mathbf{x}, \mathbf{y})/p(\mathbf{y})$も大きくなる。</p>
+<p>すなわち最も確からしい$x_i$の値はすべての$i$に対して$x_i = y_i$であり、これはノイズ付加画像そのものである。</p>
+<h2 id="演習-815"><a class="header" href="#演習-815">演習 8.15</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/F4Kumwm.png" alt="" /></p>
+<p>図8.38に示されるグラフにおいて，2 つの隣接ノード上の同時分布$p(x_{n-1}, x_n)$が</p>
+<p>$$
+p\left(x_{n-1}, x_{n}\right)=\frac{1}{Z} \mu_{\alpha}\left(x_{n-1}\right) \psi_{n-1, n}\left(x_{n-1}, x_{n}\right) \mu_{\beta}\left(x_{n}\right) \tag{8.58}
+$$</p>
+<p>の形で表現されることを示せ．</p>
+</div>
+<p>8.4.1節の議論と同様に考えれば良い。求める周辺分布は</p>
+<p>$$
+p(x_{n-1},x_n) = \sum_{x_1}\sum_{x_1}\cdots\sum_{x_{n-2}}\sum_{x_{n+1}}\cdots\sum_{x_N}p(\mathbf{x})
+$$</p>
+<p>である。$(8.52)$式と同様にポテンシャル関数を用いると、図8.38に書かれてある2つのメッセージ$\mu_{\alpha}(x_n)$と$\mu_{\beta}(x_n)$を用いて</p>
+<p>$$
+\begin{aligned}
+p\left(x_{n-1}, x_{n}\right) &amp;=\frac{1}{Z}\left[\sum_{x_{n-2}} \psi_{n-2, n-1}\left(x_{n-2}, x_{n-1}\right) \ldots\left[\sum_{x_{2}} \psi_{2,3}\left(x_{2}, x_{3}\right)\left[\sum_{x_{1}} \psi_{1,2}\left(x_{1}, x_{2}\right)\right]\right] \ldots\right] \
+&amp; \times \psi_{n-1, n}\left(x_{n-1}, x_{n}\right) \ &amp; \times\left[\sum_{x_{n+1}} \psi_{n, n+1}\left(x_{n}, x_{n+1}\right) \ldots\left[\sum_{x_{N}} \psi_{N-1, N}\left(x_{N-1}, x_{N}\right)\right] \ldots\right] \
+&amp;=\frac{1}{Z} \mu_{\alpha}\left(x_{n-1}\right) \psi_{n-1, n}\left(x_{n-1}, x_{n}\right) \mu_{\beta}\left(x_{n}\right)
+\end{aligned}
+$$</p>
+<p>と書ける。</p>
+<h2 id="演習-816"><a class="header" href="#演習-816">演習 8.16</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/F4Kumwm.png" alt="" /></p>
+<p>図8.38に示されるグラフにおいて，すべてのノード$n\in {1, \ldots ,N-1}$に対して$p(x_n \mid x_N)$を計算する推論問題を考える．この問題を効率的に解くために8.4.1 節で議論したメッセージパッシングアルゴリズムが利用できることを示し，どのメッセージがどのように修正されるかについて議論せよ．</p>
+</div>
+<p>教科書p.112の上段に記載のとおり、ポテンシャル関数に$I(x_N,\hat{x}_N)$を掛けるだけで良い（$\hat{x}_N$は変数$x_N$の観測値）。</p>
+<p>$\mu_\alpha (x_n)$の再帰式は教科書の議論と同じ。</p>
+<p>$\mu_\beta (x_n)$の再帰式は、初期条件を通常の</p>
+<p>$$
+\begin{aligned}
+\mu_\beta (x_{N-1}) &amp;= \sum <em>{x_N} \psi</em>{N-1,N}(x_{N-1},x_N)
+\end{aligned}
+$$</p>
+<p>に代えて、</p>
+<p>$$
+\begin{aligned}
+\mu_\beta (x_{N-1}) &amp;= \sum <em>{x_N} I(x_N,\hat
+x_N)\psi</em>{N-1,N}(x_{N-1},x_N)\
+&amp;= \psi_{N-1,N}(x_{N-1},\hat{x}_N)
+\end{aligned}
+$$</p>
+<p>とすれば良い。</p>
+<h2 id="演習-817"><a class="header" href="#演習-817">演習 8.17</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/F4Kumwm.png" alt="" /></p>
+<p>図8.38に示される形の$N=5$ノードのグラフを考える．ただし$x_3$および$x_5$は観測されているとする．有向分離性を使って$x_2 \perp !!! \perp x_5 \mid x_3$を示せ．8.4.1 節のメッセージパッシングアルゴリズムを$p(x_2 \mid x_3, x_5)$の計算に用いたとき，結果が$x_5$の値に依存しないことを示せ．</p>
+</div>
+<p>（前半部分）
+$x_2$と$x_5$を結ぶ経路は$x_3$が観測された時遮断されるため$x_2 \perp !!! \perp x_5 \mid x_3$である．</p>
+<p>（後半部分）</p>
+<p>ベイズの定理により
+$$
+\begin{aligned}
+p(x_2 \mid x_3, x_5)&amp;=\frac{p(x_2 , x_3, x_5)}{p(x_3, x_5)}\
+&amp;=\frac{\sum_{x_1, x_4}\psi_{1, 2}\psi_{2, 3}\psi_{3, 4}\psi_{4, 5}}{\sum_{x_1,x_2,x_4}\psi_{1, 2}\psi_{2, 3}\psi_{3, 4}\psi_{4, 5}}\
+&amp;=\frac{\sum_{x_1}\psi_{1, 2}\psi_{2, 3}\sum_{x_4}\psi_{3, 4}\psi_{4, 5}}{\sum_{x_1,x_2}\psi_{1, 2}\psi_{2, 3}\sum_{x_4}\psi_{3, 4}\psi_{4, 5}}\
+&amp;=\frac{\sum_{x_1}\psi_{1, 2}\psi_{2, 3}}{\sum_{x_1,x_2}\psi_{1, 2}\psi_{2, 3}}
+\end{aligned}
+$$</p>
+<h2 id="演習-818"><a class="header" href="#演習-818">演習 8.18</a></h2>
+<div class="panel-primary">
+<p>有向木によって表現される分布が，対応する無向木上の等価な分布によって（自明に）表現されることを示せ．無向木で表現される分布が，クリークポテンシャルを適切に規格化することにより，有向木で表現可能であることも示せ．ある与えられた無向木から構築できる異なる有向木の数を計算せよ．</p>
+</div>
+<p>$x_1$を親に持ち、$x_2$を子に持つような木の一部分を抜き出して考える。ポテンシャル関数
+$$
+\psi_{2,1} = p(x_2 \mid x_1)
+$$
+とすることで自明に無向木に変換できる(木では親が一つのためモラル化の必要はない)
+また、無向木から有向木への変換は、
+$$
+p(x_2 \mid x_1) = \frac{\psi_{2,1}}{\sum <em>{x_2} \psi</em>{2,1}}
+$$
+として規格化すればよい。その際、有向木の作り方は根の選び方に対応する$N$通り(要素数の数)である。</p>
+<h2 id="演習-819"><a class="header" href="#演習-819">演習 8.19</a></h2>
+<div class="panel-primary">
+<p>8.4.4 節において導出した積和アルゴリズムを，8.4.1 節において議論したノードの連鎖モデルに適用し，結果</p>
+<p>$$
+p\left(x_{n}\right)=\frac{1}{Z} \mu_{\alpha}\left(x_{n}\right) \mu_{\beta}\left(x_{n}\right) \tag{8.54}
+$$
+$$
+\begin{aligned} \mu_{\alpha}\left(x_{n}\right) &amp;=\sum_{x_{n-1}} \psi_{n-1, n}\left(x_{n-1}, x_{n}\right)\left[\sum_{x_{n-2}} \cdots\right] \ &amp;=\sum_{x_{n-1}} \psi_{n-1, n}\left(x_{n-1}, x_{n}\right) \mu_{\alpha}\left(x_{n-1}\right) \end{aligned} \tag{8.55}
+$$
+および
+$$
+\begin{aligned} \mu_{\beta}\left(x_{n}\right) &amp;=\sum_{x_{n+1}} \psi_{n, n+1}\left(x_{n}, x_{n+1}\right)\left[\sum_{x_{n+2}} \cdots\right] \ &amp;=\sum_{x_{n+1}} \psi_{n, n+1}\left(x_{n}, x_{n+1}\right) \mu_{\beta}\left(x_{n+1}\right) \end{aligned} \tag{8.57}
+$$
+が特別な場合として得られることを示せ．</p>
+</div>
+<p>規格化項$Z$を因子$f$などに包含させて、$\psi$を$f$に対応させれば、それぞれ</p>
+<p>$$
+\begin{aligned} \mu_{x_{m} \rightarrow f_{s}}\left(x_{m}\right) &amp;=\prod_{l \in \operatorname{ne}\left(x_{m}\right) \backslash f_{s}}\left[\sum_{X_{l m}} F_{l}\left(x_{m}, X_{l m}\right)\right] \ &amp;=\prod_{l \in \operatorname{ne}\left(x_{m}\right) \backslash f_{s}} \mu_{f_{l} \rightarrow x_{m}}\left(x_{m}\right) \end{aligned} \tag{8.69}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{s}\right)=f</em>{s}\left(\mathbf{x}<em>{s}\right) \prod</em>{i \in \operatorname{ne}\left(f_{s}\right)} \mu_{x_{i} \rightarrow f_{s}}\left(x_{i}\right) \tag{8.72}
+$$</p>
+<p>の特殊な場合(直鎖状に限定したもの)とみなせる。</p>
+<h2 id="演習-820"><a class="header" href="#演習-820">演習 8.20</a></h2>
+<div class="panel-primary">
+<p>木構造因子グラフにおける積和アルゴリズムのメッセージパッシングの手続きについて考える．メッセージはまずすべての葉ノードから任意に選ばれた根ノードに向かって伝播され，その後根ノードから葉ノードヘと伝播される各ステップにおいて，メッセージを送るべきノードが，そのメッセージを計算するために必要なすべてのメッセージをすでに受け取っているようにメッセージパッシングのスケジュールを組むことが可能であることを，帰納法を用いて示せ．</p>
+</div>
+<p>ノードが1個の時はあきらかに成り立つ．
+ノードが$N$個のとき題意を満たすスケジュールを組むことができると仮定する．題意を満たすスケジュールを考えたとき$N$個のノードには根が存在するため増やすノードは葉ノードとなる．葉ノードを増やすときすべてのメッセージが伝播されるようにスケジュールを組むことができる木構造因子グラフのノードに付け加えるので$N+1$個の時も題意を満たすようなスケジュールを組むことが可能である．</p>
+<p>以上により帰納法から任意のNについて題意を満たすスケジュールを組むことができる．</p>
+<h2 id="演習-821"><a class="header" href="#演習-821">演習 8.21</a></h2>
+<div class="panel-primary">
+<p>因子グラフにおいて，積和メッセージパッシングアルゴリズムを実行した後，</p>
+<p>$$
+p\left(\mathbf{x}<em>{s}\right)=f</em>{s}\left(\mathbf{x}<em>{s}\right) \prod</em>{i \in \operatorname{ne}\left(f_{s}\right)} \mu_{x_{i} \rightarrow f_{s}}\left(x_{i}\right) \tag{8.72}
+$$</p>
+<p>を適用することにより，各因子$f_s(\mathbf{x}_s)$に関連する変数$\mathbf{x}_s$全体上の周辺分布$p(\mathbf{x}_s)$が計算できることを示せ．</p>
+</div>
+<p>因子$f_s$と繋がっている変数の組$\mathbf{x}_s$上の周辺分布を計算する。
+（教科書の議論では$\mathbf{x}_s$の構成要素のうち、根ノード側の変数${ x }$と葉ノード側の変数${ x_1, \cdots x_M }$を区別したが、今回は$\mathbf{x}_s$のすべての要素について横並びの議論をするので、その必要はない。）</p>
+<p>$(8.61)$式に変えて、周辺分布は、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}<em>s)
+=\sum</em>{\mathbf{x}\backslash{\mathbf{x}_s}}
+p(\mathbf{x})
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p><img src="https://i.imgur.com/7tmg1xL.jpg" alt="" /></p>
+<p>上図にて、$x_i$に隣接する因子（$f_s$を除く）の積は、
+$$
+\begin{aligned}
+\prod_{j \in \mathrm{ne} (x_i) \backslash f_s}
+F_{ij} (x_i, X_{ij})
+\end{aligned}
+$$
+なので、同時分布$p(\mathbf{x})$は、
+$$
+\begin{aligned}
+p(\mathbf{x} ) = f_s(\mathbf{x} <em>s)
+\prod</em>{i \in \mathrm{ne} (f_s) }
+\prod_{j \in \mathrm{ne} (x_i) \backslash f_s}
+F_{ij} (x_i, X_{ij})
+\end{aligned}
+$$
+と書ける。従って、
+$$
+\begin{aligned}
+p(\mathbf{x}<em>s)
+&amp;=\sum</em>{\mathbf{x}\backslash{\mathbf{x}<em>s}}
+f_s(\mathbf{x} <em>s)
+\prod</em>{i \in \mathrm{ne} (f_s) }
+\prod</em>{j \in \mathrm{ne} (x_i) \backslash f_s}
+F_{ij} (x_i, X_{ij})　\
+&amp;=f_s(\mathbf{x} <em>s)
+\prod</em>{i \in \mathrm{ne} (f_s) }
+\sum_{\mathbf{x}\backslash{\mathbf{x}<em>s}}
+\prod</em>{j \in \mathrm{ne} (x_i) \backslash f_s}
+F_{ij} (x_i, X_{ij})　\
+&amp;=f_s(\mathbf{x} <em>s)
+\prod</em>{i \in \mathrm{ne} (f_s) }
+\mu _{x_i \rightarrow f_s} (x_i)
+\end{aligned}
+$$
+と題意の周辺分布が計算された。</p>
+<p>なお、１行目から２行目への式変形で、変数$x_i$での和が$i$番目以外のツリー内の因子に影響を与えないこと、すなわち
+$$
+\begin{aligned}
+&amp;\sum_{x_1}\sum_{x_2}\cdots \left( F_{11}F_{12}F_{13}F_{21}F_{22}\cdots \right)\
+=&amp; \left( \sum_{x_1} F_{11} F_{12} F_{13} \right)
+\left( \sum_{x_2} F_{21} F_{22} \right) \cdots
+\end{aligned}
+$$
+を用いた。また、2行目から3行目の式変形で、教科書と同様に
+$$
+\begin{aligned}
+\mu <em>{x_i \rightarrow f_s} (x_i)
+=\sum</em>{\mathbf{x}\backslash{\mathbf{x}<em>s}}
+\prod</em>{j \in \mathrm{ne} (x_i) \backslash f_s}
+F_{ij} (x_i, X_{ij})　
+\end{aligned}
+$$
+と定義した。</p>
+<h2 id="演習-822"><a class="header" href="#演習-822">演習 8.22</a></h2>
+<div class="panel-primary">
+<p>木構造因子グラフを考える．連結部分グラフであるような変数ノードの部分集合が与えられたとする．（すなわち，その部分集合の任意の変数ノードが，少なくとも他の1つの変数ノードに1つの因子ノードを通して連結されているとする．）積和アルゴリズムを利用して，その部分集合上の周辺分布を計算する方法を示せ．</p>
+</div>
+<p>与えられた連結部分グラフであるような変数ノードの部分集合を$\mathbf{x}_a$とする。残りの変数ノードを$\mathbf{x}_b$とする。</p>
+<p>定義$(8.61)$から、$\mathbf{x}_a$についての周辺分布は$\mathbf{x}_a$を除くすべての変数、すなわち$\mathbf{x}_b$についての同時分布の和を取れば良い。</p>
+<p>$$
+p(\mathbf{x}<em>a) = \sum</em>{\mathbf{x}_b}p(\mathbf{x})
+$$</p>
+<p>また、因子グラフを使った同時分布$p(\mathbf{x})$は$(8.59)$や$(8.60)$のように、連結されている変数ノードと因子の積で表現される。</p>
+<p>$$
+p(\mathbf{x}) =\prod_{s}f_s(\mathbf{x}_s)
+$$</p>
+<p>この2式から</p>
+<p>$$
+p(\mathbf{x}<em>a) = \sum</em>{\mathbf{x}<em>b}\prod</em>{s}f_s(\mathbf{x}_s)
+$$</p>
+<p>となる。ここで、この$f_s(\mathbf{x}_s)$は2つのパターンで構成される。すなわち、</p>
+<ol>
+<li>$\mathbf{x}_b$に属する変数ノードとリンクせず、$\mathbf{x}_a$に属する変数ノード間でのみリンクしている因子ノード$f_s^{'}$</li>
+<li>$\mathbf{x}_a$に含まれる変数ノードと$\mathbf{x}_b$に含まれる変数ノード間のリンクを1つ以上持つ因子ノード$f_s^{''}$</li>
+</ol>
+<p>である。注意すべき点として、1の方は$\sum_{\mathbf{x}_b}$と入れ替えることができないのでメッセージ$\mu$の形で書くことはできず、純粋に$f^{'}_s$の積が残ることになる。2のうち$\mathbf{x}_b$が関わる場合は積と和を交換することでメッセージとして表現可能である。</p>
+<p>$f_s$を$\mathbf{x}_a$と$\mathbf{x}<em>b$間に存在する因子ノード、$x_s$を$f_s$と接続している変数ノード（$x_s \in \mathbf{x}<em>a$）、$f</em>{s_a}$を$\mathbf{x}<em>a$に属する変数ノード間にのみ存在する因子ノード、$\mathbf{x}</em>{s_a}$を$f</em>{s_a}$と接続している変数ノードの部分集合であるとする。この記法を用いて、1と2の場合の積で表現して</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{a}\right) &amp;=\prod</em>{s_{a}} f_{s_{a}}\left(\mathbf{x}<em>{s</em>{a}}\right) \prod_{s \in \operatorname{ne} \mathbf{x}<em>{a}} \mu</em>{f_{s} \rightarrow x_{s}}\left(x_{s}\right)
+\end{aligned}
+$$</p>
+<p>と書ける。</p>
+<hr>
+<img src="https://i.imgur.com/Sor4lG6.png" width="100%">
+<p>この図を例にすると、$\mathbf{x}<em>a={x_2, x_8, x_9}$としたとき、$f</em>{s_a} = f_6, \mathbf{x}_{s_a}={x_8, x_9}$となる。</p>
+<p>$p(\mathbf{x}) = f_1(x_1, x_2)f_2(x_2, x_3, x_6)f_3(x_2,x_5,x_8)f_4(x_4, x_5)f_5(x_5,x_7)f_6(x_8,x_9)f_7(x_9, x_{10})$であるから、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}<em>a) &amp;= p(x_2, x_8, x_9) \
+&amp;= \sum</em>{x_1,x_3,x_6,x_4,x_5,x_7,x_{10}}p(\mathbf{x}) \
+&amp;=f_6(x_8,x_9)\mu_{f_1 \rightarrow x_2}(x_2)\mu_{f_2 \rightarrow x_3}(x_3)\mu_{x_5 \rightarrow f_3}(x_5)\mu_{f_7 \rightarrow x_9}(x_9) \
+&amp;=f_6(x_8,x_9)\mu_{f_1 \rightarrow x_2}(x_2)\mu_{f_2 \rightarrow x_3}(x_3)\left[ \mu_{f_4 \rightarrow x_5}(x_5)\mu_{f_5 \rightarrow x_5}(x_5) \right]\mu_{f_7 \rightarrow x_9}(x_9) \
+&amp;= f_6(x_8,x_9)\prod_{s \in \operatorname{ne} \mathbf{x}<em>{a}} \mu</em>{f_{s} \rightarrow x_{s}}\left(x_{s}\right)
+\end{aligned}
+$$</p>
+<p>のように書ける。</p>
+<h2 id="演習-823"><a class="header" href="#演習-823">演習 8.23</a></h2>
+<div class="panel-primary">
+<p>8.4.4 節において，因子グラフの変数ノード$x_i$上の周辺分布$p(x_i)$が，隣接因子ノードからこのノードに伝わるメッセージの積として</p>
+<p>$$
+\begin{aligned} p(x) &amp;=\prod_{s \in \operatorname{ne}(x)}\left[\sum_{X_{s}} F_{s}\left(x, X_{s}\right)\right] \ &amp;=\prod_{s \in \operatorname{ne}(x)} \mu_{f_{s} \rightarrow x}(x) \end{aligned} \tag{8.63}
+$$</p>
+<p>の形で与えられることを示した．$x_i$に接続されるリンクを1つ選んだとする．周辺分布$p(x_i)$はこの1つのリンクに沿って入ってくるメッセージと同じリンクに沿って出ていくメッセージとの積として書くこともできることを示せ．</p>
+</div>
+<p>$$
+\begin{aligned}
+p(x_i) &amp;= \prod_{s \in \operatorname{ne}(x_i)} \mu_{f_{s} \rightarrow x_i}(x_i) \ \ (\because \mathrm{Eq.} 8.63) \
+&amp;= \mu_{f_{s} \rightarrow x_i}(x_i) \prod_{t \in \operatorname{ne}(x_i)\setminus f_s} \mu_{f_{t} \rightarrow x_i}(x_i) \
+&amp;= \mu_{f_{s} \rightarrow x_i}(x_i) \mu_{x_i \rightarrow f_t}(x_i). \ \ (\because \mathrm{Eq.} 8.69)
+\end{aligned}
+$$</p>
+<h2 id="演習-824"><a class="header" href="#演習-824">演習 8.24</a></h2>
+<div class="panel-primary">
+<p>木構造因子グラフにおいて，積和メッセージパッシングアルゴリズムを実行したとする．因子$f_s(\mathbf{x}_s)$の変数$\mathbf{x}_s$上の周辺分布が</p>
+<p>$$
+p\left(\mathbf{x}<em>{s}\right)=f</em>{s}\left(\mathbf{x}<em>{s}\right) \prod</em>{i \in \operatorname{ne}\left(f_{s}\right)} \mu_{x_{i} \rightarrow f_{s}}\left(x_{i}\right) \tag{8.72}
+$$</p>
+<p>の形に書けることを示せ．これは，この因子ノードに接続されるすべてのリンクに沿って入ってきたメッセージの積に，局所的な因子$f_{s}(\mathbf{x}_s)$を掛けたものである．</p>
+</div>
+<p>演習8.21と同様</p>
+<h2 id="演習-825"><a class="header" href="#演習-825">演習 8.25</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/nKLqMUL.png" alt="" /></p>
+<p>図8.51 のグラフにおいて，ノード$x_3$を根ノードとして積和アルゴリズムを実行すると$x_2$上の正しい周辺分布が得られる．このことは</p>
+<p>$$
+\begin{aligned} \widetilde{p}\left(x_{2}\right) &amp;=\mu_{f_{a} \rightarrow x_{2}}\left(x_{2}\right) \mu_{f_{b} \rightarrow x_{2}}\left(x_{2}\right) \mu_{f_{c} \rightarrow x_{2}}\left(x_{2}\right) \ &amp;=\left[\sum_{x_{1}} f_{a}\left(x_{1}, x_{2}\right)\right]\left[\sum_{x_{3}} f_{b}\left(x_{2}, x_{3}\right)\right]\left[\sum_{x_{4}} f_{c}\left(x_{2}, x_{4}\right)\right] \ &amp;=\sum_{x_{1}} \sum_{x_{3}} \sum_{x_{4}} f_{a}\left(x_{1}, x_{2}\right) f_{b}\left(x_{2}, x_{3}\right) f_{c}\left(x_{2}, x_{4}\right) \ &amp;=\sum_{x_{1}} \sum_{x_{3}} \sum_{x_{4}} \widetilde{p}(\mathrm{x}) \end{aligned} \tag{8.86}
+$$</p>
+<p>において確かめられた．では，$x_1$および$x_3$についても正しい周辺分布が得られることを示せ．同様に，このグラフにおいて積和アルゴリズムを実行した後，</p>
+<p>$$
+p\left(\mathbf{x}<em>{s}\right)=f</em>{s}\left(\mathbf{x}<em>{s}\right) \prod</em>{i \in \operatorname{ne}\left(f_{s}\right)} \mu_{x_{i} \rightarrow f_{s}}\left(x_{i}\right) \tag{8.72}
+$$</p>
+<p>の結果を適用すれば，$x_1$および$x_2$上の正しい同時分布が得られることを示せ．</p>
+</div>
+<p>p. 124と同様に進める。$x_1$について新たに必要なメッセージシークエンスを求めると、</p>
+<p>$$
+\begin{aligned}
+&amp;\mu_{f_a \rightarrow x_1}(x_1) = \sum_{x_2} f_a(x_1, x_2) \mu_{x_2 \rightarrow f_a} (x_2) \
+&amp;\mu_{x_2 \rightarrow f_a} (x_2) = \mu_{f_b \rightarrow x_2}(x_2) \mu_{f_c \rightarrow x_2}(x_2) \
+&amp;\mu_{f_b \rightarrow x_2}(x_2) = \sum_{x_3} f_b(x_2, x_3)
+\end{aligned}
+$$</p>
+<p>になる。これを代入して、</p>
+<p>$$
+\begin{aligned}
+\tilde{p}(x_1) &amp;= \mu_{f_a \rightarrow x_1}(x_1) \
+&amp;= \sum_{x_2} f_a(x_1, x_2) \mu_{x_2 \rightarrow f_a} (x_2)\
+&amp;= \sum_{x_2} f_a(x_1, x_2) \mu_{f_b \rightarrow x_2}(x_2) \mu_{f_c \rightarrow x_2}(x_2) \
+&amp;=\sum_{x_2} f_a(x_1, x_2) \sum_{x_3} f_b(x_2, x_3) \sum_{x_4} f_b(x_2, x_4)\
+&amp;= \sum_{x_2}\sum_{x_3}\sum_{x_4} f_a(x_1, x_2)  f_b(x_2, x_3)  f_b(x_2, x_4)\
+&amp;=  \sum_{x_2}\sum_{x_3}\sum_{x_4} \tilde{p}(\mathbf{x})&amp;(\because (8.73))
+\end{aligned}
+$$</p>
+<p>また、$x_3$について、同様に新たに必要なメッセージシークエンスを求めて代入すると、</p>
+<p>$$
+\begin{aligned}
+\tilde{p}(x_3) &amp;= \mu_{f_b \rightarrow x_3}(x_3) \
+&amp;= \sum_{x_2} f_b(x_3, x_2) \mu_{x_2 \rightarrow f_b} (x_2)\
+&amp;= \sum_{x_2} f_b(x_3, x_2) \mu_{f_a \rightarrow x_2}(x_2) \mu_{f_c \rightarrow x_2}(x_2) \
+&amp;=\sum_{x_2} f_b(x_3, x_2) \sum_{x_1} f_a(x_1, x_2) \sum_{x_4} f_c(x_2, x_4)\
+&amp;= \sum_{x_1}\sum_{x_2}\sum_{x_4} f_a(x_1, x_2)  f_b(x_2, x_3)  f_c(x_2, x_4)\
+&amp;=  \sum_{x_1}\sum_{x_2}\sum_{x_4} \tilde{p}(\mathbf{x})
+\end{aligned}
+$$</p>
+<p>になる。</p>
+<p>次に$x_1$と$x_2$の同時分布を求める。(8.72)と$\tilde{p}(x_1)$導出過程から、</p>
+<p>$$
+\begin{aligned}
+p(x_1, x_2) &amp;= f_a(x_1, x_2)\mu_{x_2 \rightarrow f_a}(x_2) \
+&amp;= f_a(x_1, x_2)\mu_{x_2 \rightarrow f_a} (x_2)\
+&amp;= f_a(x_1, x_2) \sum_{x_3} f_b(x_2, x_3) \sum_{x_4} f_b(x_2, x_4) \
+&amp;= \sum_{x_3}  \sum_{x_4}\tilde{p}(\mathbf{x})
+\end{aligned}
+$$</p>
+<h2 id="演習-826"><a class="header" href="#演習-826">演習 8.26</a></h2>
+<div class="panel-primary">
+<p>離散変数上の木構造因子グラフを考える．共通の因子に属さない2つの変数$x_a$および$x_b$上の同時分布$p(x_a,x_b)$を計算したいとする．積和アルゴリズムを使ってこの同時分布を計算する手順を示せ．ただしその手順では，それらの変数のうちの1つが，取り得る値のうちのそれぞれに各ステップで固定される．</p>
+</div>
+<p>(8.72)を繰り返し用いて、$x_a,x_b$が共通する因子を持つようにすれば良い。</p>
+<p>参考：https://tips-memo.com/prml-8-26</p>
+<h2 id="演習-827"><a class="header" href="#演習-827">演習 8.27</a></h2>
+<div class="panel-primary">
+<p>2つの3状態離散変数$x$および$y$を考える．例えば$x,y \in {0, 1, 2}$である．これらの変数上の同時分布$p(x,y)$であって，周辺分布$p(x)$を最大にする値$\hat{x}$と周辺分布$p(y)$を最大にする値$\hat{y}$とを組み合わせると，同時分布の確率が$0$となる（すなわち$p(\hat{x}, \hat{y})= 0$となる）ようなものを作れ．</p>
+</div>
+<p><img src="https://i.imgur.com/nmRAC1i.png" alt="" /></p>
+<h2 id="演習-828"><a class="header" href="#演習-828">演習 8.28</a></h2>
+<div class="panel-primary">
+<p>8.4.7 節で，因子グラフに対する積和アルゴリズムにおける<strong>保留</strong>メッセージの概念が定義された．グラフが1つ以上の閉路を持つ場合，アルゴリズムをどんなに長く実行しても少なくとも1つの保留メッセージが常に存在することを示せ．</p>
+</div>
+<p>閉路上のノード又は因子を1つ選びnとする。閉路に沿ってnの隣のノード又は因子をn+1とする。
+閉路に沿ってn+1の隣りでnと反対側のノード又は因子をn+2とする。</p>
+<p>閉路上のノード又は因子が閉路上のリンクに保留メッセージを持つとする。
+何回か保留メッセージを送信した時、閉路上から保留メッセージが消えたとする。</p>
+<p>これはノードの因子の上では起こり得ない。
+なぜならnがn+1とのリンク上の保留メッセージを送信するとn+1が保留メッセージを持つため
+保留メッセージが消えないからである。</p>
+<p>閉路上どこのノード又は因子をnとしても良いので
+結局、閉路上どのノード又は因子においても閉路上の保留メッセージを送信した後
+保留メッセージが消えることはない。</p>
+<h2 id="演習-829"><a class="header" href="#演習-829">演習 8.29</a></h2>
+<div class="panel-primary">
+<p>積和アルゴリズムを（ループのない）木構造因子グラフに対して実行した場合，ある有限個のメッセージが送られた後，保留メッセージが存在しなくなることを示せ．</p>
+</div>
+<p><img src="https://i.imgur.com/nyLXN4W.png" alt="" /></p>
+<p>あるツリーがN個のメッセージを送ったあと保留メッセージがなくなったとする。
+このときのメッセージ列を$M_{1}, M_{2}, \cdots, M_{N}$とする。</p>
+<p>このツリーの任意のノードpに葉ノードoを追加する。新しくできたツリーのメッセージ列は
+(1) メッセージ列の先頭にノードo → ノードpのメッセージMoを追加する。
+(2) メッセージ列の末尾にノードp → ノードoのメッセージMn+1を追加する。
+(3) メッセージ列のうちノードpからo以外の隣接ノードへの送信メッセージMp1・・・Moを含むように変える。</p>
+<p>という手順で得ることができる、得られたメッセージは
+$M_{0}, M_{1}, M_{2}, \cdots, M_{p 1}, \cdots, M_{N}, M_{N+1}$となり、これを送信したあと保留メッセージは残らない。
+よって、有限個のメッセージ送信で保留メッセージがなくなるツリーに葉ノードを1つ付け加えたものは有限個のメッセージで保留メッセージがなくなると言える。</p>
+<p>次に、ノード1つからなるツリーは保留メッセージを持たない。
+また、全てのツリーはノード1つから初めて1つづつ葉ノードを追加していくことで作ることができる。</p>
+<p>以上より全てのツリーは有限個のメッセージを送信したあと保留メッセージが無くなるといえる。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch07.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch09.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch07.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch09.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

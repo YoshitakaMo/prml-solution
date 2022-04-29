@@ -1,0 +1,869 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第14章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html" class="active"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第14章演習問題解答"><a class="header" href="#prml第14章演習問題解答">PRML第14章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-141"><a class="header" href="#演習-141">演習 14.1</a></h2>
+<div class="panel-primary">
+<p>モデルの集合$p\left(\mathbf{t} \mid \mathbf{x}, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}, h\right)$を考える。ただし、$\mathbf{x}$は入力ベクトル、$\mathbf{t}$は目標ベクトル、$h$はモデルのインデックス、$\mathbf{z}<em>h$はモデル$h$の潜在変数、そして$\boldsymbol{\theta}</em>{h}$はモデル$h$のパラメータ集合とする。そして、モデルの事前確率を$p(h)$とし、訓練集合として$\mathbf{X}=\left{\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}\right}$と$\mathbf{T}=\left{\mathbf{t}<em>{1}, \ldots, \mathbf{t}</em>{N}\right}$を与える。潜在変数とモデルインデックスを周辺化した予測分布$p(\mathbf{t} \mid \mathbf{x},\mathbf{X},\mathbf{T})$を求める式を書き下せ。この式を利用して、異なるモデルのベイズ平均化と、一つのモデル内での潜在変数を利用することの違いを強調せよ。</p>
+</div>
+<p>※かなり難解なのであっているかわかりません。公式解答例ではベイズモデル平均化とモデル結合をまとめて書いた形で書き下していますが、ここでは分けて考えることにします。</p>
+<p>P.372の議論参照。目的はモデルの結合とベイズモデル平均化の違いを理解することである。</p>
+<p>問題文の設定から、モデルの集合を$p\left(\mathbf{t} \mid \mathbf{x}, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}, h\right)$としている。モデル$h=1,2,\ldots,H$について、それぞれ$\mathbf{z}<em>{h}$という潜在変数と$\boldsymbol{\theta}</em>{h}$というパラメータ集合（例えば混合ガウスモデルでは平均$\boldsymbol{\mu}$と分散$\mathbf{\Sigma}$など）が存在している。このモデルが訓練集合$(\mathbf{\mathbf{x}<em>{n}},\mathbf{t}</em>{n})$と新しい入力ベクトル$\mathbf{x}$とその目標ベクトル$\mathbf{t}$のペア$(\mathbf{x}, \mathbf{t})$を生成している。</p>
+<p>(1) ベイズモデル平均化の場合</p>
+<p>これは$h$という変数がモデルの不確実性を表し、真の1つのモデルからデータ集合が生成されるので、有向グラフを書くと</p>
+<p><img src="https://i.imgur.com/LKL41Na.png" alt="" /></p>
+<p>となる。これについて有向分離を用いると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}) &amp;=\sum_{h} \sum_{\mathbf{z}<em>{h}} \int p\left(\mathbf{t}, h, \mathbf{z}</em>{h}, \boldsymbol{\theta}<em>{h} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}</em>{h} \quad (\because 加法定理)\
+&amp;=\sum_{h} \sum_{\mathbf{z}<em>{h}} \int p\left(\mathbf{t} \mid h, \mathbf{z}</em>{h}, \boldsymbol{\theta}<em>{h}, \mathbf{x}, \mathbf{X}, \mathbf{T}\right) p\left(h, \mathbf{z}</em>{h}, \boldsymbol{\theta}<em>{h} \mid  \mathbf{x}, \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}</em>{h} \quad (\because 乗法定理)\
+&amp;=\sum_{h} \sum_{\mathbf{z}<em>{h}} \int p\left(\mathbf{t} \mid h, \mathbf{z}</em>{h}, \boldsymbol{\theta}<em>{h}, \mathbf{x}\right) p\left(h, \mathbf{z}</em>{h}, \boldsymbol{\theta}<em>{h} \mid \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}</em>{h}\quad (\because 有向分離)\
+\end{aligned}
+$$</p>
+<p>この$p\left(h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h} \mid \mathbf{X}, \mathbf{T}\right)$について</p>
+<p>$$
+\begin{aligned}
+p\left(h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h} \mid \mathbf{X}, \mathbf{T}\right) &amp;=\frac{p\left(h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}, \mathbf{X}, \mathbf{T}\right)}{p(\mathbf{X}, \mathbf{T})} \
+&amp; \propto p\left(\mathbf{X}, \mathbf{T} \mid h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}\right) p\left(h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}\right) \quad (\because 乗法定理)\
+&amp;=p\left(\mathbf{X}, \mathbf{T} \mid h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}\right) p(h) p\left(\mathbf{z}<em>{h}\right) p\left(\boldsymbol{\theta}</em>{h}\right)
+\end{aligned}
+$$</p>
+<p>まとめると、</p>
+<p>$$
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{X}, \mathbf{T})=\frac{1}{p(\mathbf{X},\mathbf{T})}\sum_{h=1}^{H} p(h) \sum_{\mathbf{z}<em>{h}} p\left(\mathbf{z}</em>{h}\right) \int p\left(\mathbf{t} \mid \mathbf{x}, \boldsymbol{\theta}<em>{h}, \mathbf{z}</em>{h}, h\right) p\left(\mathbf{X}, \mathbf{T} \mid h, \mathbf{z}<em>{h}, \boldsymbol{\theta}</em>{h}\right)p(\boldsymbol{\theta}<em>{h})d \boldsymbol{\theta}</em>{h}
+$$</p>
+<p>(2) モデル結合の場合</p>
+<p>1つのモデル$h$につき、観測された点$\mathbf{t}<em>{n}$ごとに対応する$\mathbf{z}</em>{h}$が存在することが大きな違い。よって、$h$個のモデルでは$n\times h$個の潜在変数$\mathbf{z}_{hn}$が存在することになる。有向グラフはこんな感じになると思われる。</p>
+<p><img src="https://i.imgur.com/Kq0POzk.png" alt="" /></p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}) &amp;= \sum_{h_{n}} \sum_{h} \sum_{\mathbf{z}<em>{hn}} \sum</em>{\mathbf{z}<em>{h}} \int p\left(\mathbf{t}, \boldsymbol{\theta}</em>{h}, h_{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}<em>{h} \
+&amp;=\sum</em>{h_{n}} \sum_{h} \sum_{\mathbf{z}<em>{hn}} \sum</em>{\mathbf{z}<em>{h}} \int p\left(\mathbf{t} \mid \boldsymbol{\theta}</em>{h}, h_{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h}, \mathbf{x}, \mathbf{X}, \mathbf{T}\right) \
+&amp;\phantom{=\sum_{h_{n}} \sum_{h} \sum_{\mathbf{z}<em>{hn}} \sum</em>{\mathbf{z}<em>{h}} \int}p\left(\boldsymbol{\theta}</em>{h}, h_{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}<em>{h} \
+&amp;=\sum</em>{h_{n}} \sum_{h} \sum_{\mathbf{z}<em>{hn}} \sum</em>{\mathbf{z}<em>{h}} \int p\left(\mathbf{t} \mid \mathbf{x}, \boldsymbol{\theta}</em>{h}, \mathbf{z}<em>{h}, h \right) \
+&amp;\phantom{=\sum</em>{h_{n}} \sum_{h} \sum_{\mathbf{z}<em>{hn}} \sum</em>{\mathbf{z}<em>{h}} \int}p\left(\boldsymbol{\theta}</em>{h}, h_{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h} \mid \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}_{h} \quad (\because 有向分離)\
+\end{aligned}
+$$</p>
+<p>この$p\left(\boldsymbol{\theta}<em>{h}, h</em>{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h} \mid \mathbf{X}, \mathbf{T}\right) d \boldsymbol{\theta}_{h}$について</p>
+<p>$$
+\begin{aligned}
+p\left(\boldsymbol{\theta}<em>{h}, h</em>{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h} \mid \mathbf{X}, \mathbf{T}\right)  &amp;= \frac{p\left(\boldsymbol{\theta}<em>{h}, h</em>{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h}, \mathbf{X}, \mathbf{T}\right)}{p(\mathbf{X},\mathbf{T})} \
+&amp;\propto p\left(\boldsymbol{\theta}<em>{h}, h</em>{n}, h,\mathbf{z}<em>{hn}, \mathbf{z}</em>{h}, \mathbf{X}, \mathbf{T}\right) \
+&amp;=p\left(\mathbf{X}, \mathbf{T} \mid h_{n}, h, \boldsymbol{\theta}<em>{h},\mathbf{z}</em>{hn},\mathbf{z}<em>{h}\right) p\left( h</em>{n}, h, \boldsymbol{\theta}<em>{h},\mathbf{z}</em>{hn},\mathbf{z}<em>{h} \right) \
+&amp;=p\left(\mathbf{X}, \mathbf{T} \mid h</em>{n},\mathbf{z}<em>{hn}, \boldsymbol{\theta}</em>{h}\right) p\left(h_{n}\right) p(h) p\left(\boldsymbol{\theta}<em>{h}\right) p(\mathbf{z}</em>{hn}) p\left(\mathbf{z}_{h}\right) \
+\end{aligned}
+$$</p>
+<p>以上をまとめると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{x}, \mathbf{X}, \mathbf{T}) &amp;= \frac{1}{p(\mathbf{X},\mathbf{T})}\sum_{h=1}^{H} p(h) \sum_{\mathbf{z}<em>{h}}p\left(\mathbf{z}</em>{h}\right)\int p\left(\mathbf{t} \mid \mathbf{x}, \boldsymbol{\theta}<em>{h}, \mathbf{z}</em>{h}, h\right) \
+&amp;\phantom{\frac{1}{p(\mathbf{X},\mathbf{T})}\sum_{h=1}^{H} p(h) \sum_{\mathbf{z}<em>{h}}p\left(\mathbf{z}</em>{h}\right)\int}\left{\sum_{h_{n}=1}^{H} \sum_{z_{hn}} p\left(\mathbf{X}, \mathbf{T} \mid h_{n}, \mathbf{z}<em>{hn}, \boldsymbol{\theta}</em>{h}\right) p\left(\mathbf{z}<em>{hn}\right) p\left(h</em>{n}\right) p\left(\boldsymbol{\theta}<em>{h}\right)\right} d \boldsymbol{\theta}</em>{h}
+\end{aligned}
+$$</p>
+<h2 id="演習-142"><a class="header" href="#演習-142">演習 14.2</a></h2>
+<div class="panel-primary">
+<p>単純なコミッティモデルの二乗和誤差$E_{\textrm{AV}}$の期待値は</p>
+<p>$$
+E_{\mathrm{AV}}=\frac{1}{M} \sum_{m=1}^{M} \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{m}(\mathbf{x})^{2}\right] \tag{14.10}
+$$</p>
+<p>で定義され、コミッティそれ自体の誤差の期待値は</p>
+<p>$$
+\begin{aligned} E_{\mathrm{COM}} &amp;=\mathbb{E}<em>{\mathbf{x}}\left[\left{\frac{1}{M} \sum</em>{m=1}^{M} y_{m}(\mathbf{x})-h(\mathbf{x})\right}^{2}\right] \ &amp;=\mathbb{E}<em>{\mathbf{x}}\left[\left{\frac{1}{M} \sum</em>{m=1}^{M} \epsilon_{m}(\mathbf{x})\right}^{2}\right] \end{aligned} \tag{14.11}
+$$</p>
+<p>で与えられる。個別の誤差が</p>
+<p>$$
+\mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{m}(\mathbf{x})\right]=0 \tag{14.12}
+$$</p>
+<p>と</p>
+<p>$$
+\mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{m}(\mathbf{x}) \epsilon_{l}(\mathbf{x})\right]=0, \quad m \neq l \tag{14.13}
+$$</p>
+<p>を満足することを仮定して、</p>
+<p>$$
+E_{\mathrm{COM}}=\frac{1}{M} E_{\mathrm{AV}} \tag{14.14}
+$$</p>
+<p>の結果を導け。</p>
+</div>
+<p>$(14.11)$より</p>
+<p>$$
+\begin{aligned}
+E_{\text {COM }} &amp;=\mathbb{E}<em>{\mathbf{x}}\left[\left{\frac{1}{M} \sum</em>{m=1}^{M} \epsilon_{m}(\mathbf{x})\right}^{2}\right] \
+&amp;=\frac{1}{M^{2}} \mathbb{E}<em>{\mathbf{x}}\left[\left(\epsilon</em>{1}(\mathbf{x})+\cdots \cdots \epsilon_{M}(\mathbf{x})\right)^{2}\right] \
+&amp;=\frac{1}{M^{2}} \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{1}^{2}(\mathbf{x})+\cdots \epsilon_{M}^{2}(\mathbf{x})+\epsilon_{1}(\mathbf{x}) \epsilon_{2}(\mathbf{x})+\cdots+\epsilon_{M}(\mathbf{x}) \epsilon_{M-1}(\mathbf{x})\right] \
+&amp;=\frac{1}{M^{2}}\left{\mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{1}^{2}(\mathbf{x})\right]+\cdots \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{M}^{2}(\mathbf{x})\right]+\mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{1}(\mathbf{x}) \epsilon_{2}(\mathbf{x})\right]+\cdots \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{M}(\mathbf{x}) \epsilon_{M-1}(\mathbf{x})\right]\right} \
+&amp;=\frac{1}{M^{2}} \sum_{m=1}^{M} \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{m}^{2}(\mathbf{x})\right] \qquad(\because (14.13)) \
+&amp;=\frac{1}{M} E_{\mathrm{AV}}\qquad(14.10)
+\end{aligned}
+$$</p>
+<p>よって$(14.14)$が導かれた。</p>
+<h2 id="演習-143"><a class="header" href="#演習-143">演習 14.3</a></h2>
+<div class="panel-primary">
+<p>イェンセンの不等式</p>
+<p>$$
+f\left(\sum_{i=1}^{M} \lambda_{i} x_{i}\right) \leqslant \sum_{i=1}^{M} \lambda_{i} f\left(x_{i}\right) \tag{1.115}
+$$</p>
+<p>を利用することで、$f(x) = x^2$という凸関数について、</p>
+<p>$$
+E_{\mathrm{AV}}=\frac{1}{M} \sum_{m=1}^{M} \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{m}(\mathbf{x})^{2}\right] \tag{14.10}
+$$</p>
+<p>で与えられる単純なコミッティモデルのメンバーの二乗和誤差の平均期待値$E_{\textrm{AV}}$、そして</p>
+<p>$$
+\begin{aligned} E_{\mathrm{COM}} &amp;=\mathbb{E}<em>{\mathbf{x}}\left[\left{\frac{1}{M} \sum</em>{m=1}^{M} y_{m}(\mathbf{x})-h(\mathbf{x})\right}^{2}\right] \ &amp;=\mathbb{E}<em>{\mathbf{x}}\left[\left{\frac{1}{M} \sum</em>{m=1}^{M} \epsilon_{m}(\mathbf{x})\right}^{2}\right] \end{aligned} \tag{14.11}
+$$</p>
+<p>で与えられるコミッティそれ自体の誤差$E_{\textrm{COM}}$の期待値について以下が成り立つことを示せ.</p>
+<p>$$
+E_{\textrm{COM}} \leq E_{\textrm{AV}} \tag{14.54}
+$$</p>
+</div>
+<p>イェンセンの不等式</p>
+<p>$$
+f\left(\sum_{i=1}^{M} \lambda_{i} x_{i}\right) \leqslant \sum_{i=1}^{M} \lambda_{i} f\left(x_{i}\right)
+$$</p>
+<p>ただし、$f$は凸関数において</p>
+<p>$$
+\begin{gathered}
+\lambda_{i}=\frac{1}{M},x_{i}=\epsilon_{i}(x), f(x)=x^{2} \
+\left(\sum_{i=1}^{M} \frac{1}{M} \epsilon_{i}(x)\right)^{2} \leqq \sum_{i=1}^{M} \frac{1}{M} \epsilon_{i}^{2}(x)
+\end{gathered}
+$$</p>
+<p>を得る。</p>
+<p>両辺に$p(x)$をかけて$x$で積分すると
+$$
+\int p(x)\left(\sum_{i=1}^{M} \frac{1}{M} \epsilon_{i}(x)d x\right) ^{2}\leqq \int p(x) \sum_{i=1}^{M} \frac{1}{M} \epsilon_{i}(x)^{2} d x
+$$</p>
+<p>となる。これより</p>
+<p>$$
+\begin{aligned}
+&amp;\mathbb{E}<em>{\mathbf{x}}\left[\left(\sum</em>{i=1}^{M} \frac{1}{M} \epsilon_{i}(x)\right)^{2}\right] \leqq \mathbb{E}<em>{\mathbf{x}}\left[\sum</em>{i=1}^{M} \frac{1}{M} \epsilon_{i}(x)^{2}\right] \
+&amp;\therefore \quad \mathbb{E}<em>{\mathbf{x}}\left[\left(\frac{1}{M} \sum</em>{i=1}^{M} \epsilon_{i}(x)\right)^{2}\right] \leqq \frac{1}{M} \sum_{i=1}^{M} \mathbb{E}<em>{\mathbf{x}}\left[\epsilon</em>{i}(x)^{2}\right]
+\end{aligned}
+$$</p>
+<p>(14.10),(14.11)を入れて</p>
+<p>$$
+E_{\operatorname{COM}} \leqq E_{A V}
+$$</p>
+<h2 id="演習-144"><a class="header" href="#演習-144">演習 14.4</a></h2>
+<div class="panel-primary">
+<p>イェンセンの不等式</p>
+<p>$$
+f\left(\sum_{i=1}^{M} \lambda_{i} x_{i}\right) \leqslant \sum_{i=1}^{M} \lambda_{i} f\left(x_{i}\right) \tag{1.115}
+$$</p>
+<p>を利用することで、前の演習問題で得られた</p>
+<p>$$
+E_{\textrm{COM}} \leq E_{\textrm{AV}} \tag{14.54}
+$$</p>
+<p>の結果が、二乗和誤差以外の任意の$y$の凸関数となる誤差関数$E(y)$においても成り立つことを示せ。</p>
+</div>
+<p>イェンセンの不等式により、</p>
+<p>$$
+\begin{aligned}
+E_{\mathrm{AV}} &amp;:= \frac{1}{M} \sum_{m=1}^{M} \mathbb{E}<em>{\mathbf{x}}\left[E(y(\mathbf{x}))\right] \
+&amp;= \mathbb{E}</em>{\mathbf{x}}\left[ \sum_{m=1}^{M} \frac{1}{M} E(y(\mathbf{x}))\right] \
+&amp;\geq \mathbb{E}<em>{\mathbf{x}}\left[ E\left(\sum</em>{m=1}^{M} \frac{1}{M} y(\mathbf{x})\right)\right] \
+&amp;=: E_{\mathrm{COM}}
+\end{aligned}
+$$</p>
+<p>となる。なお、一般の誤差関数に対する$E_{\mathrm AV}$と$E_{\mathrm COM}$は、$(14.10)$式と$(14.11)$式に則して定義した。</p>
+<h2 id="演習-145"><a class="header" href="#演習-145">演習 14.5</a></h2>
+<div class="panel-primary">
+<p>構成要素のモデルに一様でない重み付けをしたコミッティとして</p>
+<p>$$
+y_{\operatorname{COM}}(\mathbf{x})=\sum_{m=1}^{M} \alpha_{m} y_{m}(\mathbf{x}) \tag{14.55}
+$$</p>
+<p>を考える。予測$y_{\textrm{COM}}(\mathbf{x})$を理にかなった限界内に収まることを保証するため、次式のように個々の$\mathbf{x}$の値がコミッティのメンバーの最小値と最大値の間に制約されることを要求したい</p>
+<p>$$
+y_{\min }(\mathbf{x}) \leqslant y_{\operatorname{COM}}(\mathbf{x}) \leqslant y_{\max }(\mathbf{x}) \tag{14.56}
+$$</p>
+<p>この制約の必要十分条件が、係数$\alpha_{m}$が次式を満たすことであることを示せ。</p>
+<p>$$
+\alpha_{m} \geqslant 0, \quad \sum_{m=1}^{M} \alpha_{m}=1 \tag{14.57}
+$$</p>
+</div>
+<p>まず(14.57)が(14.56)の十分条件であることを示す。
+ある$y_m(\mathbf{x})$の集合を考え(14.57)を満たす範囲で$a_m$を変化させて得られる$y_{\mathrm{COM}}(\mathbf{x})$を考える。</p>
+<p>$y_{\mathrm{COM}}(\mathbf{x})$が最大となるのは$y_k(\mathbf{x})\geq y_m(\mathbf{x})$となる$k$で$\alpha_{k}=1$、$k$以外で $\alpha_{m}=0$ となるときで，このとき $y_{\mathrm{COM}}(\mathbf{x})=y_{\max }(\mathbf{x})$である。
+最小値についても同様に考えることで示すことができる。</p>
+<p>その他の場合の$\boldsymbol{\alpha}$について</p>
+<p>$$
+y_{\min }(\mathbf{x})&lt;y_{\mathrm{COM}}(\mathbf{x})&lt;y_{\max }(\mathbf{x})
+$$</p>
+<p>を示す。$y_{\mathrm{COM}}(\mathbf{x})$は以下の式を満たすような$y_m(\mathbf{x})$の凸結合である。</p>
+<p>$$
+\forall m: y_{\min }(\mathbf{x}) \leqslant y_{m}(\mathbf{x}) \leqslant y_{\max }(\mathbf{x})
+$$</p>
+<p>したがって(14.57)は(14.56)の十条件である。</p>
+<p>次に(14.57)が(14.56)の必要条件であることを示す。これは(14.56)が(14.57)の十分条件であることを示せば良い。</p>
+<p>(14.56)を満たす任意の$\left{y_{m}(\mathbf{x})\right}$ を選んだとき(14.57)が成り立つことを示す。</p>
+<p>$\alpha_k$が$\mathbf{\alpha}$で最小の値を取るとき，すなわち$k \neq m$のkについて$\alpha_{k} \leqslant \alpha_{m}$であるとき</p>
+<p>このとき $y_{k}(\mathbf{x})=1$ かつ全ての$m \neq k$に対して $y_{m}(\mathbf{x})=0$である場合を考える. このときコミッティの中で最小の要素は $y_{\min }(\mathbf{x})=0$ である一方で $y_{\mathrm{COM}}(\mathbf{x})=\alpha_{k}$である。
+したがって(14.56)から$\alpha_{k} \geqslant 0$であることがわかる。 また $\alpha_{k}$ は $\alpha$ の中で最小の値を選んでいるので任意の$\alpha$について $\alpha \geqslant 0$が成り立つことがわかる。 同様に, 全ての$m$について$y_{m}(\mathbf{x})=1$である場合を考える。このとき $y_{\min }(\mathbf{x})=y_{\max }(\mathbf{x})=1$であり,  $y_{\mathrm{COM}}(\mathbf{x})=\sum_{m} \alpha_{m}$となる. このとき(14.56)から $\sum_{m} \alpha_{m}=1$となることがわかる.</p>
+<p>以上から(14.56)が(14.57)の十分条件であることがわかる。</p>
+<h2 id="演習-146"><a class="header" href="#演習-146">演習 14.6</a></h2>
+<div class="panel-primary">
+<p>誤差関数</p>
+<p>$$
+\begin{aligned} E &amp;=e^{-\alpha_{m} / 2} \sum_{n \in \mathcal{T}<em>{m}} w</em>{n}^{(m)}+e^{\alpha_{m} / 2} \sum_{n \in \mathcal{M}<em>{m}} w</em>{n}^{(m)} \ &amp;=\left(e^{\alpha_{m} / 2}-e^{-\alpha_{m} / 2}\right) \sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)+e^{-\alpha_{m} / 2} \sum_{n=1}^{N} w_{n}^{(m)} \end{aligned} \tag{14.23}
+$$</p>
+<p>を$\alpha_m$について微分することにより、AdaBoostアルゴリズムにおけるパラメータ$\alpha_m$が</p>
+<p>$$
+\alpha_{m}=\ln \left{\frac{1-\epsilon_{m}}{\epsilon_{m}}\right} \tag{14.17}
+$$</p>
+<p>を利用して更新されることを示せ。ここで$\epsilon_{m}$は</p>
+<p>$$
+\epsilon_{m}=\frac{\sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)}{\sum_{n=1}^{N} w_{n}^{(m)}} \tag{14.16}
+$$</p>
+<p>で定義される。</p>
+</div>
+<p>$$
+E=\left(e^{\frac{α_{m}}{2}}-e^{-\frac{α_{m}}{2}}\right) \sum_{n=1}^{N} \omega_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)+e^{-\frac{αm}{2}} \sum_{n=1}^{N} \omega_{n}^{(m)}
+$$</p>
+<p>$E$を最小化する$\alpha_{m}$は</p>
+<p>$$
+0=\frac{\partial E}{\partial \alpha_{m}}=\left(\frac{1}{2} e^{\frac{\alpha_{m}}{2}}+\frac{1}{2} e^{-\frac{\alpha_{m}}{2}}\right) \sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right) - \frac{1}{2} e^{-\frac{α_{m}}{2}} \sum_{n=1}^{N} w_{n}^{(m)}
+$$</p>
+<p>これより</p>
+<p>$$
+0=\left(e^{\alpha_{m}}+1\right) \sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{n}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)-\sum_{n=1}^{N} w_{n}^{(m)}
+$$</p>
+<p>$$
+e^{\alpha_{m}} \sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)=\sum_{n=1}^{N} w_{n}^{(m)}-\sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)
+$$</p>
+<p>$$
+\begin{aligned}
+e^{\alpha_{m}}&amp;=\frac{\sum_{n=1}^{N} w_{n}^{(m)}}{\sum_{n=1}^{N} w_{n}^{(m)} I\left(y_{m}\left(\mathbf{x}<em>{n}\right) \neq t</em>{n}\right)}-1 \
+&amp;=\frac{1}{\epsilon_{m}}-1 \
+&amp;=\frac{1-\epsilon_{m}}{\epsilon_{m}}
+\end{aligned}
+$$</p>
+<p>$$
+\alpha_{m}=\ln \left{\frac{1-\epsilon_{m}}{\epsilon_{m}}\right}
+$$</p>
+<h2 id="演習-147"><a class="header" href="#演習-147">演習 14.7</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbb{E}<em>{\mathbf{x}, t}[\exp {-t y(\mathbf{x})}]=\sum</em>{t} \int \exp {-t y(\mathbf{x})} p(t \mid \mathbf{x}) p(\mathbf{x}) \mathrm{d} \mathbf{x} \tag{14.27}
+$$</p>
+<p>で与えられる指数誤差関数の期待値を、すべての可能な関数$y(\mathbf{x})$について変分最小化すれば、最小化関数は</p>
+<p>$$
+y(\mathbf{x})=\frac{1}{2} \ln \left{\frac{p(t=1 \mid \mathbf{x})}{p(t=-1 \mid \mathbf{x})}\right} \tag{14.28}
+$$</p>
+<p>で与えられることを示せ。</p>
+</div>
+<p>$$
+\begin{aligned}
+\mathbb{E}<em>{\mathbf{x}, t}[\exp {-t y(\mathbf{x})}]&amp;=\sum</em>{t} \int \exp {-t y(\mathbf{x})} p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x} \
+&amp;=\int \sum_{t} \exp {-t y(\mathbf{x})} p(t \mid \mathbf{x}) p(\mathbf{x}) d \mathbf{x}
+\end{aligned}
+$$</p>
+<p>ここで、$\mathbb{E}_{x, t}[\exp {-t y(\mathbf{x})}]$の$y$についての停留条件は(D.8)で与えられる。</p>
+<p>$$
+\begin{aligned}
+0&amp;=\frac{\partial G}{\partial y} \
+&amp;=\sum_{t}(-t) \exp {-t y(\mathbf{x})} p(t \mid \mathbf{x}) p(\mathbf{x}) \
+&amp;={-\exp {-y(\mathbf{x})} p(t=1 \mid \mathbf{x})+\exp {y(\mathbf{x})} p(t=-1 \mid \mathbf{x}] p(\mathbf{x})
+\end{aligned}
+$$</p>
+<p>$$
+\therefore \quad \exp {-y(\mathbf{x})} p(t=1 \mid \mathbf{x})=\exp {y(\mathbf{x})} p(t=-1 \mid \mathbf{x})
+$$</p>
+<p>これより</p>
+<p>$$
+\exp {2 y(\mathbf{x})}=\frac{p(t=1 \mid \mathbf{x})}{p(t=-1 \mid \mathbf{x})}
+$$</p>
+<p>よって</p>
+<p>$$
+y(\mathbf{x})=\frac{1}{2} \ln \frac{p(t=1 \mid \mathbf{x})}{p(t=-1 \mid \mathbf{x})}
+$$</p>
+<h2 id="演習-148"><a class="header" href="#演習-148">演習 14.8</a></h2>
+<div class="panel-primary">
+<p>AdaBoostアルゴリズムで最小化される指数誤差関数</p>
+<p>$$
+E=\sum_{n=1}^{N} \exp \left{-t_{n} f_{m}\left(\mathbf{x}_{n}\right)\right} \tag{14.20}
+$$</p>
+<p>が、いかなる望ましい性質を持つ(well-behaved)確率モデルの対数尤度にも対応しないことを示せ。このためには、対応する条件付き分布$p(t\mid \mathbf{x})$を正しく正規化できないことを示せばよい。</p>
+</div>
+<p>一例として、誤差関数と負の対数尤度関数を対応付けると、次のような比例関係で定式化できる</p>
+<p>$$
+\begin{aligned}
+\exp (-E) &amp;=\prod_{n=1}^{N} \exp \left(-\exp \left{-t_{n} f_{m}\left(\mathbf{x}<em>{n}\right)\right}\right) \
+p\left(t</em>{n} \mid \mathbf{x}<em>{n}\right) &amp; \propto \exp \left(-\exp \left{-t</em>{n} f_{m}\left(\mathbf{x}_{n}\right)\right}\right)
+\end{aligned}
+$$</p>
+<p>二値変数$t_{n}={-1, 1}$について和を取って分配関数は</p>
+<p>$$
+Z=\exp \left(-\exp \left{f_{m}\left(\mathbf{x}<em>{n}\right)\right}\right)+\exp \left(-\exp \left{-f</em>{m}\left(\mathbf{x}_{n}\right)\right}\right)
+$$</p>
+<p>で表せる。これは$f_{m}(\mathbf{x})$に依存しており、正規化された$p\left(t_{n} \mid \mathbf{x}<em>{n}\right)$は最早$\exp \left(-\exp \left{-t</em>{n} f_{m}\left(\mathbf{x}_{n}\right)\right}\right)$ に比例する関数系では表現できない。</p>
+<h2 id="演習-149"><a class="header" href="#演習-149">演習 14.9</a></h2>
+<div class="panel-primary">
+<p>ブースティングのスタイルによる</p>
+<p>$$
+f_{m}(\mathbf{x})=\frac{1}{2} \sum_{l=1}^{m} \alpha_{l} y_{l}(\mathbf{x}) \tag{14.21}
+$$</p>
+<p>の形の加算モデルの二乗和誤差関数の逐次最小化では、新しい個別のベース分類器は、直前のモデルから得られた残留誤差$t_{n}-f_{m-1}(\mathbf{x}_{n})$によるフィッティングとなることを示せ。</p>
+</div>
+<p>2乗和誤差関数は（1.2）より
+$$
+E=\frac{1}{2} \sum_{n=1}^{N}\left{f_{m}\left(x_{n}, \theta\right)-t_{n}\right}^{2}
+$$</p>
+<p>ここで、(14.21)より
+$$
+f_{m}(x, \theta)=\frac{1}{2} \sum_{l=1}^{m} \alpha_{l} y_{l}\left(x, \theta_{l}\right)
+$$</p>
+<p>とする。</p>
+<p>$y_{1} \sim y_{m-1}, \alpha_{1} \sim \alpha_{m-1}$を固定して、$y_{m}, \alpha_{m}$ついてEを逐次最適化する。</p>
+<p>Eの式で$y_{m}, \alpha_{m}$を抜き出すと
+$$
+E=\frac{1}{2} \sum_{n=1}^{N}\left(f_{m-1}+\frac{1}{2} \alpha_{m} y_{m}-t_{n}\right)^{2}
+$$</p>
+<p>これを最小化する$y_{m}$は
+$$
+f_{m-1}+\frac{1}{2} \alpha_{m} y_{m}-t_{n}=0
+$$</p>
+<p>$$
+\therefore \quad y_{m}=\frac{2}{\alpha_{m}}\left(t_{n}-f_{m-1}\right)
+$$</p>
+<p>で与えられる。</p>
+<h2 id="演習-1410"><a class="header" href="#演習-1410">演習 14.10</a></h2>
+<div class="panel-primary">
+<p>訓練集合の値${t_{n}}$との間の二乗和誤差が最小となる単一の予測値$t$を得ようとするなら、$t$の最適解は${t_{n}}$の平均値で与えられることを検証せよ。</p>
+</div>
+<p>訓練集合の値との二乗和誤差は</p>
+<p>$$
+E=\sum_{{t_{n}}}\left(t-t_{n}\right)^{2}
+$$</p>
+<p>$E$を最小にする$t$は</p>
+<p>$$
+0=\frac{\partial E}{\partial t}=\sum_{{t_{n}}} 2\left(t-t_{n}\right)
+$$</p>
+<p>で与えられる。これを解けば</p>
+<p>$$
+\therefore t=\frac{1}{N^{\prime}} \sum_{{t_{n}}} t_{n}
+$$</p>
+<p>を得る。ここで、$N^{\prime}$は訓練集合の値${t_{n}}$の個数を表している。すなわち、最適な$t$の値は${t_{n}}$の平均値となることが示された。</p>
+<h2 id="演習-1411"><a class="header" href="#演習-1411">演習 14.11</a></h2>
+<div class="panel-primary">
+<p>クラス$\mathcal{C}<em>{1}$からの$400$個のデータ点と、クラス$\mathcal{C}</em>{2}$からの$400$個のデータ点からなるデータ集合を考える。木モデルAは、最初の葉ノード($\mathcal{C}<em>{1}$を予測)に$(300,100)$を割り当て、2番目の葉ノード($\mathcal{C}</em>{2}$を予測)には$(100,300)$を割り当てるように分割すると仮定する。ここで、$(n,m)$は$n$個の点が$\mathcal{C}<em>{1}$に割り当てられ、$m$個の点が$\mathcal{C}</em>{2}$に割り当てられることを示す。同様にして、二つ目の木モデルBでは、それぞれ$(200,400)$と$(200,0)$に分割するものとする。二つの木の誤判別率を評価し、それらが等しいことを示せ。同様に、 二つの木に対する枝刈り基準</p>
+<p>$$
+C(T)=\sum_{\tau=1}^{|T|} Q_{\tau}(T)+\lambda|T| \tag{14.31}
+$$</p>
+<p>が、交差エントロピーの場合</p>
+<p>$$
+Q_{\tau}(T)=-\sum_{k=1}^{K} p_{\tau k} \ln p_{\tau k} \tag{14.32}
+$$</p>
+<p>とジニ係数の場合</p>
+<p>$$
+Q_{\tau}(T)=\sum_{k=1}^{K} p_{\tau k}\left(1-p_{\tau k}\right) \tag{14.33}
+$$</p>
+<p>の両者において、木Aよりも木Bにおいて値が小さくなることを示せ。</p>
+</div>
+<p>性能を示す誤分類の関数によって結果が異なることを示す、簡単な計算問題。まず、誤判別率は、</p>
+<p>$$
+\begin{aligned}
+R_A = \frac{100+100}{400+400} = \frac{1}{4} \
+R_B= \frac{0+200}{400+400} = \frac{1}{4}
+\end{aligned}
+$$</p>
+<p>次に交差エントロピーを用いた枝刈基準は、(14.31)と(14.32)を用いて</p>
+<p>$$
+\begin{aligned}
+&amp;C_{\textrm{Xent}}(T_A) = -2 \left(\frac{100}{400}\ln \frac{100}{400} +\frac{300}{400}\ln \frac{300}{400}\right)+ 2\lambda \simeq 1.12 + 2\lambda \
+&amp;C_{\textrm{Xent}}(T_B) = -\frac{400}{400}\ln \frac{400}{400} -\frac{200}{400}\ln \frac{200}{400}-\frac{0}{400}\ln \frac{0}{400}-\frac{200}{400}\ln \frac{200}{400}+ 2\lambda \simeq 0.69 + 2\lambda
+\end{aligned}
+$$
+よって、Bの方が小さい。</p>
+<p>同様に、ジニ係数の場合について,
+$$
+\begin{aligned}
+&amp;C_{\textrm{Gini}}(T_A) = 2 \left(\frac{300}{400}\left(1 - \frac{300}{400} \right)+\frac{100}{400}\ln \frac{100}{400}\right)+ 2\lambda =\frac{3}{4} + 2\lambda \
+&amp;C_{\textrm{Gini}}(T_B) = \frac{400}{400}\left(1- \frac{400}{400}\right) +\frac{200}{400}\left(1- \frac{200}{400}\right) +\frac{0}{400}\left(1- \frac{0}{400}\right) +\frac{200}{400}\left(1- \frac{200}{400}\right) = \frac{1}{2}+2\lambda
+\end{aligned}
+$$
+よって、Bの方が小さい。</p>
+<h2 id="演習-1412"><a class="header" href="#演習-1412">演習 14.12</a></h2>
+<div class="panel-primary">
+<p>14.5.1節の線形回帰の混合モデルについての結果を、ベクトル$\mathbf{t}$で記述される複数の目標値の場合に拡張せよ。これを行うためは3.1.5節の結果を利用せよ。</p>
+</div>
+<p>(3.32)式のようにtを多次元にした場合、(14.34)にあたる式は
+$$
+p(\mathbf{t} \mid \boldsymbol{\theta})=\sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(\mathbf{t} \mid \mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}, \beta^{-1} \mathbf{I}\right)
+$$
+(14.35)-(14.37), $Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)$を同様に変えていき、(14.39)は
+$$
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=\sum_{n=1}^{N} \gamma_{n k}\left{-\frac{\beta}{2}\left|\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right|^{2}\right}+\text { const. }
+$$
+となる。
+同様に(14.42)は
+$$
+\mathbf{W}<em>{k}=\left(\boldsymbol{\Phi}^{\mathrm{T}} \mathbf{R}</em>{k} \boldsymbol{\Phi}\right)^{-1} \boldsymbol{\Phi}^{\mathrm{T}} \mathbf{R}<em>{k} \mathbf{T}
+$$
+(14.43)は
+$$
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma_{n k}\left{\frac{D}{2} \ln \beta-\frac{\beta}{2}\left|\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right|^{2}\right}
+$$
+となり、(14.44)が
+$$
+\frac{1}{\beta}=\frac{1}{N D} \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma_{n k}\left|\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right|^{2}
+$$
+となる。</p>
+<h2 id="演習-1413"><a class="header" href="#演習-1413">演習 14.13</a></h2>
+<div class="panel-primary">
+<p>線形回帰モデルの混合における完全データに対する対数尤度関数が</p>
+<p>$$
+\ln p(\mathbf{t}, \mathbf{Z} \mid \boldsymbol{\theta})=\sum_{n=1}^{N} \sum_{k=1}^{K} z_{n k} \ln \left{\pi_{k} \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)\right} \tag{14.36}
+$$</p>
+<p>で与えられることを検証せよ。</p>
+</div>
+<p>$(14.34)$の混合分布から出発して、9.2節で示したガウス分布の混合分布と同じステップを踏むことになる。</p>
+<p>$(9.10)$,$(9.11)$と同様に
+$$
+\begin{aligned}
+&amp;p(\mathbf{z} \mid \boldsymbol{\theta})=\prod_{k=1}^{K} \pi_{k}^{z_{k}} \
+&amp;p(t \mid \mathbf{z},\boldsymbol{\theta})=\prod_{k=1}^{K} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)^{z_{k}}
+\end{aligned}
+$$
+である。これより
+$$
+\begin{aligned}
+p(t, \mathbf{z} \mid \boldsymbol{\theta}) &amp;=p(t \mid \mathbf{z}, \boldsymbol{\theta}) p(\mathbf{z} \mid \boldsymbol{\theta}) \
+&amp;=\prod_{k=1}^{K} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)^{z_{k}} \prod_{k=1}^{K} \pi_{k}^{z_{k}} \
+&amp;=\prod_{k=1}^{K}\left{\pi_{k} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)\right}^{z_{k}}
+\end{aligned}
+$$</p>
+<p>二値潜在変数の集合$\mathbf{Z} = {\mathbf{z}<em>{n}}$を導入し、各データ点$n$に対して$\mathbf{z}</em>{n}$は$z_{n k} \in{0,1}$であるとする。$\left(t_{1}, \mathbf{z}<em>{1}\right) \cdots\left(t</em>{N}, \mathbf{z}_{N}\right)$はi.i.dなので</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t}, \mathbf{Z} \mid \boldsymbol{\theta}) &amp;=\prod_{n=1}^{N} p\left(t_{n}, \mathbf{z}<em>{n} \mid \boldsymbol{\theta}\right) \
+&amp;=\prod</em>{n=1}^{N} \prod_{k=1}^{K}\left{\pi_{k} \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)\right}^{z_{n k}} \end{aligned}
+$$
+両辺の対数をとって
+$$
+\ln p(\mathbf{t}, \mathbf{Z} \mid \boldsymbol{\theta})=\sum_{n=1}^{N} \sum_{k=1}^{K} z_{n k} \ln \left{\pi_{k} \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)\right} \quad \tag{14.36}
+$$</p>
+<h2 id="演習-1414"><a class="header" href="#演習-1414">演習 14.14</a></h2>
+<div class="panel-primary">
+<p>ラグランジュ未定乗数法(付録E)の技術を利用し、EMアルゴリズムによる最尤推定で訓練される線形回帰モデルの混合では、Mステップで行う混合係数を再推定する式が</p>
+<p>$$
+\pi_{k}=\frac{1}{N} \sum_{n=1}^{N} \gamma_{n k} \tag{14.38}
+$$</p>
+<p>で与えられることを示せ.</p>
+</div>
+<p>ラグランジアンは、
+$$
+\begin{aligned}
+L &amp;=Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\rm{old}}\right)+\lambda\left(\sum_{k=1}^{K} \pi_{k}-1\right) \
+&amp;=\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma_{n k}\left{\ln \pi_{k}+\ln \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)\right}+\lambda\left(\sum_{k=1}^{K} \pi_{k}-1\right)
+\end{aligned}
+$$
+$\pi_{k}$について停留条件
+$$
+\begin{aligned}
+&amp;0=\frac{\partial L}{\partial \pi_{k}}=\sum_{n=1}^{N} \gamma_{n k} \frac{1}{\pi_{k}}+\lambda \
+&amp;\therefore \pi_{k}=-\frac{1}{\lambda} \sum_{n=1}^{N} \gamma_{n k}
+\end{aligned}
+$$
+$\lambda$について停留条件
+$$
+0=\frac{\partial L}{\partial \lambda}=\sum_{k=1}^{K} \pi_{k}-1
+$$
+より、
+$$
+1=\sum_{k=1}^{K} \pi_{k}=\sum_{k=1}^{K} \left( -\frac{1}{\lambda} \sum_{n=1}^{N} \gamma_{n k} \right)
+$$</p>
+<p>$$
+\begin{aligned}
+\therefore\quad \lambda&amp;=-\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma_{n k} \
+&amp;=-\sum_{n=1}^{N} \underbrace{\sum_{k=1}^{K} \frac{\pi_{k} \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{k}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)}{\sum_{j} \pi_{j} \mathcal{N}\left(t_{n} \mid \mathbf{w}<em>{j}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}, \beta^{-1}\right)}}_{=1} \quad (\because(14.37))\
+&amp;=-N
+\end{aligned}
+$$</p>
+<p>よって、
+$$
+\pi_{k}=\frac{1}{N} \sum_{n=1}^{N} \gamma_{n k} \tag{14.38}
+$$
+を得る。</p>
+<h2 id="演習-1415"><a class="header" href="#演習-1415">演習 14.15</a></h2>
+<div class="panel-primary">
+<p>すでに述べたように、回帰問題において二乗損失関数を用いれば、新しい入力ベクトルに対する目標変数の最適な予測値は予測分布の条件付き平均で与えられる。14.5.1節で議論した線形回帰モデルの混合に対しては、条件付き平均が構成要素分布ごとの平均を線形結合した形で与えられることを示せ。ただし、もしも目標データの条件付き分布が多峰性なら、条件付き平均の予測性能は低くなることに注意せよ。</p>
+</div>
+<p>※「すでに述べたように、回帰問題において二乗損失関数を用いれば、新しい入力ベクトルに対する目標変数の最適な予測値は予測分布の条件付き平均で与えられる。」これは1.5.5節や第3章の冒頭で述べている。</p>
+<p>線形回帰モデルの混合の場合について考える。条件付き平均は$\mathbb{E}[t\mid \boldsymbol{\theta}]$と表される。ここで、$\boldsymbol{\theta}$は重みパラメータ$\mathbf{w}<em>{k}$で支配される$K$個の線形回帰モデル内のすべての適応パラメータの集合，すなわち$\mathbf{w}={\mathbf{w}</em>{k}}$，$\boldsymbol{\pi} = {\pi_{k}}$および共通の精度パラメータ$\beta$をまとめて表している。$p(t\mid \boldsymbol{\theta})$は</p>
+<p>$$
+p(t \mid \boldsymbol{\theta})=\sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(t \mid \mathbf{w}_{k}^{\mathrm{T}} \boldsymbol{\phi}, \beta^{-1}\right) \tag{14.34}
+$$</p>
+<p>で与えられる。</p>
+<p>新しい入力ベクトル$\boldsymbol{\widehat{\phi}}$が与えられたときの予測分布$p(t \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\boldsymbol{\theta}})$を求める。有向グラフは下図の通り。
+<img src="https://i.imgur.com/yFvquyR.png" width=50%></p>
+<p>$$
+\begin{aligned}
+p(t \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\boldsymbol{\theta}})&amp;=\sum_{\mathbf{\widehat{z}}} p(t, \mathbf{\widehat{z}} \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\pi}, \beta, \mathbf{W}) \
+&amp;=\sum_{\mathbf{\widehat{z}}} p(t \mid \mathbf{\widehat{z}}, \widehat{\boldsymbol{\phi}}, \boldsymbol{\pi}, \beta, \mathbf{W}) p(\mathbf{\widehat{z}} \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\pi}, \beta, \mathbf{W}) \
+&amp;=\sum_{\mathbf{\widehat{z}}} p(t \mid \mathbf{\widehat{z}}, \widehat{\boldsymbol{\phi}}, \beta, \mathbf{W}) p(\mathbf{\widehat{z}} \mid \boldsymbol{\pi}) (\because \text { 有向分離) }\
+&amp;=\sum_{\mathbf{\widehat{z}}} p(t \mid \mathbf{\widehat{z}}, \widehat{\boldsymbol{\phi}}, \beta, \mathbf{W}) \left(\prod_{k=1}^{K} \pi_{k}^{\hat{z_{k}}}\right) (\because \text { 演習14.13) }\
+&amp;=\sum_{\mathbf{\widehat{z}}} \prod_{k=1}^{K} \pi_{k}^{\hat{z_{k}}} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \widehat{\boldsymbol{\phi}}, \beta^{-1}\right)^{\hat{z</em>{k}}}  (\because \text { 演習14.13) }\
+&amp;=\sum_{\mathbf{\widehat{z}}} \prod_{k=1}^{K}\left(\pi_{k} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \widehat{\boldsymbol{\phi}}, \beta^{-1}\right)\right)^{\hat{z</em>{k}}} \
+&amp;=\sum_{j=1}^{K} \prod_{k=1}^{K}\left(\pi_{k} \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \widehat{\boldsymbol{\phi}}, \beta^{-1}\right)\right)^{\delta</em>{k j}}(\because \text { 演習9.3; 1-of-K 符号化法) } \
+&amp;=\sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(t \mid \mathbf{w}_{k}^{\mathrm{T}} \widehat{\boldsymbol{\phi}}, \beta^{-1}\right)
+\end{aligned}
+$$</p>
+<p>よって
+$$
+\begin{aligned}
+\mathbb{E}[t \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\theta}] &amp;=\int t p(t \mid \widehat{\boldsymbol{\phi}}, \boldsymbol{\theta}) d t \
+&amp;=\sum_{k=1}^{K} \pi_{k} \int t \mathcal{N}\left(t \mid \mathbf{w}<em>{k}^{\mathrm{T}} \widehat{\boldsymbol{\phi}}, \beta^{-1}\right) d t \
+&amp;=\sum</em>{k=1}^{K} \pi_{k} \mathbb{E}\left[t \mid \widehat{\boldsymbol{\phi}}, \mathbf{w}_{k}, \beta \right]
+\end{aligned}
+$$</p>
+<p>の形となる。これは、「新しい入力ベクトルに対する目標変数の最適な予測値（→条件付き平均）が構成要素分布ごとの平均を線形結合した形で与えられる」ことを表している。</p>
+<h2 id="演習-1416"><a class="header" href="#演習-1416">演習 14.16</a></h2>
+<div class="panel-primary">
+<p>14.5.2節で議論したロジスティック回帰の混合モデルを、$C \geq 2$のクラスを表現できるソフトマックス分類器の混合に拡張せよ。最尤推定を通じて、このモデルのパラメータを決定するためのEMアルゴリズムを書き下せ。</p>
+</div>
+<p>14.5.2節の議論（2クラス回帰）を、多クラス回帰に拡張する。4.3.2節の議論を4.3.4節の議論に拡張する流れと同様に解けばよい。</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} | \mathbf{w}) = \prod_{n=1}^N y_{n}^{t_n}(1-y_n)^{1-t_n}
+\end{aligned} \tag{4.89}
+$$</p>
+<p>の多クラス版として</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{T} | \mathbf{w}<em>1,\cdots ,\mathbf{w}<em>K) = \prod</em>{n=1}^N \prod</em>{k=1}^K y_{nk}^{t_{nk}}
+\end{aligned} \tag{4.107}
+$$</p>
+<p>に拡張したのと同様に、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t}|\boldsymbol\theta) = \prod_{n=1}^N \left( \sum_{k=1}^K \pi_k y_k^t (1-y_k)^{1-t} \right)
+\end{aligned}\tag{14.46}
+$$</p>
+<p>の多クラス版は、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{T}|\boldsymbol\Theta)
+= \prod_{n=1}^N \left( \sum_{k=1}^K \pi_k \prod <em>{c=1}^C y</em>{kc}^{t_c} \right)
+\end{aligned}
+$$</p>
+<p>と書ける。ここで、$c$はクラスラベルを表す。（4章ではクラスラベルを$k$で表していたが、14章では$k$を既に混合要素のラベルとして使っているので、問題文で別の文字ラベルが指定されている。）
+教科書(14.46)-(14.49)式と同じ議論を行うことで、</p>
+<p>$$
+\begin{aligned}
+Q(\boldsymbol\theta, \boldsymbol\theta ^{\rm old})
+= \sum_{n=1}^N \sum_{k=1}^K \gamma_{nk} \ \left[ \ln \pi_k + t_n \ln y_{nk} + (1-t_n) \ln (1-y_{nk}) \right]
+\end{aligned} \tag{14.49}
+$$</p>
+<p>に対応する完全データ対数尤度関数の多クラス版は、$\mathbf{t}$が1-of-K符号なので</p>
+<p>$$
+\begin{aligned}
+Q(\boldsymbol\Theta, \boldsymbol\Theta ^{\rm old}) = \sum_{n=1}^N \sum_{k=1}^K \gamma_{nk} \ \left[ \ln \pi_k + \sum_{c=1}^C t_{nc} \ln y_{nkc} \right]
+\end{aligned}
+$$</p>
+<p>と書ける。（教科書(4.108)式の交差エントロピーに相当する。）</p>
+<p>Mステップのうち、$\boldsymbol\pi$の最大化は混合ロジスティックモデルと同様で、(14.50)式そのものである。
+次に、Mステップの$\mathbf{W}_1, \cdots ,\mathbf{W}<em>K$での最大化を考える。ここで、$\mathbf{W}<em>k = (\mathbf{w}</em>{k1}, \cdots ,\mathbf{w}</em>{kC} )$を指す。</p>
+<p>(14.51)、(14.52)式に相当する勾配$Q=0$の式とヘッシアンの式は、</p>
+<p>$$
+\begin{aligned}
+\nabla <em>{\mathbf{w}</em>{kc}} Q &amp;=\sum_{n=1}^N \gamma_{nk} (t_{nc} - y_{nkc} ) \phi_n = 0\
+\mathbf{H}<em>k &amp;= -\nabla <em>{w</em>{kc}} \nabla</em>{w_{kc'}} Q = \sum_{n=1}^N \gamma_{nk} y_{nkc} (I_{cc'} - y_{nkc'}) \phi_n \phi_n^{\rm T}
+\end{aligned}
+$$</p>
+<p>となる。（(4.109)式や(14.51)式の導出と同様。ちなみに、14章の$E$は、4章とは$E$と逆符号で定義されていることに注意。この解答では14章の符号の定義に合わせた。）これは解析的に解けないので、(14.51)式と同様に、反復的な手法（IRLSアルゴリズムなど）を用いて解くことになる。</p>
+<h2 id="演習-1417"><a class="header" href="#演習-1417">演習 14.17</a></h2>
+<div class="panel-primary">
+<p>条件付き分布の混合モデル$p(t \mid \mathbf{x})$として次式を考える。</p>
+<p>$$
+p(t \mid \mathbf{x})=\sum_{k=1}^{K} \pi_{k} \psi_{k}(t \mid \mathbf{x}) \tag{14.58}
+$$</p>
+<p>ここでは、各々の混合構成要素$\psi_{k}(t\mid \mathbf{x})$自体が混合モデルである。この2レベルの階層的混合が、標準的な1レベルの混合モデルと等価であることを示せ。ここでさらに、階層的モデルにおける両方のレベルの混合係数は$\mathbf{x}$についての任意の関数であると考える。この階層的モデルも再び、$\mathbf{x}$に依存した混合係数を持つ1レベルモデルと等価であることを示せ。最後に、階層的混合の両方のレベルの混合係数が線形分類（ロジスティックもしくはソフトマックス）モデルに制限される場合を考える。一般的に、階層的混合が混合係数に線形分類モデルを用いた1レベルの混合では表現できないことを示せ。
+ヒント：このためには、一つの反例を示せば十分である。そこで、混合係数が線形ロジスティックモデルである二つの構成要素の混合で、それらのうちの一つの構成要素それ自体が二つの構成要素の混合であると考える。そして、これが線形ソフトマックスモデルで決定される混合係数をもつ3つの構成要素による単一レベルの混合では表現できないことを示せばよい。</p>
+</div>
+<p>ゲート関数が定数の場合</p>
+<p>$(14.58)$における$\psi_{k}(t \mid \mathbf{x})$が混合モデルで表せるので
+$$
+\psi_{k}(t \mid \mathbf{x})=\sum_{m=1}^{M} \lambda_{m k} \phi_{m k}(t \mid \mathbf{x})
+$$
+と書くことができる。$(14.58)$に代入して
+$$
+\begin{aligned}
+p(t \mid \mathbf{x}) &amp;=\sum_{k=1}^{K} \pi_{k} \sum_{m=1}^{M} \lambda_{m k} \phi_{m k}(t \mid \mathbf{x}) \
+&amp;=\sum_{k=1}^{K} \sum_{m=1}^{M} \pi_{k} \lambda_{m k} \phi_{m k}(t \mid \mathbf{x})
+\end{aligned}
+$$
+$\pi_{k} \lambda_{m k}= \eta_{l}$とおいて添字を振り直すことで
+$$
+p(t \mid \mathbf{x})=\sum_{l=1}^{L} \eta_{l} \phi_{l}(t \mid \mathbf{x})
+$$
+と書くことができ1レベルモデルと等価であることがわかる。</p>
+<p>ゲート関数が$\mathbf{x}$についての任意の関数の場合</p>
+<p>$\pi_{k}$と$\lambda_{m k}$が$x$に依存する場合でも非負であり、$x$のあらゆる値に対して合計が1になるという制約のもとで1レベルの混合モデルで書くことができる。</p>
+<p>ゲート関数が線形分類モデルの場合</p>
+<p>問題文のヒントに従った混合モデルを構成することで示す。</p>
+<p><img src="https://i.imgur.com/p2PMfoU.png" alt="" /></p>
+<p>図12の左図に示すような木構造の階層的な混合モデルを考える。ルートレベルでは、これは2つの要素を持つ混合モデルである。混合係数は線形ロジスティック回帰モデルによって与えられ、入力に依存する。左のサブツリーは局所条件付き密度モデル$\psi_{1}(t \mid \mathbf{x})$に対応する。右のサブツリーでは、ルートからの構造が複製され、両方のサブツリーが局所条件付き密度モデル、$\psi_{2}(t \mid \mathbf{x})$および$\psi_{3}(t \mid \mathbf{x})$を含むという違いがある。
+結果として得られる混合モデルは、以下の混合係数で(14.58)の形式で書くことができる。</p>
+<p>$$
+\begin{aligned}
+&amp;\pi_{1}(\mathbf{x})=\sigma\left(\mathbf{v}<em>{1}^{\mathrm{T}} \mathbf{x}\right) \
+&amp;\pi</em>{2}(\mathbf{x})=\left(1-\sigma\left(\mathbf{v}<em>{1}^{\mathrm{T}} \mathbf{x}\right)\right) \sigma\left(\mathbf{v}</em>{2}^{\mathrm{T}} \mathbf{x}\right) \
+&amp;\pi_{3}(\mathbf{x})=\left(1-\sigma\left(\mathbf{v}<em>{1}^{\mathrm{T}} \mathbf{x}\right)\right)\left(1-\sigma\left(\mathbf{v}</em>{2}^{\mathrm{T}} \mathbf{x}\right)\right)
+\end{aligned}
+$$</p>
+<p>ここで、$\sigma(-)$は(4.59)で定義され、$\mathbf{v}_1$, $\mathbf{v}<em>2$はロジスティック回帰モデルのパラメータ・ベクトルである。式より$\pi</em>{1}(\mathbf{x})$は$\mathbf{v}_2$に依存しない。これは混合係数が1レベルのソフトマックスモデルを使用してモデル化された場合，すなわち以下の式でゲート関数が書ける場合には当てはまらない。</p>
+<p>$$
+\pi_{k}(\mathbf{x})=\frac{e^{\mathbf{u}<em>{k}^{\mathrm{T}} \mathbf{x}}}{\sum</em>{j}^{3} e^{\mathbf{u}_{j}^{\mathrm{T}} \mathbf{x}}}
+$$</p>
+<p>ここで、$\pi_{k}(\mathbf{x})$に対応するパラメータ$\mathbf{u}<em>k$は、分母を通して他の混合係数$\pi</em>{j\neq k}(\mathbf{x})$にも影響する。これにより、線形ソフトマックスモデルと比較して、入力空間上の混合係数のモデル化において、階層的モデルは異なる特性を持つことになる。図12の右図に例を示すが、赤線は入力空間における混合係数が等しい境界を表している。この境界線は2本の直線で形成されており、図12左図の2つのロジスティックユニットに相当する。ソフトマックスモデルで入力空間を分割すると、3本の直線が1点で結ばれ、例えばPRMLの図4.3の赤線のような形になるが、線形3クラスソフトマックスモデルでは図12右パネルのような境界を実装できないことに注意されたい。</p>
+<p><img src="https://i.imgur.com/7pFB89n.png" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch13.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch13.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

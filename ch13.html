@@ -1,0 +1,1957 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第13章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html" class="active"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第13章演習問題解答1311317"><a class="header" href="#prml第13章演習問題解答1311317">PRML第13章演習問題解答（13.1〜13.17）</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-131"><a class="header" href="#演習-131">演習 13.1</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/OVMrByu.png" alt="" />
+<img src="https://i.imgur.com/Gq9roJ7.png" alt="" /></p>
+<p>8.2節で議論した有向分離のテクニックを使って図13.3に示す全部で$N$個のノードをもつマルコフモデルが、$n=2, \ldots, N$について条件付き独立性</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)=p\left(\mathbf{x}</em>{n} \mid \mathbf{x}_{n-1}\right) \tag{13.3}
+$$</p>
+<p>を満たすことを示せ．同様に、図13.4のグラフで記述される全部で$N$個のノードをもつモデルが、$n=3,\ldots,N$について以下の条件付き独立性を満たすことを示せ．</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)=p\left(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}, \mathbf{x}</em>{n-2}\right) \tag{13.122}
+$$</p>
+</div>
+<p>.<img src="https://i.imgur.com/G2ZfBBt.png" alt="" /></p>
+<p>※8.2.2 有向分離の節で用いられた手法で考える。図のように$A, B, C$の部分集合を指定する。$A$に属する任意のノードから$B$に属するノードへの可能な経路は必ず$C$を通ることになる。
+今、$C$は観測されており、head-to-tailとなっているので、P.91の議論から$A$から$B$への経路は$C$で遮断されており、$A \perp !!! \perp B \mid C$が成立する。これより</p>
+<p>$$
+\begin{aligned}
+p(A,B\mid C) &amp;= p(A\mid C)p(B\mid C) \
+\end{aligned}
+$$</p>
+<p>が成立する。両辺に$p(C)$をかけると</p>
+<p>$$
+\begin{aligned}
+p(A,B, C) &amp;= p(A,C)p(B\mid C) \
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>問題は今$p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}_{n-1}\right) = p(B\mid A, C)$なので</p>
+<p>$$
+\begin{aligned}
+p(B\mid A, C) &amp;= \frac{p(A, B, C)}{p(A,C)} \
+&amp;=p(B\mid C)
+\end{aligned}
+$$</p>
+<p>これを書き直すと</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)=p\left(\mathbf{x}</em>{n} \mid \mathbf{x}_{n-1}\right) \tag{13.3}
+$$</p>
+<p>が得られる。</p>
+<p><img src="https://i.imgur.com/BPSwm9c.png" alt="" /></p>
+<p>二次マルコフ連鎖の場合、$n=3$について$(13.122)$式は自明に成立する。
+$n=4,\ldots,N$の二次マルコフ連鎖の場合は上の図のようになる。このとき、同様に$A$から$B$への経路は$C$に含まれるすべてのノードで遮断されている。つまり$A \perp !!! \perp B \mid C$が成立する。これより</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right) &amp;= p(B\mid A, C) \
+&amp;= \frac{p(A, B, C)}{p(A,C)} \
+&amp;=p(B\mid C) \
+&amp;=p(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}, \mathbf{x}</em>{n-2})
+\end{aligned}
+$$</p>
+<p>よって$(13.122)$式が導かれた。</p>
+<h2 id="演習-132"><a class="header" href="#演習-132">演習 13.2</a></h2>
+<div class="panel-primary">
+<p>図13.3の有向グラフに対応する同時確率分布</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}\right)=p\left(\mathbf{x}<em>{1}\right) \prod</em>{n=2}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{n-1}\right) \tag{13.2}
+$$</p>
+<p>について考えよう。確率の加法・乗法定理を用い、この同時確率が$n=2, \ldots, N$について条件付き独立性</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)=p\left(\mathbf{x}</em>{n} \mid \mathbf{x}_{n-1}\right) \tag{13.3}
+$$</p>
+<p>を満たすことを示せ。同様に、同時分布</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}\right)=p\left(\mathbf{x}<em>{1}\right) p\left(\mathbf{x}</em>{2} \mid \mathbf{x}<em>{1}\right) \prod</em>{n=3}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{n-1}, \mathbf{x}_{n-2}\right) \tag{13.4}
+$$</p>
+<p>によって記述される二次マルコフモデルが、$n=3,\ldots,N$について以下の条件付き独立性を満たすことを示せ。</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)=p\left(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}, \mathbf{x}</em>{n-2}\right) \tag{13.123}
+$$</p>
+</div>
+<p>$(13.3)$の左辺を展開し、$\mathbf{x}_{n}$で周辺化しておく。</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right) &amp;= \frac{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)}{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right)} \
+&amp;= \frac{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)}{\sum</em>{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}_{n}\right)}
+\end{aligned}
+$$</p>
+<p>そこで、$(13.2)$式を利用して$p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n}\right)$を求める。</p>
+<p>$$
+\begin{aligned} p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n}\right) &amp;=\sum_{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{N}\right) \ &amp;=\sum</em>{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{x}</em>{1}\right) \prod_{m=2}^{N} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}\right) \ &amp;=p\left(\mathbf{x}<em>{1}\right) \prod</em>{m=2}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}\right) \end{aligned}
+$$</p>
+<p>と書けるので、もう一度$p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}_{n-1}\right)$を計算すると</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right) &amp;= \frac{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)}{\sum</em>{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)} \
+&amp;= \frac{p\left(\mathbf{x}</em>{1}\right) \prod_{m=2}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}\right)}{\sum_{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{1}\right) \prod_{m=2}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}\right)} \
+&amp;= \frac{p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{n-1}\right)}{\sum_{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}\right)} \
+&amp;= p\left(\mathbf{x}</em>{n} \mid \mathbf{x}_{n-1}\right)
+\end{aligned}
+$$</p>
+<p>途中で$\mathbf{x}_{n}$に依存する項以外が分母分子でキャンセルされることを用いた。これより、$(13.3)$の右辺が得られた。</p>
+<p>二次マルコフモデルについても同様に行うと、$(13.4)$の同時分布からはじめて</p>
+<p>$$
+\begin{aligned} p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n}\right) &amp;=\sum_{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{N}\right) \ &amp;=\sum</em>{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{x}</em>{1}\right) p\left(\mathbf{x}<em>{2} \mid \mathbf{x}</em>{1}\right) \prod_{m=3}^{N} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}, \mathbf{x}<em>{m-2}\right) \ &amp;=p\left(\mathbf{x}</em>{1}\right) p\left(\mathbf{x}<em>{2} \mid \mathbf{x}</em>{1}\right) \prod_{m=3}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}, \mathbf{x}_{m-2}\right) \end{aligned}
+$$</p>
+<p>となるので、</p>
+<p>$$
+\begin{aligned} p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n-1}\right) &amp;=\frac{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)}{\sum</em>{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}\right)} \ &amp;=\frac{p\left(\mathbf{x}</em>{1}\right) p\left(\mathbf{x}<em>{2} \mid \mathbf{x}</em>{1}\right) \prod_{m=3}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}, \mathbf{x}<em>{m-2}\right)}{\sum</em>{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{1}\right) p\left(\mathbf{x}<em>{2} \mid \mathbf{x}</em>{1}\right) \prod_{m=3}^{n} p\left(\mathbf{x}<em>{m} \mid \mathbf{x}</em>{m-1}, \mathbf{x}<em>{m-2}\right)} \
+&amp;= \frac{p\left(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}, \mathbf{x}</em>{n-2}\right)}{\sum_{\mathbf{x}<em>{n}} p\left(\mathbf{x}</em>{n} \mid \mathbf{x}<em>{n-1}, \mathbf{x}</em>{n-2}\right)} \
+&amp;= p\left(\mathbf{x}<em>{n} \mid \mathbf{x}</em>{n-1}, \mathbf{x}_{n-2}\right)
+\end{aligned}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-133"><a class="header" href="#演習-133">演習 13.3</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/GRbf8ob.png" alt="" />
+有向分離を用いて、図13.5の有向グラフで表現される状態空間モデルにおける観測データの分布$p(\mathbf{x}_1,\ldots,\mathbf{x}_N )$が何の条件付き独立性も満足せず、したがって、どのような有限次数のマルコフ性ももたないことを示せ.</p>
+</div>
+<p>図13.5によると、任意の2つの変数$\mathbf{x}_n$と$\mathbf{x}_m$, $m \neq n$について、それぞれのノード間には直接的な経路は存在せず、$\mathbf{z}$変数に対応する1つ以上のノードを通過する経路が存在している。これらのノードはいずれも観測データの分布$p(\mathbf{x}_1,\ldots,\mathbf{x}_N )$の条件集合に含まれていない。したがって、$\mathbf{x}_n$と$\mathbf{x}_m$の間には遮断されていない経路が存在し、モデルは条件付き独立性または有限次マルコフ性を満たさないことになる。</p>
+<h2 id="演習-134"><a class="header" href="#演習-134">演習 13.4</a></h2>
+<div class="panel-primary">
+<p>線形回帰モデルやニューラルネットワークのように、出力密度がパラメトリックなモデル$p(\mathbf{x}\mid \mathbf{z},\mathbf{w})$で表される隠れマルコフモデルを考えよう。ここで、$\mathbf{w}$は適応パラメータのベクトルである。データから最尤推定によってパラメータ$\mathbf{w}$を学習する方法を述べよ.</p>
+</div>
+<p>教科書p.330に記載されている、「隠れマルコフモデルとして離散分布、ガウス分布、混合ガウス分布といった広い範囲の出力分布に加えて、ニューラルネットワークなどの識別的モデルを利用することも可能」という記述への補足のための演習問題。</p>
+<p>教科書では、出力分布$p(\mathbf{x}_n|\phi_k)$としてガウス分布（p.335）や離散多項分布（p.336）の例が記載されている。このパラメータ$\phi$を$\mathbf{w}$で置き換えると、識別的モデルにおいても同様の定式化が可能。</p>
+<p>実際の更新式の形は、回帰モデルの形や、回帰モデルがどのように使われているかに依って異なる。一例としては、図13.8（p.351）では$\mathbf{x}$の生成密度が、隠れ変数$\mathbf{z}$だけでなく観測変数系列$\mathbf{u}$に依存する。
+この場合、回帰モデルは$\mathbf{u}$から$\mathbf{x}$への写像（写像の関数形が$\mathbf{z}$に応じて異なる）とみなすことができる。
+ニューラルネットワークのような非線形な関数形では、Mステップにおける$\mathbf{w}$の最適解が解析的に解けないことが多い。</p>
+<h2 id="演習-135"><a class="header" href="#演習-135">演習 13.5</a></h2>
+<div class="panel-primary">
+<p>隠れマルコフモデルの初期状態確率と遷移確率のパラメータについてのMステップの方程式
+$$
+\pi_{k}=\frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} \tag{13.18}
+$$
+$$
+A_{j k}=\frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \tag{13.19}
+$$
+を、完全データに対する対数尤度関数の期待値</p>
+<p>$$
+\begin{aligned} Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}<em>{n} \mid \phi</em>{k}\right) \end{aligned} \tag{13.17}
+$$</p>
+<p>を最大化することにより確かめよ。その際、適当なラグランジュ乗数を用いて$\pmb{\pi}$と$\mathbf{A}$の成分に対する和の制約を与えること.</p>
+</div>
+<p>P.334~335参照。Mステップの更新式に相当する。</p>
+<p>$\displaystyle \sum_{l=1}^{K} \pi_{l}=1$の条件下で$Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right)$を$\pi_{l}$について最大化する。</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial \pi_{k}}\left[Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right)-\lambda\left(\sum_{l=1}^{K} \pi_{l}-1\right)\right] \
+=&amp;\ \gamma\left(z_{1 k}\right) \cdot \frac{1}{\pi_{k}}-\lambda(=0)
+\end{aligned}
+$$</p>
+<p>両辺に$\pi_{k}$を乗じて、$k$について和をとって整理すると、</p>
+<p>$$
+\sum_{k=1}^{K}\gamma(z_{1k}) = \lambda \underbrace{\sum_{k=1}^{K}\pi_{k}}_{=1}
+$$</p>
+<p>よって、$\displaystyle \lambda = \sum_{k=1}^{K}\gamma(z_{1k})$。これを代入して</p>
+<p>$$
+\pi_{k}=\frac{1}{\lambda} \gamma\left(z_{1 k}\right)=\frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} \tag{13.18}
+$$</p>
+<p>次に、$\displaystyle \sum_{k=1}^{K}A_{jk} = 1$の条件下で$Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right)$を$A_{jk}$について最大化する。</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial A_{j k}}\left[Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right)-\sum_{l} \mu_{l}\left(\sum_{m} A_{j m}-1\right)\right] \
+=&amp;\ \sum_{n=2}^{N} \sum_{l} \sum_{m} \xi\left(z_{n-1, l}, z_{n m}\right) \cdot \frac{1}{A_{lm}} \cdot \delta_{j l} \delta_{k m} - \mu_{l}\delta_{jl} \
+=&amp;\ \sum_{n=2}^{N} \xi\left(\varepsilon_{n-1, j}, z_{n k}\right) \cdot \frac{1}{A_{j k}}-\mu_{j}(=0)
+\end{aligned}
+$$</p>
+<p>両辺に$A_{jk}$を乗じて$k$について和をとって整理すると</p>
+<p>$$
+\sum_{k=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)=\mu_{j} \underbrace{\sum_{k}A_{jk}}_{=1}
+$$</p>
+<p>求めた$\mu_{j}$を代入して</p>
+<p>$$
+A_{j k} =\frac{1}{\mu_{j}} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right) = \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \tag{13.19}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-136"><a class="header" href="#演習-136">演習 13.6</a></h2>
+<div class="panel-primary">
+<p>もし、隠れマルコフモデルのパラメータ$\pmb{\pi}$か$\mathbf{A}$のいずれかの要素が最初にゼロに設定された場合、それらの要素素はEMアルゴリズムのその後に続く更新においてゼロのままであることを示せ。</p>
+</div>
+<p>まずパラメータ$\mathbf{\pi}$について考える．
+$\mathbf{\pi}$の特定の要素$\pi_k$が0に初期化されているとする.最初のEステップでは, $\alpha(z_{1k})$は (13.37)から以下のようにかける.</p>
+<p>$$
+\mathbf{\alpha}(z_{1k})=\pi_k p(\mathbf{x}_1\mid\phi_k)\tag{13.37}
+$$</p>
+<p>$\pi_k$が0に初期化されているためこの値は0であることがわかる.また(13.33)から,</p>
+<p>$$
+\gamma(z_{1k})=\frac{\alpha(z_{1k})\beta(z_{1k})}{p(\mathbf{x})}\tag{13.33}
+$$</p>
+<p>$\gamma(z_{1k})$$もゼロになる．また次のMステップで</p>
+<p>$$
+\pi_{k}=\frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)}\tag
+{13.18}
+$$</p>
+<p>により更新される$\pi_k$の値は再びゼロとなることがわかる。これはその後のEM step に当てはまるので、この$\pi_k$の値はゼロのままである.</p>
+<p>次に$\mathbf{A}$の要素$A_{jk}$が0で初期化されているとする。</p>
+<p>$$
+\begin{aligned}
+\xi &amp;\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \mid \mathbf{X}\right) \
+&amp;=\frac{\left.\alpha\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \beta\left(\mathbf{z}</em>{n}\right)\right)}{p(\mathbf{X})} .
+\end{aligned}
+$$</p>
+<p>(13.43)の式中で、遷移行列部分の$p(z_{nk}\mid z_{n-1,j})=A_{jk}$が0であり、$\xi \left(\mathbf{z}<em>{n-1,k}, \mathbf{z}</em>{nj}\right)$が0になることがわかる。続くMステップでは、$A_{jk}$の新しい値は</p>
+<p>$$
+A_{j k}=\frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)}
+$$</p>
+<p>で与えられ、これも0になりことがわかる．以上により示された．</p>
+<h2 id="演習-137"><a class="header" href="#演習-137">演習 13.7</a></h2>
+<div class="panel-primary">
+<p>ガウス出力密度をもつ隠れマルコフモデルを考える。ガウス分布の平均と共分散のパラメータについての関数$Q(\pmb{\theta},\pmb{\theta}^{\mathrm{old}})$の最大化が、Mステップの方程式
+$$
+\pmb{\mu}<em>{k}=\frac{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right) \mathrm{x}<em>{n}}{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.20}
+$$
+と
+$$
+\mathbf{\Sigma}<em>{k}=\frac{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)^{\mathrm{T}}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.21}
+$$
+を導くことを示せ。</p>
+</div>
+<p>P.335の後半を参照。$Q(\pmb{\theta},\pmb{\theta}^{\mathrm{old}})$を$\pmb{\phi}<em>{k}$に関して最大化する場合、$(13.17)$の最後の項だけが$\pmb{\phi}</em>{k}$に依存している。パラメータ$\pmb{\phi}<em>{k}$が成分ごとに独立ならば、この項は$k$の各々の値ごとの項の和に分解され、そのそれぞれの項は独立に最大化することができる。出力分布がガウス密度分布の場合には$p\left(\mathbf{x} \mid \pmb{\phi}</em>{k}\right)=\mathcal{N}\left(\mathbf{x} \mid \pmb{\mu}<em>{k}, \mathbf{\Sigma}</em>{k}\right)$と書けて、「$\pmb{\phi}<em>{k}$に関しての最大化」をガウス分布の平均$\pmb{\mu}</em>{k}$と分散$\mathbf{\Sigma}_{k}$についての最大化に分けて考える。</p>
+<p>$$
+\begin{aligned}
+&amp; \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}<em>{n} \mid \phi</em>{k}\right)=\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \pmb{\mu}</em>{k}, \mathbf{\Sigma}<em>{k}\right) \
+=&amp; \sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{-\frac{D}{2} \ln (2 \pi)-\frac{1}{2} \ln \left|\mathbf{\Sigma}<em>{k}\right|-\frac{1}{2}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}</em>{k}^{-1}\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)\right}
+\end{aligned}
+$$</p>
+<p>(1) $\pmb{\mu}_{k}$について最大化する。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \pmb{\mu}<em>{k}} Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right) &amp;=\frac{\partial}{\partial \pmb{\mu}</em>{k}}\left{\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \cdot\left(-\frac{1}{2}\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}<em>{k}^{-1}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)\right)\right} \
+&amp;=\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{\Sigma}<em>{k}^{-1}\left(\mathbf{x}</em>{n}-\pmb{\mu}_{k}\right)=0
+\end{aligned}
+$$</p>
+<p>$$
+\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{\Sigma}<em>{k}^{-1} \pmb{\mu}</em>{k} = \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{\Sigma}<em>{k}^{-1} \mathbf{x}</em>{n}
+$$</p>
+<p>両辺に$\mathbf{\Sigma}_{k}$を乗じて整理すると</p>
+<p>$$
+\pmb{\mu}<em>{k}=\frac{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}<em>{n}}{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.20}
+$$</p>
+<p>を得る。</p>
+<p>(2) $\mathbf{\Sigma}_{k}$について最大化する。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{\Sigma}<em>{k}} Q\left(\pmb{\theta}, \pmb{\theta}^{\text {old }}\right) &amp;=\frac{\partial}{\partial \mathbf{\Sigma}</em>{k}} \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{-\frac{1}{2} \ln \left|\mathbf{\Sigma}<em>{k}\right|-\frac{1}{2}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}</em>{k}^{-1}\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)\right} \
+&amp;=\sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left{-\frac{1}{2}\left(\mathbf{\Sigma}<em>{k}^{-1}\right)^{\mathrm{T}}-\frac{1}{2} \frac{\partial}{\partial \mathbf{\Sigma}</em>{k}} \operatorname{Tr}\left(\mathbf{\Sigma}<em>{k}^{-1}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)^{\mathrm{T}}\right)\right} \
+&amp;=-\frac{1}{2} \sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\left{\mathbf{\Sigma}<em>{k}^{-1}-\mathbf{\Sigma}</em>{k}^{-1}\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)\left(\mathbf{x}<em>{n}-\pmb{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}_{k}^{-1}\right}=0 \end{aligned}
+$$</p>
+<p>上式について左と右から1回ずつ$\mathbf{\Sigma}_{k}$を乗じて整理すると、</p>
+<p>$$
+\sum_{n=1}^{N} \gamma\left(z_{n k}\right)\mathbf{\Sigma}<em>{k} = \sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\mathbf{\Sigma}<em>{k}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)\left(\mathbf{x}</em>{n}-\pmb{\mu}_{k}\right)^{\mathrm{T}}
+$$</p>
+<p>$$
+\mathbf{\Sigma}<em>{k} = \frac{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\mathbf{\Sigma}<em>{k}\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)\left(\mathbf{x}</em>{n}-\pmb{\mu}<em>{k}\right)^{\mathrm{T}}}{\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.21}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-138"><a class="header" href="#演習-138">演習 13.8</a></h2>
+<div class="panel-primary">
+<p>多項分布に従う離散観測値をもつ隠れマルコフモデルにおいて、隠れ変数を与えたときの観測値の条件付き分布が
+$$
+p(\mathbf{x} \mid \mathbf{z})=\prod_{i=1}^{D} \prod_{k=1}^{K} \mu_{i k}^{x_{i} z_{k}} \tag{13.22}
+$$
+で与えられ、また対応するMステップの方程式が
+$$
+\mu_{i k}=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.23}
+$$
+で与えられることを示せ。同様に、複数の二値の出力変数をもち、そのそれぞれがベルヌーイ条件付き分布に従う隠れマルコフモデルについて、条件付き分布についての式とMステップの方程式を書き下せ。
+ヒント：必要に応じて、2.1節と2.2節における、独立同分布に従うデータに対する最尤推定の解法についての、対応する議論を参照せよ。</p>
+</div>
+<p>(13.17)  の $Q\left(\theta, \theta^{\text {old }}\right)$ のうち、$\mu$ に依存しているのは最終項のみなので、最終項のみを考える.</p>
+<p>$$
+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}<em>{n} \mid \phi</em>{k}\right)=\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \sum_{i=1}^{D} x_{n i} \ln \mu_{k i}
+$$</p>
+<p>ラグランジュの未定乗数法を用いると、最大化すべき関数は、
+$$
+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \sum_{i=1}^{D} x_{n i} \ln \mu_{k i}+\sum_{k=1}^{K} \lambda_{k}\left(\sum_{i=1}^{D} \mu_{k i}-1\right)
+$$
+$\mu$に関して微分して、
+$$
+0=\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \frac{x_{n i}}{\mu_{k i}}+\lambda_{k}
+$$</p>
+<p>$\mu_{k i}$を両辺にかけて, $i$で和を取って, $\sum_{i} x_{n i}=1$と$\sum_{i} \mu_{n i}=1$ を利用して
+$$
+\lambda_{k}=-\sum_{n=1}^{N} \gamma\left(z_{n k}\right)
+$$
+$\lambda_{k}$を
+$$
+0=\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \frac{x_{n i}}{\mu_{k i}}+\lambda_{k}
+$$
+に代入して、整理すると、
+$$
+\mu_{i k}=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} \tag{13.23}
+$$
+を得る.</p>
+<p>.</p>
+<h2 id="演習-139"><a class="header" href="#演習-139">演習 13.9</a></h2>
+<div class="panel-primary">
+<p>隠れマルコフモデルの</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$</p>
+<p>で定義される同時分布が条件付き独立性$(13.24)-(13.31)$</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{X} \mid \mathbf{z}<em>{n}\right) =\ &amp;p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \times \
+&amp;p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n}\right)
+\end{aligned}
+\tag{13.24}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{x}<em>{n}, \mathbf{z}</em>{n}\right)= p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}_{n}\right) \tag{13.25}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)= p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}_{n-1}\right) \tag{13.26}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n}, \mathbf{z}</em>{n+1}\right)= p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n+1}\right) \tag{13.27}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{n+2}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n+1}, \mathbf{x}</em>{n+1}\right)= p\left(\mathbf{x}<em>{n+2}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n+1}\right) \tag{13.28}
+$$</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{X} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) =\ &amp;p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1}\right) \times \
+&amp; p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1}, \ldots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)
+\end{aligned}\tag{13.29}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{N+1} \mid \mathbf{X}, \mathbf{z}</em>{N+1}\right)= p\left(\mathbf{x}<em>{N+1} \mid \mathbf{z}</em>{N+1}\right) \tag{13.30}
+$$</p>
+<p>$$
+p\left(\mathbf{z}<em>{N+1} \mid \mathbf{z}</em>{N}, \mathbf{X}\right)= p\left(\mathbf{z}<em>{N+1} \mid \mathbf{z}</em>{N}\right) \tag{13.31}
+$$</p>
+<p>を満たすことを、有向分離の規準を用いて確かめよ。</p>
+</div>
+<p>P.84, 85の条件付き独立性とP.90の有向分離の規準を復習すると、任意の重複しないノード集合$A, B, C$があり、$A$の任意のノードから$B$の任意のノードへのすべての経路を考えたときに$C$がP.90の(a), (b)の条件を満たすとき、「$A$は$C$によって$B$から有向分離されている」と呼び、$A \perp !!! \perp B \mid C$で表す。このとき、</p>
+<p>$$
+p(A\mid B, C) = p(A\mid C) \iff p(B\mid A, C) = p(B\mid C) \iff p(A,B\mid C) = p(A\mid C)p(B\mid C)
+$$</p>
+<p>が成立する。日本語でまとめると、</p>
+<ul>
+<li>$A$と$B$が$C$を与えたもとで条件付き独立</li>
+<li>$C$が分かっている状況で新たに$B$が分かっても、$A$に関する情報は得られない</li>
+<li>$C$が分かっている状況で新たに$A$が分かっても、$B$に関する情報は得られない</li>
+</ul>
+<p>隠れマルコフモデルのグラフィカルモデルは</p>
+<img src="https://i.imgur.com/GRbf8ob.png" width="70%">
+<p>これを踏まえて$(13.24)-(13.31)$を1つずつ示していく。</p>
+<p>$(13.24)$について、${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n}}$の任意のノードから${\mathbf{x}<em>{n+1},\ldots,\mathbf{x}</em>{N}}$の任意のノードへの経路は$\mathbf{z}<em>{n}$によって遮断されている。なぜなら、$\mathbf{z}</em>{n}$でhead-to-tailまたはtail-to-tail($\mathbf{x}<em>{n}$のみ)となっているからである。すなわち${\mathbf{x}</em>{1},\ldots,\mathbf{x}<em>{n}} \perp !!! \perp {\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N}} \mid \mathbf{z}</em>{n}$と書けるので、</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{X} \mid \mathbf{z}<em>{n}\right) =\ &amp;p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \times \
+&amp;p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n}\right)
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>$(13.25)$について、${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n-1}}$の任意のノードから$\mathbf{x}<em>{n}$のノードへの経路は$\mathbf{z}</em>{n}$でhead-to-tailになっているので遮断されている。すなわち${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n-1}} \perp !!! \perp \mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}$と書けるので、</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{x}<em>{n}, \mathbf{z}</em>{n}\right)= p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}_{n}\right)
+$$</p>
+<p>となる。</p>
+<p>$(13.26)$について、${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n-1}}$の任意のノードから$\mathbf{z}<em>{n}$のノードへの経路は$\mathbf{z}</em>{n-1}$でhead-to-tail（$\mathbf{x}<em>{n-1}$以外）またはtail-to-tail（$\mathbf{x}</em>{n-1}$のみ）になっているので遮断されている。すなわち${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n-1}} \perp !!! \perp \mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}$と書けるので、</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) = p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n}, \mathbf{z}</em>{n-1}\right)= p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}_{n-1}\right)
+$$</p>
+<p>となる。</p>
+<p>$(13.27)$について、ノード$\mathbf{z}<em>{n}$から${\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N}}$の任意のノードへの経路は$\mathbf{z}</em>{n+1}$でhead-to-tailになっているので遮断されている。すなわち$\mathbf{z}<em>{n} \perp !!! \perp {\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N}} \mid \mathbf{z}</em>{n+1}$と書けるので、</p>
+<p>$$
+p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n}, \mathbf{z}</em>{n+1}\right)= p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n+1}\right)
+$$</p>
+<p>$(13.28)$について、ノード$\mathbf{x}<em>{n+1}$から${\mathbf{x}</em>{n+2},\ldots,\mathbf{x}<em>{N}}$の任意のノードへの経路は$\mathbf{z}</em>{n+1}$でtail-to-tailになっているので遮断されている。すなわち$\mathbf{x}<em>{n+1} \perp !!! \perp {\mathbf{x}</em>{n+2},\ldots,\mathbf{x}<em>{N}} \mid \mathbf{z}</em>{n+1}$と書けるので、</p>
+<p>$$
+p\left(\mathbf{x}<em>{n+2}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n+1}, \mathbf{x}</em>{n+1}\right)= p\left(\mathbf{x}<em>{n+2}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}_{n+1}\right)
+$$</p>
+<p>$(13.29)$について、まずノード${\mathbf{x}<em>{1},\ldots,\mathbf{x}</em>{n-1}}$から${\mathbf{x}<em>{n},\ldots,\mathbf{x}</em>{N}}$の任意のノードへの経路は$\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}$でhead-to-tailまたはtail-to-tailになっているので遮断されている。すなわち$\mathbf{x}<em>{1}, \ldots ,\mathbf{x}</em>{n-1} \perp !!! \perp \mathbf{x}<em>{n}, \ldots , \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}$と書けるので、</p>
+<p>$$
+p\left(\mathbf{X} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \right) = p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1},\mathbf{z}</em>{n} \right)p\left(\mathbf{x}<em>{n}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n-1},\mathbf{z}</em>{n} \right)
+$$</p>
+<p>右辺第一項は${\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1}}$から$\mathbf{z}<em>{n}$までの経路が$\mathbf{z}</em>{n-1}$で遮断されているので${\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N}} \perp !!! \perp \mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}$となり</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1},\mathbf{z}</em>{n} \right) = p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}_{n-1} \right)
+$$</p>
+<p>右辺第二項は$\mathbf{x}<em>{n}$から${\mathbf{x}</em>{n+1}, \ldots, \mathbf{x}<em>{N}}$までの経路が$\mathbf{z}</em>{n}$で遮断されているので</p>
+<p>$$
+p\left(\mathbf{x}<em>{n}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n-1},\mathbf{z}</em>{n} \right) = p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n-1}, \mathbf{z}<em>{n} \right)p\left(\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N} \mid \mathbf{z}</em>{n-1}, \mathbf{z}_{n} \right)
+$$</p>
+<p>さらにこの右辺について、同様に考えると、$\mathbf{z}<em>{n-1}\perp !!! \perp \mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}$と$\mathbf{z}</em>{n-1}\perp !!! \perp {\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N}}\mid \mathbf{z}_n$が成立しているので、</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{n}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n-1},\mathbf{z}</em>{n} \right) &amp;= p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n-1}, \mathbf{z}<em>{n} \right)p\left(\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N} \mid \mathbf{z}</em>{n-1}, \mathbf{z}<em>{n} \right) \
+&amp;= p(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n})p(\mathbf{x}</em>{n+1},\ldots,\mathbf{x}<em>{N} \mid \mathbf{z}</em>{n})
+\end{aligned}
+$$</p>
+<p>以上を合わせて</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{X} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) =\ &amp;p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1}\right) \times \
+&amp; p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1}, \ldots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)
+\end{aligned}
+$$</p>
+<p>$(13.30)$について、$\mathbf{x}<em>{N+1}$ノードから任意の$\mathbf{X}$ノードへは$\mathbf{z}</em>{N+1}$で遮断されている。$\mathbf{X} \perp !!! \perp \mathbf{x}<em>{N+1} \mid \mathbf{z}</em>{N+1}$なので、</p>
+<p>$$
+p\left(\mathbf{x}<em>{N+1} \mid \mathbf{X}, \mathbf{z}</em>{N+1}\right)= p\left(\mathbf{x}<em>{N+1} \mid \mathbf{z}</em>{N+1}\right)
+$$</p>
+<p>$(13.31)$について、任意の$\mathbf{X}$ノードから$\mathbf{z}<em>{N+1}$ノードへは$\mathbf{z}</em>{N}$で遮断されている。$\mathbf{X} \perp !!! \perp \mathbf{z}<em>{N+1} \mid \mathbf{z}</em>{N}$なので、</p>
+<p>$$
+p\left(\mathbf{z}<em>{N+1} \mid \mathbf{z}</em>{N}, \mathbf{X}\right)= p\left(\mathbf{z}<em>{N+1} \mid \mathbf{X}, \mathbf{z}</em>{N}\right) = p\left(\mathbf{z}<em>{N+1} \mid \mathbf{z}</em>{N}\right)
+$$</p>
+<h2 id="演習-1310"><a class="header" href="#演習-1310">演習 13.10</a></h2>
+<div class="panel-primary">
+<p>隠れマルコフモデルの
+$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$
+で定義される同時分布が条件付き独立性$(13.24)-(13.31)$を満たすことを、確率の加法乗法定理を用いて確かめよ。</p>
+</div>
+<p>$(13.24)$を加法・乗法定理から求める</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{1}, \ldots \mathbf{x}</em>{n}, \mathbf{z}<em>{n}\right)&amp;=\sum</em>{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{X}, \mathbf{Z}</em>{n}\right)=\sum_{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} \sum</em>{\mathbf{Z}<em>{/n}} p(\mathbf{X}, \mathbf{Z}) \
+&amp;=\sum</em>{\mathbf{x}<em>{n+1}} \cdots \sum</em>{\mathbf{x}<em>{N}} \sum</em>{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} \sum</em>{\mathbf{x}<em>{n+1}} \ldots \sum</em>{\mathbf{x}<em>{N}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \sum_{\mathbf{x}<em>{n+1}} \ldots \sum</em>{\mathbf{x}<em>{N}} \prod</em>{i= n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \prod_{i=n+1}^{N} \underbrace{\sum_{\mathbf{x}<em>{i}} p\left(\mathbf{x}</em>{i} \mid \mathbf{z}<em>{i}\right)}</em>{=1} \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{i}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} \sum</em>{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{1}} \ldots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\left(\sum_{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right]\right) \
+&amp;=\sum_{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}</em>{i}\right)\left[\prod_{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)
+\end{aligned}
+$$</p>
+<p>となる。同様に</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{n+1}, \cdots \mathbf{x}</em>{N}, \mathbf{z}<em>{n}\right)&amp;=\sum</em>{\mathbf{x}<em>{1}} \cdots \sum</em>{\mathbf{x}<em>{n}} \sum</em>{\mathbf{Z}<em>{/n}} p(\mathbf{X}, \mathbf{Z}) \
+&amp;=\sum</em>{\mathbf{x}<em>{1}} \ldots \sum</em>{\mathbf{x}<em>{n}} \sum</em>{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{i}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \underbrace{\sum_{\mathbf{x}<em>{1}} \sum</em>{\mathbf{x}<em>{n}} \prod</em>{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)}<em>{1} \
+&amp;=\sum</em>{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}} \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \sum_{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}</em>{i}\right)\left[\prod_{1-2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \
+&amp;=\left(\sum_{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right)\left(\sum_{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right]\right)
+\end{aligned}
+$$</p>
+<p>となる。ここで</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{z}<em>{n}\right)=\sum</em>{\mathbf{X}} \sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{X}, \mathbf{z}\right)&amp;=\sum</em>{\mathbf{X}} \sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \underbrace{\sum_{\mathbf{x}<em>{i=1}}^{N} p\left(\mathbf{z}</em>{i} \mid \mathbf{z}<em>{i}\right)}</em>{=1} \
+&amp;=\sum_{\mathbf{Z}<em>{/n}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \
+&amp;=\sum_{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} \sum</em>{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}} p\left(\mathbf{z}</em>{1}\right)\left[\prod_{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \
+&amp;=\sum_{\mathbf{z}} \cdots \sum_{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \underbrace{\sum_{\mathbf{z}<em>{n+1}}\cdots\sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right]}<em>{=1}\
+&amp;=\sum</em>{\mathbf{z}} \cdots \sum_{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right]
+\end{aligned}
+$$</p>
+<p>なので</p>
+<p>$$
+\begin{aligned}
+&amp;p\left(\mathbf{x}<em>{n+1}{ }, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{n}\right)=\left(\sum</em>{\mathbf{z}<em>{n+1}}\cdots \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right) p\left(\mathbf{z}<em>{n}\right) \
+&amp;\left.\therefore p\left(\mathbf{x}</em>{n+1}{ }, \ldots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)=\ \sum_{\mathbf{z}<em>{n+1}} \ldots \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right)
+\end{aligned}
+$$</p>
+<p>よって</p>
+<p>$$
+\begin{aligned}
+&amp; p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n}, \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1}, \ldots,\mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right) \
+=&amp;\ \left(\sum_{\mathbf{z}<em>{1}} \ldots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right)\left(\sum_{\mathbf{z}<em>{n+1}} \sum</em>{\mathbf{z}<em>{N}}\left[\prod</em>{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right) \
+=&amp;\ \sum_{\mathbf{z}<em>{n+1}}\cdots\sum</em>{\mathbf{z}<em>{N}}\left(\sum</em>{\mathbf{z}<em>{1}}\cdots\sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right) \underbrace{\left.\prod_{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)}) \
+=&amp;\ \sum_{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}}\left(\sum</em>{\mathbf{z}<em>{1}} \cdots \sum</em>{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\left[\prod_{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=n+1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right)\right) \
+=&amp;\ \sum_{\mathbf{z}} \cdots \sum_{\mathbf{z}<em>{n-1}} \sum</em>{\mathbf{z}<em>{n+1}} \cdots \sum</em>{\mathbf{z}<em>{N}} p\left(\mathbf{z}\right)\left[\prod</em>{i=2}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{N} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+=&amp;\ \sum_{\mathbf{Z}<em>{/n}} p(\mathbf{X}, \mathbf{Z}) = p\left(\mathbf{X}, \mathbf{z}</em>{n}\right)
+\end{aligned}
+$$</p>
+<p>を得る。両辺を$p\left(\mathbf{z}_{n}\right)$で割ると</p>
+<p>$$
+\frac{p\left(\mathbf{x}<em>{1} \ldots \mathbf{x}</em>{n}, \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1} \ldots \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)}{p\left(\mathbf{z}<em>{n}\right)}=\frac{p\left(\mathbf{X}, \mathbf{z}</em>{n}\right)}{p\left(\mathbf{z}_{n}\right)}
+$$</p>
+<p>$$
+\therefore p\left(\mathbf{x}<em>{1} \ldots \mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1} \cdots \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)=p\left(\mathbf{X} \mid \mathbf{z}_{n}\right) \tag{13.24}
+$$</p>
+<h2 id="演習-1311"><a class="header" href="#演習-1311">演習 13.11</a></h2>
+<div class="panel-primary">
+<p>因子グラフにおける一つの因子における変数の周辺分布の表現</p>
+<p>$$
+p\left(\mathbf{x}<em>{s}\right)=f</em>{s}\left(\mathbf{x}<em>{s}\right) \prod</em>{i \in \operatorname{ne}\left(f_{s}\right)} \mu_{x_{i} \rightarrow f_{s}}\left(x_{i}\right) \tag{8.72}
+$$</p>
+<p>を出発点として、13.2.3節で得られた積和アルゴリズムにおけるメッセージの結果も用いて、隠れマルコフモデルにおける2つの連続した潜在変数上の同時事後確率分布の結果$(13.43)$
+$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)&amp;=p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \mid \mathbf{X}\right) \
+&amp;=\frac{p\left(\mathbf{X} \mid \mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)}{p(\mathbf{X})} \
+&amp;=\frac{p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n-1} \mid \mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{x}</em>{n+1}, \ldots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right) p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) p\left(\mathbf{z}<em>{n-1}\right)}{p(\mathbf{X})} \
+&amp;=\frac{\alpha\left(\mathbf{z}</em>{n-1}\right) p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
+\end{aligned}
+$$
+を導け.</p>
+</div>
+<p>考え方としては、pp.344-345がノード$\mathbf{z}<em>{n}$ 1つについてHMMの積和アルゴリズムを用いて$\gamma(\mathbf{z}</em>{n})$を求めているのを参考しながら、図13.15の因子$f_{n}$に結合している$\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}$ 2つの変数ノードについて計算すれば良い。注意として、$\mathbf{X} = {\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}}$は与えられており、条件付きの形で考える必要がある。</p>
+<p><img src="https://i.imgur.com/7JHcpzo.png" alt="" /></p>
+<p>まず定義から$\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \mid \mathbf{X}\right)$である。pp.344-345の議論のように、$\mathbf{X}$が与えられている状態で単純化された因子グラフを書くと図13.15のようになる。</p>
+<p>$(13.50)$と$(13.52)$で見たように、$\alpha(\mathbf{z}<em>{n}), \beta(\mathbf{z}</em>{n})$は</p>
+<p>$$
+\alpha\left(\mathbf{z}<em>{n}\right)=\mu</em>{f_{n} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \tag{13.50}
+$$</p>
+<p>$$
+\beta\left(\mathbf{z}<em>{n}\right)=\mu</em>{f_{n+1} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \tag{13.52}
+$$</p>
+<p>と定義できるので、これを用いて$(8.72)$を利用してある因子$f_{n}$に関連する変数ノード$\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}$全体上の周辺分布を求めると、すでに$\mathbf{X} = {\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}}$で条件付けられていることに注意して</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}, \mathbf{X}\right) &amp;=f_{n}\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) \mu_{\mathbf{z}<em>{n-1} \rightarrow f</em>{n}}\left(\mathbf{z}<em>{n-1}\right) \mu</em>{\mathbf{z}<em>{n} \rightarrow f</em>{n}}\left(\mathbf{z}<em>{n}\right) \
+&amp;=p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) \mu</em>{f_{n-1} \rightarrow \mathbf{z}<em>{n-1}}\left(\mathbf{z}</em>{n-1}\right) \mu_{f_{n+1} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\alpha\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \beta\left(\mathbf{z}</em>{n}\right)
+\end{aligned}
+$$</p>
+<p>となる。この式変形では</p>
+<p>$$
+\begin{aligned}
+\mu_{x_{m} \rightarrow f_{s}}\left(x_{m}\right) &amp;=\prod_{l \in \operatorname{ne}\left(x_{m}\right) \backslash f_{s}}\left[\sum_{X_{l m}} F_{l}\left(x_{m}, X_{l m}\right)\right] \
+&amp;=\prod_{l \in \operatorname{ne}\left(x_{m}\right) \backslash f_{s}} \mu_{f_{l} \rightarrow x_{m}}\left(x_{m}\right)
+\end{aligned} \tag{8.69}
+$$</p>
+<p>も利用した。これについて両辺を$p(\mathbf{X})$で割ると</p>
+<p>$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)&amp;=p\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \mid \mathbf{X}\right) \
+&amp;= \frac{\alpha\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \beta\left(\mathbf{z}</em>{n}\right)}{p(\mathbf{X})}
+\end{aligned}\tag{13.43}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-1312"><a class="header" href="#演習-1312">演習 13.12</a></h2>
+<div class="panel-primary">
+<p>隠れマルコフモデルを$R$個の独立した観測系列から構成されるデータを用いた最尤推定で学習したいとする。ここで、これらの観測行列を$\mathbf{X}^{(r)}, r=1, \ldots, R$で表す。EMアルゴリズムのEステップにおいて潜在変数の事後確率を求めるためには、各々の系列に対して独立に$\alpha$再帰と$\beta$再帰を実行すればよいことを示せ。また、Mステップにおいては、初期確率と遷移確率のパラメータは
+$$
+\pi_{k}=\frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} \tag{13.18}
+$$
+$$
+A_{j k}=\frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \tag{13.19}
+$$
+を以下のように修正した式で再推定されることを示せ.</p>
+<p>$$
+\pi_{k}= \frac{\sum_{r=1}^{R} \gamma\left(z_{1 k}^{(r)}\right)}{\sum_{r=1}^{R} \sum_{j=1}^{K} \gamma\left(z_{1 j}^{(r)}\right)} \tag{13.124}
+$$</p>
+<p>$$
+A_{j k}= \frac{\sum_{r=1}^{R} \sum_{n=2}^{N} \xi\left(z_{n-1, j}^{(r)}, z_{n, k}^{(r)}\right)}{\sum_{r=1}^{R} \sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}^{(r)}, z_{n, l}^{(r)}\right)} \tag{13.125}
+$$</p>
+<p>ここで、表記を簡単にするために、系列はすべて同じ長さをもつと仮定した(長さの異なる系列への一般化は簡単である) 。同様に、ガウス出力モデルの平均の再推定のためのMステップの方程式が以下の形で与えられることを示せ。</p>
+<p>$$
+\pmb{\mu}<em>{k}=\frac{\sum</em>{r=1}^{R} \sum_{n=1}^{N} \gamma\left(z_{n k}^{(r)}\right) \mathbf{x}<em>{n}^{(r)}}{\sum</em>{r=1}^{R} \sum_{n=1}^{N} \gamma\left(z_{n k}^{(r)}\right)}
+$$</p>
+<p>他の出力モデルパラメータや出力分布に対するMステップの方程式も類似の形になることに注意せよ。</p>
+</div>
+<p>隠れマルコフモデルの定義から、観察値$\mathbf{X}^{(r)}$には対応する潜在変数$\mathbf{Z}^{(r)}$が存在する。よって、その同時分布は以下のように表せる</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{X}, \mathbf{Z}|\mathbf{\theta}) = \prod_r^R p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta})
+\end{aligned}
+$$</p>
+<p>そして、Eステップでは、事後分布を求める。
+$$
+\begin{aligned}
+p(\mathbf{Z}|\mathbf{X}, \mathbf{\theta}) &amp;= \frac{p(\mathbf{X}, \mathbf{Z}|\mathbf{\theta})}{\sum_{\mathbf{Z}} p(\mathbf{X}, \mathbf{Z}|\mathbf{\theta})} \
+&amp;= \frac{\prod_r p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta})}{\sum_{\mathbf{Z}^{(1)}} \cdots \sum_{\mathbf{Z}^{(R)}}\prod_r p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta})}\
+&amp;= \prod_r \frac{p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta})}{\sum_{\mathbf{Z}^{(r)}} p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta})}\
+&amp;= \prod_r  p( \mathbf{Z}^{(r)}|\mathbf{X}^{(r)},\mathbf{\theta})
+\end{aligned}
+$$</p>
+<p>ここで、
+$$
+\begin{aligned}
+p( \mathbf{Z}^{(r)}|\mathbf{X}^{(r)}) &amp;= p( \mathbf{z}<em>{N}^{(r)}| \mathbf{z}</em>{N-1}^{(r)}, \cdots \mathbf{z}<em>{1}^{(r)}, \mathbf{X}^{(r)}) p( \mathbf{z}</em>{N-1}^{(r)}, \cdots \mathbf{z}<em>{1}^{(r)}|\mathbf{X}^{(r)}) \
+&amp;= p( \mathbf{z}</em>{N}^{(r)}| \mathbf{z}<em>{N-1}^{(r)}, \mathbf{X}^{(r)}) p( \mathbf{z}</em>{N-1}^{(r)}, \cdots \mathbf{z}<em>{1}^{(r)}|\mathbf{X}^{(r)}) \
+&amp;= p( \mathbf{z}</em>{N}^{(r)}| \mathbf{z}<em>{N-1}^{(r)}, \mathbf{X}^{(r)})  \cdots p( \mathbf{z}</em>{2}^{(r)}|\mathbf{z}<em>{1}^{(r)}\mathbf{X}^{(r)}) p( \mathbf{z}</em>{1}^{(r)}|\mathbf{X}^{(r)}) \
+&amp;= \frac{p( \mathbf{z}<em>{N}^{(r)}, \mathbf{z}</em>{N-1}^{(r)}|\mathbf{X}^{(r)})}{p( \mathbf{z}<em>{N-1}^{(r)}|\mathbf{X}^{(r)}) } \cdots \frac{p( \mathbf{z}</em>{2}^{(r)}, \mathbf{z}<em>{1}^{(r)}|\mathbf{X}^{(r)})}{p( \mathbf{z}</em>{1}^{(r)}|\mathbf{X}^{(r)}) }p( \mathbf{z}<em>{1}^{(r)}|\mathbf{X}^{(r)}) \
+&amp;= \frac{\xi^{(r)}(\mathbf{z}</em>{N}^{(r)}, \mathbf{z}<em>{N-1}^{(r)})}{\gamma^{(r)}(\mathbf{z}</em>{N-1}^{(r)})} \cdots \frac{\xi^{(r)}(\mathbf{z}<em>{2}^{(r)}, \mathbf{z}</em>{1}^{(r)})}{\gamma^{(r)}(\mathbf{z}<em>{1}^{(r)})}\gamma^{(r)}(\mathbf{z}</em>{1}^{(r)})\
+&amp;= \frac{\prod_{n=2}^N  \xi^{(r)}(\mathbf{z}<em>{n}^{(r)}, \mathbf{z}</em>{n-1}^{(r)})}{\prod_{n=2}^{N-1} \gamma^{(r)}(\mathbf{z}_{n}^{(r)})}
+\end{aligned}
+$$</p>
+<p>である。</p>
+<p>よって、</p>
+<p>$$
+\begin{aligned}
+p( \mathbf{Z}|\mathbf{X}, \mathbf{\theta}) &amp;= \prod_r \frac{\prod_{n=2}  \xi^{(r)}(\mathbf{z}<em>{n}^{(r)}, \mathbf{z}</em>{n-1}^{(r)})}{\prod_{n=2} \gamma^{(r)}(\mathbf{z}_{n}^{(r)})}
+\end{aligned}
+$$</p>
+<p>これより、Eステップで求める事後分布は$\xi$と$\gamma$により計算できる。また、$\xi$と$\gamma$はそれぞれ$\alpha^{(r)}(\mathbf{z}_n)$と$\beta^{(r)}(\mathbf{z}_n)$を再帰で求めることができる。</p>
+<p>次にMステップを考える。Eステップで求めた事後分布と$\theta_{old}$を用いて、完全データ対数尤度の期待値を求める。</p>
+<p>$$
+\begin{aligned}
+Q(\mathbf{\theta}, \mathbf{\theta_{old}}) &amp;= E_{\mathbf{Z}} [\ln p(\mathbf{X, Z}|\mathbf{\theta}) ] \
+&amp;=  E_{\mathbf{Z}} [\sum_r^R \ln p(\mathbf{X}^{(r)}, \mathbf{Z}^{(r)}|\mathbf{\theta}) ] \
+&amp;= \sum_r^R p( \mathbf{Z}^{(r)}|\mathbf{X}^{(r)},\mathbf{\theta}<em>{old})  \ln p(\mathbf{X}, \mathbf{Z}|\mathbf{\theta}) \
+&amp;= \sum_r^R \sum_k^K \gamma(z</em>{1k}^{(r)}) \ln \pi_k + \sum_r^R \sum_N^n \sum_j^K \sum_k^K \xi(z_{n-1, j}^{(r)}, z_{n, k}^{(r)}) \ln A_{jk}+ \sum_r^R \sum_N^n \sum_k^K \gamma(z_{nk}^{(r)}) \ln p(\mathbf{x}_n^{(r)}|\phi_k) &amp;(EX13.12.1)
+\end{aligned}
+$$</p>
+<p>最後の形は、いつも通りラグランジュ乗数法を用いて$\pi$と$\mathbf{A}$について最大化することができる。よって(13.124)、(13.125)が導かれる。詳細はhttp://sioramen.sub.jp/prml_wiki/lib/exe/fetch.php/wiki/13.12.pdf</p>
+<p>次に、出力分布をガウス分布とする。すなわち、
+$$
+\begin{aligned}
+p(\mathbf{x}_n^{(r)}|\phi_k) = N(\mathbf{x}_n^{(r)}|\mathbf{\mu}_k, \mathbf{\Sigma}_k)
+\end{aligned}
+$$
+とする。</p>
+<p>この時、$Q(\mathbf{\theta}, \mathbf{\theta_{old}})$は(EX13.12.1)を用いて、$\mathbf{\mu}<em>k$を含まない部分は$C$にまとめて、
+$$
+\begin{aligned}
+Q(\mathbf{\theta}, \mathbf{\theta</em>{old}}) &amp;= C+\sum_r^R \sum_N^n \sum_k^K \gamma(z_{nk}^{(r)}) \ln p(\mathbf{x}<em>n^{(r)}|\phi_k) \
+&amp;= C+\sum_r^R \sum_N^n \sum_k^K \gamma(z</em>{nk}^{(r)}) \ln \frac{1}{(2\pi)^{D/2}}\frac{1}{|\mathbf{\Sigma}_k|^{1/2}} \exp{ -\frac{1}{2}(\mathbf{x}_n^{(r)}-\mathbf{\mu}_k)^T \mathbf{\Sigma}_k^{-1}(\mathbf{x}_n^{(r)}-\mathbf{\mu}<em>k)} \
+&amp;= C+\sum_r^R \sum_N^n \sum_k^K \gamma(z</em>{nk}^{(r)}) { -\frac{1}{2}(\mathbf{x}_n^{(r)}-\mathbf{\mu}_k)^T \mathbf{\Sigma}_k^{-1}(\mathbf{x}_n^{(r)}-\mathbf{\mu}_k)}
+\end{aligned}
+$$</p>
+<p>なお、最後の式変形は、$\ln$の後の一部を$C$にまとめた。あとはいつも通り$\mathbf{\mu}_k$について停留条件を求めると、Mステップの方程式が得られる。</p>
+<h2 id="演習-1313"><a class="header" href="#演習-1313">演習 13.13</a></h2>
+<div class="panel-primary">
+<p>因子グラフにおける因子ノードから変数ノードへ渡されるメッセージの定義</p>
+<p>$$
+\mu_{f_{s} \rightarrow x}(x) \equiv \sum_{X_{s}} F_{s}\left(x, X_{s}\right) \tag{8.64}
+$$</p>
+<p>と隠れマルコフモデルの同時分布の表現</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$</p>
+<p>を用いて、$\alpha$メッセージの定義</p>
+<p>$$
+\alpha\left(\mathbf{z}<em>{n}\right)=\mu</em>{f_{n} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \tag{13.50}
+$$</p>
+<p>が</p>
+<p>$$
+\alpha\left(\mathbf{z}<em>{n}\right) \equiv p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}, \mathbf{z}</em>{n}\right) \tag{13.34}
+$$</p>
+<p>の定義と同一であることを示せ。</p>
+</div>
+<p>$(8.64)$の定義からスタートする。</p>
+<p>$$
+\begin{aligned}
+\alpha\left(\mathbf{z}<em>{n}\right) &amp;=\mu</em>{f_{n} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n-1}} f</em>{n}\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) \mu_{\mathbf{z}<em>{n-1}\to f</em>{n}}\left(\mathbf{z}<em>{n-1}\right) \
+&amp;=\sum</em>{\mathbf{z}<em>{n-1}} f</em>{n}\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) \mu_{f_{n-1} \rightarrow \mathbf{z}<em>{n-1}}\left(\mathbf{z}</em>{n-1}\right)\
+&amp;=\cdots \
+&amp;=\sum_{\mathbf{z}<em>{1},\ldots,\mathbf{z}</em>{n-1}} h\left(\mathbf{z}<em>{1}\right) \prod</em>{i=2}^{n} f_{i}\left(\mathbf{z}<em>{i-1}, \mathbf{z}</em>{i}\right)
+\end{aligned}
+$$</p>
+<p>ここで、図13.15の因子グラフでは</p>
+<p>$$
+h\left(\mathbf{z}<em>{1}\right) =p\left(\mathbf{z}</em>{1}\right) p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right) \tag{13.45}
+$$
+$$
+f_{n}\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) =p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.46}
+$$</p>
+<p>が成立しているので、これを利用して更に変形すると、周辺化を利用して</p>
+<p>$$
+\begin{aligned}
+\alpha\left(\mathbf{z}<em>{n}\right) &amp;=\sum</em>{\mathbf{z}<em>{1}, \cdots, \mathbf{z}</em>{n-1}} p\left(\mathbf{z}<em>{1}\right) p\left(\mathbf{x}</em>{1} \mid \mathbf{z}<em>{1}\right) \prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right) p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{1}, \cdots, \mathbf{z}</em>{n-1}} p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{i=2}^{n} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right)\right] \prod_{i=1}^{n} p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{1}, \cdots, \mathbf{z}</em>{n-1}} p\left(\mathbf{x}<em>{1}, \cdots, \mathbf{x}</em>{n}, \mathbf{z}<em>{1}, \cdots, \mathbf{z}</em>{n}\right)\ (\because (13.6))\
+&amp;=p\left(\mathbf{x}<em>{1}, \cdots, \mathbf{x}</em>{n}, \mathbf{z}_{n}\right)
+\end{aligned}
+$$</p>
+<p>となり、$(13.34)$の定義が得られる。</p>
+<h2 id="演習-1314"><a class="header" href="#演習-1314">演習 13.14</a></h2>
+<div class="panel-primary">
+<p>因子グラフにおける因子ノードから変数ノードへ渡されるメッセージの定義</p>
+<p>$$
+\mu_{f_{s} \rightarrow x}(x) \equiv \sum_{\mathbf{x}<em>{s}} F</em>{s}\left(x, \mathbf{x}_{s}\right) \tag{8.64}
+$$</p>
+<p>と隠れマルコフモデルの同時分布の表現</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$</p>
+<p>を用いて、$\beta$メッセージの定義</p>
+<p>$$
+\beta\left(\mathbf{z}<em>{n}\right)=\mu</em>{f_{n+1} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \tag{13.52}
+$$</p>
+<p>が</p>
+<p>$$
+\beta\left(\mathbf{z}<em>{n}\right) \equiv p\left(\mathbf{x}</em>{n+1}, \ldots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right) \tag{13.35}
+$$</p>
+<p>の定義と同一であることを示せ.</p>
+</div>
+<p>演習問題13.13と似たような問題だが、最後の式変形が少し難しくなる。同様に図13.15の因子グラフを用いて考える。</p>
+<p>$(13.52)$の定義からスタートして</p>
+<p>$$
+\begin{aligned}
+\beta\left(\mathbf{z}<em>{n}\right) &amp;=\mu</em>{f_{n+1} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}} f</em>{n+1}\left(\mathbf{z}<em>{n}, \mathbf{z}</em>{n+1}\right) \mu_{\mathbf{z}<em>{n+1}\to f</em>{n+1}}\left(\mathbf{z}<em>{n+1}\right) \
+&amp;=\sum</em>{\mathbf{z}<em>{n+1}} f</em>{n+1}\left(\mathbf{z}<em>{n}, \mathbf{z}</em>{n+1}\right) \mu_{f_{n+2}\to\mathbf{z}<em>{n+1}}\left(\mathbf{z}</em>{n+1}\right) \
+&amp;=\cdots \
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} \prod_{i=n+1}^{N}f_{i}\left(\mathbf{z}<em>{i-1}, \mathbf{z}</em>{i}\right) \underbrace{\mu_{\mathbf{z}<em>{N}\to f</em>{N}}\left(\mathbf{z}<em>{N}\right)}</em>{=1} \
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} \prod_{i=n+1}^{N}f_{i}\left(\mathbf{z}<em>{i-1}, \mathbf{z}</em>{i}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} \prod_{i=n+1}^{N} p\left(\mathbf{z}<em>{i} \mid \mathbf{z}</em>{i-1}\right) p\left(\mathbf{x}<em>{i} \mid \mathbf{z}</em>{i}\right) \quad (\because (13.46))\
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} p\left(\mathbf{z}<em>{n+1} \mid \mathbf{z}</em>{n}\right) p\left(\mathbf{x}<em>{n+1} \mid \mathbf{z}</em>{n+1}\right) \cdots p\left(\mathbf{z}<em>{N} \mid \mathbf{z}</em>{N-1}\right) p\left(\mathbf{x}<em>{N} \mid \mathbf{z}</em>{N}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} p\left(\mathbf{z}<em>{n+1} \mid \mathbf{z}</em>{n}\right) p\left(\mathbf{x}<em>{n+1} \mid \mathbf{z}</em>{n}, \mathbf{z}<em>{n+1}\right) p\left(\mathbf{z}</em>{n+2} \mid \mathbf{z}<em>{n+1}\right) p\left(\mathbf{x}</em>{n+2} \mid \mathbf{z}<em>{n+2}\right)\cdots p\left(\mathbf{z}</em>{N} \mid \mathbf{z}<em>{N-1}\right) p\left(\mathbf{x}</em>{N} \mid \mathbf{z}<em>{N}\right) \quad (\because (13.27)) \
+&amp;=\sum</em>{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} p\left(\mathbf{x}<em>{n+1}, \mathbf{z}</em>{n+1} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n+2} \mid \mathbf{x}<em>{n+1}, \mathbf{z}</em>{n+1}\right) p\left(\mathbf{x}<em>{n+2} \mid \mathbf{x}</em>{n+1}, \mathbf{z}<em>{n+1}, \mathbf{z}</em>{n+2}\right) \cdots p\left(\mathbf{x}<em>{N} \mid \mathbf{x}</em>{N-1}, \mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}\right)\quad (\because (13.28)) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N}} p\left(\mathbf{x}<em>{n+1}, \cdots, \mathbf{x}</em>{N}, \mathbf{z}<em>{n+1}, \cdots, \mathbf{z}</em>{N} \mid \mathbf{z}<em>{n}\right) \
+&amp;=p\left(\mathbf{x}</em>{n+1}, \cdots, \mathbf{x}<em>{N} \mid \mathbf{z}</em>{n}\right)
+\end{aligned}
+$$</p>
+<p>以上で$(13.35)$式が示された。</p>
+<h2 id="演習-1315"><a class="header" href="#演習-1315">演習 13.15</a></h2>
+<div class="panel-primary">
+<p>隠れマルコフモデルの周辺分布の表現</p>
+<p>$$
+\gamma\left(\mathbf{z}<em>{n}\right)=\frac{p\left(\mathbf{x}</em>{1}, \ldots, \mathbf{x}<em>{n}, \mathbf{z}</em>{n}\right) p\left(\mathbf{x}<em>{n+1}, \ldots, \mathbf{x}</em>{N} \mid \mathbf{z}<em>{n}\right)}{p(\mathbf{X})}=\frac{\alpha\left(\mathbf{z}</em>{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} \tag{13.33}
+$$</p>
+<p>と</p>
+<p>$$
+\xi(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}) = p(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n} \mid \mathbf{X}) = \frac{\alpha\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \beta\left(\mathbf{z}</em>{n}\right)}{p(\mathbf{X})} \tag{13.43}
+$$</p>
+<p>を用いて、スケーリングされた変数についての対応する結果</p>
+<p>$$
+\gamma\left(\mathbf{z}<em>{n}\right) =\widehat{\alpha}\left(\mathbf{z}</em>{n}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right) \tag{13.64}
+$$</p>
+<p>$$
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) =\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right) \tag{13.65}
+$$</p>
+<p>を導け.</p>
+</div>
+<p>$$
+\begin{aligned}
+\gamma\left(\mathbf{z}<em>{n}\right)&amp;=\frac{\alpha\left(\mathbf{z}</em>{n}\right) \beta\left(\mathbf{z}<em>{n}\right)}{p(\mathbf{X})} \
+&amp;=\frac{p(\mathbf{x}<em>1,\cdots , \mathbf{x}<em>n)\widehat{\alpha}\left(\mathbf{z}</em>{n}\right) \cdot \left( \prod</em>{m=n+1}^N c_m\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right)}{\prod_{m=1}^N c_m } \
+&amp;= \frac{\left(\prod_{m=1}^n c_m \right) \widehat{\alpha}\left(\mathbf{z}<em>{n}\right) \cdot \left( \prod</em>{m=n+1}^N c_m\right) \widehat{\beta}\left(\mathbf{z}<em>{n}\right)}{\prod</em>{m=1}^N c_m } \
+&amp;=\widehat{\alpha}\left(\mathbf{z}<em>{n}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right)
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) &amp;=\frac{\alpha\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \beta\left(\mathbf{z}</em>{n}\right)}{p(\mathbf{X})}\
+&amp;=\frac{\left(\prod_{m=1}^{n-1} c_m \right) \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) \cdot
+p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \cdot \left(\prod</em>{m=n+1}^{N} c_m \right)
+\widehat{\beta}\left(\mathbf{z}<em>{n}\right)}{\prod</em>{m=1}^{N} c_m }\
+&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right) \end{aligned}
+$$</p>
+<h2 id="演習-1316"><a class="header" href="#演習-1316">演習 13.16</a></h2>
+<div class="panel-primary">
+<p>この演習問題では、Viterbiアルゴリズムのフォワードメッセージパッシングの式を同時分布の表現</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$</p>
+<p>から直接導く。これは、すべての隠れ変数$\mathbf{z}<em>1,\ldots,\mathbf{z}</em>{N}$についての最大化を含む。対数を取り、最大化と和の順序を交換することにより、再帰式</p>
+<p>$$
+\omega\left(\mathbf{z}<em>{n+1}\right)=\ln p\left(\mathbf{x}</em>{n+1} \mid \mathbf{z}<em>{n+1}\right)+\max <em>{\mathbf{z}</em>{n}}\left{\ln p\left(\mathbf{z}</em>{n+1} \mid \mathbf{z}<em>{n}\right)+\omega\left(\mathbf{z}</em>{n}\right)\right} \tag{13.68}
+$$</p>
+<p>を求めよ。ここで、$\omega(\mathbf{z}_n)$は</p>
+<p>$$
+\omega\left(\mathbf{z}<em>{n}\right)=\max <em>{\mathbf{z}</em>{1}, \ldots, \mathbf{z}</em>{n-1}} \ln p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{n}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{n}\right) \tag{13.70}
+$$</p>
+<p>で定義される。この再帰式の初期条件が</p>
+<p>$$
+\omega\left(\mathbf{z}<em>{1}\right)=\ln p\left(\mathbf{z}</em>{1}\right)+\ln p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right) \tag{13.69}
+$$</p>
+<p>で与えられることを示せ。</p>
+</div>
+<p>(13.6)を書き換えて</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right) p\left(\mathbf{x}</em>{1} \mid \mathbf{z}<em>{1}\right) \prod</em>{n=2}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)
+$$</p>
+<p>を得る．この式のlogをとると</p>
+<p>$$
+\begin{aligned}
+\ln p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N},\right.&amp;\left.\mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)
+=\ln p\left(\mathbf{z}<em>{1}\right)+\ln p\left(\mathbf{x}</em>{1} \mid \mathbf{z}<em>{1}\right)+\sum</em>{n=2}^{N}\left(\ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)+\ln p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right)
+\end{aligned}
+$$</p>
+<p>となる．ここで最初の2項は(13.69)式で書き換えられる．この式を$\mathbf{z}_1,\dots,\mathbf{z}_N$について最大化すると</p>
+<p>$$
+\begin{aligned}
+\max <em>{\mathbf{z}</em>{1}, \ldots, \mathbf{z}<em>{N}} &amp;\left{\omega\left(\mathbf{z}</em>{1}\right)+\sum_{n=2}^{N}\left[\ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)+\ln p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right]\right} \
+=&amp; \max <em>{\mathbf{z}</em>{2}, \ldots, \mathbf{z}<em>{N}}\left{\ln p\left(\mathbf{x}</em>{2} \mid \mathbf{z}<em>{2}\right)+\max <em>{\mathbf{z}</em>{1}}\left{\ln p\left(\mathbf{z}</em>{2} \mid \mathbf{z}<em>{1}\right)+\omega\left(\mathbf{z}</em>{1}\right)\right}\right.
+\left.+\sum_{n=3}^{N}\left[\ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)+\ln p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right]\right} \
+=&amp; \max <em>{\mathbf{z}</em>{2}, \ldots, \mathbf{z}<em>{N}}\left{\omega\left(\mathbf{z}</em>{2}\right)+\sum_{n=3}^{N}\left[\ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)+\ln p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right]\right}
+\end{aligned}
+$$</p>
+<p>ここで最大化と総和の順序を入れ替えて、$n = 2$ の (13.68) を得た。この式の最初の行と最後の行は添字$n$が一つ増えただけで同じ形であり、これによってすべての n &gt; 2 について再帰的に(13.68)が成り立つことがわかる。</p>
+<h2 id="演習-1317"><a class="header" href="#演習-1317">演習 13.17</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/JBSYbFA.png" alt="" /></p>
+<p><img src="https://i.imgur.com/IADpE0Q.png" alt="" /></p>
+<p>図13.18のinput-output隠れマルコフモデルに対する有向グラフが図13.15に示す形の木構造因子グラフで表現されることを示せ。そして、初期因子$h(\mathbf{z}<em>{1})$と一般的な因子$f</em>{n}(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n})$を書き下せ。ここで、$2\leqslant n \leqslant N$である。</p>
+</div>
+<p>教科書の図8.42あたりの記述も参考にする。$h$や因子$f_{n}(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n})$は出力確率$\mathbf{x}<em>{n}$や入力確率$\mathbf{u}</em>{n}$を吸収した形になる。図13.14, 13.15と同様のやり方を踏まえれば</p>
+<p>$$
+h\left(\mathbf{z}<em>{1}\right)=p\left(\mathbf{z}</em>{1} \mid \mathbf{u}<em>{1}\right) p\left(\mathbf{x}</em>{1} \mid \mathbf{z}<em>{1}, \mathbf{u}</em>{1}\right)
+$$
+$$
+f\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}, \mathbf{u}<em>{n}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}, \mathbf{u}</em>{n}\right)
+$$</p>
+<p>とすればよい。</p>
+<h2 id="演習-1318"><a class="header" href="#演習-1318">演習 13.18</a></h2>
+<div class="panel-primary">
+<p>演習問題13.17の結果を用いて、図13.18に示すinput-output隠れマルコフモデルのフォワード-バックワードアルゴリズムの再帰式を初期条件とともに導け.</p>
+</div>
+<p>フォワード-バックワードアルゴリズムの再帰式は$(13.36)$,$(13.38)$のような式のこと。また、演習13.17で得た結果</p>
+<p>$$
+f\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}, \mathbf{u}<em>{n}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}, \mathbf{u}</em>{n}\right)
+$$</p>
+<p>を利用すれば簡単である。まず$\alpha(\mathbf{z}_{n})$について考えると、$(13.49), (13.50)$を参考にして</p>
+<p>$$
+\begin{aligned}
+\alpha\left(\mathbf{z}<em>{n}\right) &amp;=\mu</em>{f_{n} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n-1}} f</em>{n}\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right) \underbrace{\mu_{f_{n-1} \rightarrow \mathbf{z}<em>{n-1}}\left(\mathbf{z}</em>{n-1}\right)}<em>{\alpha\left(\mathbf{z}</em>{n-1}\right)} \
+&amp;=\sum_{\mathbf{z}<em>{n-1}} p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}, \mathbf{u}</em>{n}\right) p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}, \mathbf{u}<em>{n}\right) \alpha\left(\mathbf{z}</em>{n-1}\right)
+\end{aligned}
+$$</p>
+<p>となる。ここで、初期条件$\alpha(\mathbf{z}_{1})$は演習13.17で求めたように</p>
+<p>$$
+\alpha(\mathbf{z}<em>{1}) = h\left(\mathbf{z}</em>{1}\right)=p\left(\mathbf{z}<em>{1} \mid \mathbf{u}</em>{1}\right) p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}, \mathbf{u}_{1}\right)
+$$</p>
+<p>である。同様に$\beta(\mathbf{z}_{n})$について</p>
+<p>$$
+\begin{aligned}
+\beta\left(\mathbf{z}<em>{n}\right) &amp;=\mu</em>{f_{n+1} \rightarrow \mathbf{z}<em>{n}}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\sum_{\mathbf{z}<em>{n+1}} f</em>{n+1}\left(\mathbf{z}<em>{n}, \mathbf{z}</em>{n+1}\right) \underbrace{\mu_{f_{n+2} \rightarrow \mathbf{z}<em>{n+1}}\left(\mathbf{z}</em>{n+1}\right)}<em>{\beta(\mathbf{z}</em>{n+1})} \
+&amp;=\sum_{\mathbf{z}<em>{n+1}} p\left(\mathbf{z}</em>{n+1} \mid \mathbf{z}<em>{n}, \mathbf{u}</em>{n+1}\right) p\left(\mathbf{x}<em>{n+1} \mid \mathbf{z}</em>{n+1}, \mathbf{u}<em>{n+1}\right) \beta\left(\mathbf{z}</em>{n+1}\right)
+\end{aligned}
+$$</p>
+<p>となる。初期条件（最初のメッセージ）は$\beta(\mathbf{z}<em>{N})=1$のままで、これは入力確率$\mathbf{u}</em>{n}$が存在する場合でも同じである。</p>
+<h2 id="演習-1319"><a class="header" href="#演習-1319">演習 13.19</a></h2>
+<div class="panel-primary">
+<p>線形動的システムにおいては、すべての観測変数により条件付けられた個々の潜在変数に対する事後分布を、カルマンフィルタとカルマンスムーザの方程式を用いて効率的に求めることができる。これらの事後分布の各々を独立に最大化することにより得られる潜在変数の系列が、潜在変数の値の最も確からしい系列と同ーであることを示せ。これを実行する際に、線形動的システムにおいては、すべての潜在変数と観測変数の同時分布はガウス分布であり、したがって、すべての条件付き分布と周辺分布もガウス分布であることに注意して、</p>
+<p>$$
+p\left(\mathbf{x}<em>{a}\right)=\mathcal{N}\left(\mathbf{x}</em>{a} \mid \boldsymbol{\mu}<em>{a}, \Sigma</em>{a a}\right) \tag{2.98}
+$$</p>
+<p>の結果を用いよ.</p>
+</div>
+<p>線形動的システムにおいては全ての潜在変数と観測変数の同時分布はガウス分布であるため，任意の変数の組について事後分布を最大化することができる．したがってすべての潜在変数の同時分布を最大化することも、各潜在変数についての周辺分布を個別に最大化することも可能である。しかし、(2.98)から、結果の平均はどちらの場合も同じになることがわかり、ガウス分布では平均と潜在変数の最も確からしい値は一致するので、潜在変数の事後分布をそれぞれに最大化した系列でも潜在変数の同時分布を最大化した系列でも、同じ結果になることがわかる。</p>
+<h2 id="演習-1320"><a class="header" href="#演習-1320">演習 13.20</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>の結果を用いて</p>
+<p>$$
+\begin{array}{c}\int \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \mathbf{z}</em>{n-1}, \boldsymbol{\Gamma}\right) \mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \boldsymbol{\mu}</em>{n-1}, \mathbf{V}<em>{n-1}\right) \mathrm{d} \mathbf{z}</em>{n-1} \ =\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \boldsymbol{\mu}</em>{n-1}, \mathbf{P}_{n-1}\right)\end{array} \tag{13.87}
+$$</p>
+<p>を証明せよ.</p>
+</div>
+<p>(2.113)~(2.115)の議論の結果を変数の対応をとりながら利用することができる</p>
+<p>$\mathrm{x}$ の周辺ガウス分布と, $\mathrm{x}$ が与えられたときの $\mathrm{y}$ の条件付きガウス分布が次式で 与えられたとする.
+$$
+\begin{aligned}
+p(\mathbf{x}) &amp;=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}^{-1}\right) \
+p(\mathbf{y} \mid \mathbf{x}) &amp;=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \mathbf{x}+\mathbf{b}, \mathbf{L}^{-1}\right)
+\end{aligned}
+$$
+$\mathrm{y}$ の周辺分布は
+$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right)
+$$</p>
+<p>これと今回の変数の対応を考えると，$\mathbf{x}\rightarrow\mathbf{z}<em>{n-1},\mathbf{\mu}\rightarrow\mathbf{\mu}</em>{n-1},\boldsymbol{\Lambda}^{-1}\rightarrow\mathbf{V}_{n-1},\mathbf{y}\rightarrow\mathbf{z}_n,\mathbf{A}\rightarrow\mathbf{A},\mathbf{b}\rightarrow\mathbf{0},\mathbf{L}^{-1}\rightarrow\boldsymbol{\Gamma}$となる．この結果を用いると(13.87)が示される．</p>
+<h2 id="演習-1321"><a class="header" href="#演習-1321">演習 13.21</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>$$
+p(\mathbf{x} \mid \mathbf{y}) =\mathcal{N}\left(\mathbf{x} \mid \Sigma\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \mu\right}, \boldsymbol{\Sigma}\right) \tag{2.116}
+$$</p>
+<p>の結果と、</p>
+<p>$$
+\left(\mathbf{P}^{-1}+\mathbf{B}^{\mathrm{T}} \mathbf{R}^{-1} \mathbf{B}\right)^{-1} \mathbf{B}^{\mathrm{T}} \mathbf{R}^{-1}=\mathbf{P B}^{\mathrm{T}}\left(\mathbf{B P B}^{\mathrm{T}}+\mathbf{R}\right)^{-1} \tag{C.5}
+$$</p>
+<p>$$
+\left(\mathbf{A}+\mathbf{B D}^{-1} \mathbf{C}\right)^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{D}+\mathbf{C A}^{-1} \mathbf{B}\right)^{-1} \mathbf{C A}^{-1} \tag{C.7}
+$$</p>
+<p>の行列恒等式をともに用いて</p>
+<p>$$
+\boldsymbol{\mu}<em>{n} =\mathbf{A} \boldsymbol{\mu}</em>{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \boldsymbol{\mu}<em>{n-1}\right) \tag{13.89}
+$$
+$$
+\mathbf{V}</em>{n} =\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1} \tag{13.90}
+$$
+$$
+c_{n} =\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{C A} \boldsymbol{\mu}</em>{n-1}, \mathbf{C P}_{n-1} \mathbf{C}^{\mathrm{T}}+\Sigma\right) \tag{13.91}
+$$</p>
+<p>の結果を導け。ここで、カルマン利得行列$\mathbf{K}_{n}$は</p>
+<p>$$
+\mathbf{K}<em>{n}=\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C P}_{n-1} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)^{-1} \tag{13.92}
+$$</p>
+<p>で定義される.</p>
+</div>
+<p>(2.113)~(2.117)の議論より$\mathrm{x}$ の周辺ガウス分布と, $\mathrm{x}$ が与えられたときの $\mathrm{y}$ の条件付きガウス分布が次式で 与えられたとする.
+$$
+p(\mathrm{x}) =\mathcal{N}\left(\mathrm{x} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}^{-1}\right)\tag{2.113}
+$$</p>
+<p>$$
+p(\mathbf{y} \mid \mathrm{x}) =\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \mathbf{x}+\mathbf{b}, \mathbf{L}^{-1}\right)\tag{2.114}
+$$
+$\mathrm{y}$ の周辺分布と , $\mathrm{y}$ が与えられたときの $\mathrm{x}$ の条件付き分布は
+$$
+p(\mathbf{y}) =\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>$$
+p(\mathbf{x} \mid \mathbf{y}) =\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\Sigma}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\boldsymbol{\Lambda} \boldsymbol{\mu}\right}, \boldsymbol{\Sigma}\right)\tag{2.116}
+$$
+で与えられる. ただし,
+$$
+\Sigma=\left(\Lambda+\mathrm{A}^{\mathrm{T}} \mathbf{L} \mathbf{A}\right)^{-1}\tag{2.117}
+$$</p>
+<p>である．(13.87)の周辺分布の計算結果を用いて(13.86)を書き直すと以下のようになる．</p>
+<p>$$
+c_{n} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \boldsymbol{\mu}</em>{n}, \mathbf{V}<em>{n}\right)=\mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C} \mathbf{z}<em>{n}, \mathbf{\Sigma}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \boldsymbol{\mu}<em>{n-1}, \mathbf{P}</em>{n-1}\right)
+$$</p>
+<p>この式の右辺は$\mathbf{x}_n$と$\mathbf{z}_n$の同時分布で，$\mathbf{z}_n$を与えられたときの$\mathbf{x}_n$の条件付き分布と$\mathbf{z}_n$の分布の積の形で表されている．これらはそれぞれ(2.114)と(2.113)に対応している．
+ここで右辺の同時分布の分解を$\mathbf{x}_n$を与えられたときの$\mathbf{z}_n$の条件付き分布と$\mathbf{x}_n$の分布の積の形に書き換える．このときそれぞれ(2.116)と(2.115)に対応することになる</p>
+<p>$$
+\begin{array}{ll}
+\mathbf{x} \Rightarrow \mathbf{z}<em>{n} \quad \boldsymbol{\mu} \Rightarrow \mathbf{A} \boldsymbol{\mu}</em>{n-1} \quad \mathbf{\Lambda}^{-1} \Rightarrow \mathbf{P}<em>{n-1} \
+\mathbf{y} \Rightarrow \mathbf{x}</em>{n} \quad \mathbf{A} \Rightarrow \mathbf{C} \quad \mathbf{b} \Rightarrow \mathbf{0} \quad \mathbf{L}^{-1} \Rightarrow \boldsymbol{\Sigma} &amp;
+\end{array}
+$$</p>
+<p>これらを代入すると</p>
+<p>$(2.113)$,$(2.114),(2.115)$ により $(13.91)$の右辺を得る</p>
+<p>また(2.116)から
+$$
+p\left(\mathbf{z}<em>{n} \mid \mathbf{x}</em>{n}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \boldsymbol{\mu}</em>{n}, \mathbf{V}<em>{n}\right)=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{M}\left(\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{x}<em>{n}+\mathbf{P}</em>{n-1}^{-1} \mathbf{A} \boldsymbol{\mu}<em>{n-1}\right), \mathbf{M}\right)\tag{1}
+$$
+ただし(2.117)を用いて$\mathbf{M}$を以下のように定めた．
+$$
+\mathbf{M}=\left(\mathbf{P}</em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{C}\right)^{-1}\tag{2}
+$$
+(C.7)と(13.92)を使って, (2)を書き換えると
+$$
+\begin{aligned}
+\mathbf{M} &amp;=\left(\mathbf{P}<em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{C}\right)^{-1} \
+&amp;=\mathbf{P}</em>{n-1}-\mathbf{P}<em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\boldsymbol{\Sigma}+\mathbf{C P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\right)^{-1} \mathbf{C P}<em>{n-1} \
+&amp;=\left(\mathbf{I}-\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\boldsymbol{\Sigma}+\mathbf{C P}<em>{n-1} \mathbf{C}^{\mathrm{T}}\right)^{-1} \mathbf{C}\right) \mathbf{P}</em>{n-1} \
+&amp;=\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1},
+\end{aligned}
+$$</p>
+<p>となり，これは(13.90)の右辺と一致する</p>
+<p>(2), (C.5),(13.92)を用いて</p>
+<p>$$
+\begin{aligned}
+\mathbf{M} \mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} &amp;=\left(\mathbf{P}<em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{C}\right)^{-1} \mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \
+&amp;=\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C} \mathbf{P}<em>{n-1} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)^{-1}=\mathbf{K}</em>{n}
+\end{aligned}
+$$
+これと(13.90)を用いると, (1)の平均を書き換えることができて
+$$
+\begin{aligned}
+\mathbf{M}\left(\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{x}<em>{n}+\mathbf{P}</em>{n-1}^{-1} \mathbf{A} \boldsymbol{\mu}<em>{n-1}\right) &amp;=\mathbf{M} \mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{x}</em>{n}+\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{A} \boldsymbol{\mu}</em>{n-1} \
+&amp;=\mathbf{K}<em>{n} \mathbf{x}</em>{n}+\mathbf{A} \boldsymbol{\mu}<em>{n-1}-\mathbf{K}</em>{n} \mathbf{C A} \boldsymbol{\mu}<em>{n-1} \
+&amp;=\mathbf{A} \boldsymbol{\mu}</em>{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \boldsymbol{\mu}_{n-1}\right)
+\end{aligned}
+$$
+を得る．これは(13.89)である．</p>
+<h2 id="演習-1322"><a class="header" href="#演習-1322">演習 13.22</a></h2>
+<div class="panel-primary">
+<p>$$
+c_{1} \widehat{\alpha}\left(\mathbf{z}<em>{1}\right)=p\left(\mathbf{z}</em>{1}\right) p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right) \tag{13.93}
+$$</p>
+<p>を、</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\Sigma}\right) \tag{13.76}
+$$</p>
+<p>$$
+p\left(\mathbf{z}<em>{1}\right)=\mathcal{N}\left(\mathbf{z}</em>{1} \mid \pmb{\mu}<em>{0}, \mathbf{P}</em>{0}\right) \tag{13.77}
+$$</p>
+<p>の定義と、</p>
+<p>$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>の結果とともに用いて</p>
+<p>$$
+c_{1}=\mathcal{N}\left(\mathbf{x}<em>{1} \mid \mathbf{C} \boldsymbol{\mu}</em>{0}, \mathbf{CP}_{0} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right) \tag{13.96}
+$$</p>
+<p>を導け</p>
+</div>
+<p>$(13.57)$の定義からスケーリング係数$c_{1}$は$c_{1} = p(\mathbf{x}<em>{1})$である。$(13.93)$と比較すれば$\widehat{\alpha}\left(\mathbf{z}</em>{1}\right) = p(\mathbf{z}<em>{1}\mid \mathbf{x}</em>{1})$である。PRMLの上巻P.90の議論を用いれば、$p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right)$と$p(\mathbf{z}_{1})$が与えられていればこれらの値を求めることができる。</p>
+<p>$$
+\begin{aligned}
+c_1 = p(\mathbf{x}<em>{1}) &amp;= p\left(\mathbf{z}</em>{1}\right) p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right) \
+&amp;= \mathcal{N}\left(\mathbf{z}<em>{1} \mid \pmb{\mu}</em>{0}, \mathbf{P}<em>{0}\right) \mathcal{N}\left(\mathbf{x}</em>{1} \mid \mathbf{Cz}<em>{1}, \mathbf{\Sigma}\right) \
+&amp;=\mathcal{N}\left(\mathbf{x}</em>{1} \mid \mathbf{C} \pmb{\mu}<em>{0}, \mathbf{CP}</em>{0} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)
+\end{aligned}
+$$</p>
+<h2 id="演習-1323"><a class="header" href="#演習-1323">演習 13.23</a></h2>
+<div class="panel-primary">
+<p>$$
+c_{1} \widehat{\alpha}\left(\mathbf{z}<em>{1}\right)=p\left(\mathbf{z}</em>{1}\right) p\left(\mathbf{x}<em>{1} \mid \mathbf{z}</em>{1}\right) \tag{13.93}
+$$</p>
+<p>を、</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\mathbf{\Sigma}}\right) \tag{13.76}
+$$</p>
+<p>$$
+p\left(\mathbf{z}<em>{1}\right)=\mathcal{N}\left(\mathbf{z}</em>{1} \mid \boldsymbol{\mu}<em>{0}, \mathbf{P}</em>{0}\right) \tag{13.77}
+$$</p>
+<p>の定義と、</p>
+<p>$$
+p(\mathbf{x} \mid \mathbf{y})=\mathcal{N}\left(\mathbf{x} \mid \mathbf{\mathbf{\Sigma}}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \boldsymbol{\mu}\right}, \mathbf{\mathbf{\Sigma}}\right) \tag{2.116}
+$$</p>
+<p>の結果とともに用いて、</p>
+<p>$$
+\boldsymbol{\mu}<em>{1} =\boldsymbol{\mu}</em>{0}+\mathbf{K}<em>{1}\left(\mathbf{x}</em>{1}-\mathbf{C} \boldsymbol{\mu}_{0}\right) \tag{13.94}
+$$</p>
+<p>$$
+\mathbf{V}<em>{1} =\left(\mathbf{I}-\mathbf{K}</em>{1} \mathbf{C}\right) \mathbf{P}_{0} \tag{13.95}
+$$</p>
+<p>$$
+\mathbf{K}<em>{1} =\mathbf{P}</em>{0} \mathbf{C}^{\mathrm{T}}\left(\mathbf{CP}_{0} \mathbf{C}^{\mathrm{T}}+\mathbf{\mathbf{\Sigma}}\right)^{-1} \tag{13.97}
+$$</p>
+<p>を導け.</p>
+</div>
+<p>力技の計算問題。</p>
+<p>$\widehat{\alpha}\left(\mathbf{z}<em>{1}\right)=p(\mathbf{z}</em>{1}\mid\mathbf{x}<em>{1})=\mathcal{N}(\mathbf{z}</em>{1}\mid \pmb{\mu}<em>{1},\mathbf{V}</em>{1})$を$(2.116)$の公式と$(C.7)$を用いて求める。</p>
+<p>$$
+p\left(\mathbf{z}<em>{1} \mid \mathbf{x}</em>{1}\right)=\mathcal{N}\left(\mathbf{z}<em>{1} \mid\left(\mathbf{P}</em>{0}^{-1}+\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1}\left{\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{x}<em>{1}+\mathbf{P}</em>{0}^{-1} \pmb{\mu}<em>{0}\right}, \left(\mathbf{P}</em>{0}^{-1}+\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1}\right)
+$$</p>
+<p>これより</p>
+<p>$$
+\begin{aligned}
+\mathbf{V}<em>{1} &amp;=\left(\mathbf{P}</em>{0}^{-1}+\mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1} \
+&amp;=\mathbf{P}<em>{0}-\mathbf{P}</em>{0} \mathbf{C}^{\mathrm{T}}\left(\mathbf{\Sigma}+\mathbf{C P}<em>{0} \mathbf{C}^{\mathrm{T}}\right)^{-1} \mathbf{C P}</em>{0} \
+&amp;=\left(\mathbf{I}-\mathbf{K}<em>{1} \mathbf{C}\right) \mathbf{P}</em>{0}
+\end{aligned}
+$$</p>
+<p>また、今求めた$\mathbf{V}_{1}$を用いて、</p>
+<p>$$
+\begin{aligned}
+\pmb{\mu}<em>{1} &amp;=\mathbf{V}</em>{1}\left(\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{x}<em>{1}+\mathbf{P}</em>{0}^{-1} \pmb{\mu}<em>{0}\right) \
+&amp;=\left(\mathbf{I}-\mathbf{K}</em>{1} \mathbf{C}\right) \mathbf{P}<em>{0}\left(\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{x}</em>{1}+\mathbf{P}<em>{0}^{-1} \pmb{\mu}</em>{0}\right) \
+&amp;=\pmb{\mu}<em>{0}-\mathbf{K}</em>{1} \mathbf{C} \pmb{\mu}<em>{0}+\mathbf{V}</em>{1} \mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{x}<em>{1} \
+&amp;=\pmb{\mu}</em>{0}+\mathbf{K}<em>{1}\left(\mathbf{x}</em>{1}-\mathbf{C} \pmb{\mu}_{0}\right)
+\end{aligned}
+$$</p>
+<p>この変形での$\mathbf{V}_{1} \mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1}$部分は</p>
+<p>$$
+\begin{aligned} \mathbf{V}<em>{1} \mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1}=&amp; \mathbf{P}</em>{0} \mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1}-\mathbf{K}<em>{1} \mathbf{C} \mathbf{P}</em>{0} \mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \=&amp; \mathbf{P}<em>{0} \mathbf{C}^{\mathrm{T}}\left(\mathbf{I}-\left(\mathbf{\Sigma}+\mathbf{C P}</em>{0} \mathbf{C}^{\mathrm{T}}\right)^{-1} \mathbf{C P}<em>{0} \mathbf{C}^{\mathrm{T}}\right) \mathbf{\Sigma}^{-1} \
+=&amp; \mathbf{P}</em>{0} \mathbf{C}^{\mathrm T}\left(\left(\mathbf{\Sigma}+\mathbf{CP}<em>{0} \mathbf{C}^{\mathrm T}\right)^{-1}\left(\mathbf{\Sigma}+\mathbf{CP}</em>{0} \mathbf{C}^{\mathrm T}\right)-\left(\mathbf{\Sigma}+\mathbf{CP}<em>{0} \mathbf{C}^{\mathrm T}\right)^{-1} \mathbf{CP}</em>{0} \mathbf{C}^{\mathrm T}\right) \mathbf{\Sigma}^{-1}
+\
+=&amp; \mathbf{P}<em>{0} \mathbf{C}^{\mathrm T}\left( \left(\mathbf{\Sigma}+\mathbf{CP}</em>{0} \mathbf{C}^{\mathrm T}\right)^{-1} \mathbf{\Sigma} \right) \mathbf{\Sigma}^{-1} \
+=&amp; \mathbf{P}<em>{0} \mathbf{C}^{\mathrm{T}}\left(\mathbf{\Sigma}+\mathbf{C P}</em>{0} \mathbf{C}^{\mathrm{T}}\right)^{-1}=\mathbf{K}_{1} \end{aligned}
+$$</p>
+<p>となることを利用した。</p>
+<h2 id="演習-1324"><a class="header" href="#演習-1324">演習 13.24</a></h2>
+<div class="panel-primary">
+<p>以下の式で表されるようなガウス平均の定数$\mathbf{a}$と$\mathbf{c}$を含んだ、</p>
+<p>$$
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A z}</em>{n-1}, \mathbf{\Gamma}\right) \tag{13.75}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\mathbf{\Sigma}}\right) \tag{13.76}
+$$</p>
+<p>の一般化について考える.</p>
+<p>$$
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) =\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \mathbf{z}</em>{n-1}+\mathbf{a}, \boldsymbol{\Gamma}\right) \tag{13.127}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) =\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{C} \mathbf{z}</em>{n}+\mathbf{c}, \mathbf{\Sigma}\right) \tag{13.128}
+$$</p>
+<p>1に固定された付加的な項をもつ状態ベクトル$\mathbf{z}$を定義して、パラメータ$\mathbf{a}$と$\mathbf{c}$に対応した列を行列$\mathbf{A}$と$\mathbf{C}$に付け加えることにより、この拡張された式がこの章で議論した枠組みの中で説明できることを示せ。</p>
+</div>
+<p>$$
+\boldsymbol{\mu}<em>{0}^{\prime}=\left[\begin{array}{c}\boldsymbol{\mu}</em>{0} \ 1\end{array}\right] \quad \mathbf{V}<em>{0}^{\prime}=\left[\begin{array}{ll}\mathbf{V}</em>{0} &amp; \mathbf{0} \ \mathbf{0} &amp; 0\end{array}\right] \quad \boldsymbol{\Gamma}^{\prime}=\left[\begin{array}{ll}\mathbf{\Gamma} &amp; \mathbf{0} \ \mathbf{0} &amp; 0\end{array}\right]
+$$
+$$
+\mathbf{A}^{\prime}=\left[\begin{array}{ll}\mathbf{A} &amp; \mathbf{a} \ \mathbf{0} &amp; 1\end{array}\right] \quad \mathbf{C}^{\prime}=\left[\begin{array}{ll}\mathbf{C} &amp; \mathbf{c}\end{array}\right]
+$$
+に、各変数を置き換えると、1に固定された$\mathbf{z_n}$の付加項によって(13.127), (13.128)が実現できる。
+このようにしてほとんどの枠組みが実現できるが、$\mathbf{z_n}$の付加項が分散0であるという事実が、分散の逆行列を考慮する場合にのみ効いてきて(式13.92など)、正しくは
+$$
+\left(\mathbf{P}<em>{n-1}^{\prime}\right)^{-1}=\left[\begin{array}{cc}\mathbf{P}</em>{n-1}^{-1} &amp; \mathbf{0} \ \mathbf{0} &amp; 0\end{array}\right]
+$$
+のようにする必要がある。</p>
+<h2 id="演習-1325"><a class="header" href="#演習-1325">演習 13.25</a></h2>
+<div class="panel-primary">
+<p>この演習問題では、カルマンフィル夕方程式が独立の観測に対し用いられたときに、それらが2.3節で与えた単一ガウス分布の最尤推定法の結果に帰着することを示そう。独立の観測値の集合$\left{x_{1}, \ldots, x_{N}\right}$が与えられたときに、単ーガウス分布に従う確率変数$x$の平均$\mu$を求める問題を考える。これをモデル化するために、</p>
+<p>$$
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A z}</em>{n-1}, \mathbf{\Gamma}\right) \tag{13.75}
+$$</p>
+<p>$$
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\Sigma}\right) \tag{13.76}
+$$</p>
+<p>で支配される線形動的システムを使うことができる。ここで、潜在変数$\left{z_{1}, \ldots, z_{N}\right}$において、各々の観測が互いに独立なため、<s>Cは単位行列であり、遷移確率A=0</s>$\mathbf{C}=1,\mathbf{A}=1,\mathbf{\Gamma}=0$となる。最初の状態のパラメータ$\pmb{\mu}<em>{0}, \mathbf{P}</em>{0}$を、それぞれ$\mu_0, \sigma_{0}^2$と書くことにし、$\mathbf{\Sigma}$は$\sigma^2$になると考える。対応するカルマンフィル夕方程式を、一般的な結果</p>
+<p>$$
+\pmb{\mu}<em>{n} =\mathbf{A} \pmb{\mu}</em>{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \pmb{\mu}_{n-1}\right) \tag{13.89}
+$$</p>
+<p>$$
+\mathbf{V}<em>{n} =\left(\mathbf{I}-\mathbf{K}</em>{n} \mathbf{C}\right) \mathbf{P}_{n-1} \tag{13.90}
+$$</p>
+<p>から出発し、</p>
+<p>$$
+\pmb{\mu}<em>{1} =\pmb{\mu}</em>{0}+\mathbf{K}<em>{1}\left(\mathbf{x}</em>{1}-\mathbf{C} \pmb{\mu}_{0}\right) \tag{13.94}
+$$</p>
+<p>$$
+\mathbf{V}<em>{1} =\left(\mathbf{I}-\mathbf{K}</em>{1} \mathbf{C}\right) \mathbf{P}_{0} \tag{13.95}
+$$</p>
+<p>を用いて書き下せ。さらに、これが直接独立なデータを考えたときに得られる結果
+$$
+\mu_{N} =\frac{\sigma^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \sigma_{0}^{2}}{N \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}} \tag{2.141}
+$$
+$$
+\frac{1}{\sigma_{N}^{2}} =\frac{1}{\sigma_{0}^{2}}+\frac{N}{\sigma^{2}}  \tag{2.142}
+$$
+と同一であることを示せ。</p>
+</div>
+<p>※ 問題文は誤っており、前提条件として$\mathbf{C}=1,\mathbf{A}=1,\mathbf{\Gamma}=0$となる。この上で問題を解く。</p>
+<p>まず$\pmb{\mu}<em>{1}$と$\mathbf{V}</em>{1}$を求める。初期パラメータは$\pmb{\mu}<em>{0} = \mu</em>{0}$と$\mathbf{P}<em>{0} = \sigma</em>{0}^{2}$, $\mathbf{\Sigma} = \sigma^2$なので、$(13.97)$式は</p>
+<p>$$
+K_{1}=\sigma_{0}^{2}\left(\sigma_{0}^{2}+\sigma^{2}\right)^{-1}=\frac{\sigma_{0}^{2}}{\sigma_{0}^{2}+\sigma^{2}}
+$$</p>
+<p>となり、これを用いて$(13.94)(13.95)$の$\mu_{1}, \mathbf{V}<em>{1}$を求めると、
+$$
+\begin{aligned}
+\pmb{\mu}</em>{1} &amp;=\mu_{0}+\frac{\sigma_{0}^{2}}{\sigma_{0}^{2}+\sigma^{2}}\left(x_{1}-\mu_{0}\right) \
+&amp;=\frac{1}{\sigma_{0}^{2}+\sigma^{2}}\left(\sigma_{0}^{2} x_{1}+\sigma^{2} \mu_{0}\right)
+\end{aligned}\tag{A}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{V}<em>{1} &amp;=\left(1-\frac{\sigma</em>{0}^{2}}{\sigma_{0}^{2}+\sigma^{2}}\right) \sigma_{0}^{2} \
+&amp;=\frac{\sigma_{0}^{2} \sigma^{2}}{\sigma_{0}^{2}+\sigma^{2}}
+\end{aligned}\tag{B}
+$$</p>
+<p>となる。これらの結果を、まず$N=1$のときの$(2.141),(2.142)$式と比較する。$(2.143)$式で$\mu_{\textrm{ML}}$はサンプル平均$\displaystyle \mu_{\textrm{ML}}=\frac{1}{N} \sum_{n=1}^{N} x_{n}$と定義されていることに注意して</p>
+<p>$$
+\begin{aligned}
+\mu_{1} &amp;=\frac{\sigma^{2}}{\sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{\sigma_{0}^{2}}{\sigma_{0}^{2}+\sigma^{2}} x_{1} \
+&amp;=\frac{1}{\sigma_{0}^{2}+\sigma^{2}}\left(\sigma_{0}^{2} x_{1}+\sigma^{2} \mu_{0}\right) \
+\sigma_{1}^{2} &amp;=1 /\left(\frac{1}{\sigma_{0}^{2}}+\frac{1}{\sigma^{2}}\right)=\frac{\sigma_{0}^{2} \sigma^{2}}{\sigma_{0}^{2}+\sigma^{2}}
+\end{aligned}
+$$</p>
+<p>より、$\pmb{\mu}<em>{1} = \mu</em>{1}$、$\mathbf{V}<em>{1} = \sigma</em>{1}^{2}$とすると同じであることがわかる。</p>
+<p>そこで、誘導に従って任意の正の整数$N$について$\pmb{\mu}<em>{N} = \mu</em>{N}$、$\mathbf{V}<em>{N} = \sigma</em>{N}^{2}$が成立していると仮定する。ここで$\mu_{N}$と$\sigma_{N}^{2}$は$(2.141)(2.142)$の式である。数学的帰納法の考えに基づいて、$N+1$のときについて調べると、まず$(13.88)$式の定義から</p>
+<p>$$
+\begin{aligned}
+\mathbf{P}<em>{N}&amp;=\mathbf{AV}</em>{N} \mathbf{A}^{\mathrm{T}}+\mathbf{\Gamma} \
+&amp;=\mathbf{V}<em>{N} = \sigma</em>{N}^{2}\
+\end{aligned}
+$$</p>
+<p>が成り立つことに注意して、カルマン利得行列の定義$(13.92)$から</p>
+<p>$$
+\begin{aligned}
+\mathbf{K}<em>{N+1}&amp;=\mathbf{P}</em>{N} \mathbf{C}^{\mathrm{T}}\left(\mathbf{CP}<em>{N} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)^{-1} \
+&amp;=\mathbf{P}</em>{N}(\mathbf{P}<em>{N} + \sigma^2)^{-1} \
+&amp;=\frac{\sigma</em>{N}^{2}}{\sigma_{N}^{2} + \sigma^{2}}
+\end{aligned}
+$$</p>
+<p>となるので、$(13.90)$に代入して$\mathbf{V}_{N+1}$を計算すると</p>
+<p>$$
+\begin{aligned}
+\mathbf{V}<em>{N+1}&amp;=\left(1-\frac{\sigma</em>{N}^{2}}{\sigma_{N}^{2}+\sigma^{2}}\right) \sigma_{N}^{2} \
+&amp;=\frac{\sigma^{2} \sigma_{N}^{2}}{\sigma_{N}^{2}+\sigma^{2}} \
+&amp;=\left(\frac{1}{\sigma_{N}^{2}}+\frac{1}{\sigma^{2}}\right)^{-1} \
+&amp;=\left(\frac{1}{\sigma_{0}{ }^{2}}+\frac{N+1}{\sigma^{2}}\right)^{-1} \
+&amp;=\frac{\sigma_{0}{ }^{2} \sigma^{2}}{(N+1) \sigma_{0}{ }^{2}+\sigma^{2}} \
+&amp;=\sigma_{N+1}^{2}
+\end{aligned}
+$$</p>
+<p>また$(13.89)$式への代入から</p>
+<p>$$
+\begin{aligned}
+\pmb{\mu}<em>{N+1} &amp;=\mu</em>{N}+\frac{\sigma_{N}^{2}}{\sigma_{N}^{2}+\sigma^{2}}\left(x_{N+1}-\mu_{N}\right) \
+&amp;=\frac{1}{\sigma_{N}^{2}+\sigma^{2}}\left(\sigma_{N}^{2} x_{N+1}+\sigma^{2} \mu_{N}\right) \
+&amp;=\frac{\sigma_{N}^{2}}{\sigma_{N}^{2}+\sigma^{2}}\left(x_{N+1}+\frac{\sigma^{2}}{\sigma_{N}^{2}} \frac{\sigma^{2} \mu_{0}+\sigma_{0}^{2} \sum_{n=1}^{N} x_{n}}{N \sigma_{0}^{2}+\sigma^{2}}\right) \
+&amp;=\frac{\sigma_{0}^{2}}{(N+1) \sigma_{0}^{2}+\sigma^{2}}\left(x_{N+1}+\frac{\sigma^{2}}{\sigma_{0}^{2}} \mu_{0}+\sum_{n=1}^{N} x_{n}\right) \quad (\because \mathbf{V}<em>{N+1} = \sigma</em>{N=1}^{2}の途中の式変形 )\
+&amp;=\frac{\sigma^{2} \mu_{0}+(N+1) \sum_{n=1}^{N+1} x_{n}}{(N+1) \sigma_{0}^{2}+\sigma^{2}} \
+&amp;=\mu_{N+1}
+\end{aligned}
+$$</p>
+<p>が得られる。したがって、独立同分布の$N$個の1次元観測値$\left{x_{1}, \ldots, x_{N}\right}$が得られている場合のカルマンフィルタ方程式は、$(2.141),(2.142)$式と同型になることが示された。</p>
+<h2 id="演習-1326"><a class="header" href="#演習-1326">演習 13.26</a></h2>
+<div class="panel-primary">
+<p>13.3節の線形動的システムの特別な例について考える。この例は、確率的PCAと等価なものであり、したがって、遷移行列は$\mathbf{A}=\mathbf{0}$、共分散は$\mathbf{\Gamma}=\mathbf{I}$、ノイズの共分散は$\mathbf{\Sigma}=\sigma^2\mathbf{I}$である。行列の恒等式</p>
+<p>$$
+\left(\mathbf{A}+\mathbf{B D}^{-1} \mathbf{C}\right)^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{D}+\mathbf{C A}^{-1} \mathbf{B}\right)^{-1} \mathbf{C A}^{-1} \tag{C.7}
+$$</p>
+<p>を用いることにより、出力密度行列$\mathbf{C}$を$\mathbf{W}$と書くとき、</p>
+<p>$$
+\mu_{n} =\mathbf{A} \mu_{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \mu_{n-1}\right) \tag{13.89}
+$$</p>
+<p>$$
+\mathbf{V}<em>{n} =\left(\mathbf{I}-\mathbf{K}</em>{n} \mathbf{C}\right) \mathbf{P}_{n-1} \tag{13.90}
+$$</p>
+<p>で定義される隠れ状態の事後確率が、</p>
+<p>$$
+p(\mathbf{z} \mid \mathbf{x})=\mathcal{N}\left(\mathbf{z} \mid \mathbf{M}^{-1} \mathbf{W}^{\mathrm{T}}(\mathbf{x}-\boldsymbol{\mu}), \sigma^{2} \mathbf{M}^{-1}\right) \tag{12.42}
+$$</p>
+<p>で$\boldsymbol{\mu}=\mathbf{0}$の仮定の下での確率的PCAのときの結果$(12.42)$と同じになることを示せ.</p>
+</div>
+<p>(13.88)式〜(13.92)式に$\mathbf{A}=\mathbf{O}$、$\mathbf{\Gamma}=\mathbf{I}$、$\mathbf{\Sigma}=\sigma^2\mathbf{I}$、$\mathbf{C}=\mathbf{W}$を代入して、</p>
+<p>$$
+\begin{align*}
+\mathbf{P}<em>{n-1}
+&amp;= \mathbf{A}\mathbf{V}</em>{n-1}\mathbf{A}^{\rm T}+\boldsymbol\Gamma\tag{13.88}\
+&amp;= \mathbf{I}\
+\mathbf{K}<em>n
+&amp;= \mathbf{P}</em>{n-1}\mathbf{C}^{\rm T}(\mathbf{CP}<em>{n-1}\mathbf{C}^{\rm T}+\boldsymbol\Sigma)^{-1}\tag{13.92}\
+&amp;= \mathbf{W}^{\rm T} (\mathbf{W}\mathbf{W}^{\rm T}+\sigma^2 \mathbf{I})^{-1}\
+\mu</em>{n}
+&amp;=\mathbf{A} \mu_{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \mu_{n-1}\right)\tag{13.89}\
+&amp;= \mathbf{W}^{\rm T} (\mathbf{W}\mathbf{W}^{\rm T}+\sigma^2 \mathbf{I})^{-1}\mathbf{x}<em>{n}\
+&amp;= \frac{1}{\sigma^2}\mathbf{W}^{\rm T} (\mathbf{I}+\frac{1}{\sigma^2} \mathbf{W}\mathbf{W}^{\rm T})^{-1}\mathbf{x}</em>{n}\
+&amp;= \frac{1}{\sigma^2} (\mathbf{I}+ \mathbf{W}^{\rm T}\frac{1}{\sigma^2}\mathbf{W})^{-1}\mathbf{W}^{\rm T}\mathbf{x}<em>{n}\ \ \ \because {\rm (C.6)の恒等式}(\mathbf{I+AB)^{-1}A=A(I+BA)^{-1}}\
+&amp;= (\sigma^2\mathbf{I}+ \mathbf{W}^{\rm T}\mathbf{W})^{-1}\mathbf{W}^{\rm T}\mathbf{x}</em>{n} \
+&amp;= \mathbf{M}^{-1}\mathbf{W}^{\rm T}\mathbf{x}<em>{n} \
+\mathbf{V}</em>{n}
+&amp;=\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1} \tag{13.90}\
+&amp;= \mathbf{I}-{ \mathbf{W}^{\rm T} (\mathbf{W}\mathbf{W}^{\rm T}+\sigma^2 \mathbf{I})^{-1}}\mathbf{W}\
+&amp;= \left[ \mathbf{I}- \left( -\mathbf{W}^{\rm T}\right) \left{ \mathbf{W}\mathbf{W}^{\rm T}+\sigma^2\mathbf{I} + \mathbf{W}\left(-\mathbf{W}^{\rm T}\right) \right}^{-1} \mathbf{W} \right] ^{-1}\ \ \ \because {\rm (C.7)の恒等式}\left(\mathbf{A}+\mathbf{B D}^{-1} \mathbf{C}\right)^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{D}+\mathbf{C A}^{-1} \mathbf{B}\right)^{-1} \mathbf{C A}^{-1} \
+&amp;= \left( \mathbf{I} + \mathbf{W}^{\rm T} (\sigma^2)^{-1} \mathbf{W} \right)^{-1}\
+&amp;= \sigma^2 \left( \sigma^2 \mathbf{I} + \mathbf{W}^{\rm T} \mathbf{W} \right)^{-1}\
+&amp;= \sigma^2 \mathbf{M}^{-1}
+\end{align*}
+$$</p>
+<p>ここで求めた$\mu_n$と$\mathbf{V}_n$は、(12.42)式にて$\mu=\mathbf{0}$とした場合の結果に一致する。
+なお、$\mathbf{V}_n$の式変形でWoodburyの公式を適用するときの対応関係は、$\mathbf{A}=\mathbf{I}, \ \mathbf{B}=-\mathbf{W}^{\rm T},\  \mathbf{C}=\mathbf{W}, \ \mathbf{D}=\mathbf{WW}^{\rm T}+\sigma^2\mathbf{I}$である。</p>
+<h2 id="演習-1327"><a class="header" href="#演習-1327">演習 13.27</a></h2>
+<div class="panel-primary">
+<p>13.3節で議論した形式をもつ、ある線形動的システムについて考察する。このシステムは観測されるノイズの大きさがゼロであり、したがって$\mathbf{\Sigma}=\mathbf{0}$である。$\mathbf{C}=\mathbf{I}$のとき、$\mathbf{z}<em>{n}$の事後分布は、平均が$\mathbf{x}</em>{n}$となり、分散がゼロとなることを示せ。これは、もしノイズがなければ、過去のすべての観測を無視して現在の観測値$\mathbf{x}<em>{n}$を用いて状態変数$\mathbf{z}</em>{n}$を推定すればよいという我々の直感とつじつまが合う.</p>
+</div>
+<p>$\mathbf{z}<em>n$の事後分布は$\widehat{\alpha}\left(\mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mu</em>{n}, \mathbf{V}_{n}\right)$で表されるので，</p>
+<p>$$
+\mu_{n} =\mathbf{A} \mu_{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \boldsymbol{\mu}<em>{n-1}\right)\tag{13.89}
+$$
+$$
+\mathbf{V}</em>{n} =\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1}\tag{13.90}
+$$
+$$
+\mathbf{K}<em>{n}=\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C P}_{n-1} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)^{-1}\tag{13.92}
+$$</p>
+<p>に$\mathbf{\Sigma}=\mathbf{0}, \mathbf{C}=\mathbf{I}$を代入する．その結果$\mathbf{K}_n=\mathbf{I},\mathbf{V}<em>n=\mathbf{0},\mu_n=\mathbf{x}<em>n$が得られ，$\mathbf{z}</em>{n}$の事後分布は、平均が$\mathbf{x}</em>{n}$となることがわかる．</p>
+<h2 id="演習-1328"><a class="header" href="#演習-1328">演習 13.28</a></h2>
+<div class="panel-primary">
+<p>13.3節の線形動的システムの特別な例について考える.この例では、状態変数$\mathbf{z}<em>n$は前の状態の状態変数と等しくなるよう制約されており、したがって、$\mathbf{A}=\mathbf{I}$であり、$\mathbf{\Gamma}=\mathbf{0}$である。簡単のために、さらに$\mathbf{C}=\mathbf{I}$と$\mathbf{P}</em>{0}\to \infty$を仮定する。この仮定により$\mathbf{z}$の初期条件は重要ではなくなり、予測値はデータのみから決定される。帰納法による証明を用いて、状態$\mathbf{z}<em>{n}$の事後平均が、$\mathbf{x}</em>{1},\ldots,\mathbf{x}_{n}$の平均で与えられることを示せ。このことは、もし状態変数が一定なら、最も良い推定値は観測値を平均することにより得られるという直感と一致する。</p>
+</div>
+<p>数学的帰納法により証明する．まずn=1のとき
+(13.75),(13.77)についてガウス分布の条件付き分布に対する一般的な性質(2.113)-(2.117)を適用し$\mathbf{P}_0\rightarrow\infty, \mathbf{C}=\mathbf{I}$を用いると</p>
+<p>$$
+p\left(\mathbf{z}<em>{1} \mid \mathbf{x}</em>{1}\right)=\mathcal{N}\left(\mathbf{z}<em>{1} \mid \boldsymbol{\mu}</em>{1}, \mathbf{V}_{1}\right)
+$$</p>
+<p>が得られる．ただし</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>{1} &amp;=\mathbf{V}</em>{1}\left(\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{x}<em>{1}+\mathbf{P}</em>{0}^{-1} \boldsymbol{\mu}<em>{0}\right)=\mathbf{x}</em>{1} \
+\mathbf{V}<em>{1} &amp;=\left(\mathbf{P}</em>{0}^{-1}+\mathbf{C}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \mathbf{C}\right)^{-1}=\boldsymbol{\Sigma}
+\end{aligned}
+$$</p>
+<p>である．</p>
+<p>いま$N$のとき</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>{N} &amp;=\overline{\mathbf{x}}</em>{N}=\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}<em>{n} \
+\mathbf{V}</em>{N} &amp;=\frac{1}{N} \boldsymbol{\Sigma}
+\end{aligned}
+$$</p>
+<p>が成り立つと仮定する．また</p>
+<p>$$
+\mathbf{P}<em>{n-1}=\mathbf{A} \mathbf{V}</em>{n-1} \mathbf{A}^{\mathrm{T}}+\Gamma\tag{13.88}
+$$</p>
+<p>から$\mathbf{P}<em>{N}=\mathbf{V}</em>{N}=\frac{1}{N} \Sigma$が成り立つ．</p>
+<p>$\mathbf{C}=\mathbf{I}, \mathbf{\Gamma}=\mathbf{0}$と</p>
+<p>$$
+\mathbf{K}<em>{n}=\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C P}_{n-1} \mathbf{C}^{\mathrm{T}}+\boldsymbol{\Sigma}\right)^{-1}\tag{13.92}
+$$</p>
+<p>を用いて$N+1$のとき</p>
+<p>$$
+\begin{aligned}
+\mathbf{K}<em>{N+1} &amp;=\mathbf{P}</em>{N} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C P}<em>{N} \mathbf{C}^{\mathrm{T}}+\boldsymbol{\Sigma}\right)^{-1} \
+&amp;=\mathbf{P}</em>{N}\left(\mathbf{P}_{N}+\boldsymbol{\Sigma}\right)^{-1} \
+&amp;=\frac{1}{N} \boldsymbol{\Sigma}\left(\frac{1}{N} \boldsymbol{\Sigma}+\boldsymbol{\Sigma}\right)^{-1} \
+&amp;=\frac{1}{N} \boldsymbol{\Sigma}\left(\frac{N+1}{N} \boldsymbol{\Sigma}\right)^{-1} \
+&amp;=\frac{1}{N+1} \mathbf{I}
+\end{aligned}
+$$</p>
+<p>この結果を(13.89)と(13.90)に代入して</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>{N+1} &amp;=\mathbf{A} \mu</em>{N}+\mathbf{K}<em>{N＋1}\left(\mathbf{x}</em>{N＋1}-\mathbf{C A} \mu_{N}\right) \
+&amp;=\boldsymbol{\mu}<em>{N}+\frac{1}{N+1}\left(\mathbf{x}</em>{N+1}-\boldsymbol{\mu}<em>{N}\right) \
+&amp;=\overline{\mathbf{x}}</em>{N}+\frac{1}{N+1}\left(\mathbf{x}<em>{N+1}-\overline{\mathbf{x}}</em>{N}\right) \
+&amp;=\frac{1}{N+1} \mathbf{x}<em>{N+1}+\left(1-\frac{1}{N+1}\right) \frac{1}{N} \sum</em>{n=1}^{N} \
+&amp;=\frac{1}{N+1} \sum_{n=1}^{N+1} \mathbf{x}<em>{n}=\overline{\mathbf{x}}</em>{N+1} \
+\mathbf{V}<em>{N+1} &amp;=\left(\mathbf{I}-\mathbf{K}</em>{N+1} \mathbf{C}\right) \mathbf{P}_{N} \
+&amp;=\left(\mathbf{I}-\frac{1}{N+1} \mathbf{I}\right) \frac{1}{N} \boldsymbol{\Sigma} \
+&amp;=\frac{1}{N+1} \boldsymbol{\Sigma}
+\end{aligned}
+$$</p>
+<p>が成り立つ．
+以上から$N+1$の場合でも$N$と同様の形式でかけるため全ての$N\geq 1$に対して成り立つ．</p>
+<h2 id="演習-1329"><a class="header" href="#演習-1329">演習 13.29</a></h2>
+<div class="panel-primary">
+<p>ガウシアン線形動的システムにおいて、バックワード再帰式</p>
+<p>$$
+c_{n+1} \widehat{\beta}\left(\mathbf{z}<em>{n}\right)=\int \widehat{\beta}\left(\mathbf{z}</em>{n+1}\right) p\left(\mathbf{x}<em>{n+1} \mid \mathbf{z}</em>{n+1}\right) p\left(\mathbf{z}<em>{n+1} \mid \mathbf{z}</em>{n}\right) \mathrm{d} \mathbf{z}_{n+1} \tag{13.99}
+$$</p>
+<p>から出発して、RTS平滑化方程式</p>
+<p>$$
+\widehat{\boldsymbol{\mu}}<em>{n}=\boldsymbol{\mu}</em>{n}+\mathbf{J}<em>{n}\left(\widehat{\mu}</em>{n+1}-\mathbf{A} \mu_{n}\right) \tag{13.100}
+$$</p>
+<p>$$
+\widehat{\mathbf{V}}<em>{n}=\mathbf{V}</em>{n}+\mathbf{J}<em>{n}\left(\widehat{\mathbf{V}}</em>{n+1}-\mathbf{P}<em>{n}\right) \mathbf{J}</em>{n}^{\mathrm{T}} \tag{13.101}
+$$</p>
+<p>を導け.</p>
+</div>
+<p>(13.99)の両辺に$\widehat{\alpha}\left(\mathbf{z}<em>{n}\right)$をかけて$\gamma\left(\mathbf{z}</em>{n}\right)=\widehat{\alpha}\left(\mathbf{z}<em>{n}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \widehat{\mu}</em>{n}, \widehat{\mathbf{V}}<em>{n}\right)$を用いると
+$$
+c</em>{n+1} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \widehat{\boldsymbol{\mu}}</em>{n}, \widehat{\mathbf{V}}<em>{n}\right)=\widehat{\alpha}\left(\mathbf{z}</em>{n}\right) \int \widehat{\beta}\left(\mathbf{z}<em>{n+1}\right) p\left(\mathbf{x}</em>{n+1} \mid \mathbf{z}<em>{n+1}\right) p\left(\mathbf{z}</em>{n+1} \mid \mathbf{z}<em>{n}\right) \mathrm{d} \mathbf{z}</em>{n+1}\tag{1}
+$$</p>
+<p>が得られる．また</p>
+<p>$$
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A z}</em>{n-1}, \mathbf{\Gamma}\right) \tag{13.75}
+$$</p>
+<p>と</p>
+<p>$$
+\widehat{\alpha}\left(\mathbf{z}<em>{n}\right)=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \mu_{n}, \mathbf{V}_{n}\right)\tag{13.84}
+$$</p>
+<p>について(13.75)と(13.84)の辺々かけた式に対して</p>
+<p>(2.113)-(2.117)の議論，</p>
+<p>『$\mathrm{x}$ の周辺ガウス分布と, $\mathrm{x}$ が与えられたときの $\mathrm{y}$ の条件付きガウス分布が次式で 与えられたとする.
+$$
+p(\mathrm{x}) =\mathcal{N}\left(\mathrm{x} \mid \boldsymbol{\mu}, \boldsymbol{\Lambda}^{-1}\right)\tag{2.113}
+$$</p>
+<p>$$
+p(\mathbf{y} \mid \mathrm{x}) =\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \mathbf{x}+\mathbf{b}, \mathbf{L}^{-1}\right)\tag{2.114}
+$$
+$\mathrm{y}$ の周辺分布と , $\mathrm{y}$ が与えられたときの $\mathrm{x}$ の条件付き分布は
+$$
+p(\mathbf{y}) =\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>$$
+p(\mathbf{x} \mid \mathbf{y}) =\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\Sigma}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\boldsymbol{\Lambda} \boldsymbol{\mu}\right}, \boldsymbol{\Sigma}\right)\tag{2.116}
+$$
+で与えられる. ただし,
+$$
+\Sigma=\left(\Lambda+\mathrm{A}^{\mathrm{T}} \mathbf{L} \mathbf{A}\right)^{-1}\tag{2.117}
+$$</p>
+<p>である．』を適切に変数の対応をとり，$\mathbf{z}<em>n,\mathbf{z}</em>{n+1}$の同時分布について$\mathbf{z}<em>n$が与えられたときの$\mathbf{z}</em>{n+1}$と$\mathbf{z}<em>n$の積で表されていた形式をの同時分布について$\mathbf{z}</em>{n+1}$が与えられたときの$\mathbf{z}<em>{n}$と$\mathbf{z}</em>{n+1}$の積で表されていた形式に書き換えると</p>
+<p>$$
+\begin{aligned}
+\widehat{\alpha}\left(\mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n+1} \mid \mathbf{z}<em>{n}\right) &amp;=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \boldsymbol{\mu}<em>{n}, \mathbf{V}</em>{n}\right) \mathcal{N}\left(\mathbf{z}<em>{n+1} \mid \mathbf{A} \mathbf{z}</em>{n}, \boldsymbol{\Gamma}\right) \
+&amp;=\mathcal{N}\left(\mathbf{z}<em>{n+1} \mid \mathbf{A} \boldsymbol{\mu}</em>{n}, \mathbf{A} \mathbf{V}<em>{n} \mathbf{A}+\boldsymbol{\Gamma}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{m}<em>{n}, \mathbf{M}</em>{n}\right)
+\end{aligned}
+$$
+が得られる．ここで(2.116)に対応する形で$\mathbf{m}<em>n$は
+$$
+\mathbf{m}</em>{n}=\mathbf{M}<em>{n}\left(\mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \mathbf{z}</em>{n+1}+\mathbf{V}<em>{n}^{-1} \boldsymbol{\mu}</em>{n}\right)\tag{2}
+$$</p>
+<p>と表される．また(C.7)と(13.102) $\mathbf{J}<em>{n}=\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\left(\mathbf{P}_{n}\right)^{-1}$の定義を用いて</p>
+<p>$$
+\begin{aligned}
+\mathbf{M}<em>{n} &amp;=\left(\mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \mathbf{A}+\mathbf{V}</em>{n}^{-1}\right)^{-1} \
+&amp;=\mathbf{V}<em>{n}-\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\left(\boldsymbol{\Gamma}+\mathbf{A} \mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}}\right)^{-1} \mathbf{A V}</em>{n} \
+&amp;=\mathbf{V}<em>{n}-\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}<em>{n}^{-1} \mathbf{A} \mathbf{V}</em>{n} \
+&amp;=\left(\mathbf{I}-\mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}</em>{n}^{-1} \mathbf{A}\right) \mathbf{V}<em>{n} \
+&amp;=\left(\mathbf{I}-\mathbf{J}</em>{n} \mathbf{A}\right) \mathbf{V}_{n}
+\end{aligned}
+$$</p>
+<p>とかける．</p>
+<p>(1)の右辺において$\widehat{\alpha}\left(\mathbf{z}_{n}\right)$を積分の中に含め，$\mathbf{M}_n$についての結果を代入して(13.85)-(13.88)と(13.98)を用いて</p>
+<p>$$
+\begin{aligned}
+c_{n+1} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \widehat{\boldsymbol{\mu}}</em>{n}, \widehat{\mathbf{V}}<em>{n}\right) &amp;=\int \widehat{\beta}\left(\mathbf{z}</em>{n+1}\right) p\left(\mathbf{x}<em>{n+1} \mid \mathbf{z}</em>{n+1}\right) \mathcal{N}\left(\mathbf{z}<em>{n+1} \mid \mathbf{A} \boldsymbol{\mu}</em>{n}, \mathbf{P}<em>{n}\right)
+\mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{m}<em>{n}, \mathbf{M}</em>{n}\right) \mathrm{d} \mathbf{z}<em>{n+1} &amp; \
+&amp;=\int \widehat{\beta}\left(\mathbf{z}</em>{n+1}\right) c_{n+1} \widehat{\alpha}\left(\mathbf{z}<em>{n+1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{m}<em>{n}, \mathbf{M}</em>{n}\right) \mathrm{d} \mathbf{z}<em>{n+1} \
+&amp;=c</em>{n+1} \int \gamma\left(\mathbf{z}<em>{n+1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{m}<em>{n}, \mathbf{M}</em>{n}\right) \mathrm{d} \mathbf{z}<em>{n+1} \
+&amp;=c</em>{n+1} \int \mathcal{N}\left(\mathbf{z}<em>{n+1} \mid \widehat{\boldsymbol{\mu}}</em>{n}, \widehat{\mathbf{V}}<em>{n}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{m}<em>{n}, \mathbf{M}</em>{n}\right) \mathrm{d} \mathbf{z}<em>{n+1} .
+\end{aligned}
+$$
+したがって(2)と(2.113)-(2.115)を使って
+$$
+\widehat{\boldsymbol{\mu}}</em>{n} =\mathbf{M}<em>{n}\left(\mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \widehat{\boldsymbol{\mu}}</em>{n+1}+\mathbf{V}<em>{n}^{-1} \boldsymbol{\mu}</em>{n}\right) \tag{3}
+$$</p>
+<p>$$
+\widehat{\mathbf{V}}<em>{n} =\mathbf{M}</em>{n} \mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \widehat{\mathbf{V}}<em>{n+1} \boldsymbol{\Gamma}^{-1} \mathbf{A} \mathbf{M}</em>{n}+\mathbf{M}_{n}\tag{4}
+$$</p>
+<p>と書くことができる．</p>
+<p>また$\mathbf{M}_{n}$についての計算の途中で出てきた</p>
+<p>$$
+\mathbf{M}<em>{n}=\mathbf{V}</em>{n}-\mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}</em>{n}^{-1} \mathbf{A} \mathbf{V}_{n}
+$$</p>
+<p>と(13.102) $\mathbf{J}<em>{n}=\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\left(\mathbf{P}_{n}\right)^{-1}$を使って</p>
+<p>$$
+\begin{aligned}
+\mathbf{M}<em>{n} \mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} &amp;=\left(\mathbf{V}<em>n-\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}</em>{n}^{-1} \mathbf{A} \mathbf{V}<em>{n}\right) \mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \
+&amp;=\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\left(\mathbf{I}-\mathbf{P}<em>{n}^{-1} \mathbf{A} \mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\right) \boldsymbol{\Gamma}^{-1} \
+&amp;=\mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}}\left(\mathbf{I}-\mathbf{P}</em>{n}^{-1} \mathbf{A} \mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}}-\mathbf{P}</em>{n}^{-1} \boldsymbol{\Gamma}+\mathbf{P}<em>{n}^{-1} \boldsymbol{\Gamma}\right) \boldsymbol{\Gamma}^{-1} \
+&amp;=\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}}\left(\mathbf{I}-\mathbf{P}<em>{n}^{-1} \mathbf{P}</em>{n}+\mathbf{P}<em>{n}^{-1} \boldsymbol{\Gamma}\right) \boldsymbol{\Gamma}^{-1} \
+&amp;=\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}<em>{n}^{-1}=\mathbf{J}</em>{n}
+\end{aligned}
+$$</p>
+<p>これらの結果から(3)を(13.100)のように書き換えることができる
+また(13.102), $\mathbf{M}<em>{n}=\mathbf{V}</em>{n}-\mathbf{V}<em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}</em>{n}^{-1} \mathbf{A} \mathbf{V}<em>{n}$ と$\mathbf{M}</em>{n} \mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1}=\mathbf{J}_{n}$を用いて(4)を</p>
+<p>$$
+\begin{aligned}
+\widehat{\mathbf{V}}<em>{n} &amp;=\mathbf{M}</em>{n} \mathbf{A}^{\mathrm{T}} \boldsymbol{\Gamma}^{-1} \widehat{\mathbf{V}}<em>{n+1} \boldsymbol{\Gamma}^{-1} \mathbf{A} \mathbf{M}</em>{n}+\mathbf{M}<em>{n} \
+&amp;=\mathbf{J}</em>{n} \widehat{\mathbf{V}}<em>{n+1} \mathbf{J}</em>{n}^{\mathrm{T}}+\mathbf{V}<em>{n}-\mathbf{V}</em>{n} \mathbf{A}^{\mathrm{T}} \mathbf{P}<em>{n}^{-1} \mathbf{A} \mathbf{V}</em>{n} \
+&amp;=\mathbf{V}<em>{n}+\mathbf{J}</em>{n}\left(\widehat{\mathbf{V}}<em>{n+1}-\mathbf{P}</em>{n}\right) \mathbf{J}_{n}^{\mathrm{T}}
+\end{aligned}
+$$</p>
+<p>のようにして(13.101)の形に書き直すことができる．</p>
+<h2 id="演習-1330"><a class="header" href="#演習-1330">演習 13.30</a></h2>
+<div class="panel-primary">
+<p>状態空間モデルの2つ組の事後周辺分布の結果</p>
+<p>$$
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right) \tag{13.65}
+$$</p>
+<p>から出発して、ガウシアン線形動的システムの場合の特別な形式</p>
+<p>$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\frac{\mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \pmb{\mu}</em>{n-1}, \mathbf{V}<em>{n-1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \mathbf{z}<em>{n-1}, \mathbf{\Gamma}\right) \mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C z}<em>{n}, \mathbf{\Sigma} \right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \widehat{\pmb{\mu}}<em>{n}, \widehat{\mathbf{V}}</em>{n}\right)}{c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)}
+\end{aligned} \tag{13.103}
+$$</p>
+<p>を導け.</p>
+</div>
+<p>$(13.65)$式の導出は演習13.15を参照。
+これに</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) &amp;=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \mathbf{z}</em>{n-1}, \Gamma\right)&amp; (13.75) \
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) &amp;=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{C} \mathbf{z}</em>{n}, \mathbf{\Sigma}\right)&amp; (13.76) \
+\widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right)&amp;=\mathcal{N}\left(\mathbf{z}</em>{n-1} \mid \pmb{\mu}<em>{n-1}, \mathbf{V}</em>{n-1}\right) &amp; (13.84) \
+\gamma\left(\mathbf{z}<em>{n}\right)&amp;=\widehat{\alpha}\left(\mathbf{z}</em>{n}\right) \widehat{\beta}\left(\mathbf{z}<em>{n}\right)=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \widehat{\pmb{\mu}}<em>{n}, \widehat{\mathbf{V}}</em>{n}\right) &amp; (13.98)
+\end{aligned}
+$$</p>
+<p>を組み合わせれば</p>
+<p>$$
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)=\frac{\mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \pmb{\mu}</em>{n-1}, \mathbf{V}<em>{n-1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \mathbf{z}<em>{n-1}, \mathbf{\Gamma}\right) \mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C z}<em>{n}, \mathbf{\Sigma} \right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \widehat{\pmb{\mu}}<em>{n}, \widehat{\mathbf{V}}</em>{n}\right)}{c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)} \tag{13.103}
+$$</p>
+<p>が直接導出される。</p>
+<h2 id="演習-1331"><a class="header" href="#演習-1331">演習 13.31</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}<em>{n-1}\right) p\left(\mathbf{x}</em>{n} \mid \mathbf{z}<em>{n}\right) p\left(\mathbf{z}</em>{n} \mid \mathbf{z}<em>{n-1}\right) \widehat{\beta}\left(\mathbf{z}</em>{n}\right) \
+&amp;=\frac{\mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \pmb{\mu}</em>{n-1}, \mathbf{V}<em>{n-1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \mathbf{z}<em>{n-1}, \mathbf{\Gamma}\right) \mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C z}<em>{n}, \mathbf{\Sigma}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \widehat{\mu}<em>{n}, \widehat{\mathbf{V}}</em>{n}\right)}{c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)}
+\end{aligned} \tag{13.103}
+$$</p>
+<p>の結果から出発し、</p>
+<p>$$
+\widehat{\alpha}\left(\mathbf{z}<em>{n}\right)=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \boldsymbol{\mu}<em>{n}, \mathbf{V}</em>{n}\right) \tag{13.84}
+$$</p>
+<p>を用いて$\widehat{\alpha}\left(\mathbf{z}<em>{n}\right)$を置き換えることにより、$\mathbf{z}</em>{n}$と$\mathbf{z}_{n-1}$の間の共分散の結果</p>
+<p>$$
+\operatorname{cov}\left[\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right]=\mathbf{J}<em>{n-1} \widehat{\mathbf{V}}</em>{n} \tag{13.104}
+$$</p>
+<p>を確かめよ。</p>
+</div>
+<p>$(2.115)-(2.117)$を使用すると</p>
+<p>$$
+\begin{aligned}
+&amp; \mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \pmb{\mu}</em>{n-1}, \mathbf{V}<em>{n-1}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \mathbf{z}<em>{n-1}, \mathbf{\Gamma}\right) \
+=&amp; \mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \pmb{\mu}<em>{n-1}, \mathbf{\Gamma}+\mathbf{A} \mathbf{V}</em>{n-1} \mathbf{A}^{\mathrm T}\right) \times \mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \mathbf{Y}\left(\mathbf{A}^{\mathrm T} \mathbf{\Gamma}^{-1} \mathbf{z}</em>{n}+\mathbf{V}<em>{n-1}^{-1} \pmb{\mu}</em>{n-1}\right), \mathbf{Y}\right)
+\end{aligned}
+$$</p>
+<p>となる。ただし、</p>
+<p>$$
+\begin{aligned}
+\mathbf{Y}&amp;=\left(\mathbf{V}<em>{n-1}^{-1}+\mathbf{A}^{\mathrm{T}} \mathbf{\Gamma}^{-1} \mathbf{A}\right)^{-1} \
+&amp;=\mathcal{N}\left(\mathbf{z}</em>{n} \mid \mathbf{A} \mu_{n-1}, \mathbf{P}<em>{n-1}\right) \mathcal{N}\left(\mathbf{z}</em>{n-1} \mid \mathbf{J}<em>{n-1} \mathbf{z}</em>{n}+\left(\mathbf{I}-\mathbf{J}<em>{n-1} \mathbf{A}\right) \mu</em>{n-1},\left(\mathbf{I}-\mathbf{J}<em>{n-1} A\right) \mathbf{V}</em>{n-1}\right)
+\end{aligned}
+$$</p>
+<p>である。上記式展開は(13.88）と</p>
+<p>$$
+\begin{aligned} \mathbf{Y}&amp;=\left(\mathbf{V}<em>{n-1}^{-1}+A^{\mathrm{T}
+} \Gamma^{-1} A\right)^{-1} \ &amp;=\mathbf{V}</em>{n-1}-\mathbf{V}<em>{n-1} A^{\mathrm{T}
+}\left(\Gamma+A \mathbf{V}</em>{n-1} A^{\mathrm{T}
+}\right)^{-1} A \mathbf{V}<em>{n-1}\quad(C.7) \
+&amp;=\mathbf{V}</em>{n-1}-\mathbf{V}<em>{n-1} A^{\mathrm{T}
+} \mathbf{P}</em>{n-1}^{-1} A \mathbf{V}<em>{n-1}\quad(13.88) \
+&amp;=\mathbf{V}</em>{n-1}-J_{n-1} A \mathbf{V}<em>{n-1}\quad(13.102) \
+&amp;=\left(\mathbf{I}-J</em>{n-1} A\right) \mathbf{V}_{n-1}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{Y}A^{\mathrm{T}} \Gamma^{-1} &amp;=\left(\mathbf{V}<em>{n-1}^{-1}+A^{\mathrm{T}} \Gamma^{-1} A\right)^{-1} A^{\mathrm{T}} \Gamma^{-1} \ &amp;=\mathbf{V}</em>{n-1} A^{\mathrm{T}}\left(A \mathbf{V}<em>{n-1} A^{\mathrm{T}}+\Gamma\right)^{-1}\quad(C.5) \
+&amp;=\mathbf{V}</em>{n-1} A^{\mathrm{T}} \mathbf{P}<em>{n-1}^{-1}\quad(13.88) \
+&amp;=J</em>{n-1}\quad(13.102)
+\end{aligned}
+$$</p>
+<p>を使用した。</p>
+<p>さらにここで$(2.115)-(2.117)$を使用すると</p>
+<p>$$
+\begin{aligned}
+&amp;\ \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \pmb{\mu}</em>{n-1}, \mathbf{P}<em>{n-1}\right) \mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C} \mathbf{z}<em>{n}, \mathbf{\Sigma}\right) \
+=&amp;\ \mathcal{N}\left(\mathbf{x}</em>{n} \mid \mathbf{C A \mu _ { n - 1 }}, \mathbf{\Sigma}+\mathbf{C P _ { n - 1 }} \mathbf{C}^{\mathrm T}\right) \times \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{M}\left(\mathbf{C}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{x}</em>{n}+\mathbf{P}<em>{n-1}^{-1} \mathbf{A} \pmb{\mu}</em>{n-1}\right), \mathbf{M}\right)
+\end{aligned}
+$$</p>
+<p>ただし、
+$$
+\begin{aligned}
+\mathbf{M}&amp;=\left(\mathbf{P}<em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1} \
+&amp;=c</em>{n} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{K}</em>{n} \mathbf{x}<em>{n}+\left(\mathbf{I}-\mathbf{K}</em>{n} \mathbf{C}\right) \mathbf{P}<em>{n-1} \mathbf{P}</em>{n-1}^{-1} \mathbf{A} \mu_{n-1},\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1}\right)\quad(13.91) \
+&amp;=c_{n} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \mu</em>{n-1}+\mathbf{K}<em>{n}\left(\mathbf{x}</em>{n}-\mathbf{C A} \mu_{n-1}\right),\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1}\right) \
+&amp;=c_{n} \mathcal{N}\left(\mathbf{z}<em>{n} \mid \boldsymbol{\mu}</em>{n}, \mathbf{V}<em>{n}\right)\quad(13.89)、（13.90） \
+&amp;=c</em>{n} \hat{\alpha}\left(\mathbf{z}_{n}\right)
+\end{aligned}
+$$</p>
+<p>上記1行目の式は</p>
+<p>$$
+\begin{aligned}
+\mathbf{M} &amp;=\left(\mathbf{P}<em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1} \ &amp;=\mathbf{P}</em>{n-1}-\mathbf{P}<em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{\Sigma}+\mathbf{C} \mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\right)^{-1} \mathbf{C} \mathbf{P}<em>{n-1} \quad(C.7) \
+&amp;=\mathbf{P}</em>{n-1}-\mathbf{K}<em>{n} \mathbf{C} \mathbf{P}</em>{n-1}\quad(13.92) \
+&amp;=\left(\mathbf{I}-\mathbf{K}<em>{n} \mathbf{C}\right) \mathbf{P}</em>{n-1} \
+\mathbf{M} \mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1}&amp;=\left(\mathbf{P}<em>{n-1}^{-1}+\mathbf{C}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{C}\right)^{-1} \mathbf{C}^{T} \mathbf{\Sigma}^{-1} \
+&amp;=\mathbf{P}</em>{n-1} \mathbf{C}^{\mathrm{T}}\left(\mathbf{C} \mathbf{P}<em>{n-1} \mathbf{C}^{\mathrm{T}}+\mathbf{\Sigma}\right)^{-1}\quad(C.5) \
+&amp;=\mathbf{K}</em>{n}\quad(13.92)
+\end{aligned}
+$$</p>
+<p>これらを$(13.103)$に入れると</p>
+<p>$$
+\begin{aligned}
+\xi\left(\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right)&amp;=\frac{\mathcal{N}\left(\mathbf{z}<em>{n-1} \mid \mathbf{J}</em>{n-1} \mathbf{z}<em>{n}+\left(\mathbf{\mathbf{I}}-\mathbf{J}</em>{n-1} \mathbf{A}\right) \pmb{\mu}<em>{n-1},\left(\mathbf{I}-\mathbf{J}</em>{n-1} \mathbf{A}\right) \mathbf{V}<em>{n-1}\right) c</em>{n} \hat{\alpha}\left(\mathbf{z}<em>{n}\right) \mathcal{N}\left(\mathbf{z}</em>{n} \mid \widehat{\pmb{\mu}}<em>{n}, \widehat{\mathbf{V}}</em>{n}\right)}{c_{n} \hat{\alpha}\left(\mathbf{z}<em>{n}\right)} \
+&amp;=\mathcal{N}\left(\mathbf{z}</em>{n-1} \mid \mathbf{J}<em>{n-1} \mathbf{z}</em>{n}+\left(\mathbf{\mathbf{I}}-\mathbf{J}<em>{n-1} \mathbf{A}\right) \pmb{\mu}</em>{n-1},\left(\mathbf{\mathbf{I}}-\mathbf{J}<em>{n-1} \mathbf{A}\right) \mathbf{V}</em>{n-1}\right) \mathcal{N}\left(\mathbf{z}<em>{n} \mid \widehat{\pmb{\mu}}</em>{n}, \widehat{\mathbf{V}}_{n}\right)\quad(13.103)^{\prime}
+\end{aligned}
+$$</p>
+<p>を得る。</p>
+<p>$(13.103)^{\prime}$の右辺は線形ガウスモデルの周辺分布と条件分布の積になっているので2.3.3節より$\mathbf{z}<em>{n-1}$と$\mathbf{z}</em>{n}$の同時分布はガウス分布で$(2.108)$より平均は</p>
+<p>$$
+\begin{aligned}
+\mathbf{E}\left[\left(\begin{array}{c}
+\mathbf{z}<em>{n} \
+\mathbf{z}</em>{n-1}
+\end{array}\right)\right] &amp;=\left(\begin{array}{c}
+\widehat{\pmb{\mu}}<em>{n} \
+\mathbf{J}</em>{n-1} \widehat{\pmb{\mu}}<em>{n}+\left(\mathbf{I}-\mathbf{J}</em>{n-1} \mathbf{A}\right) \pmb{\mu}<em>{n-1}
+\end{array}\right) \
+&amp;=\left(\begin{array}{c}
+\widehat{\pmb{\mu}}</em>{n} \
+\pmb{\mu}<em>{n-1}+\mathbf{J}</em>{n-1}\left(\widehat{\pmb{\mu}}<em>{n}-\mathbf{A} \pmb{\mu}</em>{n-1}\right)
+\end{array}\right) \
+&amp;=\left(\begin{array}{c}
+\widehat{\pmb{\mu}}<em>{n} \
+\widehat{\pmb{\mu}}</em>{n-1}
+\end{array}\right)\quad(13.100)
+\end{aligned}
+$$</p>
+<p>となる。$(2.105)$より$\mathbf{z}<em>{n-1}$と$\mathbf{z}</em>{n}$の同時分布の共分散分布は</p>
+<p>$$
+\operatorname{cov}\left[\left(\begin{array}{l}
+\mathbf{z}<em>{n} \
+\mathbf{z}</em>{n-1}
+\end{array}\right)\right]=\left(\begin{array}{cc}
+\widehat{\mathbf{V}}<em>{n} &amp; \widehat{\mathbf{V}}</em>{n} \mathbf{J}<em>{n-1}^{\mathrm T} \
+\mathbf{J}</em>{n-1} \widehat{\mathbf{V}}<em>{n} &amp; \left(\mathbf{I}-\mathbf{J}</em>{n-1} \mathbf{A}\right) \mathbf{V}<em>{n-1}+\mathbf{J}</em>{n-1} \widehat{\mathbf{V}}<em>{n} \mathbf{J}</em>{n-1}^{\mathrm T}
+\end{array}\right)
+$$</p>
+<p>となる。$(2.78)$より、$\mathbf{z}<em>{n-1}$と$\mathbf{z}</em>{n}$の共分散は2行1列の要素になるので</p>
+<p>$$
+\operatorname{cov}\left[\mathbf{z}<em>{n-1}, \mathbf{z}</em>{n}\right]=\mathbf{J}<em>{n-1} \widehat{\mathbf{V}}</em>{n}\tag{13.104}
+$$</p>
+<p>を得る。</p>
+<h2 id="演習-1332"><a class="header" href="#演習-1332">演習 13.32</a></h2>
+<div class="panel-primary">
+<p>線形動的システムにおける$\boldsymbol{\mu}<em>{0}$と$\mathbf{P}</em>{0}$に対するMステップの方程式の結果</p>
+<p>$$
+\boldsymbol{\mu}<em>{0}^{\text{new}}=\mathbb{E}\left[\mathbf{z}</em>{1}\right] \tag{13.110}
+$$</p>
+<p>$$
+\mathbf{P}<em>{0}^{\text{new}}=\mathbb{E}\left[\mathbf{z}</em>{1} \mathbf{z}<em>{1}^{\mathrm{T}}\right]-\mathbb{E}\left[\mathbf{z}</em>{1}\right] \mathbb{E}\left[\mathbf{z}_{1}^{\mathrm{T}}\right] \tag{13.111}
+$$
+を確かめよ.</p>
+</div>
+<p>状態空間モデルの同時分布は</p>
+<p>$$
+p\left(\mathbf{x}<em>{1}, \ldots, \mathbf{x}</em>{N}, \mathbf{z}<em>{1}, \ldots, \mathbf{z}</em>{N}\right)=p\left(\mathbf{z}<em>{1}\right)\left[\prod</em>{n=2}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) \tag{13.6}
+$$</p>
+<p>線形動的システム（LDS）を導入すると、$(13.75)(13.76)(13.77)$より</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}\right) &amp;=\mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A} \mathbf{z}</em>{n-1}, \mathbf{\Gamma}\right) \
+p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}\right) &amp;=\mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{C} \mathbf{z}</em>{n}, \mathbf{\Sigma}\right) \
+p\left(\mathbf{z}<em>{1}\right)&amp;=\mathcal{N}\left(\mathbf{z}</em>{1} \mid \boldsymbol{\mu}<em>{0}, \mathbf{P}</em>{0}\right)
+\end{aligned}
+$$</p>
+<p>となる。P.361より完全データの対数尤度関数は、$(13.6)$の対数をとって</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta})=&amp; \ln p\left(\mathbf{z}<em>{1} \mid \boldsymbol{\mu}</em>{0}, \mathbf{P}<em>{0}\right)+\sum</em>{n=2}^{N} \ln p\left(\mathbf{z}<em>{n} \mid \mathbf{z}</em>{n-1}, \mathbf{A}, \mathbf{\Gamma}\right) \
+&amp;+\sum_{n=1}^{N} \ln p\left(\mathbf{x}<em>{n} \mid \mathbf{z}</em>{n}, \mathbf{C}, \mathbf{\Sigma}\right)
+\end{aligned} \tag{13.108}
+$$</p>
+<p>次に事後分布について</p>
+<p>$$
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old}}\right)=\mathbb{E}_{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta})] \tag{13.109}
+$$</p>
+<p>これに代入すると</p>
+<p>$$
+\begin{aligned}
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old}}\right)&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\ln \mathcal{N}\left(\mathbf{z}</em>{1} \mid \boldsymbol{\mu}<em>{0}, \mathbf{P}</em>{0}\right)+\sum_{n=2}^{N} \ln \mathcal{N}\left(\mathbf{z}<em>{n} \mid \mathbf{A}{\mathbf{z}</em>{n-1}}, \mathbf{\Gamma}\right)+\sum_{n=1}^{N} \ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\Sigma}\right)\right] \
+&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[-\frac{1}{2} \ln \left|\mathbf{P}</em>{0}\right|-\frac{1}{2}\left(\mathbf{z}<em>{1}-\boldsymbol{\mu}</em>{0}\right)^{\mathrm T} \mathbf{P}<em>{0}^{-1}\left(\mathbf{z}</em>{1}-\boldsymbol{\mu}_{0}\right)\right]+\text { const. }
+\end{aligned}
+$$</p>
+<p>ここで$\boldsymbol{\mu}<em>{0}$あるいは$\mathbf{P}</em>{0}$に依存しないすべての項はconst.項に吸収させている。
+これを$\boldsymbol{\mu}_{0}$について最大化すると</p>
+<p>$$
+\begin{aligned}
+\frac{\partial Q}{\partial \boldsymbol{\mu}<em>{0}}&amp;=\mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[-\frac{1}{2} \cdot-2 \mathbf{P}<em>{0}^{-1}\left(\mathbf{z}</em>{1}-\boldsymbol{\mu}<em>{0}\right)\right]\
+&amp;=\mathbf{P}</em>{0}^{-1}\left(\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[ \mathbf{z}</em>{1} \right]-\boldsymbol{\mu}<em>{0}\right)=0\
+\boldsymbol{\mu}</em>{0}^{\text {new}}&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[ \mathbf{z}</em>{1} \right]
+\end{aligned}
+$$</p>
+<p>$\mathbf{P}_{0}$について最大化すると</p>
+<p>$$
+\frac{\partial Q}{\partial \mathbf{P}<em>{0}}=-\frac{1}{2}\left[\mathbf{P}</em>{0}^{-\mathrm{T}}+\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[-\mathbf{P}</em>{0}^{-\mathrm{T}}\left(\mathbf{z}<em>{1}-\boldsymbol{\mu}</em>{0}\right)\left(\mathbf{z}<em>{1}-\boldsymbol{\mu}</em>{0}\right)^{\mathrm{T}} \mathbf{P}_{0}^{-\mathrm{T}}\right]\right] =0
+$$</p>
+<p>$$
+\begin{aligned}
+\left(\mathbf{P}^{\textrm{new}}<em>{0}\right)^{-\mathrm{T}} &amp;=\mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\left(\mathbf{P}^{\textrm{new}}<em>{0}\right)^{-\mathrm{T}}\left(\mathbf{z}</em>{1}-\boldsymbol{\mu}<em>{0}\right)\left(\mathbf{z}</em>{1}-\boldsymbol{\mu}<em>{0}\right)^{\mathrm{T}} \left(\mathbf{P}^{\textrm{new}}</em>{0}\right)^{-\mathrm{T}}\right] \
+\mathbf{P}^{\textrm{new}}<em>{0} &amp;=\mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\left(\mathbf{z}<em>{1}-\boldsymbol{\mu}</em>{0}\right)\left(\mathbf{z}<em>{1}-\boldsymbol{\mu}</em>{0}\right)^{\mathrm{T}}\right] \
+&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}</em>{1} \mathbf{z}<em>{1}^{\mathrm{T}}\right]-2 \mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1}\right] \boldsymbol{\mu}</em>{0}^{\mathrm{T}}+\boldsymbol{\mu}<em>{0} \boldsymbol{\mu}</em>{0}^{\mathrm{T}} \
+&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}</em>{1} \mathbf{z}<em>{1}^{\mathrm{T}}\right]-2 \mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1}\right] \mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1}\right]^{\mathrm{T}}+\mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1}\right] \mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1}\right]^{\mathrm{T}}\
+&amp;=\mathbb{E}</em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}<em>{1} \mathbf{z}</em>{1}^{\mathrm{T}}\right]-\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}</em>{1}\right] \mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\mathbf{z}</em>{1}\right]^{\mathrm{T}}
+\end{aligned}
+$$</p>
+<h2 id="演習-1333"><a class="header" href="#演習-1333">演習 13.33</a></h2>
+<div class="panel-primary">
+<p>線形動的システムにおける$\mathbf{A}$と$\mathbf{\Gamma}$に対するMステップの方程式の結果</p>
+<p>$$
+\mathbf{A}^{\text{new}}=\left(\sum_{n=2}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\right)\left(\sum_{n=2}^{N} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\right)^{-1} \tag{13.113}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Gamma}^{\text {new}}=&amp;\frac{1}{N-1} \sum_{n=2}^{N}\left{\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]-\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right. \
+&amp; \left. -\ \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\left(\mathbf{A}^{\text{new}}\right)^{\mathrm{T}}+\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\left(\mathbf{A}^{\text{new}}\right)^{\mathrm{T}}\right}
+\end{aligned} \tag{13.114}
+$$</p>
+<p>を確かめよ.</p>
+</div>
+<p>演習13.32の$Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text{old}}\right)$のうち、$\mathcal{N}\left(\mathbf{z}<em>{n} \mid  \mathbf{Az}</em>{n-1}, \mathbf{\Gamma}\right)$に関係する項のみを抜き出して</p>
+<p>$$
+\begin{aligned}
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text{old}}\right) &amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\sum</em>{n=2}^{N} \ln \mathcal{N}\left(\mathbf{z}<em>{n} \mid  \mathbf{Az}</em>{n-1}, \mathbf{\Gamma}\right)\right]+\text{ const.} \
+&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\sum</em>{n=2}^{N}\left{-\frac{1}{2} \ln |\mathbf{\Gamma}|-\frac{1}{2}\left(\mathbf{z}<em>{n}-\mathbf{Az}</em>{n-1}\right)^{\mathrm T} \mathbf{\Gamma}^{-1}\left(\mathbf{z}<em>{n}-\mathbf{Az}</em>{n-1}\right)\right}\right]+\text{ const.}
+\end{aligned}
+$$</p>
+<p>$\mathbf{A}$について</p>
+<p>$$
+\begin{aligned}
+\frac{\partial Q}{\partial \mathbf{A}} &amp;=-\frac{1}{2} \mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\sum</em>{n=2}^{N} \frac{\partial}{\partial \mathbf{A}}\left[\left(\mathbf{z}<em>{n}-\mathbf{Az}</em>{n-1}\right)^{\mathrm T} \mathbf{\Gamma}^{-1}\left(\mathbf{z}<em>{n}-\mathbf{Az}</em>{n-1}\right)\right]\right] \
+&amp;=-\frac{1}{2} \mathbb{E}<em>{\mathbf{Z} \mid \boldsymbol{\theta}^{\text{old}}}\left[\sum</em>{n=2}^{N}\left(-2 \mathbf{\Gamma}^{-1}\left(\mathbf{z}<em>{n}-\mathbf{Az}</em>{n-1}\right) \mathbf{z}<em>{n-1}^{\mathrm T}\right)\right] \
+&amp;=\sum</em>{n=2}^{N} \mathbf{\Gamma}^{-1} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm T}\right]-\sum_{n=2}^{N} \mathbf{\Gamma}^{-1} \mathbf{A} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm T}\right]
+\end{aligned}
+$$</p>
+<p>最大化するために$\frac{\partial Q}{\partial \mathbf{A}} =0$として</p>
+<p>$$
+\sum_{n=2}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm T}\right] = \sum_{n=2}^{N} \mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm T}\right]
+$$</p>
+<p>$$
+\mathbf{A}^{\text{new}}=\left(\sum_{n=2}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\right)\left(\sum_{n=2}^{N} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\right)^{-1} \tag{13.113}
+$$</p>
+<p>同様に$\mathbf{\Gamma}$について</p>
+<p>$$
+\frac{\partial Q}{\partial \mathbf{\Gamma}}=-\frac{1}{2} \sum_{n=2}^{N}\left[\mathbf{\Gamma}^{-\mathrm T}+\mathbb{E}\left[-\mathbf{\Gamma}^{-\mathrm T}\left(\mathbf{z}<em>{n}-\mathbf{A} \mathbf{z}</em>{n-1}\right)\left(\mathbf{z}<em>{n}-\mathbf{A} \mathbf{z}</em>{n-1}\right)^{\mathrm T} \mathbf{\Gamma}^{-\mathrm T}\right]\right]=0
+$$</p>
+<p>最大化するために$\frac{\partial Q}{\partial \mathbf{\Gamma}}=0$として</p>
+<p>$$
+\begin{aligned} \sum_{n=2}^{N}\left(\mathbf{\Gamma}^{\text{new}}\right)^{-\mathrm{T}} &amp;=\sum_{n=2}^{N} \mathbb{E}\left[\left(\mathbf{\Gamma}^{\text{new}}\right)^{-\mathrm{T}}\left(\mathbf{z}<em>{n}-\mathbf{A}^{\text{new}} \mathbf{z}</em>{n-1}\right)\left(\mathbf{z}<em>{n}-\mathbf{A}^{\text{new}} \mathbf{z}</em>{n-1}\right)^{\mathrm T}\left(\mathbf{\Gamma}^{\text{new}}\right)^{-\mathrm{T}}\right] \ \sum_{n=2}^{N} \mathbf{\Gamma}^{\text{new}} &amp;=\sum_{n=2}^{N} \mathbb{E}\left[\left(\mathbf{z}<em>{n}-\mathbf{A}^{\text{new}} \mathbf{z}</em>{n-1}\right)\left(\mathbf{z}<em>{n}-\mathbf{A}^{\text{new}} \mathbf{z}</em>{n-1}\right)^{\mathrm T}\right] \
+(N-1) \mathbf{\Gamma}^{\text{new}}&amp;=\sum_{n=2}^{N}\left{\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm T}\right]-\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n}^{\mathrm T}\right]-\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm T}\right]\left(\mathbf{A}^{\text{new}}\right)^{\mathrm T}+\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm T}\right] \mathbf{A}^{\text{new}}\right}
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Gamma}^{\text {new}}=&amp;\frac{1}{N-1} \sum_{n=2}^{N}\left{\mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]-\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right. \
+&amp; \left. -\ \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\left(\mathbf{A}^{\text{new}}\right)^{\mathrm{T}}+\mathbf{A}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n-1} \mathbf{z}</em>{n-1}^{\mathrm{T}}\right]\left(\mathbf{A}^{\text{new}}\right)^{\mathrm{T}}\right}
+\end{aligned} \tag{13.114}
+$$</p>
+<h2 id="演習-1334"><a class="header" href="#演習-1334">演習 13.34</a></h2>
+<div class="panel-primary">
+<p>線形動的システムにおける$\mathbf{C}$と$\mathbf{\Sigma}$に対するMステップの方程式の結果</p>
+<p>$$
+\mathbf{C}^{\text{new}} = \left(\sum_{n=1}^{N} \mathbf{x}<em>{n} \mathbb{E}\left[\mathbf{z}</em>{n}^{\mathrm{T}}\right]\right)\left(\sum_{n=1}^{N} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\right)^{-1} \tag{13.115}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma}^{\text{new}} = &amp; \frac{1}{N} \sum_{n=1}^{N}\left{\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-\mathbf{C}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n}\right] \mathbf{x}</em>{n}^{\mathrm{T}}\right.\ &amp;\left.-\mathbf{x}<em>{n} \mathbb{E}\left[\mathbf{z}</em>{n}^{\mathrm{T}}\right]\left(\mathbf{C}^{\text{new}}\right)^{\mathrm{T}}+\mathbf{C}^{\text{new}} \mathbb{E}\left[\mathbf{z}<em>{n} \mathbf{z}</em>{n}^{\mathrm{T}}\right]\left(\mathbf{C}^{\text{new}}\right)^{\mathrm{T}}\right}
+\end{aligned} \tag{13.116}
+$$</p>
+<p>を確かめよ.</p>
+</div>
+<p>演習13.32の$Q\left(\pmb{\theta}, \pmb{\theta}^{\text{old}}\right)$と同様、$\mathbf{C}$と$\mathbf{\Sigma}$についての項を抜き出す。</p>
+<p>$$
+\begin{aligned}
+Q\left(\pmb{\theta}, \pmb{\theta}^{\text{old}}\right) &amp;=\mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\sum</em>{n=1}^{N} \ln N\left(\mathbf{x}<em>{n} \mid \mathbf{Cz}</em>{n}, \mathbf{\Sigma}\right)\right]+\text { const.} \
+&amp;=\mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\sum</em>{n=1}^{N}\left(-\frac{1}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2}\left(\mathbf{x}<em>{n}-\mathbf{Cz}</em>{n}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}<em>{n}-\mathbf{Cz}</em>{n}\right)\right)\right]+\text { const.}
+\end{aligned}
+$$</p>
+<p>$\mathbf{C}$について、これは演習13.33の$\mathbf{A}^{\textrm{new}}$についての変形とほぼ同様に</p>
+<p>$$
+\frac{\partial Q}{\partial \mathbf{C}}=\sum_{n=1}^{N} \mathbf{\Sigma}^{-1} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{x}</em>{n} \mathbf{z}<em>{n}^{\mathrm{T}}\right]-\sum</em>{n=1}^{N} \mathbf{\Sigma}^{-1} \mathbf{C} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}</em>{n} \mathbf{z}_{n}^{\mathrm{T}}\right]
+$$</p>
+<p>$\frac{\partial Q}{\partial \mathbf{C}}=0$として</p>
+<p>$$
+\mathbf{C}^{\textrm{new}} \sum_{n=1}^{N} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{x}</em>{n} \mathbf{z}<em>{n}^{\mathrm{T}}\right]=\sum</em>{n=1}^{N} \mathbf{x}<em>{n} \mathbb{E}</em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}_{n}^{\mathrm{T}}\right]
+$$</p>
+<p>$$
+\mathbf{C}^{\text{new}} = \left(\sum_{n=1}^{N} \mathbf{x}<em>{n} \mathbb{E}</em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}<em>{n}^{\mathrm{T}}\right]\right)\left(\sum</em>{n=1}^{N} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}</em>{n} \mathbf{z}_{n}^{\mathrm{T}}\right]\right)^{-1} \tag{13.115}
+$$</p>
+<p>同様に$\mathbf{\Sigma}$について</p>
+<p>$$
+\frac{\partial Q}{\partial \mathbf{\Sigma}}=-\frac{1}{2} \sum_{n=1}^{N}\left[\mathbf{\Sigma}^{-\mathrm{T}}+\mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[-\mathbf{\Sigma}^{-\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{Cz}<em>{n}\right)\left(\mathbf{x}</em>{n}-\mathbf{Cz}_{n}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-\mathrm{T}}\right]\right]
+$$</p>
+<p>$\frac{\partial Q}{\partial \mathbf{\Sigma}}=0$として</p>
+<p>$$
+\sum_{n=1}^{N}\left( \mathbf{\Sigma}^{\textrm{new}} \right)^{-\mathrm{T}}=\sum_{n=1}^{N} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\left(\mathbf{\Sigma}^{\textrm{new}}\right)^{-\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{C}^{\textrm{new}}\mathbf{z}<em>{n}\right)\left(\mathbf{x}</em>{n}-\mathbf{C}^{\textrm{new}}\mathbf{z}_{n}\right)^{\mathrm{T}}\left(\mathbf{\Sigma}^{\textrm{new}}\right)^{-\mathrm{T}}\right]
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma}^{\text{new}} = &amp; \frac{1}{N} \sum_{n=1}^{N}\left{\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-\mathbf{C}^{\text{new}} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}</em>{n}\right] \mathbf{x}<em>{n}^{\mathrm{T}}\right.\ &amp;\left.-\mathbf{x}</em>{n} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}</em>{n}^{\mathrm{T}}\right]\left(\mathbf{C}^{\text{new}}\right)^{\mathrm{T}}+\mathbf{C}^{\text{new}} \mathbb{E}<em>{\mathbf{Z} \mid \pmb{\theta}^{\text{old}}}\left[\mathbf{z}</em>{n} \mathbf{z}_{n}^{\mathrm{T}}\right]\left(\mathbf{C}^{\text{new}}\right)^{\mathrm{T}}\right}
+\end{aligned} \tag{13.116}
+$$</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch12.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch12.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

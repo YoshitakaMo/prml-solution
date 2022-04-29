@@ -1,0 +1,1383 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第4章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html" class="active"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第4章演習問題解答"><a class="header" href="#prml第4章演習問題解答">PRML第4章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-41"><a class="header" href="#演習-41">演習 4.1</a></h2>
+<div class="panel-primary">
+<p>データ${ \mathbf{x}_n}$の集合が与えられ，<strong>凸包</strong>(convex hull)とは以下の式で与えられるすべての点の集合であると定義することができる．</p>
+<p>$$
+\mathbf{x} = \sum_{n}\alpha_n \mathbf{x}_n \tag{4.156}
+$$</p>
+<p>ここで$\alpha_n \geq 0$であり，$\sum_n \alpha_n = 1$である．第2のデータ${ \mathbf{y}_n}$の集合とそれに対応する凸包を考える．もしすべてのデータ$\mathbf{x}_n$に対し$\hat{\mathbf{w}}^{\mathrm{T}}\mathbf{x}_n + w_0 &gt; 0$を満たし，すべてのデータ$\mathbf{y}_n$に対し$\hat{\mathbf{w}}^{\mathrm{T}}\mathbf{y}_n + w_0 &lt; 0$を満たすベクトル$\hat{\mathbf{w}}$とスカラー$w_0$が存在するなら，定義によりこれら2つのデータの集合は線形分離可能である．それらの凸包が重なる場合，2つのデータの集合は線形分離可能ではないことを示せ．また，逆に2つのデータの集合が線形分離可能な場合，それらの凸包が重ならないことを示せ．</p>
+</div>
+<p>※<a href="https://ja.wikipedia.org/wiki/%E5%87%B8%E5%8C%85">凸包 (Wikipedia)</a>とは与えられた集合を含む最小の凸集合である。例えば$X$がユークリッド平面内の有界な点集合のとき、その凸包は直観的には$X$をゴム膜で包んだときにゴム膜が作る図形として視認することができる。つまり「与えられたデータを包み込む最小の集合」なので、凸包が2つのデータ集合間で重なっている場合には、線形分離不可能であるイメージが直観的に理解できる。矛盾を示す際には、両方にまたがる交差領域を使う。</p>
+<p>「<strong>それらの凸包が重なる場合，2つのデータの集合は線形分離可能ではないことを示せ</strong>」について</p>
+<p>凸包が重なるというのは、2つのデータ集合${\mathbf{x}_n}$と${\mathbf{y}_m}$が存在し、それぞれについての凸包のintersect（交差）領域が存在することを意味する。そしてそのようなintersect上の点$\mathbf{z}$を</p>
+<p>$$
+\mathbf{z}=\sum_{n} \alpha_{n} \mathbf{x}<em>{n}=\sum</em>{m} \beta_{m} \mathbf{y}_{m}
+$$</p>
+<p>のように書くことができる。ここで$\beta_m$はすべての$m$について$\beta_m \geq 0$であり、$\sum_m \beta_m = 1$を満たす。</p>
+<p>ここで、凸包が重なる場合であっても2つのデータ集合${\mathbf{x}_n}$と${\mathbf{y}_m}$が線形分離可能であると仮定する。このとき、2つのintersect上に存在する点$\mathbf{z}$について</p>
+<p>$$
+\begin{aligned}
+\hat{\mathbf{w}}^{\mathrm T}\mathbf{z} + w_0 &amp;= \sum_n \alpha_n \hat{\mathbf{w}}^{\mathrm T}\mathbf{x}_n + w_0 \
+&amp;= \sum_n \alpha_n \hat{\mathbf{w}}^{\mathrm T}\mathbf{x}<em>n + \underbrace{\left( \sum_n\alpha_n \right)}</em>{1}w_0 \
+&amp;= \sum_n \alpha_n \left( \hat{\mathbf{w}}^{\mathrm T}\mathbf{x}_n + w_0 \right) &gt; 0 \quad (\because \hat{\mathbf{w}}^{\mathrm T}\mathbf{x}_n + w_0 &gt; 0)
+\end{aligned}
+$$</p>
+<p>一方で</p>
+<p>$$
+\begin{aligned}
+\hat{\mathbf{w}}^{\mathrm T}\mathbf{z} + w_0 &amp;= \sum_m \beta_m \hat{\mathbf{w}}^{\mathrm T}\mathbf{y}_m + w_0 \
+&amp;= \sum_m \beta_m \hat{\mathbf{w}}^{\mathrm T}\mathbf{y}<em>m + \underbrace{\left( \sum_m \beta_m \right)}</em>{1}w_0 \
+&amp;= \sum_m \beta_m \left( \hat{\mathbf{w}}^{\mathrm T}\mathbf{y}_m + w_0 \right) &lt; 0 \quad (\because \hat{\mathbf{w}}^{\mathrm T}\mathbf{y}_m + w_0 &lt; 0)
+\end{aligned}
+$$</p>
+<p>となる。これは矛盾するので仮定は誤りであり、凸包が重なる場合には2つのデータ集合${\mathbf{x}_n}$と${\mathbf{y}_m}$は線形分離可能ではないことが示された。また、この対偶を取ることで「<strong>2つのデータの集合が線形分離可能な場合，それらの凸包が重ならない</strong>」ことも自動的に示される。</p>
+<h2 id="演習-42"><a class="header" href="#演習-42">演習 4.2</a></h2>
+<div class="panel-primary">
+<p>二乗和誤差関数
+$$
+E_{D}(\widetilde{\mathbf{W}})=\frac{1}{2} \operatorname{Tr}\left{(\widetilde{\mathbf{X}} \widetilde{\mathbf{W}}-\mathbf{T})^{\mathrm{T}}(\widetilde{\mathbf{X}} \widetilde{\mathbf{W}}-\mathbf{T})\right} \tag{4.15}
+$$
+の最小化を考える．学習データ集合におけるすべての目的変数ベクトルが線形制約</p>
+<p>$$
+\mathbf{a}^{\mathrm{T}} \mathbf{t}_{n}+b=0 \tag{4.157}
+$$</p>
+<p>を満たすと仮定する．ここで，$\mathbf{t}_n$は$(4.15)$における行列$\mathbf{T}$の$n$番目の行に相当する．この制約の結果として，最小二乗解
+$$
+\mathbf{y}(\mathbf{x})=\widetilde{\mathbf{W}}^{\mathrm{T}} \widetilde{\mathbf{x}}=\mathbf{T}^{\mathrm{T}}\left(\tilde{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\widetilde{\mathbf{x}},\quad \text{where}\quad \tilde{\mathbf{X}}^{\dagger} = \left(\tilde{\mathbf{X}}^{\mathrm{T}} \tilde{\mathbf{X}}\right)^{-1} \tilde{\mathbf{X}}^{\mathrm{T}} \tag{4.17}
+$$
+によって与えられるモデルの予測$\mathbf{y}(\mathbf{x})$の要素もまたこの制約を満たす，つまり，以下の式を満たすことを示せ．</p>
+<p>$$
+\mathbf{a}^{\mathrm{T}} \mathbf{y}(\mathbf{x})+b=0 \tag{4.158}
+$$</p>
+<p>上記を示すため，パラメータ$w_0$がバイアスとしての役割を持つように，基底関数が$\phi_0(\mathbf{x})=0$であると仮定する．</p>
+</div>
+<p>まずそれぞれの行列の形を確認する。</p>
+<p>$$
+\mathbf{\widetilde{X}}=\begin{pmatrix}
+1 &amp; \mathbf{x}<em>1^{\mathrm{T}} \
+1 &amp; \mathbf{x}<em>2^{\mathrm{T}} \
+\vdots &amp; \vdots \
+1 &amp; \mathbf{x}<em>n^{\mathrm{T}} \
+\end{pmatrix} = \begin{pmatrix}\mathbf{1} &amp; \mathbf{X}\end{pmatrix},\quad
+\mathbf{\widetilde{W}}=\begin{pmatrix}
+w</em>{10} &amp; w</em>{20} &amp; \cdots &amp; w</em>{K0} \
+\mathbf{w}_1 &amp; \mathbf{w}_2 &amp; \cdots &amp; \mathbf{w}_K \
+\end{pmatrix}= \begin{pmatrix}\mathbf{w}_0^{\mathrm{T}} \ \mathbf{W}\end{pmatrix}
+$$
+$\mathbf{\widetilde{X}}$は$N\times (D+1)$行列, $\mathbf{\widetilde{W}}$は$(D+1)\times K$行列である。$\mathbf{w}_0$はバイアスパラメータのベクトルである。また$\mathbf{1}$は$N$次元の全要素が$1$の列ベクトルを表しており、ダミー入力$x_0 = 1$を明示的に表示するために入れている。</p>
+<p>$\mathbf{T}$は$N\times K$行列で
+$$
+\mathbf{T}=\begin{pmatrix}
+\mathbf{t}_1^{\mathrm{T}} \
+\mathbf{t}_2^{\mathrm{T}} \
+\vdots \
+\mathbf{t}_n^{\mathrm{T}}
+\end{pmatrix}
+$$
+と書ける。</p>
+<p>これらからバイアスパラメータとダミー入力を分離して$(4.15)$の誤差二乗和関数$E_D(\widetilde{\mathbf{W}})$を表すと</p>
+<p>$$
+\begin{aligned}
+E_{D}(\widetilde{\mathbf{W}})&amp;=\frac{1}{2} \operatorname{Tr}\left{(\widetilde{\mathbf{X}} \widetilde{\mathbf{W}}-\mathbf{T})^{\mathrm{T}}(\widetilde{\mathbf{X}} \widetilde{\mathbf{W}}-\mathbf{T})\right} \
+&amp;=\frac{1}{2} \operatorname{Tr}\left{
+(\mathbf{XW}+\mathbf{1}\mathbf{w}_0^{\mathrm{T}}-\mathbf{T})^{\mathrm{T}}(\mathbf{XW}+\mathbf{1}\mathbf{w}_0^{\mathrm{T}}-\mathbf{T})
+\right}
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>$E_D(\widetilde{\mathbf{W}})$の最小化のためにまず$\mathbf{w}_0$について微分すると</p>
+<p>$$
+\begin{aligned}
+\frac{\partial E_D}{\partial \mathbf{w}_0} &amp;= \frac{1}{2}\cdot 2\left( \mathbf{XW}+\mathbf{1}\mathbf{w}_0^{\mathrm{T}}-\mathbf{T} \right)^{\mathrm{T}}\mathbf{1} \
+&amp;=\left( \mathbf{XW} - \mathbf{T} \right)^{\mathrm{T}}\mathbf{1} + \mathbf{w}_0 \mathbf{1}^{\mathrm{T}}\mathbf{1} \
+&amp;=\left( \mathbf{XW} - \mathbf{T} \right)^{\mathrm{T}}\mathbf{1} + N\mathbf{w}_0
+\end{aligned}
+$$
+これが$\mathbf{0}$となれば良いので
+$$
+\begin{aligned}
+\mathbf{w}_0 &amp;= \frac{1}{N}\left( \mathbf{T} - \mathbf{XW} \right)^{\mathrm{T}}\mathbf{1} \
+&amp;= \frac{1}{N}\mathbf{T}^{\mathrm{T}}\mathbf{1} - \frac{1}{N}\mathbf{W}^{\mathrm{T}}\mathbf{X}^{\mathrm{T}}\mathbf{1} \
+&amp;:= \overline{\mathbf{t}}-\mathbf{W}^{\mathrm{T}}\overline{\mathbf{x}}
+\end{aligned}
+$$
+ここで、以降の略記のために$\displaystyle \overline{\mathbf{t}} = \frac{1}{N}\mathbf{T}^{\mathrm{T}}\mathbf{1},\quad \overline{\mathbf{x}} = \frac{1}{N}\mathbf{X}^{\mathrm{T}}\mathbf{1}$とした。</p>
+<p>$E_D(\widetilde{\mathbf{W}})$の$\mathbf{w}<em>0$をこれで書き換えると
+$$
+\begin{aligned}
+E</em>{D}(\mathbf{W}) &amp;= \frac{1}{2} \operatorname{Tr}\left{(\mathbf{X} \mathbf{W}+\overline{\mathbf{T}}-\overline{\mathbf{X}} \mathbf{W}-\mathbf{T})^{\mathrm{T}}(\mathbf{X} \mathbf{W}+\overline{\mathbf{T}}-\overline{\mathbf{X}} \mathbf{W}-\mathbf{T})\right} \
+&amp;= \frac{1}{2} \operatorname{Tr}\left{\left((\mathbf{X} - \overline{\mathbf{X}})\mathbf{W} - (\mathbf{T} - \overline{\mathbf{T}})\right)^{\mathrm{T}}\left((\mathbf{X} - \overline{\mathbf{X}})\mathbf{W} - (\mathbf{T} - \overline{\mathbf{T}})\right)\right}
+\end{aligned}
+$$
+ここで略記のために$\displaystyle \overline{\mathbf{T}}=\mathbf{1} \overline{\mathbf{t}}^{\mathrm{T}}, \quad \overline{\mathbf{X}}=\mathbf{1} \overline{\mathbf{x}}^{\mathrm{T}}$とした。</p>
+<p>これについても$\mathbf{W}$について微分して$\mathbf{0}$をとると
+$$
+\frac{\partial E_{D}}{\partial \mathbf{W}} = \frac{1}{2}\cdot 2 (\mathbf{X} - \overline{\mathbf{X}})^{\mathrm{T}}\left((\mathbf{X} - \overline{\mathbf{X}})\mathbf{W} - (\mathbf{T} - \overline{\mathbf{T}})\right) = \mathbf{0}
+$$
+$\widehat{\mathbf{X}}=\mathbf{X}-\overline{\mathbf{X}}, \widehat{\mathbf{T}}=\mathbf{T}-\overline{\mathbf{T}}$と書き直すと
+$$
+\mathbf{W}=\left(\widehat{\mathbf{X}}^{\mathrm{T}} \widehat{\mathbf{X}}\right)^{-1} \widehat{\mathbf{X}}^{\mathrm{T}} \widehat{\mathbf{T}}=\widehat{\mathbf{X}}^{\dagger} \widehat{\mathbf{T}}
+$$
+となる。</p>
+<p>以上から、新しい入力$\mathbf{x}^{<em>}$が得られたときの予測値$\mathbf{y}(\mathbf{x}^{</em>})$は</p>
+<p>$$
+\begin{aligned}
+\mathbf{y}\left(\mathbf{x}^{<em>}\right) &amp;= \widetilde{\mathbf{W}}^{\mathrm{T}} \widetilde{\mathbf{x}^{</em>}}\
+&amp;= \begin{pmatrix}\mathbf{w}<em>0 &amp; \mathbf{W}^{\mathrm{T}}\end{pmatrix} \begin{pmatrix}1 \ \mathbf{x}^{*}\end{pmatrix} \
+&amp;=\mathbf{W}^{\mathrm{T}} \mathbf{x}^{\star}+\mathbf{w}</em>{0} \
+&amp;=\mathbf{W}^{\mathrm{T}} \mathbf{x}^{\star}+\overline{\mathbf{t}}-\mathbf{W}^{\mathrm{T}} \overline{\mathbf{x}} \
+&amp;=\overline{\mathbf{t}}+\widehat{\mathbf{T}}^{\mathrm{T}}\left(\widehat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right)
+\end{aligned}
+$$
+となる。</p>
+<p>一方、$(4.157)$式の線形制約条件は$\overline{\mathbf{t}}$について適用すると、以下のように書き直せる
+$$
+\begin{aligned}
+\mathbf{a}^{\mathrm{T}}\overline{\mathbf{t}} + b &amp;= \frac{1}{N}(\mathbf{a}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}}\mathbf{1} + Nb) \
+&amp;= \frac{1}{N}\sum_{n=1}^N(\mathbf{a}^{\mathrm{T}}\mathbf{t}_n + b) \
+&amp;= 0
+\end{aligned}
+$$
+すなわち$\mathbf{a}^{\mathrm{T}}\overline{\mathbf{t}} = -b$が得られる。また、$\mathbf{a}^{\mathrm{T}}\mathbf{t}_n + b = 0$を$\mathbf{T}^{\mathrm{T}}$について適用すると
+$$
+\mathbf{a}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}} = \begin{pmatrix} -b &amp; -b &amp; \cdots &amp; -b \end{pmatrix} = -b\mathbf{1}^{\mathrm{T}}
+$$
+となる。</p>
+<p>以上を用いて、$(4.157)$式の線形制約が成立しているとき、モデルの予測$\mathbf{y}(\mathbf{x}^{*})$について$(4.158)$の左辺を計算してみると
+$$
+\begin{aligned}
+\mathbf{a}^{\mathrm{T}} \mathbf{y}\left(\mathbf{x}^{\star}\right) + b &amp;=\mathbf{a}^{\mathrm{T}} \overline{\mathbf{t}}+\mathbf{a}^{\mathrm{T}} \widehat{\mathbf{T}}^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) + b \
+&amp;= \mathbf{a}^{\mathrm{T}} \widehat{\mathbf{T}}^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= \mathbf{a}^{\mathrm{T}} (\mathbf{T} - \overline{\mathbf{T}})^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (\mathbf{a}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}} - \mathbf{a}^{\mathrm{T}}\overline{\mathbf{T}}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (\mathbf{a}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}} - \mathbf{a}^{\mathrm{T}}\overline{\mathbf{t}}\mathbf{1}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (-b\mathbf{1}^{\mathrm{T}} + b\mathbf{1}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= \mathbf{0}^{\mathrm{T}} \left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= 0
+\end{aligned}
+$$
+よって、$(4.158)$式の$\mathbf{a}^{\mathrm{T}} \mathbf{y}\left(\mathbf{x}^{\star}\right) + b = 0$が示された。</p>
+<blockquote>
+<p>目標値の分布が超平面に載るという拘束条件下で誤差関数を最小二乗和にしてクラス分類すると、その予測値の分布も超平面上に載るということである。</p>
+</blockquote>
+<h2 id="演習-43"><a class="header" href="#演習-43">演習 4.3</a></h2>
+<div class="panel-primary">
+<p>演習問題4.2の結果を拡張し，多次元線形制約が目的変数ベクトルによって同時に満たされる場合，同じ制約が線形モデルの最小二乗予測によっても満たされることを示せ．</p>
+</div>
+<p>演習問題4.2の仮定を拡張する。
+「多次元線形制約が目的変数ベクトルによって同時に満たされる場合」というのは、$(4.157)$式の線形制約が</p>
+<p>$$
+\mathbf{A}\mathbf{t}_n+\mathbf{b} = \mathbf{0}
+$$</p>
+<p>となることを表す。ここで、$\mathbf{A}$は行列で$\mathbf{b}$はベクトルであり、$\mathbf{A}$と$\mathbf{b}$の各行が1つの線形制約を表すようなものである。つまり$l$を多次元線形制約の次元数として</p>
+<p>$$
+\mathbf{A} = \begin{pmatrix}
+\mathbf{a}_1^{\mathrm T} \
+\mathbf{a}_2^{\mathrm T} \
+\vdots \
+\mathbf{a}_l^{\mathrm T}
+\end{pmatrix}, \quad
+\mathbf{b} = \begin{pmatrix}
+b_1 \
+b_2 \
+\vdots \
+b_l
+\end{pmatrix}
+$$</p>
+<p>となる。</p>
+<p>題意「同じ制約が線形モデルの最小二乗予測によっても満たされることを示せ」は、$\mathbf{A}\mathbf{t}_n+\mathbf{b} = \mathbf{0}$が成り立つ中で$\mathbf{A}\mathbf{y}(\mathbf{x}^{\star})+\mathbf{b}$が$\mathbf{0}$となることを示すことなので、これを演習問題4.2の最後の式に当てはめると</p>
+<p>$$
+\begin{aligned}
+\mathbf{A}^{\mathrm{T}} \mathbf{y}\left(\mathbf{x}^{\star}\right) + \mathbf{b} &amp;=\mathbf{A}^{\mathrm{T}} \overline{\mathbf{t}}+\mathbf{A}^{\mathrm{T}} \widehat{\mathbf{T}}^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) + \mathbf{b} \
+&amp;= \mathbf{A}^{\mathrm{T}} \widehat{\mathbf{T}}^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= \mathbf{A}^{\mathrm{T}} (\mathbf{T} - \overline{\mathbf{T}})^{\mathrm{T}}\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (\mathbf{A}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}} - \mathbf{A}^{\mathrm{T}}\overline{\mathbf{T}}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (\mathbf{A}^{\mathrm{T}}\mathbf{T}^{\mathrm{T}} - \mathbf{A}^{\mathrm{T}}\overline{\mathbf{t}}\mathbf{1}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= (-\mathbf{b}\mathbf{1}^{\mathrm{T}} + \mathbf{b}\mathbf{1}^{\mathrm{T}})\left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= \mathbf{0}^{\mathrm{T}} \left(\hat{\mathbf{X}}^{\dagger}\right)^{\mathrm{T}}\left(\mathbf{x}^{\star}-\overline{\mathbf{x}}\right) \
+&amp;= \mathbf{0}
+\end{aligned}
+$$</p>
+<p>よって$\mathbf{A}\mathbf{y}(\mathbf{x}^{\star})+\mathbf{b} = \mathbf{0}$となるので、題意が示された。</p>
+<h2 id="演習-44"><a class="header" href="#演習-44">演習 4.4</a></h2>
+<div class="panel-primary">
+<p>制約$\mathbf{w}^{\mathrm{T}}\mathbf{w}=1$を満たすようにラグランジュ乗数を利用し，
+$$
+m_{2}-m_{1}=\mathbf{w}^{\mathrm{T}}\left(\mathbf{m}<em>{2}-\mathbf{m}</em>{1}\right) \tag{4.22}
+$$
+によって与えられるクラス分離規準を$\mathbf{w}$に関して最大化すれば$\mathbf{w} \propto (\mathbf{m}_2-\mathbf{m}_1)$となることを示せ．</p>
+</div>
+<p>$\mathbf{w}^\mathrm{T}\mathbf{w} =1$の制約の下でラグランジュの未定乗数法を用いると</p>
+<p>$$
+\begin{aligned}
+L &amp;= \mathbf{w}^\mathrm{T}( \mathbf{m}_2-\mathbf{m}_1)+\lambda(\mathbf{w}^\mathrm{T}\mathbf{w}-1) \
+\frac{\partial L}{\partial \mathbf{w}}&amp;= \mathbf{m}_2-\mathbf{m}_1+2\lambda \mathbf{w}
+\end{aligned}
+$$
+これが$\mathbf{0}$になる点を考えると</p>
+<p>$$
+\mathbf{w} = -\frac{1}{2\lambda}(\mathbf{m}_2-\mathbf{m}_1)
+$$
+となり$\mathbf{w}\propto(\mathbf{m}_2-\mathbf{m}_1)$であることが示せた。</p>
+<h2 id="演習-45"><a class="header" href="#演習-45">演習 4.5</a></h2>
+<div class="panel-primary">
+<p>$$
+y = \mathbf{w}^{\mathrm T}\mathbf{x} \tag{4.20}
+$$
+$$
+m_k = \mathbf{w}^{\mathrm T}\mathbf{m}<em>k \tag{4.23}
+$$
+と
+$$
+s</em>{k}^{2}=\sum_{n \in \mathcal{C}<em>{k}}\left(y</em>{n}-m_{k}\right)^{2} \tag{4.24}
+$$
+を使って，フィッシャーの判別規準
+$$
+J(\mathbf{w})=\frac{\left(m_{2}-m_{1}\right)^{2}}{s_{1}^{2}+s_{2}^{2}} \tag{4.25}
+$$
+が
+$$
+J(\mathbf{w})=\frac{\mathbf{w}^{\mathrm{T}} \mathbf{S}<em>{\mathrm{B}} \mathbf{w}}{\mathbf{w}^{\mathrm{T}} \mathbf{S}</em>{\mathrm{W}} \mathbf{w}} \tag{4.26}
+$$
+の形で書けることを示せ．</p>
+</div>
+<p>※$\mathbf{S}<em>{\mathrm{B}}$と$\mathbf{S}</em>{\mathrm{W}}$の定義はそれぞれ$(4.27)$と$(4.28)$で与えられる。</p>
+<p>$(4.27)$と$(4.28)$より
+$$
+\begin{aligned}
+\mathbf{S}<em>{\mathrm{B}}&amp;=\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)^{\mathrm{T}} \
+\mathbf{S}</em>{\mathrm{W}}&amp;=\sum_{n \in \mathcal{C}<em>{1}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)^{\mathrm{T}}+\sum</em>{n \in \mathcal{C}<em>{2}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}_{2}\right)^{\mathrm{T}}
+\end{aligned}
+$$
+である。これを用いて$(4.25)$を変形していくと</p>
+<p>$$
+\begin{aligned}
+J(\mathbf{w}) &amp;=\frac{\left(m_{2}-m_{1}\right)^{2}}{s_{1}^{2}+s_{2}^{2}} \
+&amp;=\frac{\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{m}<em>{2}-\mathbf{m}</em>{1}\right)\right)^{2}}{\sum_{n \in \mathcal{C}<em>{1}}\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)\right)^{2}+\sum</em>{n \in \mathcal{C}<em>{2}}\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)\right)^{2}} \
+&amp;=\frac{\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)\right)\left(\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)^{\mathrm{T}} \mathbf{w}\right)}{\sum</em>{n \in \mathcal{C}<em>{1}}\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)^{\mathrm{T}} \mathbf{w}\right)+\sum</em>{n \in \mathcal{C}<em>{2}}\left(\mathbf{w}^{\mathrm{T}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)^{\mathrm{T}} \mathbf{w}\right)} \
+&amp;=\frac{\mathbf{w}^{\mathrm{T}} \mathbf{S}</em>{\mathrm B} \mathbf{w}}{\mathbf{w}^{\mathrm{T}}\left{\sum_{n \in \mathcal{C}<em>{1}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)^{\mathrm{T}}+\sum</em>{n \in \mathcal{C}<em>{2}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)^{\mathrm{T}}\right} \mathbf{w}} \
+&amp;=\frac{\mathbf{w}^{\mathrm{T}} \mathbf{S}</em>{\mathrm B} \mathbf{w}}{\mathbf{w}^{\mathrm{T}} \mathbf{S}_{\mathrm W} \mathbf{w}}
+\end{aligned}
+$$</p>
+<p>となり$(4.26)$式が得られる。</p>
+<h2 id="演習-46"><a class="header" href="#演習-46">演習 4.6</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbf{S}<em>{\mathbf{B}}=\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)\left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)^{\mathrm{T}} \tag{4.27}
+$$
+で与えられるクラス間共分散行列と
+$$
+\mathbf{S}</em>{\mathbf{W}}=\sum_{n \in \mathcal{C}<em>{1}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{1}\right)^{\mathrm{T}}+\sum</em>{n \in \mathcal{C}<em>{2}}\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)\left(\mathbf{x}</em>{n}-\mathbf{m}<em>{2}\right)^{\mathrm{T}} \tag{4.28}
+$$
+で与えられるクラス内共分散行列のそれぞれの定義と，
+$$
+w_0 = -\mathbf{w}^{\mathrm T}\mathbf{m} \tag{4.34}
+$$
+$$
+\mathbf{m}=\frac{1}{N} \sum</em>{n=1}^{N} \mathbf{x}<em>{n}=\frac{1}{N}\left(N</em>{1} \mathbf{m}<em>{1}+N</em>{2} \mathbf{m}<em>{2}\right) \tag{4.36}
+$$
+および4.1.5節で述べた目的値を使って，二乗和誤差関数を最小化する表現
+$$
+\sum</em>{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}<em>{n}+w</em>{0}-t_{n}\right) \mathbf{x}<em>{n}=0 \tag{4.33}
+$$
+が
+$$
+\left(\mathbf{S}</em>{\mathbf{W}}+\frac{N_{1} N_{2}}{N} \mathbf{S}<em>{\mathbf{B}}\right) \mathbf{w}=N\left(\mathbf{m}</em>{1}-\mathbf{m}_{2}\right) \tag{4.37}
+$$
+の形で書けることを示せ．</p>
+</div>
+<p>※ 簡単な代数演算をして……と書かれてあるが、計算量的には簡単じゃない。まず$\displaystyle \sum_{n=1}^N t_n\mathbf{x}_n = N(\mathbf{m}_1-\mathbf{m}_2)$となることを利用して、残りの部分で$(\cdot)\mathbf{w}$の式に書き直せるようにスカラー部分とベクトル部分を入れ替える技（($\mathbf{a}^{\mathrm{T}}\mathbf{b})\mathbf{c} = \mathbf{c}\mathbf{b}^{\mathrm{T}}\mathbf{a}$）を使う。</p>
+<p>まず$(4.33)$の$\displaystyle \sum_{n=1}^N t_n\mathbf{x}<em>n$について変形すると
+$$
+\begin{aligned}
+\sum</em>{n=1}^N t_n\mathbf{x}<em>n &amp;= \frac{N}{N_1}\sum</em>{n \in \mathcal{C}<em>1}\mathbf{x}<em>n - \frac{N}{N_2}\sum</em>{n \in \mathcal{C}<em>2}\mathbf{x}<em>n \
+&amp;=\frac{N}{N_1}(N_1\mathbf{m}<em>1)-\frac{N}{N_2}(N_2\mathbf{m}<em>2) \
+&amp;=N(\mathbf{m}<em>1 - \mathbf{m}<em>2)
+\end{aligned}
+$$
+となる。これは$(4.37)$式の右辺になっているので、
+$$
+\sum</em>{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}</em>{n}+w</em>{0}\right)\mathbf{x}</em>{n} = \left(\mathbf{S}</em>{\mathrm{W}}+\frac{N</em>{1} N</em>{2}}{N} \mathbf{S}<em>{\mathrm{B}}\right) \mathbf{w}
+$$
+となることを示せれば良い。
+$$
+\begin{aligned}
+\sum</em>{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}<em>{n}+w</em>{0}\right) \mathbf{x}<em>{n}&amp;=\sum</em>{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}<em>{n}-\mathbf{w}^{\mathrm{T}} \mathbf{m}\right) \mathbf{x}</em>{n} \
+&amp;=\sum_{n=1}^{N}\left{\left(\mathbf{x}<em>{n} \mathbf{x}</em>{n}^{\mathrm{T}}-\mathbf{x}<em>{n} \mathbf{m}^{\mathrm{T}}\right) \mathbf{w}\right} \
+&amp;= \sum</em>{n \in \mathcal{C}<em>{1}}\left{\left(\mathbf{x}</em>{n} \mathbf{x}<em>{n}^{\mathrm{T}}-\mathbf{x}</em>{n} \mathbf{m}^{\mathrm{T}}\right) \mathbf{w}\right} + \sum_{m \in \mathcal{C}<em>{2}}\left{\left(\mathbf{x}</em>{m} \mathbf{x}<em>{m}^{\mathrm{T}}-\mathbf{x}</em>{m} \mathbf{m}^{\mathrm{T}}\right) \mathbf{w}\right} \
+&amp;=\left(\sum_{n \in \mathcal{C}<em>{1}} \mathbf{x}</em>{n} \mathbf{x}<em>{n}^{\mathrm{T}}-N</em>{1} \mathbf{m}<em>{1} \mathbf{m}^{\mathrm{T}}\right) \mathbf{w} + \left(\sum</em>{m \in \mathcal{C}<em>{2}} \mathbf{x}</em>{m} \mathbf{x}<em>{m}^{\mathrm{T}}-N</em>{2} \mathbf{m}<em>{2} \mathbf{m}^{\mathrm{T}}\right) \mathbf{w} \
+&amp;=\left(\sum</em>{n \in \mathcal{C}<em>{1}} \mathbf{x}</em>{n} \mathbf{x}<em>{n}^{\mathrm{T}}+\sum</em>{m \in \mathcal{C}<em>{2}} \mathbf{x}</em>{m} \mathbf{x}<em>{m}^{\mathrm{T}}-\left(N</em>{1} \mathbf{m}<em>{1}+N</em>{2} \mathbf{m}_{2}\right) \mathbf{m}^{\mathrm{T}}\right) \mathbf{w}
+\end{aligned}
+$$
+となる。</p>
+<p>ここで、$(4.27)$と$(4.28)$の展開した形を用意しておく。$(4.27)$は</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}<em>{\mathrm{B}} &amp;= \left(\mathbf{m}</em>{2}-\mathbf{m}<em>{1}\right)\left(\mathbf{m}</em>{2}-\mathbf{m}_{1}\right)^{\mathrm{T}} \
+&amp;=\mathbf{m}_2\mathbf{m}_2^{\mathrm{T}}-\mathbf{m}_2\mathbf{m}_1^{\mathrm{T}}-\mathbf{m}_1\mathbf{m}_2^{\mathrm{T}}+\mathbf{m}_1\mathbf{m}_1^{\mathrm{T}}
+\end{aligned}
+$$</p>
+<p>となり、$(4.28)$は</p>
+<p>\begin{aligned}
+\mathbf{S}<em>{\mathrm W} = \sum</em>{k=1}^2 \sum_{i \in \mathcal{C}<em>{k}}\left(\mathbf{x}</em>{i}-\mathbf{m}<em>{k}\right)\left(\mathbf{x}</em>{i}-\mathbf{m}<em>{k}\right)^{\mathrm{T}} &amp;= \sum</em>{k=1}^2 \sum_{i \in \mathcal{C}<em>{k}}\left(\mathbf{x}</em>{i} \mathbf{x}<em>{i}^{\mathrm{T}}-\mathbf{x}</em>{i} \mathbf{m}<em>{k}^{\mathrm{T}}-\mathbf{m}</em>{k} \mathbf{x}<em>{i}^{\mathrm{T}}+\mathbf{m}</em>{k} \mathbf{m}<em>{k}^{\mathrm{T}}\right) \
+&amp;=\sum</em>{k=1}^2  \left( \sum_{i \in \mathcal{C}<em>{k}} \mathbf{x}</em>{i} \mathbf{x}<em>{i}^{\mathrm{T}}-N</em>{k} \mathbf{m}<em>{k} \mathbf{m}</em>{k}^{\mathrm{T}}\right) \
+&amp;=\sum_{n \in \mathcal{C}<em>{1}} \mathbf{x}</em>{n} \mathbf{x}<em>{n}^{\mathrm{T}} + \sum</em>{m \in \mathcal{C}<em>{2}} \mathbf{x}</em>{m} \mathbf{x}<em>{m}^{\mathrm{T}} - N_1\mathbf{m}</em>{1} \mathbf{m}<em>{1}^{\mathrm{T}} - N_2\mathbf{m}</em>{2} \mathbf{m}_{2}^{\mathrm{T}}
+\end{aligned}</p>
+<p>であるから、これらを利用して書き直すと
+$$
+\begin{aligned}
+&amp;\quad \left(\sum_{n \in \mathcal{C}<em>{1}} \mathbf{x}</em>{n} \mathbf{x}<em>{n}^{\mathrm{T}}+\sum</em>{m \in \mathcal{C}<em>{2}} \mathbf{x}</em>{m} \mathbf{x}<em>{m}^{\mathrm{T}}-\left(N</em>{1} \mathbf{m}<em>{1}+N</em>{2} \mathbf{m}<em>{2}\right) \mathbf{m}^{\mathrm{T}}\right) \mathbf{w} \
+&amp;= \left(\mathbf{S}</em>{\mathbf{w}}+N_{1} \mathbf{m}<em>{1} \mathbf{m}</em>{1}^{\mathrm{T}}+N_{2} \mathbf{m}<em>{2} \mathbf{m}</em>{2}^{\mathrm{T}}-\left(N_{1} \mathbf{m}<em>{1}+N</em>{2} \mathbf{m}<em>{2}\right) \frac{1}{N}\left(N</em>{1} \mathbf{m}<em>{1}+N</em>{2} \mathbf{m}<em>{2}\right)^{\mathrm{T}}\right) \mathbf{w} \
+&amp;= \left(\mathbf{S}</em>{\mathbf{w}}+\left(N_{1}-\frac{N_{1}^{2}}{N}\right) \mathbf{m}<em>{1} \mathbf{m}</em>{1}^{\mathrm{T}}-\frac{N_{1} N_{2}}{N}\left(\mathbf{m}<em>{1} \mathbf{m}</em>{2}^{\mathrm{T}}+\mathbf{m}<em>{2} \mathbf{m}</em>{1}^{\mathrm{T}}\right) +\left(N_{2}-\frac{N_{2}^{2}}{N}\right) \mathbf{m}<em>{2} \mathbf{m}</em>{2}^{\mathrm{T}}\right) \mathbf{w} \
+&amp;= \left(\mathbf{S}<em>{\mathbf{w}}+\frac{\left(N</em>{1}+N_{2}\right) N_{1}-N_{1}^{2}}{N} \mathbf{m}<em>{1} \mathbf{m}</em>{1}^{\mathrm{T}}-\frac{N_{1} N_{2}}{N}\left(\mathbf{m}<em>{1} \mathbf{m}</em>{2}^{\mathrm{T}}+\mathbf{m}<em>{2} \mathbf{m}</em>{1}^{\mathrm{T}}\right) +\frac{\left(N_{1}+N_{2}\right) N_{2}-N_{2}^{2}}{N} \mathbf{m}<em>{2} \mathbf{m}</em>{2}^{\mathrm{T}}\right) \mathbf{w} \
+&amp;= \left(\mathbf{S}<em>{\mathbf{w}}+\frac{N</em>{1} N_{2}}{N}\left(\mathbf{m}<em>{1} \mathbf{m}</em>{1}^{\mathrm{T}}-\mathbf{m}<em>{1} \mathbf{m}</em>{2}^{\mathrm{T}}-\mathbf{m}<em>{2} \mathbf{m}</em>{1}^{\mathrm{T}}+\mathbf{m}<em>{2} \mathbf{m}</em>{2}^{\mathrm{T}}\right)\right) \mathbf{w} \
+&amp;= \left(\mathbf{S}<em>{\mathbf{w}}+\frac{N</em>{1} N_{2}}{N} \mathbf{S}<em>{\mathrm{B}}\right) \mathbf{w}
+\end{aligned}
+$$
+となる。
+以上から、$(4.33)$式が
+$$
+\left(\mathbf{S}</em>{\mathbf{W}}+\frac{N_{1} N_{2}}{N} \mathbf{S}<em>{\mathbf{B}}\right) \mathbf{w}=N\left(\mathbf{m}</em>{1}-\mathbf{m}_{2}\right) \tag{4.37}
+$$
+と書き直せることが示された。</p>
+<h2 id="演習-47"><a class="header" href="#演習-47">演習 4.7</a></h2>
+<div class="panel-primary">
+<p>ロジスティックシグモイド関数
+$$
+\sigma(a) = \frac{1}{1+ \exp(-a)} \tag{4.59}
+$$
+が$\sigma(-a) = 1-\sigma(a)$を満たすことを示せ．また，その逆関数が$\sigma^{-1}(y) = \ln {y/(1-y)}$で与えられることを示せ．</p>
+</div>
+<p>$$\begin{aligned} \sigma(-a) &amp;= \frac{1}{1+\exp(a)} \&amp;= \frac{1}{1+\left{ 1/\exp(-a) \right}} \&amp;= \frac{\exp(-a)}{\exp(-a)+1} \&amp;= 1-\frac{1}{1+\exp(-a)} \&amp;= 1-\sigma(a) \end{aligned}$$</p>
+<p>逆関数について$y=\sigma(a)$としたとき</p>
+<p>$$y=\frac{1}{1+\exp(-a)}$$
+$$\begin{aligned} \exp(-a)&amp;=\frac{1}{y}-1 \&amp;= \frac{1-y}{y} \end{aligned}$$
+$$a=\ln(\frac{y}{1-y})$$</p>
+<p>よって</p>
+<p>$$\sigma^{-1}(y)=\ln(\frac{y}{1-y})$$</p>
+<h2 id="演習-48"><a class="header" href="#演習-48">演習 4.8</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}
+p\left(\mathcal{C}<em>{1} \mid \mathbf{x}\right) &amp;=\frac{p\left(\mathbf{x} \mid \mathcal{C}</em>{1}\right) p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathbf{x} \mid \mathcal{C}</em>{1}\right) p\left(\mathcal{C}<em>{1}\right)+p\left(\mathbf{x} \mid \mathcal{C}</em>{2}\right) p\left(\mathcal{C}<em>{2}\right)} \
+&amp;=\frac{1}{1+\exp (-a)}=\sigma(a)
+\end{aligned} \tag{4.57}
+$$
+と
+$$
+a=\ln \frac{p\left(\mathbf{x} \mid \mathcal{C}</em>{1}\right) p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathbf{x} \mid \mathcal{C}</em>{2}\right) p\left(\mathcal{C}<em>{2}\right)} \tag{4.58}
+$$
+を使って，ガウス確率密度分布を用いた2クラス生成モデルにおけるクラスの事後確率に対する
+$$
+p\left(\mathcal{C}</em>{1} \mid \mathbf{x}\right)=\sigma\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}+w_{0}\right) \tag{4.65}
+$$
+の結果を導出せよ．また，パラメータ$\mathbf{w}$と$w_0$に対する結果
+$$
+\mathbf{w} =\mathbf{\Sigma}^{-1}\left(\boldsymbol{\mu}<em>{1}-\boldsymbol{\mu}</em>{2}\right) \tag{4.66}
+$$
+と
+$$
+w_{0} =-\frac{1}{2} \boldsymbol{\mu}<em>{1}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}</em>{1}+\frac{1}{2} \boldsymbol{\mu}<em>{2}^{\mathrm{T}} \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}</em>{2}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)} \tag{4.67}
+$$
+を検証せよ．</p>
+</div>
+<p>※
+$(4.65)$式を$(4.57)$, $(4.58)$, それから</p>
+<p>$$
+p\left(\mathbf{x} \mid \mathcal{C}<em>{k}\right)=\frac{1}{(2 \pi)^{D / 2}} \frac{1}{|\mathbf{\Sigma}|^{1 / 2}} \exp \left{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}<em>{k}\right)\right} \tag{4.64}
+$$
+を利用して変形していく。
+$$
+\begin{aligned}
+p(\mathcal{C}<em>1\mid \mathbf{x}) &amp;= \sigma\left(\ln \frac{p\left(\mathbf{x}\mid \mathcal{C}</em>{1}\right) p\left(\mathcal{C}</em>{1}\right)}{p\left(\mathbf{x} \mid \mathcal{C}<em>{2}\right) p\left(\mathcal{C}</em>{2}\right)}\right) \
+&amp;=\sigma\left(\ln \frac{\exp \left{ -\frac{1}{2} \left(\mathbf{x}-\boldsymbol{\mu}<em>{1}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}</em>{1}\right)\right}}{\exp \left{ -\frac{1}{2}  \left(\mathbf{x}-\boldsymbol{\mu}<em>{2}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}</em>{2}\right)\right}}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)}\right) \
+&amp;=\sigma\left(-\frac{1}{2}\left{\left(\mathbf{x}-\boldsymbol{\mu}<em>{1}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}</em>{1}\right)\right}+\frac{1}{2}\left{\left(\mathbf{x}-\boldsymbol{\mu}<em>{2}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}</em>{2}\right)\right}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)}\right)\
+&amp;=\sigma\left(\boldsymbol{\mu}<em>{1}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{x}-\frac{1}{2} \boldsymbol{\mu}</em>{1}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}<em>{1}-\boldsymbol{\mu}</em>{2}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{x}+\frac{1}{2} \boldsymbol{\mu}<em>{2}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}</em>{2}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)}\right)\
+&amp;=\sigma\left(\left((\mathbf{\Sigma}^{-1})^{\mathrm{T}}\left(\boldsymbol{\mu}<em>{1}-\boldsymbol{\mu}</em>{2}\right)\right)^{\mathrm{T}} \mathbf{x}-\frac{1}{2} \boldsymbol{\mu}<em>{1}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}</em>{1}+\frac{1}{2} \boldsymbol{\mu}<em>{2}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}</em>{2}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)}\right)
+\end{aligned}
+$$</p>
+<p>$(\mathbf{\Sigma}^{-1})^{\mathrm{T}} = \mathbf{\Sigma}^{-1}$なので、$\mathbf{w} = \mathbf{\Sigma}^{-1}(\boldsymbol{\mu}<em>1 - \boldsymbol{\mu}<em>2) \quad (4.66)$と$\displaystyle w_0 = -\frac{1}{2} \boldsymbol{\mu}</em>{1}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}</em>{1}+\frac{1}{2} \boldsymbol{\mu}<em>{2}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \boldsymbol{\mu}</em>{2}+\ln \frac{p\left(\mathcal{C}<em>{1}\right)}{p\left(\mathcal{C}</em>{2}\right)} \quad (4.67)$の定義を用いると,</p>
+<p>$$
+p(\mathcal{C}_1\mid \mathbf{x}) = \sigma(\mathbf{w}^{\mathrm T}\mathbf{x}+w_0) \tag{4.65}
+$$</p>
+<p>と書ける。</p>
+<h2 id="演習-49"><a class="header" href="#演習-49">演習 4.9</a></h2>
+<div class="panel-primary">
+<p>クラスの事前確率$p(\mathcal{C}_k)=\pi_k$と一般的なクラスの条件付き確率密度$p(\boldsymbol{\phi}\mid \mathcal{C}_k)$によって定義される$K$クラス分類問題の生成モデルを考える．ここで$\boldsymbol{\phi}$は入力特徴ベクトルである．学習データ集合${ \boldsymbol{\phi}_n, \mathbf{t}_n }$が与えられたと仮定する．ここで，$n=1,\ldots,N$であり，$\mathbf{t}<em>n$は，1-of-$K$符号化法を使う長さ$K$の2値目的変数ベクトルである．つまり，パターン$n$のクラスが$\mathcal{C}<em>k$である場合，2値目的変数ベクトルは構成要素$t</em>{nj} = I</em>{jk}$を持つ．データがこのモデルから独立に抽出されると仮定すると，その事前確率に対する最尤解が以下の式で与えられることを示せ．</p>
+<p>$$
+\pi_k = \frac{N_k}{N} \tag{4.159}
+$$</p>
+<p>ここで，$N_k$はクラス$\mathcal{C}_k$に割り当てられるデータの個数である．</p>
+</div>
+<p>※ 「パターン$n$のクラスが$\mathcal{C}<em>k$である場合，2値目的変数ベクトルは構成要素$t</em>{nj} = I_{jk}$を持つ」というのは、$j=k$であれば$t_{nk} = I_{kk} = 1$, $j\neq k$であれば$0$ということである。</p>
+<p>2クラス分類のときの尤度関数</p>
+<p>$$
+p(\mathbf{t},\mathbf{X}\mid \pi, \boldsymbol{\mu}_1,\boldsymbol{\mu}<em>2,\mathbf{\Sigma}) = \prod</em>{n=1}^{N}[\pi \mathcal{N}(\mathbf{x}_n \mid \boldsymbol{\mu}_1,\mathbf{\Sigma})]^{t_n}[(1-\pi)\mathcal{N}(\mathbf{x}_n \mid \boldsymbol{\mu}_2,\mathbf{\Sigma})]^{1-t_n}  \tag{4.71}
+$$</p>
+<p>を多クラスに拡張したい。</p>
+<p>$$
+\mathbf{I}_k=\begin{pmatrix}
+0 \
+0 \
+\vdots \
+1 \
+\vdots \
+0 \
+\end{pmatrix}
+$$</p>
+<p>という$k$番目の要素が$1$で他が$0$であるベクトルを用いて、多クラスの尤度関数$p({\mathbf{t}_n, \boldsymbol{\phi}_n }\mid { \pi_k } )$は以下のようになる。（$\mathbf{I}_k^\mathrm{T}\mathbf{t}<em>n = t</em>{nk}$である。）</p>
+<p>$$
+\begin{aligned}
+p({\mathbf{t}<em>n, \boldsymbol{\phi}<em>n }\mid { \pi_k } ) = \prod</em>{n=1}^{N}\prod</em>{k=1}^{K}[\pi_k p(\boldsymbol{\phi}_n\mid \mathcal{C}_k)]^{\mathbf{I}_k^\mathrm{T}\mathbf{t}_n}
+\end{aligned}
+$$</p>
+<p>最大化するにあたって、これの対数尤度関数をとる。</p>
+<p>$$
+\begin{aligned}
+\ln p({\mathbf{t}<em>n, \boldsymbol{\phi}<em>n }\mid { \pi_k } ) = \sum</em>{n=1}^{N}\sum</em>{k=1}^{K}\mathbf{I}_k ^\mathrm{T}\mathbf{t}_n  (\ln\pi_k + p(\boldsymbol{\phi}_n\mid \mathcal{C}_k))
+\end{aligned}
+$$</p>
+<p>ここで、最大化に関係する部分だけ取り出し、$\sum_{k=1}^{K} \pi_k = 1$であることを考慮してラグランジュの未定乗数法を用いる(あまり本来の使用法と違う気もしますが使えるので)と</p>
+<p>$$
+\begin{aligned}
+L = \sum_{n=1}^{N}\sum_{k=1}^{K}\mathbf{I}_k ^\mathrm{T}\mathbf{t}<em>n \ln\pi_k -\lambda \left{ \left(\sum</em>{k=1}^{K}\pi_k \right) -1 \right} \
+\end{aligned}
+$$</p>
+<p>すべての$k$における$\pi_k$と$\lambda$で$L$を微分し、$0$を取ると</p>
+<p>$$
+\begin{aligned}
+\frac{\partial L}{\partial \pi_k} &amp;= \sum_{n=1}^{N}\frac{\mathbf{I}_k ^\mathrm{T} \mathbf{t}<em>n}{\pi_k}-\lambda = 0 \
+\frac{\partial L}{\partial \lambda} &amp;= \left( \sum</em>{k=1}^{K}\pi_k \right) -1 = 0
+\end{aligned}
+$$</p>
+<p>となる。上式の分母を払うと</p>
+<p>$$
+\lambda\pi_k = \sum_{n=1}^N \mathbf{I}_k ^\mathrm{T} \mathbf{t}_n
+$$</p>
+<p>ここで$\sum_{n=1}^N \mathbf{I}_k ^\mathrm{T} \mathbf{t}_n$は定義からクラス$\mathcal{C}_k$に割り当てられるデータの個数$N_k$であるから、$\pi_k = N_k/\lambda$となる。</p>
+<p>一方、すべての$k$について足し合わせると</p>
+<p>$$
+\begin{aligned}
+\sum_{k=1}^K \lambda\pi_k &amp;= \sum_{k=1}^K \sum_{n=1}^N \mathbf{I}<em>k ^\mathrm{T} \mathbf{t}<em>n \
+\lambda \left( \sum</em>{k=1}^K \pi_k \right) &amp;= \sum</em>{k=1}^K N_k \
+\lambda &amp;= N\quad \left(\because \frac{\partial L}{\partial \lambda} = 0から \left( \sum_{k=1}^{K}\pi_k \right) = 1 \right)
+\end{aligned}
+$$</p>
+<p>より</p>
+<p>$$
+\pi_k = \frac{N_k}{N}
+$$
+となり、示された。</p>
+<h2 id="演習-410"><a class="header" href="#演習-410">演習 4.10</a></h2>
+<div class="panel-primary">
+<p>演習問題4.9の分類モデルを考え，クラスの条件付き確率密度が共通の共分散行列を持つガウス分布によって与えられる，つまり，以下の式が成立すると仮定する．</p>
+<p>$$
+p\left(\boldsymbol{\phi} \mid \mathcal{C}<em>{k}\right)=\mathcal{N}\left(\boldsymbol{\phi} \mid \boldsymbol{\mu}</em>{k}, \mathbf{\Sigma} \right) \tag{4.160}
+$$</p>
+<p>クラス$\mathcal{C}_k$のガウス分布の平均に対する最尤解が以下の式で与えられることを示せ．</p>
+<p>$$
+\boldsymbol{\mu}<em>k=\frac{1}{N</em>{k}}\sum_{n=1}^N t_{nk}\boldsymbol{\phi}_n  \tag{4.161}
+$$</p>
+<p>これは，クラス$\mathcal{C}_k$に割り当てられる特徴ベクトルの平均を表す．同様に，共通の共分散に対する最尤解が，以下の式で与えられることを示せ．</p>
+<p>$$
+\mathbf{\Sigma}=\sum_{k=1}^{K} \frac{N_{k}}{N} \mathbf{S}_{k} \tag{4.162}
+$$</p>
+<p>ここで</p>
+<p>$$
+\mathbf{S}<em>{k}=\frac{1}{N</em>{k}} \sum_{n=1}^{N} t_{nk}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \tag{4.163}
+$$</p>
+<p>である．よって，$\mathbf{\Sigma}$は，各クラスのデータの共分散の重み付き平均で与えられる．重み付け係数はクラスの事前確率で与えられる．</p>
+</div>
+<p>※ 演習問題4.9での$p(\boldsymbol{\phi}_n\mid \mathcal{C}_k)$に正規分布$\displaystyle \mathcal{N}(\boldsymbol{\phi}_n \mid \boldsymbol{\mu}_k,\mathbf{\Sigma}) = \frac{1}{(2\pi)^{D/2}|\mathbf{\Sigma}|^{1/2}} \exp\left{ -\frac{1}{2}(\boldsymbol{\phi}_n - \boldsymbol{\mu}_k)^{\mathrm T}\mathbf{\Sigma}^{-1}(\boldsymbol{\phi}_n - \boldsymbol{\mu}_k) \right}$を仮定した場合になる。</p>
+<p>演習問題4.9を利用すると尤度関数は
+$$
+p\left(\left{\mathbf{t}<em>{n}, \boldsymbol{\phi}</em>{n}\right} \mid\left{\pi_{k}\right}\right)=\prod_{n=1}^{N} \prod_{k=1}^{K}\left[\pi_{k} \mathcal{N}(\boldsymbol{\phi}<em>n \mid \boldsymbol{\mu}<em>k,\mathbf{\Sigma})p(\mathcal{C}<em>k)\right]^{t</em>{nk}}
+$$
+であり、対数尤度関数は$\boldsymbol{\mu}<em>k$と$\mathbf{\Sigma}$に依存する項を抜き出して残りを$\textrm{const.}$とすると
+$$
+\begin{aligned}
+\ln p\left(\left{\mathbf{t}</em>{n}, \boldsymbol{\phi}</em>{n}\right} \mid\left{\pi</em>{k}\right}\right) &amp;=\sum_{n=1}^{N} \sum_{k=1}^{K} t_{nk}\left(
+\ln \pi_k +\ln \mathcal{N}(\boldsymbol{\phi}<em>n \mid \boldsymbol{\mu}<em>k,\mathbf{\Sigma})+\ln p(\mathcal{C}<em>k)\right) \
+&amp;=-\frac{1}{2}\sum</em>{n=1}^{N} \sum</em>{k=1}^{K} t</em>{nk}\left(
+\ln |\mathbf{\Sigma}| + (\boldsymbol{\phi}<em>n - \boldsymbol{\mu}<em>k)^{\mathrm T}\mathbf{\Sigma}^{-1}(\boldsymbol{\phi}<em>n - \boldsymbol{\mu}<em>k)
+\right) + \textrm{const.}
+\end{aligned}
+$$
+$\boldsymbol{\mu}<em>k$についての微分を$0$とすると(※ここで$k$は特定の値をとる)
+$$
+\begin{aligned}
+\frac{\partial}{\partial \boldsymbol{\mu}</em>{k}} \ln p
+&amp;=-\frac{1}{2} \sum</em>{n=1}^{N}\left{t</em>{n k} \frac{\partial}{\partial \boldsymbol{\mu}</em>{k}}\left(\boldsymbol{\phi}</em>{n}-\boldsymbol{\mu}<em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}</em>{n}-\boldsymbol{\mu}<em>{k}\right)\right} \
+&amp;=\sum</em>{n=1}^{N}\left{t_{n k} \mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\right} \
+&amp;=\mathbf{\Sigma}^{-1} \sum_{n=1}^{N}\left{t_{n k}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\right} \
+&amp;=\mathbf{\Sigma}^{-1}\left(\sum_{n=1}^{N} t_{n k} \boldsymbol{\phi}<em>{n}-\sum</em>{n=1}^{N} t_{n k} \boldsymbol{\mu}<em>{k}\right) \
+&amp;=\mathbf{\Sigma}^{-1}\left(\sum</em>{n=1}^{N} t_{n k} \boldsymbol{\phi}<em>{n}-N</em>{k} \boldsymbol{\mu}<em>{k}\right) = 0
+\end{aligned}
+$$
+以上から
+$$
+\boldsymbol{\mu}</em>{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} t_{n k} \boldsymbol{\phi}_{n} \tag{4.161}
+$$
+が求まる。</p>
+<p>続いて$\mathbf{S}<em>k$をうまく使えるように対数尤度関数を変形すると、
+$$
+\begin{aligned}
+\ln p &amp;=\sum</em>{n=1}^{N} \sum_{k=1}^{K}\left{t_{n k} \ln \mathcal{N}\left(\boldsymbol{\phi}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \mathbf{\Sigma}\right)\right} \
+&amp;=\sum_{n=1}^{N} \sum_{k=1}^{K}\left{t_{n k}\left[-\frac{1}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\right]\right}+\mathrm{const.} \
+&amp;=-\frac{1}{2} \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)+\mathrm{const.} \
+&amp;=-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)+\mathrm{const.} \
+&amp;=-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \operatorname{Tr}\left[\mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}}\right]+\mathrm{const.} \
+&amp;=-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{k=1}^{K}\left( N_k \sum_{n=1}^{N} \frac{1}{N_k} t_{nk} \operatorname{Tr}\left[\mathbf{\Sigma}^{-1}\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}}\right]\right) +\mathrm{const.} \
+&amp;=-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{k=1}^{K} N_k \left( \operatorname{Tr}\left[ \mathbf{\Sigma}^{-1} \frac{1}{N_k} \sum_{n=1}^{N} t_{nk} \left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\left(\boldsymbol{\phi}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}}\right]\right) +\mathrm{const.} \
+&amp;=-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{k=1}^K N_k \operatorname{Tr}\left[\mathbf{\Sigma}^{-1} \mathbf{S}_k\right]+\mathrm{const.}
+\end{aligned}
+$$</p>
+<p>$\mathbf{\Sigma}$についての微分をとって$0$とする。<a href="../PRML%E3%81%AE%E6%BC%94%E7%BF%92%E5%95%8F%E9%A1%8C%E8%A7%A3%E7%AD%94%E9%9B%86%20%E7%AC%AC2%E7%AB%A0%202.61%E3%81%BE%E3%81%A7#%E6%BC%94%E7%BF%92%202.34">演習問題2.34</a>と同様に変形していくと、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{\Sigma}}\ln p &amp;= -\frac{N}{2}(\mathbf{\Sigma}^{-1})^{\mathrm T} - \frac{1}{2}\sum_{k=1}^K N_k \frac{\partial}{\partial \mathbf{\Sigma}}\operatorname{Tr}\left[\mathbf{\Sigma}^{-1} \mathbf{S}<em>k\right] \
+&amp;= -\frac{N}{2}(\mathbf{\Sigma}^{-1})^{\mathrm T} - \frac{1}{2}\sum</em>{k=1}^K N_k (\mathbf{\Sigma}^{-1} \mathbf{S}_k \mathbf{\Sigma}^{-1})^{\mathrm T} = 0
+\end{aligned}
+$$</p>
+<p>転置をとって移項すると</p>
+<p>$$
+\mathbf{\Sigma}^{-1} = \sum_{k=1}^K \frac{N_k}{N} \mathbf{\Sigma}^{-1} \mathbf{S}_k \mathbf{\Sigma}^{-1}
+$$</p>
+<p>左と右からそれぞれ$\mathbf{\Sigma}$をかければ
+$$
+\mathbf{\Sigma} = \sum_{k=1}^K \frac{N_k}{N}\mathbf{S}_k \tag{4.162}
+$$
+を得る。</p>
+<h2 id="演習-411"><a class="header" href="#演習-411">演習 4.11</a></h2>
+<div class="panel-primary">
+<p>各々が$L$の離散状態を取ることのできる$M$個の要素を持つ特徴ベクトル$\boldsymbol{\phi}$に対する$K$クラスの分類問題を考える．1-of-$L$符号化法によって成分の値は表現されるとする．さらに，クラス$\mathcal{C}_k$に対し$\boldsymbol{\phi}$の$M$個の成分が独立であり，クラスの条件付き確率密度は特徴ベクトルの要素に分解できると仮定する．クラスの事後確率を記述しているソフトマックス関数の引数に現れる</p>
+<p>$$
+a_{k}=\ln \left(p\left(\mathbf{x} \mid \mathcal{C}<em>{k}\right) p\left(\mathcal{C}</em>{k}\right)\right) \tag{4.63}
+$$</p>
+<p>によって与えられる量$a_k$が$\boldsymbol{\phi}$の成分の線形関数であることを示せ．これが，8.2.2節で議論されるナイーブベイズモデルの一例であることに注意せよ．</p>
+</div>
+<p>要素が$L$個のベクトル$\mathbf{x}$が$M$個並んだ以下のような行列$\boldsymbol{\phi}$を考える</p>
+<p>$$
+\boldsymbol{\phi}=\begin{pmatrix}
+\mathbf{x}_1 \
+\mathbf{x}_2 \
+\vdots \
+\mathbf{x}_M \
+\end{pmatrix}
+$$
+また、</p>
+<p>$$
+\begin{aligned}
+p(\boldsymbol{\phi} \mid \mathcal{C}<em>k) = \prod</em>{m=1}^{M} \prod_{l=1}^{L} \mu_{kml}^{\phi_{ml}}
+\end{aligned}
+$$
+である。ここで、$\mu$はそのデータがクラス$\mathcal{C}_k$に属する確率を表している。</p>
+<p>$$
+\sum_{l} \mu_{kml} = 1
+$$</p>
+<p>である。
+これを用いて</p>
+<p>$$
+\begin{aligned}
+a_k &amp;= \ln \left(\prod_{m=1}^{M}\prod_{l=1}^{L}\mu_{kml}^{x_{ml}}\right) + \ln p(\mathcal{C}<em>k) \
+&amp;= \sum</em>{m=1}^{M}\sum_{l=1}^{L}x_{ml} \ln \mu_{kml}+ \ln p(\mathcal{C}<em>k) \
+&amp;= \sum</em>{m=1}^{M}x_m ^\mathrm{T} \begin{pmatrix}
+\ln \mu_{km1} \
+\ln \mu_{km2} \
+\vdots \
+\ln \mu_{kmL} \
+\end{pmatrix}
++ \ln p(\mathcal{C}_k)
+\end{aligned}
+$$
+以上により$a_k$が$\boldsymbol{\phi}$の成分の線形関数であることが示された。</p>
+<h2 id="演習-412"><a class="header" href="#演習-412">演習 4.12</a></h2>
+<div class="panel-primary">
+<p>$$
+\sigma(a) = \frac{1}{1+ \exp(-a)} \tag{4.59}
+$$
+で定義されるロジスティックシグモイド関数の微分に対する関係
+$$
+\frac{d\sigma}{da} = \sigma(1-\sigma) \tag{4.88}
+$$
+を検証せよ．</p>
+</div>
+<p>$$
+\begin{aligned}
+\frac{ \mathrm{d} }{ \mathrm{d} a}  \sigma(a) &amp;=  \frac{ \mathrm{d} }{ \mathrm{d} a} \frac{1}{1+ \exp(-a)} \
+&amp;= - e^{-a} \frac{-1}{\left(1+ \exp(-a)\right)^2} \
+&amp;= \frac{1}{1+ \exp(-a)} \frac{e^{-a}}{1+ \exp(-a)} \
+&amp;= \sigma(1-\sigma)
+\end{aligned}
+$$</p>
+<h2 id="演習-413"><a class="header" href="#演習-413">演習 4.13</a></h2>
+<div class="panel-primary">
+<p>ロジスティックシグモイドの微分に対する結果
+$$
+\frac{d\sigma}{da} = \sigma(1-\sigma) \tag{4.88}
+$$
+を使って，ロジスティック回帰モデルに対する誤差関数
+$$
+E(\mathbf{w})=-\ln p(\mathsf{t} \mid \mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{4.90}
+$$
+の微分が，
+$$
+\nabla E(\mathbf{w})=\sum_{n=1}^{N}\left(y_{n}-t_{n}\right) \phi_{n} \tag{4.91}
+$$
+で与えられることを示せ．</p>
+</div>
+<p>$E$は$y_n$の関数、$y_n$は$a_n$の関数、$a_n$は$\mathbf{w}$の関数なので、連鎖律を利用する。</p>
+<p>すなわち$\nabla E(\mathbf{w}) = \frac{\partial E}{\partial y_n}\frac{\partial y_n}{\partial a_n}\nabla a_n $ としてそれぞれの項を求めれば良い。</p>
+<br>
+<p>$E(\mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right}$ より</p>
+<p>$$
+\begin{aligned}
+\frac{\partial E}{\partial y_n} &amp;=-\sum_{n=1}^{N}\left( \frac{t_{n}}{y_{n}}-\frac{1-t_{n}}{1-y_{n}} \right)\
+&amp;=-\sum_{n=1}^{N}\left(\frac{t_{n}\left(1-y_{n}\right)-y_{n}\left(1-t_{n}\right)}{y_{n}\left(1-y_{n}\right)}\right) \
+&amp;=\sum_{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)}
+\end{aligned} \tag{1}
+$$
+<br></p>
+<p>$y_n=\sigma(a_n)$ より $\frac{d\sigma}{da} = \sigma(1-\sigma)$を利用して</p>
+<p>$$
+\frac{\partial y_{n}}{\partial a_{n}}=\frac{\partial \sigma\left(a_{n}\right)}{\partial a_{n}}=\sigma\left(a_{n}\right)\left(1-\sigma\left(a_{n}\right)\right)=y_{n}\left(1-y_{n}\right) \tag{2}
+$$</p>
+<br>
+<p>$a_n = \mathbf{w}^{\mathrm T}\boldsymbol{\phi}_n$より</p>
+<p>$$
+\nabla a_n = \boldsymbol{\phi}_n \tag{3}
+$$</p>
+<br>
+<p>よって(1), (2), (3)より</p>
+<p>$$
+\nabla E(\mathbf{w}) = \frac{\partial E}{\partial y_n}\frac{\partial y_n}{\partial a_n}\nabla a_n = \sum_{n=1}^{N}(y_n - t_n)\boldsymbol{\phi}_n
+$$</p>
+<p>となり、$(4.91)$式が示された。</p>
+<br>
+<h2 id="演習-414"><a class="header" href="#演習-414">演習 4.14</a></h2>
+<div class="panel-primary">
+<p>線形分離可能なデータ集合に対し，ロジスティック回帰モデルの最尤解が，クラスを分離する決定境界$\mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x})=0$を満足するベクトル$\mathbf{w}$に対し，その値を$\infty$とすることで得られることを示せ．</p>
+</div>
+<p>データ集合${ \boldsymbol{\phi}<em>n, t_n}$, $t_n \in {0, 1}$について、もしデータ集合が線形分離可能ならば、2つのクラスを分ける決定境界の超平面は$\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x})=0$で与えられ、
+$$
+\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}</em>{n} \left{\begin{aligned}
+\geq 0 &amp; \text { if } t_{n}=1 \
+&lt;0 &amp; \text { otherwise } (t_n = 0)
+\end{aligned}\right.
+$$
+となる。</p>
+<p>一方、最尤法で尤度の負の対数をとって誤差関数$(4.90)$を定義すると</p>
+<p>$$
+E(\mathbf{w})=-\ln p(\mathsf{t} \mid \mathbf{w})=-\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right} \tag{4.90}
+$$</p>
+<p>この勾配は</p>
+<p>$$
+\nabla E(\mathbf{w})=\sum_{n=1}^{N}\left(y_{n}-t_{n}\right) \phi_{n} \tag{4.91}
+$$</p>
+<p>すなわち、すべての$n$について$y_n = \sigma(\mathbf{w}^{\mathrm T}\boldsymbol{\phi}_n)=t_n$のときに最小化される。
+ここで、$t_n \in { 0, 1}$なので$y_n \in { 0, 1}$になるが、これはシグモイド関数の両端、つまり$\mathbf{w}^{\mathrm T}\boldsymbol{\phi}_n = \pm \infty$のときに相当する。$\boldsymbol{\phi}_n$は固定なので、$\mathbf{w}$の大きさが$\infty$の時に相当する。このとき$E(\mathbf{w})$は最小化されロジスティック回帰モデルの最尤解が得られることになる。</p>
+<h2 id="演習-415"><a class="header" href="#演習-415">演習 4.15</a></h2>
+<div class="panel-primary">
+<p>$$
+\mathbf{H}=\nabla \nabla E(\mathbf{w})=\sum_{n=1}^{N} y_{n}\left(1-y_{n}\right) \boldsymbol{\phi}<em>{n} \boldsymbol{\phi}</em>{n}^{\mathrm{T}}=\mathbf{\Phi}^{\mathrm{T}} \mathbf{R} \mathbf{\Phi} \tag{4.97}
+$$
+で与えられるロジスティック回帰モデルのヘッセ行列$\mathbf{H}$が正定値行列であることを示せ．ここで$\mathbf{R}$は，要素を$y_n(1-y_n)$とする対角行列であり，$y_n$は，入力ベクトル$\mathbf{x}_n$に対するロジスティック回帰モデルの出力である．したがって，誤差関数は$\mathbf{w}$の凸関数であり，唯一の最小解を持つことを示せ．</p>
+</div>
+<p>ヘッセ行列$\mathbf{H}$が正定値行列であるためには任意の$\mathbf{x}$に対して$\mathbf{x}^\mathrm{T} \mathbf{\Phi}^\mathrm{T} \mathbf{R} \mathbf{\Phi} \mathbf{x}&gt;0$が成り立つことを確認すれば良い。</p>
+<p>ここで、$M×1$ベクトルである$\mathbf{z}= \mathbf{\Phi}\mathbf{x}$について考えると、
+$\mathbf{\Phi}$はフルランクであるため$\mathbf{z}\neq \mathbf{0}$であることがわかる。</p>
+<p>よって、$\mathbf{x}^\mathrm{T} \mathbf{\Phi}^\mathrm{T} \mathbf{R} \mathbf{\Phi} \mathbf{x} = \mathbf{z}^\mathrm{T} \mathbf{R} \mathbf{z}$となるが、$\mathbf{R}$の要素$y_n(1-y_n)$は$0&lt;y_n&lt;1$であることから全ての対角成分が正である対角行列なので常に$\mathbf{z}^\mathrm{T} \mathbf{R} \mathbf{z} &gt; 0$が成り立つ。</p>
+<p>以上よりヘッセ行列$\mathbf{H}$が正定値行列であることが確認できた。
+また、$\mathbf{H}=\nabla \nabla E(\mathbf{w})$であるので$\mathbf{H}$が正定値であれば誤差関数は唯一の最小解を持つ。</p>
+<h2 id="演習-416"><a class="header" href="#演習-416">演習 4.16</a></h2>
+<div class="panel-primary">
+<p>$t=0$または$t=1$に対応する2クラスの1つに属することが知られている各観測値$\mathbf{x}_n$における2値分類問題を考える．このとき，学習データがときどき間違ったラベルを付けられるため，学習データの収集手順は完全なものではないと仮定する．すべてのデータ$\mathbf{x}_n$に対し，クラスラベルの値$t_n$を与える代わりに，$t_n = 1$となる確率を表現する値$\pi_n$を与える．確率モデル$p(t=1\mid \boldsymbol{\phi})$が与えられた場合そのようなデータ集合に適切な対数尤度関数を記述せよ．</p>
+</div>
+<p>※尤度関数の解釈を問う問題？</p>
+<p>もし完全にラベル付け$t_n$が間違っていない場合、$p_n = p(t_n = 1 \mid \boldsymbol{\phi}(\mathbf{x}_n))$とすると、ある観測点$\mathbf{x}_n$についての尤度関数は
+$$
+p(t_n\mid \boldsymbol{\phi}(\mathbf{x}_n)) = p_n^{t_n}(1-p_n)^{1-t_n}
+$$
+すべてのデータ${\mathsf{t}, \boldsymbol{\phi}(\mathbf{x}_n)}$に対する尤度関数と対数尤度関数は
+$$
+p(\mathsf{t}\mid\boldsymbol{\phi}(\mathbf{x}<em>n)) = \prod</em>{n=1}^{N}p_n^{t_n}(1-p_n)^{1-t_n}
+$$
+$$
+\ln p(\mathsf{t}\mid\boldsymbol{\phi}(\mathbf{x}<em>n)) = \sum</em>{n=1}^{N}{t_n \ln p_n + (1-t_n)\ln(1-p_n)}
+$$
+となる。この式を考えると、$t_n=1$のときに対数尤度関数を$\ln p_n$だけ増加させ、$t_n=0$のときには$\ln(1-p_n)$だけ増加させると解釈することができる。この解釈に基づくと、確率$\pi_n$で$t_n=1$となる（確率$1-\pi_n$で$t_n=0$となる）とき、対数尤度関数は</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathsf{t}\mid\boldsymbol{\phi}(\mathbf{x}<em>n)) &amp;= \sum</em>{n=1}^{N}{\pi_n \ln p_n + (1-\pi_n)\ln(1-p_n)} \
+&amp;=\sum_{n=1}^{N}{\pi_n \ln p(t_n = 1 \mid \boldsymbol{\phi}(\mathbf{x}_n)) + (1-\pi_n)\ln(1-p(t_n = 1 \mid \boldsymbol{\phi}(\mathbf{x}_n)))}
+\end{aligned}
+$$</p>
+<p>で与えられることになる。</p>
+<h2 id="演習-417"><a class="header" href="#演習-417">演習 4.17</a></h2>
+<div class="panel-primary">
+<p>ソフトマックス活性化関数
+$$
+p\left(\mathcal{C}<em>{k} \mid \boldsymbol{\phi}\right)=y</em>{k}(\boldsymbol{\phi})=\frac{\exp \left(a_{k}\right)}{\sum_{j} \exp \left(a_{j}\right)} \tag{4.104}
+$$
+の微分が，
+$$
+\frac{\partial y_{k}}{\partial a_{j}}=y_{k}\left(I_{k j}-y_{j}\right) \tag{4.106}
+$$
+によって与えられることを示せ．$I_{kj}$は単位行列の要素である。ここで，$a_k$は
+$$
+a_k = \mathbf{w}_k^{\mathrm T}\boldsymbol{\phi} \tag{4.105}
+$$
+によって定義される．</p>
+</div>
+<p>※4.3.4 多クラスロジスティック回帰を参照。$k=j$と$k\neq j$のときに分けて考える。</p>
+<p>$(i)$ $k\neq j$のとき
+$$
+\begin{aligned}
+\frac{\partial y_k}{\partial a_j} &amp;= \frac{\partial}{\partial a_j}\left( \frac{e^{a_k}}{\sum_j \exp(a_j)} \right) \
+&amp;= -\frac{e^{a_k}e^{a_j}}{\left( \sum_j \exp(a_j) \right)^2} \
+&amp;=-y_k y_j
+\end{aligned}
+$$</p>
+<p>$(ii)$ $k = j$のとき
+$$
+\begin{aligned}
+\frac{\partial y_j}{\partial a_j} &amp;= \frac{\partial}{\partial a_j}\left( \frac{e^{a_j}}{\sum_j \exp(a_j)} \right) \
+&amp;= \frac{e^{a_j}}{\sum_j \exp(a_j)} - \frac{e^{a_j}\cdot e^{a_j}}{\left(\sum_j \exp(a_j) \right)^2} \
+&amp;=y_j(1-y_j)
+\end{aligned}
+$$</p>
+<p>これらをまとめると
+$$
+\frac{\partial y_k}{\partial a_j} = y_k(I_{kj}-y_j) \tag{4.106}
+$$</p>
+<p>となる。ここで、$I_{kj}$は単位行列の$kj$成分である。</p>
+<h2 id="演習-418"><a class="header" href="#演習-418">演習 4.18</a></h2>
+<div class="panel-primary">
+<p>ソフトマックス活性化関数の微分の結果
+$$
+\frac{\partial y_{k}}{\partial a_{j}}=y_{k}\left(I_{k j}-y_{j}\right) \tag{4.106}
+$$
+を使って，交差エントロピー誤差
+$$
+E\left(\mathbf{w}<em>{1}, \ldots, \mathbf{w}</em>{K}\right)=-\ln p\left(\mathbf{T} \mid \mathbf{w}<em>{1}, \ldots, \mathbf{w}</em>{K}\right)=-\sum_{n=1}^{N} \sum_{k=1}^{K} t_{n k} \ln y_{n k} \tag{4.108}
+$$
+の勾配が
+$$
+\nabla_{\mathbf{w}<em>{j}} E\left(\mathbf{w}</em>{1}, \ldots, \mathbf{w}<em>{K}\right)=\sum</em>{n=1}^{N}\left(y_{n j}-t_{n j}\right) \boldsymbol{\phi}_{n} \tag{4.109}
+$$
+で与えられることを示せ．</p>
+</div>
+<p>※演習問題4.17を利用する。</p>
+<p>まず前提として行列$\mathbf{T}$は、「クラス$\mathcal{C}_k$に属する特徴ベクトル$\boldsymbol{\phi}_n$に対する目的変数ベクトル$\mathbf{t}_n$が、$k$番目の要素で$1$で残りはすべて$0$となる1-of-$K$符号化法」で記述されるような行列（教科書P.208）である。</p>
+<p>$\nabla_{\mathbf{w}<em>j}E$について微分のchain ruleを使う。
+$E$がすでに$y</em>{nk}(=y_k(\boldsymbol{\phi}_n))$の関数となっていることを用いると</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}<em>{j}} E(\mathbf{w}<em>1,\ldots,\mathbf{w}<em>K)
+&amp;=\frac{\partial E}{\partial y</em>{nk}}\frac{\partial y</em>{nk}}{\partial a_j}\nabla</em>{\mathbf{w}<em>{j}} a_j \
+&amp;=-\sum</em>{n=1}^{N} \sum_{k=1}^{K} \frac{t_{nk}}{y_{nk}}y_{nk}(I_{kj}-y_{nj})\boldsymbol{\phi}<em>n \
+&amp;=-\sum</em>{n=1}^{N} \sum_{k=1}^{K} t_{nk}(I_{kj}-y_{nj})\boldsymbol{\phi}<em>n \
+&amp;=\sum</em>{n=1}^{N} \left{ y_{nj}\left( \sum_{k=1}^{K} t_{nk} \right) - \left( \sum_{k=1}^{K} t_{nk}I_{kj} \right) \right}\boldsymbol{\phi}_n
+\end{aligned}
+$$</p>
+<p>ここで、「前提」より$\sum_{k=1}^{K}t_{nk}=1$となり、$k=j$の場合$I_{kj}=1$で、$k\neq j$で$I_{kj}=0$であることを用いると
+$$
+\begin{aligned}
+\nabla E_{\mathbf{w}<em>{j}}(\mathbf{w}<em>1,\ldots,\mathbf{w}<em>K)
+&amp;=\sum</em>{n=1}^{N} \left{ y</em>{nj}\left( \sum</em>{k=1}^{K} t_{nk} \right) - \left( \sum_{k=1}^{K} t_{nk}I_{kj} \right) \right}\boldsymbol{\phi}<em>n \
+&amp;=\sum</em>{n=1}^{N} (y_{nj}-t_{nj})\boldsymbol{\phi}_n
+\end{aligned}
+$$
+となり、$(4.109)$式が与えられた。</p>
+<h2 id="演習-419"><a class="header" href="#演習-419">演習 4.19</a></h2>
+<div class="panel-primary">
+<p>4.3.5節で定義したプロビット回帰モデルに対し対数尤度の勾配および，対応するヘッセ行列を求めよ．これらは，IRLSを使って，プロビット回帰モデルのようなモデルを学習するために必要とされる量である．</p>
+</div>
+<p>※まずプロビット回帰モデルの定義と尤度関数を確認する。微分計算は結構大変で、演習問題4.13をうまく利用して進めていく。ヘッセ行列は勾配をもう一度偏微分することで求まる。</p>
+<p>プロビット回帰モデルは
+$$
+p(t_n=1\mid a_n) = y_n = \Phi(a_n) = \int_{-\infty}^{a_n}\mathcal{N}(\theta\mid 0,1)d\theta
+$$
+で表現するモデルである。ここで、$a_n = \mathbf{w}^{\mathrm T}\boldsymbol{\phi_n}$である。</p>
+<p>尤度関数は</p>
+<p>$$
+p(\mathsf{t}\mid \mathbf{w}) = \prod_{n=1}^{N}y_n^{t_n}(1-y_n)^{1-t_n}
+$$</p>
+<p>なので負の対数尤度(cross entropy誤差関数)は$(4.90)$と同形で
+$$
+E(\mathbf{w}) = -\sum_{n=1}^N { t_n\ln y_n + (1-t_n)\ln(1-y_n) }
+$$
+を与える。</p>
+<p>演習問題4.13と同様にして
+$$
+\begin{aligned}
+\frac{\partial E(\mathbf{w})}{\partial y_{n}} &amp;=\sum_{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \
+\nabla_{\mathbf{w}} a_n &amp;= \boldsymbol{\phi}<em>n
+\end{aligned}
+$$
+であり、
+$$
+\frac{\partial \Phi(a_n)}{\partial a_n}=\frac{\partial}{\partial a_n} \int</em>{-\infty}^{a_n} \mathcal{N}(\theta \mid 0,1) \mathrm{d} \theta=\mathcal{N}(a_n \mid 0,1)
+$$
+となることから$\nabla_{\mathbf{w}} E(\mathbf{w})$を求めると</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}} E(\mathbf{w})&amp;=\sum_{n=1}^{N} \frac{\partial E_{n}}{\partial y_{n}} \frac{\partial y_{n}}{\partial a_{n}} \nabla_{\mathbf{w}} a_{n} \
+&amp;=\sum_{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \mathcal{N}\left(a_{n} \mid 0,1\right) \boldsymbol{\phi}<em>{n} \
+&amp;= \sum</em>{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{a_n^2}{2}\right) \boldsymbol{\phi}_{n}
+\end{aligned}
+$$</p>
+<p>次にこれを用いてヘッセ行列$\nabla_{\mathbf{w}} \nabla_{\mathbf{w}} E(\mathbf{w})$を求める。ベクトルをベクトルで微分するとき、$\boldsymbol{\phi}_n\to\boldsymbol{\phi}_n^{\mathrm T}$にしておく。</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}} \nabla_{\mathbf{w}} E(\mathbf{w}) &amp;=\nabla_{\mathbf{w}} \sum_{n=1}^{N} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \mathcal{N}\left(a_{n} \mid 0,1\right) \boldsymbol{\phi}<em>{n}^{\mathrm{T}} \
+&amp;=\sum</em>{n=1}^{N}\left{\left[\nabla_{\mathbf{w}} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)}\right] \mathcal{N}\left(a_{n} \mid 0,1\right) + \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)} \left[\nabla_{\mathbf{w}} \mathcal{N}\left(a_{n} \mid 0,1\right)\right]\right} \boldsymbol{\phi}<em>{n}^{\mathrm{T}} \
+&amp;=\sum</em>{n=1}^{N}\left{\left(\frac{\partial}{\partial y_{n}} \frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)}\right) \frac{\partial y_{n}}{\partial a_{n}} \nabla_{\mathbf{w}} a_{n} \mathcal{N}\left(a_{n} \mid 0,1\right)+\frac{y_{n}-t_{n}}{y_{n}\left(1-y_{n}\right)}\left(\frac{\partial}{\partial a_{n}} \mathcal{N}\left(a_{n} \mid 0,1\right)\right) \nabla_{\mathbf{w}} a_{n}\right} \boldsymbol{\phi}<em>{n}^{\mathrm{T}} \
+&amp;=\sum</em>{n=1}^{N}\left{\frac{y_{n}^{2}+t_{n}-2 y_{n} t_{n}}{y_{n}^{2}\left(1-y_{n}\right)^{2}} \mathcal{N}\left(a_{n} \mid 0,1\right)^{\mathrm{2}} \boldsymbol{\phi}<em>{n}+\frac{y</em>{n}-t_{n}}{y_{n}\left(1-y_{n}\right)}\left(-a_{n}\right) \mathcal{N}\left(a_{n} \mid 0,1\right) \boldsymbol{\phi}<em>{n}\right} \boldsymbol{\phi}</em>{n}^{\mathrm{T}} \
+&amp;=\sum_{n=1}^{N}\left{\frac{y_{n}^{2}+t_{n}-2 y_{n} t_{n}}{y_{n}\left(1-y_{n}\right)}\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{a_n^2}{2}\right)-a_{n}\left(y_{n}-t_{n}\right)\right} \frac{e^{-\frac{a_n^2}{2}}}{\sqrt{2\pi}y_{n}\left(1-y_{n}\right)}\boldsymbol{\phi}<em>{n}\boldsymbol{\phi}</em>{n}^{\mathrm{T}}
+\end{aligned}
+$$</p>
+<blockquote>
+<p>公式解答例は$e$の肩に乗るべき係数が$1/2$ずつ間違えてる。</p>
+</blockquote>
+<h2 id="演習-420"><a class="header" href="#演習-420">演習 4.20</a></h2>
+<div class="panel-primary">
+<p>$$
+\nabla_{\mathbf{w}<em>{k}} \nabla</em>{\mathbf{w}<em>{j}} E\left(\mathbf{w}</em>{1}, \ldots, \mathbf{w}<em>{K}\right)=\sum</em>{n=1}^{N} y_{n k}\left(I_{k j}-y_{n j}\right) \boldsymbol{\phi}<em>{n} \boldsymbol{\phi}</em>{n}^{\mathrm{T}} \tag{4.110}
+$$
+で定義される多クラスロジスティック回帰問題に対するヘッセ行列が半正定値行列であることを示せ．この問題における非退化ヘッセ行列のサイズは，$MK \times MK$であることに注意されたい．ここで，$M$はパラメータ数であり，$K$はクラス数である．半正定値性を証明するため，長さ$MK$の任意のベクトル$\mathbf{u}$に関して，積$\mathbf{u}^{\mathrm{T}}\mathbf{H}\mathbf{u}$を考え，イェンセンの不等式を適用する．</p>
+</div>
+<p>※多クラスロジスティック回帰問題でのヘッセ行列は、その$jk$成分が$(4.110)$式で与えられる$M\times M$の部分行列から構成される。つまり、
+$$
+\mathbf{H}=\begin{pmatrix}
+\mathbf{H}<em>{11} &amp; \mathbf{H}</em>{12} &amp; \cdots &amp; \mathbf{H}<em>{1K} \
+\mathbf{H}</em>{21} &amp; \mathbf{H}<em>{22} &amp; \cdots &amp; \mathbf{H}</em>{2K} \
+\vdots &amp; \vdots &amp; &amp; \vdots \
+\mathbf{H}<em>{K 1} &amp; \mathbf{H}</em>{K 2} &amp; \cdots &amp; \mathbf{H}<em>{KK}
+\end{pmatrix}, \quad \mathbf{H}</em>{jk} = \sum_{n=1}^{N}y_{nk}(I_{kj}-y_{nj})\underbrace{\boldsymbol{\phi}_n\boldsymbol{\phi}<em>n^{\mathrm T}}</em>{M\times M}
+$$
+となっている。よって、$\mathbf{H}$は$MK \times MK$の行列である。</p>
+<p>このため、ベクトル$\mathbf{u}$も$MK$次元である必要があり、$M$次元ベクトル$\mathbf{u}<em>j(1\le j \le K)$について
+$$
+\mathbf{u} = \begin{pmatrix}
+\mathbf{u}</em>{1} \ \mathbf{u}<em>{2} \ \vdots \ \mathbf{u}</em>{K}
+\end{pmatrix}
+$$
+となる。</p>
+<p>演習問題4.15と同じように、任意のベクトル$\mathbf{u}$について$\mathbf{u}^{\mathrm T}\mathbf{Hu} \ge 0$であることを示せば良い（半正定値行列なので$\ge 0$を示す）</p>
+<p>要素について注目し計算していくと</p>
+<p>$$
+\begin{aligned}
+\mathbf{u}^{\mathrm T}\mathbf{Hu} &amp;= \sum_{k}\sum_{j}\mathbf{u}<em>{j}^{\mathrm T} \mathbf{H}</em>{jk}\mathbf{u}<em>{k} \
+&amp;= \sum</em>{k}\sum_{j}\mathbf{u}<em>{j}^{\mathrm T} \sum_n y</em>{nk}(I_{kj}-y_{nj})\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \
+&amp;= \sum</em>{k}\sum_{j}\sum_n \mathbf{u}<em>{j}^{\mathrm T} y</em>{nk}(I_{kj}-y_{nj})\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \
+&amp;= \sum</em>{k}\sum_{j}\sum_n\left( \mathbf{u}<em>{j}^{\mathrm T} y</em>{nk}I_{kj}\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} - \mathbf{u}</em>{j}^{\mathrm T} y_{nk}y_{nj}\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \right) \
+&amp;= \sum</em>{k}\sum_n\left( \mathbf{u}<em>{k}^{\mathrm T} y</em>{nk}\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} - \sum</em>{j} \mathbf{u}<em>{j}^{\mathrm T} y</em>{nk}y_{nj}\boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \right) (\because I</em>{kj}=1\textrm{ when } k=j, \textrm{ otherwise } 0)\
+&amp;= \sum_{k}\sum_n\left{ y_{nk}(\mathbf{u}<em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n)^2 - y</em>{nk} \sum</em>{j} y_{nj} \mathbf{u}<em>{j}^{\mathrm T} \boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \right} \
+&amp;= \sum_n\left{\sum_k y</em>{nk}(\mathbf{u}</em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n)^2 - \sum_k y</em>{nk} \sum_{j} y_{nj} \sum_{k,j} \mathbf{u}<em>{j}^{\mathrm T} \boldsymbol{\phi}<em>n\boldsymbol{\phi}<em>n^{\mathrm T} \mathbf{u}</em>{k} \right} \
+&amp;= \sum_n\left{\sum_k y</em>{nk}(\mathbf{u}</em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n)^2 - \left(\sum_j y</em>{nj}\mathbf{u}<em>{j}^{\mathrm T} \boldsymbol{\phi}<em>n \right) \left(\sum_k y</em>{nk}\mathbf{u}</em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n \right) \right} \
+&amp;= \sum_n\left{\sum_k y</em>{nk}(\mathbf{u}<em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n)^2 - \left( \sum_k y</em>{nk} \mathbf{u}</em>{k}^{\mathrm T} \boldsymbol{\phi}_n \right)^2
+\right} \
+\end{aligned}
+$$</p>
+<p>ここで、$0\le y_{nk} \le 1, \sum_{k}y_{nk}=1$であり、<a href="https://ja.wikipedia.org/wiki/%E3%82%A4%E3%82%A7%E3%83%B3%E3%82%BB%E3%83%B3%E3%81%AE%E4%B8%8D%E7%AD%89%E5%BC%8F">イェンセンの不等式</a>を凸関数$f(x)=x^2$に対して適用する。$x = \mathbf{u}<em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n$とすれば
+$$
+\sum_k y</em>{nk}(\mathbf{u}</em>{k}^{\mathrm T} \boldsymbol{\phi}<em>n)^2 \ge \left( \sum_k y</em>{nk} \mathbf{u}_{k}^{\mathrm T} \boldsymbol{\phi}_n \right)^2
+$$
+が成立する。以上から$\mathbf{u}^{\mathrm T}\mathbf{Hu} \ge 0$となり、多クラスロジスティック回帰問題に対するヘッセ行列$\mathbf{H}$が半正定値行列であることが示された。</p>
+<h2 id="演習-421"><a class="header" href="#演習-421">演習 4.21</a></h2>
+<div class="panel-primary">
+<p>プロビット関数の逆関数
+$$
+\Phi(a)=\int_{-\infty}^{a} \mathcal{N}(\theta \mid 0,1) \mathrm{d} \theta \tag{4.114}
+$$
+とerf関数
+$$
+\operatorname{erf}(a)=\frac{2}{\sqrt{\pi}} \int_{0}^{a} \exp \left(-\theta^{2}\right) \mathrm{d} \theta \tag{4.115}
+$$
+が
+$$
+\Phi(a)=\frac{1}{2}\left{1+\operatorname{erf}\left(\frac{a}{\sqrt{2}}\right)\right} \tag{4.116}
+$$
+によって関連付けられることを示せ．</p>
+</div>
+<p>$$
+\begin{aligned}
+\mathbf{\Phi}(a) &amp;= \int_{-\infty}^{a} \mathcal{N}(\theta \mid 0,1)d\theta\
+&amp;=\int_{-\infty}^{0} \mathcal{N}(\theta \mid 0,1)d\theta + \int_{0}^{a} \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\theta^2}{2}\right)d\theta \
+&amp;= \frac{1}{2} + \int_{0}^{a} \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\theta^2}{2}\right)d\theta \quad \left(\because\quad \int_{-\infty}^{\infty} \mathcal{N}(\theta \mid 0,1)d\theta = 1 \right)
+\end{aligned}
+$$
+ここで$\displaystyle \frac{\theta}{\sqrt{2}} = x$とおくと
+$$
+\begin{aligned}
+\mathbf{\Phi}(a) &amp;= \frac{1}{2}+\frac{1}{\sqrt{\pi}}\int_{0}^{\frac{a}{\sqrt{2}}} \exp(-x^2)dx \
+&amp;= \frac{1}{2}\left{1+\mathrm{erf}\left(\frac{a}{\sqrt{2}}\right)\right}
+\end{aligned}
+$$</p>
+<p>となり、$(4.116)$式が示された。</p>
+<h2 id="演習-422"><a class="header" href="#演習-422">演習 4.22</a></h2>
+<div class="panel-primary">
+<p>$$
+\begin{aligned}
+Z &amp;=\int f(\mathbf{z}) \mathrm{d} \mathbf{z} \
+&amp; \simeq f\left(\mathbf{z}<em>{0}\right) \int \exp \left{-\frac{1}{2}\left(\mathbf{z}-\mathbf{z}</em>{0}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{z}-\mathbf{z}<em>{0}\right)\right} \mathrm{d} \mathbf{z} \
+&amp;=f\left(\mathbf{z}</em>{0}\right) \frac{(2 \pi)^{M / 2}}{|\mathbf{A}|^{1 / 2}}
+\end{aligned} \tag{4.135}
+$$
+を使って，ラプラス近似の下での対数モデルエビデンスに対する表現
+$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \theta_{\mathrm{MAP}}\right)+\underbrace{\ln p\left(\theta_{\mathrm{MAP}}\right)+\frac{M}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}|}_{\text {Occam 係数 }} \tag{4.137}
+$$
+を導出せよ．</p>
+</div>
+<p>P.216参照。$(4.136)$式を$(4.135)$式に代入すると</p>
+<p>$$
+\begin{aligned}
+p(\mathcal{D}) &amp;=\int p(\mathcal{D} \mid \boldsymbol{\theta}) p(\boldsymbol{\theta}) \mathrm{d} \boldsymbol{\theta} \
+&amp; \simeq p\left(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}}\right) p\left(\boldsymbol{\theta}</em>{\mathrm{MAP}}\right) \
+&amp; \int \exp \left{-\frac{1}{2}\left(\boldsymbol{\theta}-\boldsymbol{\theta}<em>{\mathrm{MAP}}\right) \mathbf{A}\left(\boldsymbol{\theta}-\boldsymbol{\theta}</em>{\mathrm{MAP}}\right)\right} \mathrm{d} \boldsymbol{\theta} \
+&amp;=p\left(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}}\right) p\left(\boldsymbol{\theta}</em>{\mathrm{MAP}}\right) \frac{(2 \pi)^{M / 2}}{|\mathbf{A}|^{1 / 2}}
+\end{aligned}
+$$</p>
+<p>これより、両辺の対数を取ると
+$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}}\right)+\underbrace{\ln p\left(\theta</em>{\mathrm{MAP}}\right)+\frac{M}{2} \ln (2 \pi)-\frac{1}{2} \ln |\mathbf{A}|}_{\text {Occam 係数 }} \tag{4.137}
+$$
+が得られる。</p>
+<h2 id="演習-423"><a class="header" href="#演習-423">演習 4.23</a></h2>
+<div class="panel-primary">
+<p>この演習問題では$(4.137)$で与えられるモデルエビデンスに対し，ラプラス近似から始めて，BICの結果
+$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \theta_{\mathrm{MAP}}\right)-\frac{1}{2} M \ln N \tag{4.139}
+$$
+を導出する．パラメータ上での事前確率が$p(\theta)=\mathcal{N}\left(\boldsymbol{\theta} \mid \mathbf{m}, \mathbf{V}_{0}\right)$形式のガウス分布のとき，ラプラス近似の下での対数モデルエビデンスが以下の式となることを示せ．</p>
+<p>$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}}\right)-\frac{1}{2}\left(\boldsymbol{\theta}</em>{\mathrm{MAP}}-\mathbf{m}\right)^{\mathrm{T}} \mathbf{V}<em>{0}^{-1}\left(\boldsymbol{\theta}</em>{\mathrm{MAP}}-\mathbf{m}\right)-\frac{1}{2} \ln |\mathbf{H}|+\text {const.}
+$$</p>
+<p>ここで，$\mathbf{H}$は$\boldsymbol{\theta}<em>{\mathrm{MAP}}$で評価された負の対数尤度$\ln p(\mathcal{D}|\boldsymbol{\theta})$の2階微分の行列である．事前確率が広い幅を持っている，つまり，$\mathbf{V}</em>{0}^{-1}$が小さく，上式右辺第2項が無視できると仮定する．さらに，$\mathbf{H}$が各データ点に対応する項の和で書けるように独立同時分布(i.i.d)の場合を考える．その場合，対数モデルエビデンスが近似的にBIC表現$(4.139)$の式で書けることを示せ．</p>
+</div>
+<p>$(4.137)$式における$\mathbf{A}$は事後分布の負の対数の2階微分であるヘッセ行列であり、
+$$
+\mathbf{A} = -\nabla\nabla \ln p(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}})p(\boldsymbol{\theta}</em>{\mathrm{MAP}}) = -\nabla\nabla\ln p(\boldsymbol{\theta}<em>{\mathrm{MAP}} \mid \mathcal{D})
+$$
+である。ここで、問題文から$\mathbf{H}$は$\boldsymbol{\theta}</em>{\mathrm{MAP}}$で評価された負の対数尤度$\ln p(\mathcal{D} \mid \boldsymbol{\theta}<em>{\mathrm{MAP}})$の2階微分の行列なので
+$$
+\mathbf{H} = -\nabla\nabla\ln p(\mathcal{D} \mid \boldsymbol{\theta}</em>{\mathrm{MAP}})
+$$
+であり、この2式から
+$$
+\mathbf{A} = \mathbf{H} -\nabla\nabla\ln p(\boldsymbol{\theta}_{\mathrm{MAP}})
+$$
+となる。今、$p(\boldsymbol{\theta}) = \mathcal{N}(\boldsymbol{\theta}\mid \mathbf{m},\mathbf{V}_0)$とすると</p>
+<p>$$
+\begin{aligned}
+-\nabla\nabla\ln p(\boldsymbol{\theta}_{\mathrm{MAP}}) &amp;= -\nabla\nabla \ln \left[ \frac{1}{(2\pi)^{M/2}|\mathbf{V}<em>0|^{1/2}} \exp\left{ -\frac{1}{2} (\boldsymbol{\theta}</em>{\mathrm{MAP}}-\mathbf{m})^{\mathrm T} \mathbf{V}<em>0^{-1} (\boldsymbol{\theta}</em>{\mathrm{MAP}}-\mathbf{m}) \right} \right] \
+&amp;=\mathbf{V}_0^{-1}
+\end{aligned}
+$$
+なので、$\mathbf{A} = \mathbf{H} + \mathbf{V}_0^{-1}$となる。</p>
+<p>問題文の通り、もし事前分布が十分に広い幅を持っていれば（またはデータの数$N$が多ければ）$\mathbf{V}_0^{-1}$は$\mathbf{H}$に比べ十分に小さくなるので$\mathbf{A} \simeq \mathbf{H}$と近似できる。$(4.137)$式にこれを代入すれば</p>
+<p>$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \theta_{\mathrm{MAP}}\right)-\frac{1}{2}\left(\theta_{\mathrm{MAP}}-\mathbf{m}\right)^{\mathrm{T}} \mathbf{V}<em>{0}^{-1}\left(\theta</em>{\mathrm{MAP}}-\mathbf{m}\right)-\frac{1}{2} \ln |\mathbf{H}|+\text { const. }
+$$</p>
+<p>が得られる。</p>
+<p>再び$\boldsymbol{\theta}$の事前分布が平坦であるという仮定を用いると、上式の第1項に対して第2項を無視できる。またデータ点がi.i.d.であると仮定すると、ヘッセ行列を各データ点からの寄与$\mathbf{H}<em>n$の和で表すことができる。また、その和をデータ点の数$N$と各データ点からの寄与の平均値$\hat{\mathbf{H}}$を用いて表すこともできる。
+$$
+\mathbf{H} = \sum</em>{n=1}^N \mathbf{H}<em>n = N\hat{\mathbf{H}}, \quad \hat{\mathbf{H}} = \frac{1}{N}\sum</em>{n=1}^N \mathbf{H}_n
+$$
+すると、$\mathbf{H}$は$M \times M$（$M$は$\boldsymbol{\theta}$のパラメータ数）の行列で、非退化（フルランク）であると仮定するなら
+$$
+\ln |\mathbf{H}| = \ln |N\hat{\mathbf{H}}| = \ln(N^M |\hat{\mathbf{H}}|) = M\ln N + \ln |\hat{\mathbf{H}}|
+$$</p>
+<p>第2項は$\ln N$と比較して$O(1)$なので無視できる(ここよくわからない)ので、最終的に$(4.139)$式</p>
+<p>$$
+\ln p(\mathcal{D}) \simeq \ln p\left(\mathcal{D} \mid \theta_{\mathrm{MAP}}\right)-\frac{1}{2} M \ln N \tag{4.139}
+$$</p>
+<p>のように粗く近似することができる。これが <strong>ベイズ情報量規準 (BIC)</strong> である。</p>
+<h2 id="演習-424"><a class="header" href="#演習-424">演習 4.24</a></h2>
+<div class="panel-primary">
+<p>2.3.2節からの結果を利用して，パラメータ$\mathbf{w}$の事後確率分布がガウス分布である場合のロジスティック回帰モデルの周辺化に対する結果
+$$
+p\left(\mathcal{C}<em>{1} \mid \mathbf{t}\right)=\int \sigma(a) p(a) \mathrm{d} a=\int \sigma(a) \mathcal{N}\left(a \mid \mu</em>{a}, \sigma_{a}^{2}\right) \mathrm{d} a \tag{4.151}
+$$
+を導け．</p>
+</div>
+<p>※P.218 4.5.2 予測分布のところで、「デルタ関数は$\mathbf{w}$に線形制約を科し，$\boldsymbol{\phi}$に直交するすべての方向に積分することで，同時分布$q(\mathbf{w})$から周辺分布を形成することに留意して，$p(a)$を評価することができる．」という記述がある。そこで、$M$次元空間を回転させ、$\boldsymbol{\phi}$に平行な$\mathbf{w}$の成分を$w_{\parallel}$とし、$\boldsymbol{\phi}$に直交する$M-1$個の成分をまとめて$\mathbf{w}_{\perp}$とする。すなわち</p>
+<p>$$
+a = \mathbf{w}^{\mathrm T}\boldsymbol{\phi} = w_{\parallel}|\boldsymbol{\phi}|,\quad \textrm{where}\ \mathbf{w}^{\mathrm T} = (w_{\parallel}, \mathbf{w}_{\perp})
+$$</p>
+<p>とする。これを用いて$(4.147)$式に代入すると
+$$
+\begin{aligned}
+\int \sigma\left(\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\right) q(\mathbf{w}) \mathrm{d} \mathbf{w}
+&amp;=\iint \sigma\left(w_{\parallel}|\boldsymbol{\phi}|\right) q\left(w_{\parallel}, \mathbf{w}<em>{\perp}\right) \mathrm{d} w</em>{\parallel} \mathrm{d} \mathbf{w}<em>{\perp} \
+&amp;=\int \sigma\left(w</em>{\parallel}|\boldsymbol{\phi}|\right) \int q\left(w_{\parallel}, \mathbf{w}<em>{\perp} \right) \mathrm{d}\mathbf{w}</em>{\perp} \mathrm{d} w_{\parallel} \
+&amp;=\int \sigma\left(w_{\parallel}|\boldsymbol{\phi}|\right) q\left(w_{|}\right) \mathrm{d} w_{\parallel} \
+&amp;=\int \sigma(a) q(w_{|}) \mathrm{d} w_{\parallel}
+\end{aligned}
+$$</p>
+<p>ここで、同時確率分布$q(w_{\parallel}, \mathbf{w}<em>{\perp})$はガウス分布なので、2.3.2節の内容から、周辺分布$q(w</em>{\parallel})$もガウス分布である。すなわち</p>
+<p>$$
+q(w_{\parallel}) = \mathcal{N}(w_{\parallel}\mid \mu, \sigma^2)
+$$
+のような形で記述することができる。</p>
+<p>上式は$w_{\parallel}$についてのスカラー量になっているので、行列形式で書くために単位ベクトル</p>
+<p>$$
+\mathbf{e} = \frac{\boldsymbol{\phi}}{|\boldsymbol{\phi}|}
+$$
+を導入すると、$\mu = \mathbf{e}^{\mathrm T}\mathbf{m}<em>{\mathrm{MAP}}, \sigma^2 = \mathbf{e}^{\mathrm T}\mathbf{S}</em>{\mathrm{MAP}}\mathbf{e}$となるような$\mathbf{m}<em>{\mathrm{MAP}}, \mathbf{S}</em>{\mathrm{MAP}}$が存在する。</p>
+<p>$$
+q(w_{\parallel}) = \mathcal{N}(w_{\parallel}\mid \mu, \sigma^2) = |\boldsymbol{\phi}|\mathcal{N}(a\mid \boldsymbol{\phi}^{\mathrm T}\mathbf{m}<em>{\mathrm{MAP}}, \boldsymbol{\phi}^{\mathrm T}\mathbf{S}</em>{\mathrm{MAP}}\boldsymbol{\phi})
+$$</p>
+<p>また、$a = w_{\parallel}|\boldsymbol{\phi}|$より$|\boldsymbol{\phi}|\mathrm{d}w_{\parallel} = \mathrm{d}a$を利用すると</p>
+<p>$$
+\begin{aligned}
+\int \sigma(a) q(w_{|}) \mathrm{d} w_{\parallel} &amp;= |\boldsymbol{\phi}| \int \sigma(a) \mathcal{N}(a\mid \boldsymbol{\phi}^{\mathrm T}\mathbf{m}<em>{\mathrm{MAP}}, \boldsymbol{\phi}^{\mathrm T}\mathbf{S}</em>{\mathrm{MAP}}\boldsymbol{\phi})\mathrm{d}w_{\parallel} \
+&amp;= \int \sigma(a) \mathcal{N}(a\mid \boldsymbol{\phi}^{\mathrm T}\mathbf{m}<em>{\mathrm{MAP}}, \boldsymbol{\phi}^{\mathrm T}\mathbf{S}</em>{\mathrm{MAP}}\boldsymbol{\phi})\mathrm{d}a
+\end{aligned}
+$$</p>
+<p>最後に$\mu_a = \boldsymbol{\phi}^{\mathrm T}\mathbf{m}<em>{\mathrm{MAP}}, \sigma^{2}</em>{a} = \boldsymbol{\phi}^{\mathrm T}\mathbf{S}_{\mathrm{MAP}}\boldsymbol{\phi}$とすれば、$(4.151)$式が導かれる。</p>
+<h2 id="演習-425"><a class="header" href="#演習-425">演習 4.25</a></h2>
+<div class="panel-primary">
+<p>$$
+\sigma(a)=\frac{1}{1+\exp (-a)} \tag{4.59}
+$$
+で定義されるロジスティックシグモイド関数$\sigma(a)$をスケールパラメータを持つプロビット関数の逆関数$\mathrm{\Phi}(\lambda a)$で近似するとする．ここで，$\mathrm{\Phi}(a)$は
+$$
+\Phi(a)=\int_{-\infty}^{a} \mathcal{N}(\theta \mid 0,1) \mathrm{d} \theta \tag{4.114}
+$$
+で定義される．2つの関数の微分が$a=0$で等しいように$\lambda$を選ぶ場合，$\lambda^2 = \pi /8$となることを示せ．</p>
+</div>
+<p>※大学入試にありそうな問題。</p>
+<p>ロジスティックシグモイド$\sigma(a)$の$a=0$での微分$\displaystyle \left. \frac{d\sigma}{da}\right|<em>{a=0}$とプロビット関数の逆関数$\Phi(\lambda a)$の$a=0$での微分$\displaystyle \left. \frac{d\Phi(\lambda a)}{da}\right|</em>{a=0}$が一致すれば良い。</p>
+<p>$$
+\left. \frac{d\sigma}{da} \right|<em>{a=0} = \left. \frac{e^{-a}}{(1+e^{-a})^2}\right|</em>{a=0} = \frac{1}{4} \tag{1}
+$$</p>
+<p>$$
+\begin{aligned}
+\left. \frac{d\Phi(\lambda a)}{da}\right|<em>{a=0} &amp;= \left. \frac{d(\lambda a)}{da} \frac{d}{d(\lambda a)}\int</em>{-\infty}^{\lambda a} \mathcal{N}(\theta\mid 0, 1)d\theta\right|<em>{a=0} \
+&amp;= \left. \lambda \mathcal{N}(\lambda a\mid 0, 1)\right|</em>{a=0} \
+&amp;= \left. \frac{\lambda}{\sqrt{2\pi}} \exp\left( -\frac{(\lambda a)^2}{2} \right)\right|_{a=0} \
+&amp;= \frac{\lambda}{\sqrt{2\pi}}
+\end{aligned}\tag{2}
+$$</p>
+<p>$(1), (2)$が一致するので、</p>
+<p>$$
+\lambda = \frac{\sqrt{2\pi}}{4},\quad \lambda^2 = \frac{\pi}{8}
+$$</p>
+<p>となる。</p>
+<h2 id="演習-426"><a class="header" href="#演習-426">演習 4.26</a></h2>
+<div class="panel-primary">
+<p>この演習問題で，ガウス分布とプロビット関数の逆関数のたたみ込みに対する関係
+$$
+\int \Phi(\lambda a) \mathcal{N}\left(a \mid \mu, \sigma^{2}\right) \mathrm{d} a=\Phi\left(\frac{\mu}{\left(\lambda^{-2}+\sigma^{2}\right)^{1 / 2}}\right) \tag{4.152}
+$$
+を証明する．この証明を行うため，$\mu$に関する左辺の微分が右辺の微分に等しいことを示せ．また，$\mu$に関して両辺を積分して，積分定数が消えることを示せ．左辺を微分する前に，$a$での積分を$z$での積分で置き換えるように変数変換$a=\mu+\sigma z$を導入すれば便利である．関係$(4.152)$の左辺を微分すれば解析的に評価可能な$z$に関するガウス分布の積分が得られる．</p>
+</div>
+<p>※右辺の$\mu$についての微分は簡単なのでそちらから求める。</p>
+<p>$$
+\frac{d}{d \mu} \Phi\left(\frac{\mu}{\left(\lambda^{-2}+\sigma^{2}\right)^{1 / 2}}\right)=\frac{1}{\sqrt{2 \pi}} \frac{1}{\left(\lambda^{-2}+\sigma^{2}\right)^{1 / 2}} \exp \left{-\frac{\mu^{2}}{2\left(\lambda^{-2}+\sigma^{2}\right)}\right} \tag{1}
+$$</p>
+<p>次に左辺について、左辺の式を$f(a)$とおき、誘導に従って$a = \mu + \sigma\lambda$を導入すると</p>
+<p>$$
+\begin{aligned}
+f(a)&amp;=\int \Phi(\lambda a) \mathcal{N}\left(a \mid \mu, \sigma^{2}\right) d a \
+&amp;=\int \Phi(\lambda(\mu+\sigma z)) \mathcal{N}\left(\mu+\sigma z \mid \mu, \sigma^{2}\right) \sigma d z \quad (\because da = \sigma dz)\
+&amp;=\int \Phi(\lambda \mu+\lambda \sigma z) \frac{1}{\left(2 \pi \sigma^{2}\right)^{1/2}} \exp \left{-\frac{1}{2} z^{2}\right} \sigma d z
+\end{aligned}
+$$</p>
+<p>$f(a)$に対し$\mu$についての微分を実行する。ここで</p>
+<p>$$
+\frac{\partial}{\partial \mu}\Phi(\lambda(\mu + \sigma z)) = \frac{\partial (\lambda(\mu + \sigma z))}{\partial\mu}\frac{\partial \Phi(\lambda(\mu + \sigma z))}{\partial (\lambda(\mu + \sigma z))} = \lambda \mathcal{N}(\lambda(\mu + \sigma z))
+$$</p>
+<p>であることに注意すると</p>
+<p>$$
+\begin{aligned}
+\frac{\partial f}{\partial \mu} &amp;=\int \lambda \mathcal{N}(\lambda \mu+\lambda \sigma z) \frac{1}{\sqrt{2 \pi}} \exp \left{-\frac{1}{2} z^{2}\right} d z \
+&amp;=\frac{\lambda}{2 \pi} \int \exp \left{-\frac{1}{2} z^{2}-\frac{\lambda^{2}}{2}(\mu+\sigma z)^{2}\right} d z
+\end{aligned}
+$$</p>
+<p>ここで、積分記号の中がガウス分布の形になるように$z$について平方完成を行うと、積分記号の中は</p>
+<p>$$
+\begin{aligned}
+-\frac{1}{2}\left(z^{2}+\lambda^{2}(\mu+\sigma z)^{2}\right) &amp;=-\frac{1}{2}\left{\left(1+\lambda^{2} \sigma^{2}\right) z^{2}+2 \lambda^{2} \mu \sigma z+\lambda^{2} \mu^{2}\right} \
+&amp;=-\frac{1+\lambda^{2} \sigma^{2}}{2}\left{\left(z+\frac{\lambda^{2} u \sigma}{1+\lambda^{2} \sigma^{2}}\right)^{2}-\frac{\lambda^{4} \mu^{2} \sigma^{2}}{\left(1+\lambda^{2} \sigma^{2}\right)^{2}}+\frac{\lambda^{2} \mu^{2}}{1+\lambda^{2} \sigma^{2}}\right} \
+&amp;=-\frac{1+\lambda^{2} \sigma^{2}}{2}\left(z+\frac{\lambda^{2} \mu \sigma}{1+\lambda^{2} \sigma^{2}}\right)^{2}-\frac{\lambda^{2} u^{2}}{2\left(1+\lambda^{2} \sigma^{2}\right)}
+\end{aligned}
+$$</p>
+<p>となる。さらに途中でガウス分布の正規化定数$\displaystyle \int \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right) dz = \sqrt{2\pi \sigma^2}$を利用することで</p>
+<p>$$
+\begin{aligned}
+\frac{\partial f}{\partial \mu} &amp;=\frac{\lambda}{2 \pi} \int \exp \left{-\frac{1+\lambda^{2} \sigma^{2}}{2}\left(z+\frac{\lambda^{2} \mu \sigma}{1+\lambda^{2} \sigma^{2}}\right)^{2}-\frac{\lambda^{2} u^{2}}{2\left(1+\lambda^{2} \sigma^{2}\right)}\right} d z \
+&amp;=\frac{\lambda}{2 \pi} \exp \left(-\frac{\lambda^{2} u^{2}}{2\left(1+\lambda^{2} \sigma^{2}\right)}\right) \underbrace{\int \exp \left{-\frac{1+\lambda^{2} \sigma^{2}}{2}\left(z+\frac{\lambda^{2} \mu \sigma}{1+\lambda^{2} \sigma^{2}}\right)^{2}\right}}_{\textrm{Gaussian integral }} d z \
+&amp;=\frac{\lambda}{2 \pi} \exp \left(-\frac{\lambda^{2} u^{2}}{2\left(1+\lambda^{2} \sigma^{2}\right)}\right) \sqrt{\frac{2 \pi}{1+\lambda^{2} \sigma^{2}}} \
+&amp;=\frac{\lambda}{\sqrt{2 \pi}} \frac{1}{\left(1+\lambda^{2} \sigma^{2}\right)^{1 / 2}} \exp \left(\frac{-\lambda^{2} \mu^{2}}{2\left(1+\lambda^{2} \sigma^{2}\right)}\right) \
+&amp;=\frac{1}{\sqrt{2 \pi}} \frac{1}{\left(\lambda^{-2}+\sigma^{2}\right)^{1 / 2}} \exp \left{-\frac{\mu^{2}}{2\left(\lambda^{-2}+\sigma^{2}\right)}\right}
+\end{aligned} \tag{2}
+$$</p>
+<p>$(1)$, $(2)$の結果から両辺の$\mu$に関する微分が等しいことが示された。</p>
+<p>また、$(4.152)$の両辺について$\mu \to -\infty$を考えると両辺とも$0$となる。これは積分定数が$0$であることを示し、微分形が一致することと合わせると、$(4.152)$式の等号が成立することが示された。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch03.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch05.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch03.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch05.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

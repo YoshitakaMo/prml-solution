@@ -1,0 +1,1076 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第7章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html" class="active"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第7章演習問題解答"><a class="header" href="#prml第7章演習問題解答">PRML第7章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-71"><a class="header" href="#演習-71">演習 7.1</a></h2>
+<div class="panel-primary">
+<p>今，入力ベクトルのデータ集合${\mathbf{x}_n}$とそれに対応する目標値$t_n \in {-1, 1}$が与えられ，かつ，それぞれのクラス分布をカーネル関数$k(\mathbf{x}, \mathbf{x}^{\prime})$を用いてParzen推定法(2.5.1節参照)でモデル化したとするそれぞれのクラスの事前確率が等しいとしたとき，誤分類率が最も小さくなる分類規則を求めよ．またカーネルが$k(\mathbf{x}, \mathbf{x}^{\prime}) = \mathbf{x}^{\mathrm T}\mathbf{x}^{\prime}$どという形で表される場合，分類規則は単に重心との距離が近い方のクラスを新しい入力ベクトルに割り当てる， という形になることを示せ．最後にカーネルが$k(\mathbf{x}, \mathbf{x}^{\prime}) = \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\boldsymbol{\phi}(\mathbf{x}^{\prime})$という形の場合は，分類規則は特徴空間$\boldsymbol{\phi}(\mathbf{x})$において最も重心が近いクラスを割り当てることに等しいことを示せ．</p>
+</div>
+<p>式 (2.249) に従い、$p(\mathbf{x}|t)$を
+\begin{align}
+p(\mathbf{x}|t) \propto
+\begin{cases}
+\frac{1}{N_{+1}} \sum_{t = +1} k(\mathbf{x}, \mathbf{x}<em>n) \ \ t = +1\
+\frac{1}{N</em>{-1}} \sum_{t = -1} k(\mathbf{x}, \mathbf{x}<em>n) \ \ t = -1
+\end{cases}
+\end{align}
+と書ける。各クラスの事前確率が等しいと仮定するので、事後確率$p(t|\mathbf{x})$は
+\begin{align}
+p(t|\mathbf{x}) \propto
+\begin{cases}
+\frac{1}{N</em>{+1}} \sum_{t = +1} k(\mathbf{x}, \mathbf{x}<em>n) \ \ t = +1 \
+\frac{1}{N</em>{-1}} \sum_{t = -1} k(\mathbf{x}, \mathbf{x}<em>n) \ \ t = -1
+\end{cases}
+\end{align}
+となる。新しい$\mathbf{x}^{\star}$を分類するには、$p(t|\mathbf{x}^{\star})$を最大化する$t^{\star}$を探せばいいので、
+\begin{align}
+t^{\star} =
+\begin{cases}
++1\ \ \mathrm{if}\ \ \frac{1}{N</em>{+1}} \sum_{t = +1} k(\mathbf{x}^{\star}, \mathbf{x}<em>n) \geq \frac{1}{N</em>{-1}} \sum_{t = -1} k(\mathbf{x}^{\star}, \mathbf{x}<em>n) \
+-1\ \ \mathrm{if}\ \ \frac{1}{N</em>{+1}} \sum_{t = +1} k(\mathbf{x}^{\star}, \mathbf{x}<em>n) \leq \frac{1}{N</em>{-1}} \sum_{t = -1} k(\mathbf{x}^{\star}, \mathbf{x}<em>n)
+\end{cases}
+\end{align}
+ここで$k(\mathbf{x}, \mathbf{x}') = \mathbf{x}^{T}\mathbf{x}'$のとき、
+\begin{align}
+\frac{1}{N</em>{+1}} \sum_{t = +1} k(\mathbf{x}, \mathbf{x}<em>n) &amp; = \frac{1}{N</em>{+1}} \sum_{t = +1} \mathbf{x}^{T}\mathbf{x}<em>n \
+&amp;= \frac{1}{N</em>{+1}} \sum_{i = 1}^{N_{+1}} x_1 (x_{n1} + x_{n2} + \cdots + x_{nd}) + \cdots + x_d (x_{n1} + x_{n2} + \cdots + x_{nd}) \
+&amp;= x_1 (\bar{x}<em>{+1,1} + \bar{x}</em>{+1,2} + \cdots + \bar{x}<em>{+1,d}) + \cdots + x_d (\bar{x}</em>{+1,1} + \bar{x}<em>{+1,2} + \cdots + \bar{x}</em>{+1,d}) \
+&amp;= \mathbf{x}^{T}\mathbf{\bar{x}}<em>{+1}
+\end{align}
+同様に、
+\begin{align}
+\frac{1}{N</em>{+1}} \sum_{t = -1} k(\mathbf{x}, \mathbf{x}<em>n) = \mathbf{x}^{T}\mathbf{\bar{x}}</em>{-1}
+\end{align}
+よって、上記の分類規則は
+\begin{align}
+t^{\star} =
+\begin{cases}
++1\ \ \mathrm{if}\ \ \mathbf{x}^{T}\mathbf{\bar{x}}<em>{+1} \geq \mathbf{x}^{T}\mathbf{\bar{x}}</em>{-1} \
+-1\ \ \mathrm{if}\ \ \mathbf{x}^{T}\mathbf{\bar{x}}<em>{+1} \leq \mathbf{x}^{T}\mathbf{\bar{x}}</em>{-1}
+\end{cases}
+\end{align}
+となる。
+$k(\mathbf{x}, \mathbf{x}') = \phi(\mathbf{x})^{T}\phi(\mathbf{x}')$としたときも、同様の計算により、
+\begin{align}
+t^{\star} =
+\begin{cases}
++1\ \ \mathrm{if}\ \ \phi(\mathbf{x})^{T}\bar{\phi}(\mathbf{x})<em>{+1} \geq \phi(\mathbf{x})^{T}\bar{\phi}(\mathbf{x})</em>{-1} \
+-1\ \ \mathrm{if}\ \ \phi(\mathbf{x})^{T}\bar{\phi}(\mathbf{x})<em>{+1} \leq \phi(\mathbf{x})^{T}\bar{\phi}(\mathbf{x})</em>{-1}
+\end{cases}
+\end{align}
+ここで$\bar{\phi}(\mathbf{x})<em>{+1} = \frac{1}{N</em>{+1}} \sum_{n = 1}^{N_{+1}} \phi(\mathbf{x}<em>n)$、$\bar{\phi}(\mathbf{x})</em>{-1} = \frac{1}{N_{+1}} \sum_{n = 1}^{N_{-1}} \phi(\mathbf{x}_n)$</p>
+<h2 id="演習-72"><a class="header" href="#演習-72">演習 7.2</a></h2>
+<div class="panel-primary">
+<p>制約式
+$$
+t_{n}\left(\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)+b\right) \geqslant 1, \quad n=1, \ldots, N \tag{7.5}
+$$
+において，右辺の$1$を任意の正数$\gamma$で置き換えても，マージン最大の超平面は変化しないことを示せ．</p>
+</div>
+<p>$$
+t_{n}\left(\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)+b\right) \geqslant \gamma, \quad n=1, \cdots, N \tag{7.5.a}
+$$
+と置き換えると、
+$\mathbf{w}^{\prime}=\frac{\mathbf{w}}{\gamma}, \quad b^{\prime}=\frac{b}{\gamma} .$として
+$$
+t</em>{n}\left(\mathbf{w}^{\prime\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)+b^{\prime}\right) \geqslant 1, \quad n=1, \ldots, N \tag{7.5.b}
+$$
+と書け、マージンは
+$$
+\min <em>{n} \frac{\left[t</em>{n}\left(\mathbf{w}^{\prime\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)+b^{\prime}\right)\right]}{|\mathbf{w}^{\prime}|}
+=\min <em>{n} \frac{\left[t</em>{n}\left(\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)+b\right)\right]}{|\mathbf{w}|}
+$$
+と変化しない。</p>
+<h2 id="演習-73"><a class="header" href="#演習-73">演習 7.3</a></h2>
+<div class="panel-primary">
+<p>データ空間の次元数によらず各クラスに一つずつデータが存在すれば， 2つのデータ点だけから成るデータ集合でマージン最大の超平面を決定できることを示せ．</p>
+</div>
+<p>※</p>
+<p>各クラスに一つずつデータ点が与えられたとき，その2点を $\mathbf{x}<em>1\in\mathit{C}</em>+ (t_1 = +1)$， $\mathbf{x}<em>2\in\mathit{C}</em>- (t_2 = -1)$ とすると以下の制約式のもとで式(7.6)を解くことでマージンを最大化する超平面が得られる</p>
+<p>$$
+arg,min_{\mathbf{w}, b},\frac{1}{2}||\mathbf{w}||^2\tag{7.6}
+$$</p>
+<p>$$
+\mathbf{w}^T\mathbf{x}_1+b= +1\tag{1}
+$$</p>
+<p>$$
+\mathbf{w}^T\mathbf{x}_2+b= -1\tag{2}
+$$</p>
+<p>(7.6)式をラグランジュ乗数$\lambda$と$\eta$を用いて解くと</p>
+<p>$$
+arg,min_{\mathbf{w}, b},\left{\frac{1}{2}||\mathbf{w}||^2+\lambda(\mathbf{w}^T\mathbf{x}_1+b-1)+\eta(\mathbf{w}^T\mathbf{x}_2+b+1)\right}\tag{3}
+$$</p>
+<p>(3)式の$\mathbf{w}$とbについて微分した式を0とおくと</p>
+<p>$$
+0=\mathbf{w}+\lambda\mathbf{x}_1+\eta\mathbf{x}_2\tag{4}
+$$
+$$
+0=\lambda+\eta\tag{5}
+$$</p>
+<p>が得られ，(4)，(5)式から</p>
+<p>$$
+\mathbf{w}=\lambda(\mathbf{x}_2-\mathbf{x}_1)\tag{6}
+$$</p>
+<p>また(1)，(2)式からbは</p>
+<p>$$
+2b=-\mathbf{w}^T(\mathbf{x}_1+\mathbf{x}_2)
+$$</p>
+<p>であり，これと(6)式と合わせて</p>
+<p>$$
+\begin{aligned}
+b=&amp;-\frac{\lambda}{2}(\mathbf{x}_1-\mathbf{x}_2)^T(\mathbf{x}_1+\mathbf{x}_2)\=&amp;-\frac{\lambda}{2}(\mathbf{x}_1^T\mathbf{x}_1-\mathbf{x}_2^T\mathbf{x}_2)
+\end{aligned}
+$$</p>
+<p>のように求まり，マージンを最大化する超平面が定まる．</p>
+<h2 id="演習-74"><a class="header" href="#演習-74">演習 7.4</a></h2>
+<div class="panel-primary">
+<p>マージン最大の超平面のマージン$\rho$は，以下の式を満たすことを示せ．</p>
+<p>$$
+\frac{1}{\rho^2}= \sum_{n=1}^N a_n \tag{7.123}
+$$</p>
+<p>ただし${a_n}$は</p>
+<p>$$
+\widetilde{L}(\mathbf{a})=\sum_{n=1}^{N} a_{n}-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} a_{n} a_{m} t_{n} t_{m} k\left(\mathbf{x}<em>{n}, \mathbf{x}</em>{m}\right) \tag{7.10}
+$$</p>
+<p>を制約条件</p>
+<p>$$
+a_{n} \geqslant 0, \hspace{2em} n=1, \ldots, N \tag{7.11}
+$$</p>
+<p>$$
+\sum_{n=1}^{N} a_{n} t_{n}=0 \tag{7.12}
+$$</p>
+<p>の下で解いて得られる解とする．</p>
+</div>
+<p>今、定義と、(7, 2)より、
+\begin{align}
+\rho = \frac{t_n y(x_n)}{||\mathbf{w}||} = \frac{t_n (\mathbf{w}^T \phi(\mathbf{x}<em>n)+b)}{||\mathbf{w}||}
+\end{align}
+である。今、分子と分母を定数倍すると、ある$\mathbf{w}^{\star}$において、
+\begin{align}
+\rho = \frac{1}{||\mathbf{w}^{\star}||}
+\end{align}
+が成り立つ。よって、$\frac{1}{\rho^2} = ||\mathbf{w}^{\star}||^2$であり、$||\mathbf{w}^{\star}||^2 = \sum</em>{n=1}^N a_n$を証明すれば題意は満たされる。今、(7, 10)より
+\begin{align}
+\widetilde{L}(\mathbf{a}) &amp;= \sum_n a_n - \frac{1}{2}\sum_n \sum_m a_n a_m t_n t_m k(\mathbf{x}_n, \mathbf{x}_m)　\
+&amp;= \sum_n a_n - \frac{1}{2}\sum_n a_n t_n \phi(\mathbf{x}_n) \sum_m  a_m  t_m  \phi(\mathbf{x}_m)　\
+&amp;= \sum_n a_n - \frac{1}{2}||\mathbf{w^{\star}}||^2 &amp;(\because　(7, 8))
+\end{align}
+また、ラグランジュ乗数法の定義より。
+\begin{align}
+\widetilde{L}(a) = L(\mathbf{w^{\star}}, b, \mathbf{a} ) = \frac{1}{2}||\mathbf{w}^{\star}||^2 &amp;(\because (7.7))
+\end{align}
+よって、$\sum_n a_n - \frac{1}{2}||\mathbf{w^{\star}}||^2 = \frac{1}{2}||\mathbf{w}^{\star}||^2$であり、整理すると、題意が導かれる。</p>
+<h2 id="演習-75"><a class="header" href="#演習-75">演習 7.5</a></h2>
+<div class="panel-primary">
+<p>前問における$\rho$および${a_n}$は，次の式を満たすことを示せ．</p>
+<p>$$
+\frac{1}{\rho^{2}}=2 \widetilde{L}(\mathbf{a}) \tag{7.124}
+$$</p>
+<p>ここで，$\widetilde{L}(\mathbf{a})$は</p>
+<p>$$
+\widetilde{L}(\mathbf{a})=\sum_{n=1}^{N} a_{n}-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} a_{n} a_{m} t_{n} t_{m} k\left(\mathbf{x}<em>{n}, \mathbf{x}</em>{m}\right) \tag{7.10}
+$$</p>
+<p>で定義される関数である同様に以下の関係が成り立つことを示せ．</p>
+<p>$$
+\frac{1}{\rho^{2}}= |\mathbf{w}|^2 \tag{7.125}
+$$</p>
+</div>
+<p>本問については、7.4ですでに示されている.</p>
+<p>\begin{align}
+(
+\because
+\widetilde{L}(a) = \frac{1}{2}||\mathbf{w}'||^2 ,
+\rho = \frac{1}{||\mathbf{w}'||}
+)
+\end{align}</p>
+<p>※</p>
+<h2 id="演習-76"><a class="header" href="#演習-76">演習 7.6</a></h2>
+<div class="panel-primary">
+<p>出力値が$t\in{-1, 1}$であるロジスティック回帰モデルについて考える．</p>
+<p>$$
+y(\mathbf{x})=\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x})+b \tag{7.1}
+$$</p>
+<p>という形の$y(\mathbf{x})$を用いて，$p(t=1|y) = \sigma(y)$とすると，対数尤度(の符号を反転したもの)に2乗ノルムの正則化項を加えたものは</p>
+<p>$$
+\sum_{n=1}^{N} E_{\mathrm{LR}}\left(y_{n} t_{n}\right)+\lambda|\mathbf{w}|^{2} \tag{7.47}
+$$</p>
+<p>という形を取ることを示せ．ただし</p>
+<p>$$
+E_{\mathrm{LR}}(y t)=\ln (1+\exp (-y t)) \tag{7.48}
+$$</p>
+<p>である．</p>
+</div>
+<p>ロジスティック回帰モデルはinputデータに対して各クラスの事後確率を求め
+最も高い確率のクラスに分類する手法。</p>
+<p>各クラスの事後確率はロジスティックシグモイド関数として以下のように書ける。</p>
+<p>入力データがクラス1である確率：$p(t=1 \mid y)=\sigma(y)$
+入力データがクラス2である確率：$p(t=-1 \mid y)=1-\sigma(y)=\sigma(-y)$
+$※\sigma(y)=\frac{1}{1+e^{-y}}　y(\mathbf{x})=\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x})+b$</p>
+<p>学習データとして、各学習データがi.i.dの$\mathcal{D}=\left{\left(t_{1}, \mathbf{x}<em>{n}\right), \ldots,\left(t</em>{N}, \mathbf{x}_{N}\right)\right}$が与えられると
+最適パラメータ($\mathbf{w},b$)は以下の尤度を最大化することで得られる。</p>
+<p>$$p(\mathcal{D})=\prod_{t_{n}=1} \sigma\left(y_{n}\right) \prod_{t_{n^{\prime}}=-1} \sigma\left(-y_{n^{\prime}}\right)=\prod_{n=1}^{N} \sigma\left(t_{n} y_{n}\right)　※y_{n}=y\left(\mathbf{x}<em>{n}\right) , t</em>{n} \in{-1,1}$$</p>
+<p>これは、各学習データが正分類される確率を全データに対して掛け合わせたものを表しており
+正しく正分類されているほど、尤度は大きくなる。負の対数尤度を取ると以下となる。</p>
+<p>$$\begin{aligned}-\ln p(\mathcal{D}) &amp;=-\ln \prod_{n=1}^{N} \sigma\left(t_{n} y_{n}\right) \ &amp;=\sum_{n=1}^{N} \ln \sigma\left(t_{n} y_{n}\right)^{\mathrm{-1}}  \ &amp;=\sum_{n=1}^{N} \ln \left(1+\exp \left(-t_{n} y_{n}\right)\right) \end{aligned}$$</p>
+<p>これに、$\lambda|\mathbf{w}|^{2}$を加えると(7.47)という形を取る。</p>
+<h2 id="演習-77"><a class="header" href="#演習-77">演習 7.7</a></h2>
+<div class="panel-primary">
+<p>SVM回帰モデルのラグランジュ関数</p>
+<p>$$
+\begin{aligned}
+L=&amp;\ C \sum_{n=1}^{N}\left(\xi_{n}+\widehat{\xi}<em>{n}\right)+\frac{1}{2}|\mathbf{w}|^{2}-\sum</em>{n=1}^{N}\left(\mu_{n} \xi_{n}+\widehat{\mu}<em>{n} \widehat{\xi}</em>{n}\right) \
+&amp;-\sum_{n=1}^{N} a_{n}\left(\epsilon+\xi_{n}+y_{n}-t_{n}\right)-\sum_{n=1}^{N} \widehat{a}<em>{n}\left(\epsilon+\widehat{\xi}</em>{n}-y_{n}+t_{n}\right) .
+\end{aligned} \tag{7.56}
+$$</p>
+<p>について考える．$(7.56)$の $\mathbf{w}, b, \xi_{n}, \widehat{\xi}_{n}$に対する偏微分をそれぞれ零とおき，その結果を代入することで双対ラグランジュ関数</p>
+<p>$$
+\begin{aligned}
+\widetilde{L}(\mathbf{a}, \widehat{\mathbf{a}})=&amp;-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right)\left(a</em>{m}-\widehat{a}<em>{m}\right) k\left(\mathbf{x}</em>{n}, \mathbf{x}<em>{m}\right) \ &amp;-\epsilon \sum</em>{n=1}^{N}\left(a_{n}+\widehat{a}<em>{n}\right)+\sum</em>{n=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right) t</em>{n}
+\end{aligned} \tag{7.61}
+$$</p>
+<p>が得られることを示せ．</p>
+</div>
+<p>(7.56)に$y(\mathbf{x})=\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x})+b$を代入して、スラック変数を分解すると以下の式が得られる。</p>
+<p>$$\begin{aligned} L=&amp; \sum_{n=1}^{N} C \xi_{n}+\sum_{n=1}^{N} C\widehat{\xi}<em>{n}+\frac{1}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w}-\sum</em>{n=1}^{N}\left(\mu_{n} \xi_{n}+\widehat{\mu}<em>{n} \widehat{\xi}</em>{n}\right) \ &amp;-\sum_{n=1}^{N} a_{n}\left(\epsilon+\xi_{n}+\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)+b-t</em>{n}\right) \ &amp;-\sum_{n=1}^{N} \widehat{a}<em>{n}\left(\epsilon+\widehat{\xi}</em>{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)-b+t</em>{n}\right) \qquad (*)\end{aligned}$$</p>
+<p>ラグランジュ関数(7.56)の$\mathbf{w}, b, \xi_{n}, \widehat{\xi}_{n}$に対する偏微分をそれぞれ零とおくことで
+以下の式が得られる。</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial L}{\partial \mathrm{w}}=0 \Rightarrow \mathrm{w}=\sum_{n=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right) \phi\left(\mathrm{x}</em>{n}\right)\qquad (7.57)\
+&amp;\frac{\partial L}{\partial b}=0 \Rightarrow \sum_{n=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right)=0\qquad (7.58)\
+&amp;\frac{\partial L}{\partial \xi</em>{n}}=0 \Rightarrow a_{n}+\mu_{n}=C\qquad (7.59)\
+&amp;\frac{\partial L}{\partial \widehat{\xi}<em>{n}}=0 \Rightarrow \widehat{a}</em>{n}+\widehat{\mu}_{n}=C\qquad (7.60)<br />
+\end{aligned}
+$$</p>
+<p>(*)式に、(7.57) , (7.59) , (7.60)を代入すると以下の式となる。</p>
+<p>$$
+\begin{aligned}
+L=&amp; \sum_{n=1}^{N}\left(a_{n}+\mu_{n}\right) \xi_{n}+\sum_{n=1}^{N}\left(\widehat{a}<em>{n}+\widehat{\mu}</em>{n}\right) \widehat{\xi}<em>{n} \
+&amp;+\frac{1}{2} \sum</em>{n=1}^{N} \sum_{m=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right)\left(a</em>{m}-\widehat{a}<em>{m}\right) \phi\left(\mathbf{x}</em>{n}\right)^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{m}\right)-\sum</em>{n=1}^{N}\left(\mu_{n} \xi_{n}+\widehat{\mu}<em>{n} \widehat{\xi}</em>{n}\right) \
+&amp;-\sum_{n=1}^{N}\left(a_{n} \xi_{n}+\widehat{a}<em>{n} \widehat{\xi}</em>{n}\right)-\epsilon \sum_{n=1}^{N}\left(a_{n}+\widehat{a}<em>{n}\right)+\sum</em>{n=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right) t</em>{n} \
+&amp;-\sum_{n=1}^{N} \sum_{m=1}^{N}\left(a_{n}-\widehat{a}<em>{n}\right)\left(a</em>{m}-\widehat{a}<em>{m}\right) \phi\left(\mathbf{x}</em>{n}\right)^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{m}\right)-b \sum</em>{n=1}^{N}\left(a_{n}-\widehat{a}_{n}\right) .
+\end{aligned}
+$$</p>
+<p>この式の第1,2項は、第4,5項と丁度打ち消しあう。また、式(7.58)により最後の項は0になるので
+まとめると(7.61)が得られる。</p>
+<h2 id="演習-78"><a class="header" href="#演習-78">演習 7.8</a></h2>
+<div class="panel-primary">
+<p>7.1.4節で議論した SVM回帰モデルについて，$\xi_{n} \gt 0$が成り立つ訓練データ点については$a_n = C$，同様に$\widehat{\xi}<em>{n} \gt 0$が成り立つ訓練データ点については$\widehat{a}</em>{n} = C$が成立することを示せ．</p>
+</div>
+<p>※(7.67),(7.68)から明らか。</p>
+<h2 id="演習-79"><a class="header" href="#演習-79">演習 7.9</a></h2>
+<div class="panel-primary">
+<p>RVM回帰モデルについて，重みに対する事後確率分布の平均および共分散が</p>
+<p>\begin{align}
+\mathbf{m}&amp;=\beta \mathbf{\Sigma} \Phi^{\mathrm{T}} \mathbf{t} \tag{7.82} \
+\mathbf{\Sigma}&amp;=\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \tag{7.83}
+\end{align}</p>
+<p>で与えられることを示せ．</p>
+</div>
+<p>(7.79)式の直後の段落に記載された仮定（各$w_i$の事前確率分布の平均が0、分散が$\alpha_i$）により、(3.49)〜(3.51)式と(7.81)〜(7.83)式との対応関係は、
+\begin{eqnarray}
+\mathbf{m}_0 &amp;=&amp; \mathbf{0} \
+\mathbf{S}_0 &amp;=&amp; \rm{diag}(\alpha_i^{-1}) \
+\mathbf{m}_N &amp;=&amp; \mathbf{m} \rm{\ \ :definition} \
+\mathbf{S}_N &amp;=&amp; \mathbf{\Sigma} \rm{\ \ :definition}
+\end{eqnarray}</p>
+<p>である。従って、
+\begin{eqnarray}
+\mathbf{m}
+&amp;=&amp; S_N \left( S_0^{-1}\mathbf{m}_0 + \beta \mathbf{\Phi}^\mathrm{T} \mathbf{t} \right) \
+&amp;=&amp; \beta \Sigma \Phi ^\mathrm{T} \mathbf{t}
+\end{eqnarray}</p>
+<p>\begin{eqnarray}
+\Sigma ^{-1} &amp;=&amp; \left( \rm{diag}(\alpha_i^{-1} )\right) ^{-1} + \beta \Phi^\mathrm{T} \Phi \
+&amp;=&amp; \rm{diag}(\alpha_i) + \beta \Phi^\mathrm{T} \Phi \
+\Sigma &amp;=&amp; \left( A + \beta \Phi^\mathrm{T} \Phi \right) ^{-1}
+\end{eqnarray}
+となる。ただし、$A=$diag$(\alpha _i)$と定義した。</p>
+<h2 id="演習-710"><a class="header" href="#演習-710">演習 7.10</a></h2>
+<div class="panel-primary">
+<p>RVM回帰モデルについて周辺化尤度関数の式</p>
+<p>$$
+\begin{aligned} \ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\ln \mathcal{N}(\mathbf{t} \mid \mathbf{0}, \mathbf{C}) \ &amp;=-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\right} \end{aligned} \tag{7.85}
+$$</p>
+<p>を，</p>
+<p>$$
+p(\boldsymbol{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta)=\int p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \boldsymbol{\alpha}) \mathrm{d} \mathbf{w} \tag{7.84}
+$$</p>
+<p>の$\mathbf{w}$に対する積分を実行することで導け．(指数に現れる2次式を平方完成するとよい．)</p>
+</div>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\int p(\mathbf{t} \mid \mathbf{X}, \mathbf{\mathbf{w}}, \beta) p(\mathbf{w} \mid \alpha) d \mathbf{w} \
+&amp;=\int \prod_{n=1}^{N} \mathcal{N}\left(t_{n} \mid \mathbf{w}^{\mathrm T} \boldsymbol{\phi}(\mathbf{x}), \beta^{-1}\right) \prod_{i=1}^{M} \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) d \mathbf{w} \
+&amp;=\int\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}} \prod_{n=1}^{N} \exp \left{-\frac{\left(t_{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}(\mathbf{x})\right)^{2}}{2 \beta^{-1}}\right}\left(\frac{1}{2 \pi}\right)^{\frac{M}{2}} \prod_{i=1}^{M} \alpha_{i}^{\frac{1}{2}} \exp \left{-\frac{w_{i}^{2}}{2 \alpha_{i}^{-1}}\right} d \mathbf{w} \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}}\left(\frac{1}{2 \pi}\right)^{\frac{M}{2}} \prod_{i=1}^{M} \alpha_{i}^{\frac{1}{2}} \int \exp \left{-\frac{\beta}{2}|\mathbf{t}-\mathbf{\Phi} \mathbf{w}|^{2}-\frac{1}{2} \mathbf{w}^{\mathrm T} \mathbf{A} \mathbf{w}\right} d \mathbf{w}
+\end{aligned}
+$$</p>
+<p>ここで$\mathbf{A} = \operatorname{diag}(\alpha_i)$である。指数部分を整理すると</p>
+<p>$$
+\begin{aligned}
+-\frac{\beta}{2}|\mathbf{t}-\mathbf{\Phi} \mathbf{w}|^{2}-\frac{1}{2} \mathbf{w}^{\mathrm T} \mathbf{A} \mathbf{w} &amp;=-\frac{1}{2}\left{\beta\left(\mathbf{t}^{\mathrm T} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{w}+\mathbf{w}^{\mathrm T} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{w}\right)+\mathbf{w}^{\mathrm T} \mathbf{A} \mathbf{w}\right} \
+&amp;=-\frac{1}{2}\left{\mathbf{w}^{\mathrm T}\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right) \mathbf{w}-2 \beta \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{w}+\beta \mathbf{t}^{\mathrm T} \mathbf{t}\right} \
+&amp;=-\frac{1}{2}\left{(\mathbf{w}-\mathbf{m})^{\mathrm T} \mathbf{\Sigma}^{-1}(\mathbf{w}-\mathbf{m})+\beta \mathbf{t}^{\mathrm T} \mathbf{t}-\mathbf{m}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{m}\right}
+\end{aligned}
+$$</p>
+<p>ここで$(3.49)$の平方完成にならって$\mathbf{\Sigma} = \left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right)^{-1}$, $\mathbf{m} = \beta \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T}\mathbf{t}$とした。これより$\mathbf{w}$についての積分が行えるので</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}}\left(\frac{1}{2 \pi}\right)^{\frac{M}{2}} \prod_{i=1}^{M} \alpha_{i}^{\frac{1}{2}} \int \exp \left{-\frac{1}{2}\left{(\mathbf{w}-\mathbf{m})^{\mathrm T} \mathbf{\Sigma}^{-1}(\mathbf{w}-\mathbf{m})+\beta \mathbf{t}^{\mathrm T} \mathbf{t}-\mathbf{m}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{m}\right}\right} d \mathbf{w} \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}}\left(\frac{1}{2 \pi}\right)^{\frac{M}{2}} \prod_{i=1}^{M} \alpha_{i}^{\frac{1}{2}}\left(2\pi\right)^{\frac{M}{2}}|\mathbf{\Sigma}|^{\frac{1}{2}} \exp \left{-\frac{1}{2}\left(\beta \mathbf{t}^{\mathrm T} \mathbf{t}-\mathbf{m}^{\mathrm T} \mathbf{\Sigma}^{-1} \mathbf{m}\right)\right}
+\end{aligned}
+$$</p>
+<p>となる。そしてさらに$\mathbf{t}$について再度指数部分を整理すると</p>
+<p>$$
+\begin{aligned}
+-\frac{1}{2}\left(\beta \mathbf{t}^{\mathrm{T}} \mathbf{t}-\mathbf{m}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{m}\right) &amp;= - \frac{1}{2}\left(\beta \mathbf{t}^{\mathrm{T}} \mathbf{t}-\beta \mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Sigma}^{-1} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t} \beta\right) \
+&amp;= -\frac{1}{2} \mathbf{t}^{\mathrm{T}}\left(\beta \mathbf{I}-\beta \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \beta\right) \mathbf{t} \
+&amp;= -\frac{1}{2} \mathbf{t}^{\mathrm{T}}\left(\beta \mathbf{I}-\beta \mathbf{\Phi}\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \beta\right) \mathbf{t} \
+&amp;= -\frac{1}{2}  \mathbf{t}^{\mathrm T}\left(\left(\beta^{-1} \mathbf{I}\right)^{-1}-\left(\beta^{-1} \mathbf{I}\right)^{-1} \mathbf{\Phi}\left(\mathbf{A}+\mathbf{\Phi}^{\mathrm T}\left(\beta^{-1} \mathbf{I}\right)^{-1} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm T}\left(\beta^{-1} \mathbf{I}\right)^{-1}\right) \mathbf{t} \
+&amp;= -\frac{1}{2} \mathbf{t}^{\mathrm{T}}\left(\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}\right)^{-1} \mathbf{t} \hspace{1em} (\because \textrm{Woodburyの公式}, \textrm{(C.7)})\
+&amp;= -\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}
+\end{aligned}
+$$</p>
+<p>となる。ただし、最後で$\mathbf{C} = \beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}$とした。以上から対数を取ることで</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;= \frac{N}{2}(\ln\beta -\ln (2\pi)) + \frac{1}{2}\ln |\mathbf{\Sigma}| + \frac{1}{2}\sum_{i=1}^{M}\ln \alpha_i -\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t} \
+&amp;= -\frac{N}{2}\ln(2\pi) + \frac{N}{2}\ln \beta +\frac{1}{2}\ln\left| \mathbf{\Sigma} \right| + \frac{1}{2}\sum_{i=1}^{M}\ln \alpha_i -\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t} \
+&amp;= -\frac{N}{2}\ln(2\pi) - \frac{1}{2}\ln |\mathbf{C}| -\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}
+\end{aligned}
+$$</p>
+<p>となり、展開することで$(7.85)$式を得られる。</p>
+<p>※ 最後の式変形部分について、$\displaystyle \frac{N}{2}\ln \beta + \frac{1}{2}\ln |\mathbf{\Sigma}| + \frac{1}{2}\sum_{i=1}^{M}\ln \alpha_i = -\frac{1}{2}\ln \left|\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}\right|$を示す。</p>
+<p>これは$\displaystyle \ln \left(\beta^{N} \cdot |\mathbf{\Sigma}| \cdot \prod_{i=1}^{M} \alpha_{i} \right) = \ln \left|\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}\right|^{-1}$を示せれば良い。</p>
+<p>$$
+\begin{aligned}
+\ln \left(\beta^{N} \cdot |\mathbf{\Sigma}| \cdot \prod_{i=1}^{M} \alpha_{i}\right) &amp;=\ln (|\beta \mathbf{I}| |\mathbf{A}| |\mathbf{\Sigma}|) \quad (\because |\beta\mathbf{I}| = \beta^N, |\mathbf{A}||\mathbf{B}| = |\mathbf{B}||\mathbf{A}|)\
+&amp;=\ln \left(\left|(\beta \mathbf{I})^{-1}\right|^{-1}\left|\mathbf{A}^{-1}\right|^{-1}\left|\mathbf{A}+\mathbf{\Phi}^{\mathrm{T}}(\beta \mathbf{I}) \mathbf{\Phi}\right|^{-1}\right) \quad (\because(\mathrm{C}. 3)) \
+&amp;=\ln \left|(\beta \mathbf{I})^{-1} \mathbf{A}^{-1}\left(\mathbf{A}+\mathbf{\Phi}^{\mathrm{T}}(\beta \mathbf{I}) \mathbf{\Phi}\right)\right|^{-1} \quad (\because(\mathrm{C}. 12)) \
+&amp;=\ln\left|(\beta \mathbf{I})^{-1}\left(\mathbf{I}+\mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}(\beta \mathbf{I}) \mathbf{\Phi}\right)\right|^{-1} \
+&amp;=\ln \left|(\beta \mathbf{I})^{-1}\left(\mathbf{I}+\left(\mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}\right)^{\mathrm{T}}((\beta \mathbf{I}) \mathbf{\Phi})^{\mathrm{T}}\right)\right|^{-1}\quad (\because(\mathrm{C} .14)) \
+&amp;=\ln \left|(\beta \mathbf{I})^{-1}\left(\mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}(\beta \mathbf{I})\right)\right|^{-1} \quad \left(\because\left(\mathbf{A}^{-1}\right)^{\mathrm{T}}=\mathbf{A}^{-1}\right) \
+&amp;=\ln \left|\left(\mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}(\beta \mathbf{I})\right)(\beta \mathbf{I})^{-1}\right|^{-1} \quad \left(\because |\mathbf{AB}| = |\mathbf{BA}|\right) \
+&amp;=\ln \left|\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}}\right|^{-1}
+\end{aligned}
+$$</p>
+<h2 id="演習-711"><a class="header" href="#演習-711">演習 7.11</a></h2>
+<div class="panel-primary">
+<p>前問を，</p>
+<p>$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}}\right) \tag{2.115}
+$$</p>
+<p>の結果を用いて解け．</p>
+</div>
+<p>※$(2.115)$式に代入するだけで求まる。</p>
+<p>演習7.10の途中式から</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\int p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha) d \mathbf{w} \
+&amp;=\int \prod_{n=1}^{N} \mathcal{N}\left(t_{n} \mid \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x}), \beta^{-1}\right) \prod_{i=1}^{M} \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) d \mathbf{w} \
+&amp;=\int \mathcal{N} \left( \mathbf{t} \mid \mathbf{\Phi w}, \beta^{-1}\mathbf{I} \right) \mathcal{N} \left( \mathbf{w} \mid \mathbf{0}, \mathbf{A}^{-1} \right) d\mathbf{w}
+\end{aligned}
+$$</p>
+<p>$(2.115)$式を使って周辺化すると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;= \mathcal{N}\left(\mathbf{t} \mid \mathbf{\Phi 0}+\left(\beta^{-1} \mathbf{I}\right)+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm T}\right) \
+&amp;=\mathcal{N}\left(\mathbf{t} \mid \mathbf{0}, \mathbf{C}\right)
+\end{aligned}
+$$</p>
+<p>となるので、$(7.85)$式が求められた。</p>
+<h2 id="演習-712"><a class="header" href="#演習-712">演習 7.12</a></h2>
+<div class="panel-primary">
+<p>RVM回帰モデルについて周辺化対数尤度</p>
+<p>$$
+\begin{aligned} \ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\ln \mathcal{N}(\mathbf{t} \mid \mathbf{0}, \mathbf{C}) \ &amp;=-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\right} \end{aligned} \tag{7.85}
+$$</p>
+<p>を直接最大化すると，更新式</p>
+<p>$$
+\alpha_{i}^{\text {new }}=\frac{\gamma_{i}}{m_{i}^{2}} \tag{7.87}
+$$</p>
+<p>および</p>
+<p>$$
+\left(\beta^{\text {new}}\right)^{-1}=\frac{|\mathbf{t}-\Phi \mathbf{m}|^{2}}{N-\sum_{i} \gamma_{i}} \tag{7.88}
+$$</p>
+<p>が得られることを示せ．ただし$\gamma_i$は</p>
+<p>$$
+\mathbf{\Sigma}=\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \tag{7.83}
+$$</p>
+<p>で定義される共分散行列$\mathbf{\Sigma}$の$i$番目の対角成分を用いて</p>
+<p>$$
+\gamma_i = 1-\alpha_i \Sigma_{ii} \tag{7.89}
+$$</p>
+<p>で与えられるものとする．</p>
+</div>
+<p>※$\mathbf{\Phi},\mathbf{\Phi}^{\mathrm T},\mathbf{\Sigma}$はそれぞれ$M\times N,N\times M, N\times N$行列、$\mathbf{t}, \mathbf{m}$はそれぞれ$M, N$次元ベクトルである。</p>
+<p>演習 7.10または7.11の結果から</p>
+<p>$$
+\ln p(\mathbf{t} \mid \mathbf{X}, \alpha, \beta)=\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi)+\frac{1}{2} \ln |\mathbf{\Sigma}|+\frac{1}{2} \sum_{i=1}^{M} \ln \alpha_{i}-\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}
+$$</p>
+<p>となる。次にテキスト58ページのように、この対数尤度の微分を$0$とする。</p>
+<p>まず$\alpha_i$について偏微分するが、準備として$\mathbf{I}_{ii}$を$ii$成分のみ$1$で残りを$0$とする行列とする。これを用いて上式第3項の$\alpha_i$についての偏微分は</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \alpha_{i}} \ln |\mathbf{\Sigma}| &amp;=-\frac{\partial}{\partial \alpha_{i}} \ln \left|\mathbf{\Sigma}^{-1}\right| \
+&amp;=-\operatorname{Tr}\left[\mathbf{\Sigma} \frac{\partial \mathbf{\Sigma}^{-1}}{\partial \alpha_{i}}\right] \quad(\because \textrm{(C.22)}) \
+&amp;=-\operatorname{Tr}\left[\mathbf{\Sigma} \frac{\partial}{\partial \alpha_{i}}\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)\right] \
+&amp;=-\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{I}<em>{i i}\right] \
+&amp;=-\Sigma</em>{i i}
+\end{aligned}
+$$</p>
+<p>第5項の$\alpha_i$についての偏微分は、$\mathbf{\Sigma}$が対称行列であることと$\mathbf{\Sigma} = \left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right)^{-1}$, $\mathbf{m} = \beta \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T}\mathbf{t}$を利用して</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \alpha_{i}}\left(\mathbf{t}^{\mathrm{T}} \mathbf{C} \mathbf{t}\right) &amp;=\frac{\partial}{\partial \alpha_{i}}\left(\beta \mathbf{t}^{\mathrm{T}} \mathbf{t}-\mathbf{m}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{m}\right) \quad (\because 演習7.10)\
+&amp;=-\frac{\partial}{\partial \alpha_{i}}\left(\mathbf{m}^{\mathrm{T}} \mathbf{\Sigma}^{-1} \mathbf{m}\right) \
+&amp;=-\frac{\partial}{\partial \alpha_{i}}\left(\beta \mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Sigma}^{-1} \beta \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t}\right) \quad (\because \mathbf{m} = \beta \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t})\
+&amp;=-\frac{\partial}{\partial \alpha_{i}}\left(\beta^{2} \mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t}\right) \
+&amp;=-\operatorname{Tr}\left[ \left( \frac{\partial}{\partial \mathbf{\Sigma}^{-1}} \beta^{2} \mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t} \right)^{\mathrm T} \frac{\partial \mathbf{\Sigma}^{-1}}{\partial \alpha_i}\right] \quad (\because \textrm{Matrix Cookbook (137)}) \
+&amp;=-\operatorname{Tr}\left[\beta^{2}\left(-\mathbf{\Sigma}\left(\mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)\left(\mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)^{\mathrm T} \mathbf{\Sigma}\right)^{\mathrm T} \mathbf{I}<em>{i i}\right] \quad (\because \textrm{Matrix Cookbook (61)}) \
+&amp;=\operatorname{Tr}\left[\left(\mathbf{mm}^{\mathrm T}\right)^{\mathrm T} \mathbf{I}</em>{i i}\right] \
+&amp;=m_{i}^2
+\end{aligned}
+$$</p>
+<p>となる。$m_i$は$(7.82)$で定義される事後平均$\mathbf{m}$の$i$番目の要素である。また途中の式変形で<a href="https://www.math.uwaterloo.ca/%7Ehwolkowi/matrixcookbook.pdf">Matrix Cookbook</a>に掲載されている行列の微分の公式を用いた。</p>
+<p>$$
+\frac{\partial}{\partial \alpha_{i}}\ln p(\mathbf{t} \mid \mathbf{X}, \alpha, \beta) = -\frac{1}{2}\Sigma_{ii} + \frac{1}{2\alpha_i}-\frac{1}{2}m_i^{2}
+$$</p>
+<p>これを$0$として移項すると</p>
+<p>$$
+\begin{aligned}
+&amp; \alpha_{i} m_{i}^{2} = 1-\alpha_{i} \Sigma_{i i} \
+&amp; \therefore \alpha_{i} = \frac{1-\alpha_{i} \Sigma_{i i}}{m_{i}^{2}}=\frac{\gamma_{i}}{m_{i}^{2}}
+\end{aligned}
+$$</p>
+<p>これが求める$\alpha_i^{\textrm{new}}$となる。</p>
+<p>同様にして$\beta$について偏微分する。$\ln p$の第3項について</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \beta}\ln | \mathbf{\Sigma} | &amp;= -\frac{\partial}{\partial \beta} \ln \left|\mathbf{\Sigma}^{-1}\right| \
+&amp;=-\operatorname{Tr}\left[\mathbf{\Sigma} \frac{\partial \mathbf{\Sigma}^{-1}}{\partial \beta}\right] \
+&amp;=-\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right] \end{aligned}
+$$</p>
+<p>第5項について</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \beta}\left(\mathbf{t}^{\mathrm T} \mathbf{C} \mathbf{t}\right) &amp;=\frac{\partial}{\partial \beta}\left(\beta \mathbf{t}^{\mathrm T} \mathbf{t}-\mathbf{m}^{\mathrm T} \mathbf{C} \mathbf{m}\right) \
+&amp;=\mathbf{t}^{\mathrm T} \mathbf{t}-\frac{\partial}{\partial \beta}\left(\beta^{2} \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{t}\right) \
+&amp;=\mathbf{t}^{\mathrm T} \mathbf{t}-2 \beta\left(\mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)-\beta^{2} \frac{\partial}{\partial \beta}\left(\mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{t}\right) \
+&amp;=\mathbf{t}^{\mathrm T} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{m}-\beta^{2} \operatorname{Tr}\left[\frac{\partial}{\partial \mathbf{\Sigma}^{-1}}\left(\left(\mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)^{\mathrm T} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)^{\mathrm T} \frac{\partial \mathbf{\Sigma}^{-1}}{\partial \beta}\right] \
+&amp;=\mathbf{t}^{\mathrm T} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{m}+\beta^{2} \operatorname{Tr}\left[\mathbf{\Sigma}\left(\mathbf{\Phi}^{\mathrm T} \mathbf{t}\right)(\mathbf{\Phi}^{\mathrm T} \mathbf{t})^{\mathrm T} \mathbf{\Sigma} \cdot\left(\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right)\right] \
+&amp;=\mathbf{t}^{\mathrm T} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{m}+\operatorname{Tr}\left[\mathbf{m} \mathbf{m}^{\mathrm T} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right] \
+&amp;=\mathbf{t}^{2} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{m}+\operatorname{Tr}\left[\mathbf{m}^{\mathrm T} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{m}\right] \
+&amp;=\mathbf{t}^{2} \mathbf{t}-2 \mathbf{t}^{\mathrm T} \mathbf{\Phi} \mathbf{m}+(\mathbf{\Phi} \mathbf{m})^{\mathrm T} \mathbf{\Phi} \mathbf{m} \
+&amp;=|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}
+\end{aligned}
+$$</p>
+<p>これより、</p>
+<p>$$
+\frac{\partial}{\partial \beta}\ln p(\mathbf{t} \mid \mathbf{X}, \alpha, \beta)=\frac{1}{2}\left(\frac{N}{\beta}-\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right]-|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}\right)
+$$</p>
+<p>となる。このうち$\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right]$について</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} &amp;=\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}+\beta^{-1} \mathbf{\Sigma} \mathbf{A}-\beta^{-1} \mathbf{\Sigma} \mathbf{A} \
+&amp;=\mathbf{\Sigma}\left(\beta \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}+\mathbf{A}\right) \beta^{-1}-\beta^{-1} \mathbf{\Sigma} \mathbf{A} \
+&amp;=\mathbf{I} \beta^{-1}-\beta^{-1} \Sigma \mathbf{A} \
+&amp;=\beta^{-1}(\mathbf{I}-\mathbf{\Sigma} \mathbf{A})
+\end{aligned}
+$$</p>
+<p>となるので、</p>
+<p>$$
+\begin{aligned}
+\ &amp; \frac{\partial}{\partial \beta}\ln p(\mathbf{t} \mid \mathbf{X}, \alpha, \beta) = 0 \
+\Leftrightarrow &amp;\ \frac{1}{2}\left(\frac{N}{\beta}-\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right]-|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}\right) = 0 \
+\Leftrightarrow &amp;\ \beta^{-1} = \frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}}{N-\operatorname{Tr}(\mathbf{I}-\mathbf{\Sigma A})}=\frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}}{N-\sum_{i} \gamma_{i}}
+\end{aligned}
+$$</p>
+<p>これが$\left(\beta^{\text {new}}\right)^{-1}$となる。</p>
+<p>※ $\alpha_{i}^{\text {new }}$も$\left(\beta^{\text {new}}\right)^{-1}$も1つ前の$\alpha_i, \beta^{-1}$の値に依存しているので、これら超パラメータの学習はP.58に書かれているように、適当な初期値を決めてから更新していき、適当な収束条件が満たされるまで繰り返される。</p>
+<h2 id="演習-713"><a class="header" href="#演習-713">演習 7.13</a></h2>
+<div class="panel-primary">
+<p>本文では，RVM回帰モデルについて，</p>
+<p>$$
+\begin{aligned} \ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\ln \mathcal{N}(\mathbf{t} \mid \mathbf{0}, \mathbf{C}) \ &amp;=-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\right} \end{aligned} \tag{7.85}
+$$</p>
+<p>の周辺化尤度の最大化から，更新式</p>
+<p>$$
+\alpha_{i}^{\text {new }}=\frac{\gamma_{i}}{m_{i}^{2}} \tag{7.87}
+$$</p>
+<p>および</p>
+<p>$$
+\left(\beta^{\text {new}}\right)^{-1}=\frac{|\mathbf{t}-\Phi \mathbf{m}|^{2}}{N-\sum_{i} \gamma_{i}} \tag{7.88}
+$$</p>
+<p>を導いた．超パラメータの事前分布を</p>
+<p>$$
+\operatorname{Gam}(\tau \mid a, b)=\frac{1}{\Gamma(a)} b^{a} \tau^{a-1} e^{-b \tau} \tag{B.26}
+$$</p>
+<p>の形のガンマ分布に変更したときの$\boldsymbol{\alpha}$と$\beta$に対する更新式を，同様に事後確率$p(\mathbf{t}, \boldsymbol{\alpha}, \beta \mid \mathbf{X})$を$\boldsymbol{\alpha}$と$\beta$に対して最大化することで導出せよ．</p>
+</div>
+<p>題意により、$\mathbf{\alpha}_i$と$\beta$の事前分布を以下のように定める。ここで、全ての$\alpha_i$についてパラメータ$a,b$は共通とした。（本文では$\alpha$が確率変数ではないので、$i$に応じて異なるパラメータにしないと関連度自動決定の議論に繋がらないが、$\alpha$を確率変数とみなすことで、各$i$について同一のパラメータを採用することができる。）</p>
+<p>\begin{aligned}
+p(\alpha_i) = \operatorname{Gam}(\alpha_i \mid a, b) = \frac{1} {\Gamma(a)} b^{a} \alpha_i{}^{a-1} e^{-b \alpha_i} \
+p(\beta) = \operatorname{Gam}(\beta \mid \tilde{a}, \tilde{b}) = \frac{1}{\Gamma(\tilde{a})} \tilde{b}^{\tilde{a}} \beta^{\tilde{a}-1} e^{-\tilde{b} \beta}
+\end{aligned}</p>
+<p>尤度関数$p(\mathbf{t}, \mathbf{\alpha}, \beta \mid \mathbf{X} ) = p(\mathbf{t} \mid \mathbf{X}, \mathbf{\alpha}, \beta) \prod_i p(\alpha_i) p(\beta)$を最大化する$\mathbf{\alpha}$と$\beta$を求める。</p>
+<p>対数尤度関数は、以下の通り。</p>
+<p>\begin{aligned}
+\ln p(\mathbf{t}, \mathbf{\alpha}, \beta \mid \mathbf{X} )
+=&amp;
+\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi)+\frac{1}{2} \ln |\mathbf{\Sigma}|+\frac{1}{2} \sum_{j=1}^{M} \ln \alpha_{j}-\frac{1}{2} \mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t} \
+&amp;+
+\sum_{j=1}^M \left{ a \ln b + (a-1)\ln \alpha_j - b \alpha_j - \ln \Gamma (a) \right} \
+&amp;+
+\left{ \tilde{a} \ln \tilde{b} + (\tilde{a}-1)\ln \beta - \tilde{b} \beta - \ln \Gamma (\tilde{a}) \right}
+\end{aligned}</p>
+<p>対数尤度関数を$\alpha_i$と$\beta$で偏微分する。１行目の偏微分は演習(7.12)に登場する式変形を参照。</p>
+<p>\begin{aligned}
+\frac{\partial}{\partial \alpha_i} \ln p(\mathbf{t}, \mathbf{\alpha}, \beta \mid \mathbf{X} )
+=&amp; \left( -\frac{1}{2}\Sigma_{ii} + \frac{1}{2\alpha_i}-\frac{1}{2}m_i^{2} \right) + \left( \frac{a-1}{\alpha_i} - b \right) \
+=&amp; -\frac{1}{2} \frac{1 - \gamma_i}{\alpha_i} + \frac{1}{2\alpha_i}-\frac{1}{2}m_i^{2} + \frac{a-1}{\alpha_i} - b \
+=&amp; \frac{1}{2 \alpha_i} \left{ -(1 - \gamma_i) + 1 + 2(a-1) \right} - \frac{1}{2} (m_i^2 + 2b)\
+=&amp; \frac{1}{2 \alpha_i} \left( \gamma_i + 2a -2 \right) - \frac{1}{2} (m_i^2 + 2b)
+\end{aligned}
+右辺$=0$を解いて、
+\begin{aligned}
+\alpha_i =\frac{\gamma_i + 2a -2}{m_i^2 + 2b}
+\end{aligned}</p>
+<p>となる。でも、公式解答は</p>
+<p>\begin{aligned}
+\alpha_i =\frac{\gamma_i + 2a -2}{m_i^2 - 2b}
+\end{aligned}</p>
+<p>となっている・・・。次に、</p>
+<p>\begin{aligned}
+\frac{\partial}{\partial \beta} \ln p(\mathbf{t}, \mathbf{\alpha}, \beta \mid \mathbf{X} )
+=&amp; \frac{1}{2}\left(\frac{N}{\beta}-\operatorname{Tr}\left[\mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right]-|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}\right) +(\tilde{a} -1)\frac{1}{\beta}-\tilde{b} \
+=&amp; \frac{1}{2}\left(\frac{N}{\beta}-\frac{\sum_i \gamma_i}{\beta}-|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}\right) +(\tilde{a} -1)\frac{1}{\beta}-\tilde{b} \
+=&amp; \frac{1}{2}\left{ \frac{ N-\sum_i \gamma_i +2(\tilde{a}-1) }{\beta} - \left( |\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2} + 2\tilde{b} \right) \right}
+\end{aligned}
+右辺$=0$を解いて、
+\begin{aligned}
+\beta^{-1} =\frac
+{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2} + 2\tilde{b}}
+{2\tilde{a}-2+N-\sum_i \gamma_i}
+\end{aligned}
+となる。でも、公式解答は</p>
+<p>\begin{aligned}
+\beta^{-1} =\frac
+{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2} + 2\tilde{b}}
+{\tilde{a}+2+N-\sum_i \gamma_i}
+\end{aligned}
+となっている・・・。</p>
+<h2 id="演習-714"><a class="header" href="#演習-714">演習 7.14</a></h2>
+<div class="panel-primary">
+<p>RVM回帰モデルの予測確率分布が</p>
+<p>$$
+\begin{aligned} p\left(t \mid \mathbf{x}, \mathbf{X}, \mathbf{t}, \alpha^{\star}, \beta^{\star}\right) &amp;=\int p\left(t \mid \mathbf{x}, \mathbf{w}, \beta^{\star}\right) p\left(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \boldsymbol{\alpha}^{\star}, \beta^{\star}\right) \mathrm{d} \mathbf{w} \ &amp;=\mathcal{N}\left(t \mid \mathbf{m}^{\mathrm{T}} \phi(\mathbf{x}), \sigma^{2}(\mathbf{x})\right) \end{aligned} \tag{7.90}
+$$</p>
+<p>で与えられることを示せ．また，その予測分布の分散が</p>
+<p>$$
+\sigma^{2}(\mathbf{x})=\left(\beta^{\star}\right)^{-1}+\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{\Sigma} \boldsymbol{\phi}(\mathbf{x}) \tag{7.91}
+$$</p>
+<p>で与えられることも示せ．ここで，$\mathbf{\Sigma}$は</p>
+<p>$$
+\mathbf{\Sigma} = \left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \tag{7.83}
+$$</p>
+<p>において$\alpha = \alpha^{\star}$および$\beta = \beta^{\star}$としたものである．</p>
+</div>
+<p>$(7.76)$式,$(7.81)$式から</p>
+<p>\begin{aligned} p\left(t \mid \mathbf{x}, \mathbf{w}, \beta^{\star}\right)  &amp;=\mathcal{N}\left(t \mid \mathbf{w}^{\mathrm{T}} \phi(\mathbf{x}), (\beta^{\star})^{-1}\right )
+\ &amp;
+\end{aligned}
+\begin{aligned} p\left(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \boldsymbol{\alpha}^{\star}, \beta^{\star}\right)&amp;=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}, \mathbf{\Sigma} \right )
+\ &amp;
+\end{aligned}
+$$
+(2.115)式において、A\mathbf{x}を\mathbf{w}^{\mathrm{T}} \phi(\mathbf{x})に、L^{-1}を(\beta^{\star})^{-1}に、\muを\mathbf{m}に、\Lambda^{-1}を\Sigmaに置き換えると、
+$$
+\begin{aligned} p\left(t \mid \mathbf{x}, \mathbf{X}, \mathbf{t}, \alpha^{\star}, \beta^{\star}\right) &amp;=\int p\left(t \mid \mathbf{x}, \mathbf{w}, \beta^{\star}\right) p\left(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \boldsymbol{\alpha}^{\star}, \beta^{\star}\right) \mathrm{d} \mathbf{w} \ &amp;=\mathcal{N}\left(t \mid \mathbf{m}^{\mathrm{T}} \phi(\mathbf{x}), \left(\beta^{\star}\right)^{-1}+\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{\Sigma} \boldsymbol{\phi}(\mathbf{x})\right) \end{aligned}
+となる。</p>
+<h2 id="演習-715"><a class="header" href="#演習-715">演習 7.15</a></h2>
+<div class="panel-primary">
+<p>$$
+|\mathbf{C}| =\left|\mathbf{C}<em>{-i}\right|\left(1+\alpha</em>{i}^{-1} \boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}</em>{-i}^{-1} \boldsymbol{\varphi}_{i}\right) \tag{7.94}
+$$</p>
+<p>および</p>
+<p>$$
+\mathbf{C}^{-1} =\mathbf{C}<em>{-i}^{-1}-\frac{\mathbf{C}</em>{-i}^{-1} \boldsymbol{\varphi}<em>{i} \boldsymbol{\varphi}</em>{i}^{\mathrm{T}} \mathbf{C}<em>{-i}^{-1}}{\alpha</em>{i}+\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}</em>{-i}^{-1} \boldsymbol{\varphi}_{i}} \tag{7.95}
+$$</p>
+<p>を用いて，周辺化尤度</p>
+<p>$$
+\begin{aligned} \ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) &amp;=\ln \mathcal{N}(\mathbf{t} \mid \mathbf{0}, \mathbf{C}) \ &amp;=-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\right} \end{aligned} \tag{7.85}
+$$</p>
+<p>が</p>
+<p>$$
+L(\boldsymbol{\alpha})=L\left(\boldsymbol{\alpha}<em>{-i}\right)+\lambda\left(\alpha</em>{i}\right) \tag{7.96}
+$$</p>
+<p>の形に変形できることを示せ．ただし$\lambda(\alpha_n)$および品質/疎性パラメータはそれぞれ</p>
+<p>$$
+\lambda\left(\alpha_{i}\right)=\frac{1}{2}\left[\ln \alpha_{i}-\ln \left(\alpha_{i}+s_{i}\right)+\frac{q_{i}^{2}}{\alpha_{i}+s_{i}}\right] \tag{7.97}
+$$</p>
+<p>$$
+s_{i}=\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}</em>{-i}^{-1} \boldsymbol{\varphi}_{i} \tag{7.98}
+$$</p>
+<p>$$
+q_{i}=\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}</em>{-i}^{-1} \mathbf{t} \tag{7.99}
+$$</p>
+<p>で定義されているとする．</p>
+</div>
+<p>$(7.94)$式は</p>
+<p>$$
+\begin{aligned}
+|\mathbf{C}| &amp;= \left| \mathbf{C}<em>{-i}\left(\mathbf{I}+\alpha</em>{i}^{-1} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i} \varphi_{i}^{\mathrm T}\right)\right| \
+&amp;= \left| \mathbf{C}<em>{-i} \right| \left| \mathbf{I}+\alpha</em>{i}^{-1} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i} \varphi_{i}^{\mathrm T}\right| \
+&amp;=\left|\mathbf{C}<em>{-i}\right|\left(1+\alpha</em>{i}^{-1}\left(\mathbf{C}<em>{-i}^{-1} \varphi</em>{i}\right)^{\mathrm T} \varphi_{i}\right) \quad (\because (\textrm{C}. 15)) \
+&amp;=\left|\mathbf{C}<em>{-i}\right|\left(1+\alpha</em>{i}^{-1} \varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i}\right) \quad \left(\because \mathbf{C}<em>{-i}^{-1} = \left( \mathbf{C}</em>{-i}^{-1} \right)^{\mathrm T} \right)
+\end{aligned}
+$$</p>
+<p>$(7.95)$式はWoodburyの公式を用いて求められる。
+$$
+\begin{aligned}
+\left(\mathbf{C}<em>{-i}+\alpha</em>{i}^{-1} \varphi_{i} \varphi_{i}^{\mathrm T}\right)^{-1}
+&amp;=\mathbf{C}<em>{-i}^{-1}-\mathbf{C}</em>{-i}^{-1} \varphi_{i}\left(\alpha_{i} \mathbf{I}+\varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i}\right)^{-1} \varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \
+&amp;=\mathbf{C}</em>{-i}^{-1}-\frac{\mathbf{C}<em>{-i}^{-1} \varphi</em>{i} \varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1}}{\alpha</em>{i}+\varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i}}
+\end{aligned}
+$$</p>
+<p>これらを用いて対数周辺尤度$\displaystyle \ln p(\mathbf{t} \mid \mathbf{X}, \boldsymbol{\alpha}, \beta) =-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\right}$を計算すると</p>
+<p>$$
+\begin{aligned}
+L(\boldsymbol{\alpha})=&amp;-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}|+\mathbf{t}^{\mathrm T} \mathbf{C}^{-1} \mathbf{t}\right} \
+=&amp;-\frac{1}{2}\left{N \ln (2 \pi)+\ln \left(\left|\mathbf{C}<em>{-i}\right|\left(1+\alpha</em>{i}^{-1} \varphi_{i}^{\mathrm T} \mathbf{C}<em>{-1}^{-1} \varphi</em>{i}\right)\right)+\mathbf{t}^{\mathrm T}\left(\mathbf{C}<em>{-i}^{-1} - \frac{\mathbf{C}</em>{-i}^{-1} \varphi_{i} \varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1}}{\alpha</em>{i}+\varphi_{i}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \varphi</em>{i}}\right) \mathbf{t}\right} \
+=&amp;-\frac{1}{2}\left{N \ln (2 \pi)+\ln \left(\left|\mathbf{C}<em>{-i}\right|\left(1+\alpha</em>{i}^{-1} s_{i}\right)\right)+\mathbf{t}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \mathbf{t} - \frac{q</em>{i}^{2}}{\alpha_{i}+s_{i}}\right} \
+&amp;(\because q_{i}^{2}=q_{i}^{\mathbf{T}}q_{i}=(\varphi_{i}^{\mathbf{T}}\mathbf{C}<em>{-i}^{-1}\mathbf{t})^{\mathbf{T}}(\varphi</em>{i}^{\mathbf{T}}\mathbf{C}<em>{-i}^{-1}\mathbf{t})=\mathbf{t}^{\mathbf{T}}(\mathbf{C}</em>{-i}^{-1})^{\mathbf{T}}\varphi_{i}\varphi_{i}^{\mathbf{T}}\mathbf{C}<em>{-i}^{-1}\mathbf{t})
+\
+=&amp;-\frac{1}{2}\left{N \ln (2 \pi)+\ln |\mathbf{C}</em>{-i}|+\mathbf{t}^{\mathrm T} \mathbf{C}<em>{-i}^{-1} \mathbf{t} \right} -\frac{1}{2} \ln \left(\frac{\alpha</em>{i}+s_{i}}{\alpha_{i}}\right) + \frac{1}{2} \frac{q_{i}^{2}}{\alpha_{i}+s_{i}} \
+=&amp;\ L(\boldsymbol{\alpha}<em>{-i})+\frac{1}{2}\left[\ln \alpha</em>{i}-\ln \left(\alpha_{i}+s_{i}\right)+\frac{q_{i}{ }^{2}}{\alpha_{i}+s_{i}}\right] \
+=&amp;\ L(\boldsymbol{\alpha}_{-i})+\lambda(\alpha_i)
+\end{aligned}
+$$</p>
+<p>以上より、$(7.96)$式が導出された。</p>
+<h2 id="演習-716"><a class="header" href="#演習-716">演習 7.16</a></h2>
+<div class="panel-primary">
+<p>超パラメータ$\alpha_i$に対して， RVM回帰モデルの周辺化対数尤度</p>
+<p>\begin{align}
+\lambda(\alpha_{i}) = \frac{1}{2}[ \ln \alpha_i - \ln(\alpha_i + s_i) +\frac{q_i^2}{\alpha_1 + s_i} ]
+\end{align}</p>
+<p>の2階微分を取ることで，</p>
+<p>$$
+\alpha_{i}=\frac{s_{i}^{2}}{q_{i}^{2}-s_{i}} \tag{7.101}
+$$</p>
+<p>で与えられる停留点が周辺化尤度の極大値であることを示せ．</p>
+</div>
+<p>$\lambda(\alpha_i)$を一階微分すると、
+\begin{align}
+\frac{\partial \lambda(\alpha_i)}{\partial \alpha_i} = \frac{\alpha_i^{-1}s_i^2 - (q_i^2 -s_i)}{2(\alpha_i + s_i )^2}
+\end{align}
+である。よって、その分子が0をとるとき、$\alpha_i$は極値をとる。よって、</p>
+<p>\begin{align}
+&amp;\alpha_i^{-1}s_i^2 - (q_i^2 -s_i) = 0 \
+&amp;\Rightarrow \alpha_i =\frac{s_i^2}{q_i^2 - s_i}
+\end{align}</p>
+<p>次に、２階微分は以下になる。
+\begin{align}
+\frac{\partial^2 \lambda(\alpha_i)}{\partial^2 \alpha_i} = \frac{1}{2}[-\frac{1}{\alpha_i^2}+\frac{1}{(\alpha_i+s_i)^2 }+\frac{2q_i^2}{(\alpha_i+s_i)^3} ]
+\end{align}</p>
+<p>次に、２階微分に$\alpha_i =\frac{s_i^2}{q_i^2 - s_i}$を代入した際に、0未満であれば、その$\alpha_i$は極大値であることが明らかになる。
+\begin{align}
+\frac{1}{2}[-\frac{1}{\alpha_i^2}+\frac{1}{(\alpha_i+s_i)^2 }+\frac{2q_i^2}{(\alpha_i+s_i)^3} ] &amp;=
+\frac{1}{2}[-\frac{1}{(\frac{s_i^2}{q_i^2 - s_i})^2}+\frac{1}{(\frac{s_i^2}{q_i^2 - s_i}+s_i)^2 }+\frac{2q_i^2}{(\frac{s_i^2}{q_i^2 - s_i}+s_i)^3} ] \
+&amp;= \frac{1}{2}[-\frac{(q_i^2 - s_i)^2}{s_i^4}+\frac{(q_i^2 - s_i)^2}{s_i^2 q_i^4}+\frac{2(q_i^2 - s_i)^3}{s_i^3 q_i^4}] \
+&amp;= -\frac{1}{2}{(q_i^2 - s_i)^4}{q_i^4 s_i^2} &lt; 0 &amp;(\because q_i^2 - s_i &gt; 0)
+\end{align}
+よって、$\alpha_i =\frac{s_i^2}{q_i^2 - s_i}$において極大値を取る。</p>
+<h2 id="演習-717"><a class="header" href="#演習-717">演習 7.17</a></h2>
+<div class="panel-primary">
+<p>\begin{align}
+\boldsymbol{\Sigma}&amp;=\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \tag{7.83} \
+\mathbf{C}&amp;=\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}} \tag{7.87}\
+\left(\mathbf{A}+\mathbf{B D}^{-1} \mathbf{C}\right)^{-1}&amp;=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{B}\left(\mathbf{D}+\mathbf{C A}^{-1} \mathbf{B}\right)^{-1} \mathbf{C A}^{-1} \tag{C.7}
+\end{align}</p>
+<p>を用いて，</p>
+<p>\begin{align}
+Q_{i}&amp;=\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t} \tag{7.102} \
+S</em>{i}&amp;=\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}^{-1} \boldsymbol{\varphi}</em>{i} \tag{7.103}
+\end{align}</p>
+<p>で定義される$Q_n, S_n$が，</p>
+<p>\begin{align}
+Q_{i}=\beta \boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{t}-\beta^{2} \boldsymbol{\varphi}</em>{i}^{\mathrm{T}} \boldsymbol{\Phi} \boldsymbol{\Sigma} \boldsymbol{\Phi}^{\mathrm{T}} \mathbf{t} \tag{7.106} \
+S_{i}=\beta \boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \boldsymbol{\varphi}</em>{i}-\beta^{2} \boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \boldsymbol{\Phi} \boldsymbol{\Sigma} \boldsymbol{\Phi}^{\mathrm{T}} \boldsymbol{\varphi}</em>{i} \tag{7.107}
+\end{align}</p>
+<p>に変形できることを示せ．</p>
+</div>
+<p>※
+(7.102)式に(7.87)式を代入して</p>
+<p>$$
+\begin{aligned}
+Q_{i}&amp;=\boldsymbol{\varphi}<em>{i}^{\mathrm{T}} \mathbf{C}^{-1} \mathbf{t}\
+&amp;=\boldsymbol{\varphi}</em>{i}^{T}(\beta^{-1} \mathbf{I}+\mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}})^{-1}\mathbf{t}\
+&amp;=\boldsymbol{\varphi}<em>{i}^{T}\left{\beta\mathbf{I}-\beta^{2}\mathbf{\Phi}(\mathbf{A}^{-1}+\beta\mathbf{\Phi}^{T}\mathbf{\Phi})^{-1}\mathbf{\Phi}^{T}\right}\mathbf{t}\
+&amp;=\beta\boldsymbol{\varphi}</em>{i}^{T}\mathbf{t}-\beta^{2}\boldsymbol{\varphi}<em>{i}^{T}\mathbf{\Phi}(\mathbf{A}^{-1}+\beta\mathbf{\Phi}^{T}\mathbf{\Phi})^{-1}\mathbf{\Phi}^{T}\mathbf{t}\
+&amp;=\beta\boldsymbol{\varphi}</em>{i}^{T}\mathbf{t}-\beta^{2}\boldsymbol{\varphi}_{i}^{T}\mathbf{\Phi}\boldsymbol{\Sigma}\mathbf{\Phi}^{T}\mathbf{t}\
+\end{aligned}
+$$</p>
+<p>よって(7.106)式が得られる．2行目から3行目への式変形に(C.7)式を用い，4行目から5行目の式変形で(7.83)式を用いた．
+また$\mathbf{t}$を$\boldsymbol{\varphi}_i$として上記と同様の計算を行うことで$S_i$についての式(7.107)が求まる．</p>
+<h2 id="演習-718"><a class="header" href="#演習-718">演習 7.18</a></h2>
+<div class="panel-primary">
+<p>RVM分類モデルの対数事後確率分布</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{w} \mid \mathbf{t}, \boldsymbol{\alpha})&amp;=\ln {p(\mathbf{t} \mid \mathbf{w}) p(\mathbf{w} \mid \boldsymbol{\alpha})}-\ln p(\mathbf{t} \mid \alpha) \
+&amp;=\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right}-\frac{1}{2} \mathbf{w}^{\mathrm{T}} \mathbf{A} \mathbf{w}+\text { const. }
+\end{aligned} \tag{7.109}
+$$</p>
+<p>の勾配ベクトルおよびへシアン行列は</p>
+<p>\begin{align}
+\nabla \ln p(\mathbf{w} \mid \mathbf{t}, \boldsymbol{\alpha}) &amp;=\boldsymbol{\Phi}^{\mathrm{T}}(\mathbf{t}-\mathbf{y})-\mathbf{A} \mathbf{w} \tag{7.110} \
+\nabla \nabla \ln p(\mathbf{w} \mid \mathbf{t}, \boldsymbol{\alpha}) &amp;=-\left(\Phi^{\mathrm{T}} \mathbf{B} \Phi+\mathbf{A}\right) \tag{7.111}
+\end{align}</p>
+<p>で与えられることを示せ．</p>
+</div>
+<p>$p(\mathbf{w} \mid \boldsymbol{\alpha})$は$(7.80)$から</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w} \mid \boldsymbol{\alpha}) &amp;=\prod_{i=1}^{M} \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) \
+\ln p(\mathbf{w} \mid \boldsymbol{\alpha}) &amp;=\sum_{i=1}^{M} \ln \left[\left(\frac{\alpha_{i}}{2 \pi}\right)^{\frac{1}{2}} \exp \left{-\frac{\alpha_{i} w_{i}^{2}}{2}\right}\right]=-\frac{1}{2} \mathbf{w}^{\mathrm T} \mathbf{Aw} + \textrm{const.}
+\end{aligned}
+$$</p>
+<p>である。</p>
+<p>$p(\mathbf{t} \mid \mathbf{w})$は$(4.90)$式のクロスエントロピー誤差関数$E(\mathbf{w})$の符号を反転させたもの</p>
+<p>$$
+\ln p(\mathbf{t} \mid \mathbf{w})=\sum_{n=1}^{N}\left{t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)\right}
+$$</p>
+<p>である。</p>
+<p>演習4.13と同様に$\ln p(\mathbf{t} \mid \mathbf{w})$の$\mathbf{w}$についての勾配は</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}} \ln p &amp;=\frac{\partial \ln p}{\partial y_{n}} \frac{\partial y_{n}}{\partial a_{n}} \nabla_{\mathbf{w}} a_{n} \
+\frac{\partial \ln p}{\partial y_{n}} &amp;=\sum_{n=1}^{N}\left(\frac{t_{n}}{y_{n}}-\frac{1-t_{n}}{1-y_{n}}\right) \ &amp;=\sum_{n=1}^{N} \frac{t_{n}-y_{n}}{y_{n}\left(1-y_{n}\right)} \
+\frac{\partial y_{n}}{\partial a_{n}} &amp;= \sigma\left(a_{n}\right)\left(1-\sigma\left(a_{n}\right)\right)=y_{n}\left(1-y_{n}\right) \
+\nabla_{\mathbf{w}} a_{n}&amp;=\boldsymbol{\phi}_{n}
+\end{aligned}
+$$</p>
+<p>よって</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}} \ln p(\mathbf{w} \mid \mathbf{t}, \boldsymbol{\alpha}) &amp;=\sum_{n=1}^{N}\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}-\frac{1}{2} \cdot 2 \mathbf{Aw} \ &amp;=\mathbf{\Phi}^{\mathrm T}(\mathbf{t}-\mathbf{y})-\mathbf{Aw}
+\end{aligned}
+$$</p>
+<p>ヘッセ行列は</p>
+<p>$$
+\begin{aligned}
+\nabla_{\mathbf{w}}\left(\mathbf{\Phi}^{\mathrm T}(\mathbf{t}-\mathbf{y})-\mathbf{Aw}\right) &amp;=-\sum_{n=1}^{N}\left(\frac{\partial y_{n}}{\partial a_{n}} \nabla_{\mathbf{w}} a_{n}\right) \boldsymbol{\phi}<em>{n}^{\mathrm T}-\mathbf{A}^{\mathrm T} \
+&amp;=-\sum</em>{n=1}^{N} y_{n}\left(1-y_{n}\right) \boldsymbol{\phi}<em>{n} \boldsymbol{\phi}</em>{n}^{\mathrm T}-\mathbf{A} \
+&amp;=-\left(\mathbf{\Phi}^{\mathrm T} \mathbf{B} \mathbf{\Phi}+\mathbf{A}\right)
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<h2 id="演習-719"><a class="header" href="#演習-719">演習 7.19</a></h2>
+<div class="panel-primary">
+<p>RVM分類モデルにおいて，周辺尤度関数の近似式</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{t} \mid \boldsymbol{\boldsymbol{\alpha} }) &amp;=\int p(\mathbf{t} \mid \mathbf{w}) p(\mathbf{w} \mid \boldsymbol{\boldsymbol{\alpha} }) \mathrm{d} \mathbf{w} \
+&amp; \simeq p\left(\mathbf{t} \mid \mathbf{w}^{\star}\right) p\left(\mathbf{w}^{\star} \mid \boldsymbol{\boldsymbol{\alpha} }\right)(2 \pi)^{M / 2}|\mathbf{\Sigma}|^{1 / 2}
+\end{aligned} \tag{7.114}
+$$</p>
+<p>を最大化すると，超パラメータの更新式</p>
+<p>$$
+\alpha_{i}^{\text {new }}=\frac{\gamma_{i}}{\left(w_{i}^{\star}\right)^{2}} \tag{7.116}
+$$</p>
+<p>が得られることを示せ．</p>
+</div>
+<p>$\mathbf{w}^{\star}$を用いると条件付き確率$(4.89)$、事前分布$(7.80)$はそれぞれ</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{t} \mid \mathbf{w}^{\star}\right) &amp;= \prod_{n=1}^{N} y_{n}^{t_n}\left(1-y_{n}\right)^{1-t_{n}} \
+p\left(\mathbf{w}^{\star} \mid \boldsymbol{\alpha} \right) &amp;= \prod_{i=1}^{M} \mathcal{N} \left(w_{i}^{*} \mid 0, \alpha_{i}^{-1}\right) = \left(\frac{1}{2 \pi}\right)^{\frac{M}{2}} \prod_{i=1}^{M} \alpha_{i}^{\frac{1}{2}} \exp \left{-\frac{\alpha_{i}{w_{i}^{\star}}^{2}}{2}\right}
+\end{aligned}
+$$</p>
+<p>であるから$(7.114)$式の対数をとって対数周辺化尤度を求めると</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{t} \mid \boldsymbol{\alpha} ) &amp;=
+\ln p\left(\mathbf{t} \mid \mathbf{w}^{\star}\right)+\ln p\left(\mathbf{w}^{\star} \mid \boldsymbol{\alpha} \right)+\frac{M}{2} \ln (2 \pi)+\frac{1}{2}\ln |\mathbf{\Sigma}| \
+&amp;=\sum_{n=1}^{N}\left{t_{n} \ln y_{n}^{<em>}+\left(1-t_{n}\right) \ln \left(1-y_{n}^{</em>}\right)\right} \
+&amp; -\frac{1}{2} \sum_{i=1}^{M} \alpha_{i} w_{i}^{<em>^{2}}+\frac{1}{2} \sum_{i=1}^{N} \ln \alpha_{i}-\frac{M}{2} \ln (2 \pi)+\frac{M}{2} \ln (2 \pi)+\frac{1}{2} \ln |\mathbf{\Sigma}| \
+&amp;=\left[\sum_{n=1}^{N}\left{t_{n} \ln y_{n}{ }^{</em>}+\left(1-t_{n}\right) \ln \left(1-y_{n}{ }^{<em>}\right)\right}\right]-\frac{1}{2} \sum_{i=1}^{M} \alpha_{i} w_{i}^{</em>^{2}}+\frac{1}{2} \sum_{i=1}^{N} \ln \alpha_{i}+\frac{1}{2} \ln |\mathbf{\Sigma}|
+\end{aligned}
+$$</p>
+<p>$\alpha_i$についての微分を$0$とすると、今$\mathbf{w} = \mathbf{w}^{\star}$で固定されているので、$y_n^{\star} = \sigma(a_n) = \sigma({\mathbf{w}^{\star}}^{\mathrm T}\boldsymbol{\phi}_n)$も固定されている。つまり$[\ ]$以外の項について微分を取れば良い。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \alpha_{i}}\left[-\frac{1}{2} \sum_{i=1}^{M} \alpha_{i} w_{i}^{<em>^{2}}+\frac{1}{2} \sum_{i=1}^{M} \ln \alpha_{i}+\frac{1}{2} \ln |\mathbf{\Sigma}|\right]=0 \
+-\frac{1}{2}\left(w_{i}^{</em>}\right)^{2}+\frac{1}{2} \frac{\partial}{\partial \alpha_{i}}\left(\ln \alpha_{i}\right)+\frac{1}{2} \frac{\partial}{\partial \alpha_{i}} \ln |\mathbf{\Sigma}|=0 \
+-\frac{1}{2}\left(w_{i}^{*}\right)^{2}+\frac{1}{2 \alpha_{i}}-\frac{1}{2} \Sigma_{i i}=0 \quad (\because 演習 7.12)
+\end{aligned}
+$$</p>
+<p>以上から$(7.115)$式が得られた。これに$\gamma_i = 1 - \alpha_{i} \Sigma_{ii}$を導入すれば</p>
+<p>$$
+\begin{aligned}
+\alpha_{i}\left(w_{i}^{<em>}\right)^{2} &amp;= 1-\alpha_{i} \Sigma_{i i}=\gamma_{i} \ \therefore \ \alpha_{i} &amp;= \frac{\gamma_{i}}{\left(w_{i}^{</em>}\right)^{2}}
+\end{aligned}
+$$</p>
+<p>これが$\alpha_{i}$の更新式となり$\displaystyle \left( \alpha_{i}^{\textrm {(new)}} \leftarrow \frac{\gamma_{i}}{\left(w_{i}^{*}\right)^{2}} \right)$、$(7.87)$と同一である。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch06.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch08.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch06.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch08.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第9章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html" class="active"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第9章演習問題解答"><a class="header" href="#prml第9章演習問題解答">PRML第9章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-91"><a class="header" href="#演習-91">演習 9.1</a></h2>
+<div class="panel-primary">
+<p>9.1節で議論した<em>K</em>-meansアルゴリズムを考える．離散的な支持変数$r_{nk}$の状態が有限通りしかないこと，そしてそのような状態の各々について，${\boldsymbol{\mu}_k}$のただ1つの最適値があることの帰結として<em>K</em>-meansアルゴリズムは有限回の繰り返しで収束することを示せ．</p>
+</div>
+<p>※教科書pp.140–142参照。</p>
+<p>教科書にあるように、<em>K</em>-meansアルゴリズムはEステップとMステップに分かれている。Eステップではデータ点$\mathbf{x}_n$と$\boldsymbol{\mu}<em>k$は固定されている。各$n$について、$r</em>{nk}=1$としたときに$|\mathbf{x}_n - \boldsymbol{\mu}<em>k|^2$が最小となるような$k\ (k=1\ldots K)$を選んで$r</em>{nk}=1$とし、残りを$0$とする。式で書くと</p>
+<p>$$r_{n k}=\left{\begin{array}{ll}1 &amp; k=\arg \min <em>{j}\left|\mathrm{x}</em>{n}-\mu_{j}\right|^{2} \text { のとき } \ 0 &amp; \text { それ以外. }\end{array}\right. \tag{9.2}$$</p>
+<p>言い換えると、各$n$について$r_{nk}=1$の選び方は$K$通り存在するので、$N$個のデータ点について言えば全部で$K^N$通りである。一方で、Eステップの操作によって必ず$(9.1)$式の歪み尺度(distortion measure)$J$は小さくなる(図9.2を参照)。</p>
+<p>Mステップについては$r_{nk}$を固定した状況下で歪み尺度$J$を最小化する。このとき最適な$\boldsymbol{\mu}<em>k$は$(9.3)$式にしたがって<strong>解析的に</strong>求まる。言い換えれば、前回のMステップから$r</em>{nk}$の割り当てが変わっている場合、Mステップでの$\boldsymbol{\mu}<em>k$の更新操作で必ず$J$は低下するが、Eステップでの$r</em>{nk}$の割り当てが変わらない場合はMステップでの$\boldsymbol{\mu}_k$も変化しない。このとき<em>K</em>-meansアルゴリズムは収束解を得る。</p>
+<p>したがって、すべてのデータ点$\mathbf{x}_n$について最適なクラス割り当てが見つかるまでEステップとMステップが繰り返されるわけだが、これは高々$K^N$回の繰り返しの中で必ず収束することとなる。（※ただし、この収束解は大域的な最適解になるとは限らないことに注意。）</p>
+<h2 id="演習-92"><a class="header" href="#演習-92">演習 9.2</a></h2>
+<div class="panel-primary">
+<p>2.3.5節で述べた Robbins-Monroの逐次的推定法を
+$$
+J=\sum_{n=1}^{N} \sum_{k=1}^{K} r_{n k}\left|\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}\right|^{2} \tag{9.1}
+$$
+で与えた$J$の$\boldsymbol{\mu}<em>k$による微分で得られる回帰関数の根を求める問題に適用せよ．また，これから各データ点$\mathbf{x}<em>n$について，最も近いプロトタイプ$\boldsymbol{\mu}<em>k$が
+$$
+\boldsymbol{\mu}</em>{k}^{\text {new }}=\boldsymbol{\mu}</em>{k}^{\text {old }}+\eta</em>{n}\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}^{\text {old }}\right) \tag{9.5}
+$$
+によって更新されるような確率的<em>K</em>-meansアルゴリズムが導かれることを示せ．</p>
+</div>
+<p>$\frac{\partial J}{\partial \boldsymbol{\mu} <em>k}=0$となるように、$J$に含まれるパラメータ$r</em>{nk}, \boldsymbol{\mu}_k$を最適化する問題を、データ系列の数$N$について逐次的に解く。
+データ点${ \mathbf{x}<em>1, \mathbf{x}<em>2,\cdots \mathbf{x}</em>{N-1} }$に基づいてパラメータ${r</em>{nk}, \boldsymbol{\mu}<em>k}</em>{k=1,2,\cdots,K, n=1,2,\cdots, N-1}$が最適化されている（つまり、$\left(\frac{\partial J}{\partial \boldsymbol{\mu} _k}\right)^{(N-1)}=0$となっている）とき、データ点$\mathbf{x}<em>N$を追加で入手した時にパラメータ${r</em>{nk}, \boldsymbol{\mu}<em>k}</em>{k=1,2,\cdots,K, n=1,2,\cdots, N}$を最適化する（つまり、$\left(\frac{\partial J}{\partial \boldsymbol{\mu} _k}\right)^{(N)}=0$とする）ことを考える。</p>
+<p>$$
+\begin{aligned}
+\left( \frac{\partial J}{\partial \boldsymbol{\mu} <em>k}
+\right)^{(N)}
+&amp;=\frac{\partial}{\partial \boldsymbol{\mu} <em>k}
+\left( \sum</em>{n=1}^{N} \sum</em>{k'=1}^{K} r_{n k'}\left|\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k'}\right|^{2} \right) \
+&amp;=\sum_{n=1}^{N} \sum_{k'=1}^{K} r_{n k'} (-2) (\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k'}) \delta_{kk'} \
+&amp;=-2 \sum_{n=1}^{N} r_{n k} (\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k})\
+&amp;=
+\left( \frac{\partial J}{\partial \boldsymbol{\mu} <em>k}
+\right)^{(N-1)}
+-2 r</em>{N k} (\mathbf{x}<em>{N}-\boldsymbol{\mu}</em>{k})
+\end{aligned}
+$$</p>
+<p>$\mathbf{x}<em>{N}$に最も近い${\boldsymbol{\mu}</em>{1},\boldsymbol{\mu}<em>{2}\cdots\boldsymbol{\mu}</em>{K} }$が$\boldsymbol{\mu}<em>{k}$と異なる場合、Eステップにおいて$r</em>{Nk}=0$とする。この場合、Mステップにおいて${\boldsymbol{\mu}<em>{1},\boldsymbol{\mu}</em>{2}\cdots\boldsymbol{\mu}_{K} }$の値は更新されない。</p>
+<p>$\mathbf{x}<em>{N}$に最も近い${\boldsymbol{\mu}</em>{1},\boldsymbol{\mu}<em>{2}\cdots\boldsymbol{\mu}</em>{K} }$が$\boldsymbol{\mu}<em>{k}$に一致している場合、Eステップにおいて$r</em>{Nk}=1$とする。この場合、Mステップにおける更新式（上式）は、</p>
+<p>$$
+\begin{aligned}
+\left( \frac{\partial J}{\partial \boldsymbol{\mu} <em>k}
+\right)^{(N)}
+&amp;=
+\left( \frac{\partial J}{\partial \boldsymbol{\mu} <em>k}
+\right)^{(N-1)}
+-2 (\mathbf{x}</em>{N}-\boldsymbol{\mu}</em>{k})
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>Robbins-Monroの逐次推定の$(2.129)$式</p>
+<p>$$
+\theta^{(N)}=\theta^{(N-1)}-a_{N-1} z\left(\theta^{(N-1)}\right)
+$$</p>
+<p>に代入して、</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>k ^{(N)}
+= \boldsymbol{\mu}<em>k ^{(N-1)} + 2 a</em>{N-1} (\mathbf{x}</em>{N}-\boldsymbol{\mu}_{k}^{(N-1)})
+\end{aligned}
+$$</p>
+<p>となる。
+$2 a_{N-1} = \eta_N$と変数を変換すれば、(9.5)式を得る。</p>
+<h2 id="演習-93"><a class="header" href="#演習-93">演習 9.3</a></h2>
+<div class="panel-primary">
+<p>混合ガウスモデルを考え.潜在変数の周辺分布$p(\mathbf{z})$が
+$$p(\mathbf{z})=\prod_{k=1}^{K} \pi_{k}^{z_{k}} \tag{9.10}$$
+で，観測変数の条件付き分布$p(\mathbf{x}\mid\mathbf{z})$が
+$$p(\mathbf{x} \mid \mathbf{z})=\prod_{k=1}^{K} \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}, \mathbf{\Sigma}</em>{k}\right)^{z_{k}} \tag{9.11}$$
+でそれぞれ与えられると仮定する．$p(\mathbf{z})p(\mathbf{x}\mid\mathbf{z})$を$\mathbf{z}$の可能な値について足して得られる周辺分布$p(\mathbf{x})$が
+$$p(\mathbf{x})=\sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(\mathbf{x} \mid \mu_{k}, \mathbf{\Sigma}_{k}\right) \tag{9.7}$$
+の形の混合ガウス分布になることを示せ．</p>
+</div>
+<p>導入に従ってとけばよい。</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}) &amp;= \sum_{\mathbf{z}} p(\mathbf{z})p(\mathbf{x}|\mathbf{z}) \
+&amp;=\sum_{\mathbf{z}}\prod_{k} \pi_k^{z_k} \prod_k  N(\mathbf{x}|\mathbf{\mu}<em>k, \mathbf{\Sigma_k})^{z_k} &amp;(\because (9.10), (9.11)))\
+&amp;=\sum</em>{\mathbf{z}} \prod_{k} \pi_k^{z_k}  N(\mathbf{x}|\mathbf{\mu}<em>k, \mathbf{\Sigma_k})^{z_k}\
+&amp;= \sum</em>{\mathbf{z}}\prod_{k}( \pi_k N(\mathbf{x}|\mathbf{\mu}<em>k, \mathbf{\Sigma_k}))^{z_k}\
+&amp;= \sum</em>{k} \pi_k N(\mathbf{x}|\mathbf{\mu}_k, \mathbf{\Sigma_k}) &amp;(\because \text{1-of-K})
+\end{aligned}
+$$</p>
+<h2 id="演習-94"><a class="header" href="#演習-94">演習 9.4</a></h2>
+<div class="panel-primary">
+<p>潜在変数を持つモデルに関して，データ集合$\mathbf{X}$を観測した下での事後分布$p(\boldsymbol{\theta}\mid \mathbf{X})$を，EMアルゴリスムを用いて$\boldsymbol{\theta}$について最大化する問題を考える．このとき，Eステップは最尤推定問題の場合と同じであるのに対し，Mステップでは，最大化すべき量が$\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }})+\ln p(\boldsymbol{\theta})$で与えられることを示せ．ただし，$\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }})$は
+$$\mathcal{Q}\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=\sum_{\mathbf{Z}} p\left(\mathbf{Z} \mid \mathbf{X}, \theta^{\text {old }}\right) \ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta}) \tag{9.30}$$
+で定義されている．</p>
+</div>
+<p>ベイズの定理より</p>
+<p>$$
+p(\mathbf{\theta}|\mathbf{X})=\frac{p(\mathbf{X}|\mathbf{\theta})p(\mathbf{\theta})}{p(\mathbf{X})}
+$$</p>
+<p>である．対数尤度を取って，</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{\theta}|\mathbf{X})&amp;= \ln p(\mathbf{X}|\mathbf{\theta}) + \ln p(\mathbf{\theta}) + Const\
+&amp;=\ln\sum_kp(\mathbf{X},\mathbf{Z}|\theta) + \ln p(\mathbf{\theta}) + Const\
+\end{aligned}
+$$</p>
+<p>ここで第一項については教科書の(9.29), (9.30)の議論と同様に対数の中の総和への処理，および潜在変数$\mathbf{Z}$についての事後確率の期待値を考えるといった工夫をすることで$\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }})$を用いて表すことができて，</p>
+<p>$$
+\begin{aligned}
+\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}) + \ln p(\mathbf{\theta})
+\end{aligned}
+$$</p>
+<p>を最大化すればいいことがわかる</p>
+<h2 id="演習-95"><a class="header" href="#演習-95">演習 9.5</a></h2>
+<div class="panel-primary">
+<p>図9.6で示すような，混合ガウスモデルの有向グラフを考える．8.2節で議論した有向分離の規準を利用して，潜在変数の事後分布が次式のように各データ点ごとの事後分布の積になることを示せ．</p>
+<p>$$p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi})=\prod_{n=1}^{N} p\left(\mathbf{z}<em>{n} \mid \mathbf{x}</em>{n}, \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi}\right) \tag{9.80}$$</p>
+</div>
+<p>まず、図9.9より、$\mathbf{\pi}$と$\mathbf{\mu}$、$\mathbf{\mu}$ と$\mathbf{\Sigma}$、$\mathbf{\Sigma}$と$\mathbf{\pi}$は、tail-to-tailなので、$\mathbf{Z}$と$\mathbf{X}$が観察された時、遮断されている。すなわち条件付き独立が成り立つ。よって、以下では、$\mathbf{X}$と$\mathbf{Z}$について考えていく。</p>
+<p>今、図9.9より、$n \in {1, 2, \cdots  N}$について、それぞれ$\mathbf{z}_n \rightarrow \mathbf{x}_n$が成り立つ。また、i.i.dデータ集合であることが仮定されているので、$p(\mathbf{X}) = \prod_n p(\mathbf{x}_n)$である。</p>
+<p>以上から、
+$$
+\begin{aligned}
+p(\mathbf{Z}| \mathbf{X}, \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi}) &amp;=
+p(\mathbf{Z}|\mathbf{X}) \
+&amp;= \prod_n p(\mathbf{z}<em>n|\mathbf{x}<em>n)
+\end{aligned}
+$$
+が成り立つ。最後に、条件付き独立であるパラメータを加えて、
+$$p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi})=\prod</em>{n=1}^{N} p\left(\mathbf{z}</em>{n} \mid \mathbf{x}_{n}, \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi}\right) \tag{9.80}$$
+が導かれる。</p>
+<h2 id="演習-96"><a class="header" href="#演習-96">演習 9.6</a></h2>
+<div class="panel-primary">
+<p>混合ガウスモデルについて，各混合要素の共分散行列$\mathbf{\Sigma}_k$すべてが共通の値$\mathbf{\Sigma}$に制限された特別な場合を考える．そのようなモデルにおいて，尤度関数を最大化するEM方程式を導け．</p>
+</div>
+<p>(9.17),(9.18),(9.19),(9.22)に$\mathbf{\Sigma}<em>{k}=\mathbf{\Sigma}</em>{j}=\mathbf{\Sigma}$を代入する。</p>
+<p>$$
+\begin{aligned}
+&amp;N_{k}=\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \
+&amp;\left(\gamma\left(z_{n k}\right)=\frac{\pi_{k} \mathcal{N}\left(X_{n} \mid \boldsymbol{\mu}<em>{k}, \mathbf{\Sigma}\right)}{\sum</em>{j} \pi_j \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{j}, \mathbf{\Sigma}\right)}\right) \
+&amp;\boldsymbol{\mu}<em>{k}=\frac{1}{N</em>{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}<em>{n} \
+&amp;\mathbf{\Sigma}=\frac{1}{N</em>{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \
+&amp;\pi_{k}=\frac{N_{k}}{N}
+\end{aligned}
+$$</p>
+<h2 id="演習-97"><a class="header" href="#演習-97">演習 9.7</a></h2>
+<div class="panel-primary">
+<p>混合ガウスモデルに関する完全データ対数尤度関数
+$$\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})=\sum_{n=1}^{N} \sum_{k=1}^{K} z_{n k}\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \mathbf{\Sigma}_{k}\right)\right} \tag{9.36}$$
+を最大化することは，各混合要素について独立に平均と共分散をその混合要素に対応するデータ点集合にあてはめ，かつ混合係数を各グループに属するデータの数の割合に一致させるという結果になることを示せ．</p>
+</div>
+<p>(9.36)を$\mathbf{\mu}_{k}$で微分すると、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial\mathbf{\mu}<em>k} \ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \mathbf{\Sigma}, \boldsymbol{\pi}) &amp;= \sum</em>{n=1}^{N} \sum_{k=1}^{K} \frac{\partial}{\partial\mathbf{\mu}<em>k}{ z</em>{n k}\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \mathbf{\Sigma}<em>{k}\right)\right}}\
+&amp;= \sum</em>{x_n \in C_k} \frac{\partial}{\partial\mathbf{\mu}<em>k} {\ln \pi</em>{k} + \ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \mathbf{\Sigma}<em>{k}\right)}\
+&amp;= \sum</em>{x_n \in C_k} \frac{\partial}{\partial\mathbf{\mu}<em>k} {\ln \mathcal{N}\left(\mathbf{x}</em>{n} \mid \boldsymbol{\mu}<em>{k}, \mathbf{\Sigma}</em>{k}\right)}
+\end{aligned}
+$$</p>
+<p>これは、「ガウス分布でクラスタ$C_k$に属するデータ点を利用した場合の
+パラメータ最適化」と同じである。</p>
+<p>$\pi_i$については、$\sum_{k=1}^{K}\pi_k=1$...(A)という制限があるため、ラグランジュの未定乗数法を用いて
+$$L=\ln p(\mathbf{X},\mathbf{Z}|\mathbf{\mu},\mathbf{\Sigma},\mathbf{\pi}) + \lambda(\mathbf{\Sigma}<em>{k}\pi</em>{k}-1) ...\mathrm{(B)}$$</p>
+<p>$$\frac{\partial L}{\partial \pi_{k}} = \sum_{n=1}^{N}\frac{z_{nk}}{\pi_k} + \lambda=0$$</p>
+<p>両辺に$\pi_k$をかけて$\mathbf{\Sigma}<em>{k}$をとると、
+$$\sum</em>{k=1}^K \sum_{n=1}^N z_{nk} + \sum_{k=1}^K \lambda\pi_k=0$$
+制約条件(A), $\mathbf{\Sigma}<em>{k}\mathbf{\Sigma}</em>{n}z_{nk}=N$より、</p>
+<p>$$\sum_{k=1}^K \sum_{n=1}^N z_{nk} + \lambda=0 $$
+$$ N + \lambda = 0, \lambda = -N$$
+(B)に代入して、
+$$∴\pi_{k} = \frac{1}{N}\sum_{n=1}^N z_{nk}$$</p>
+<h2 id="演習-98"><a class="header" href="#演習-98">演習 9.8</a></h2>
+<div class="panel-primary">
+<p>もし負担率$\gamma(z_{nk})$を固定した下で，
+$$\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})]=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \boldsymbol{\Sigma}_{k}\right)\right} \tag{9.40}$$
+を$\boldsymbol{\mu}_k$についての最大化をしようとすると，$(9.17)$で与えられる陽な解が得られることを示せ．</p>
+<p>$$
+\begin{aligned}
+\mathbf{\mu}<em>k = \frac{1}{N_k}\sum_n \gamma(z</em>{nk})\mathbf{x}_n \tag{9.17}
+\end{aligned}
+$$</p>
+<p>ただし、</p>
+<p>$$
+\begin{aligned}
+N_k = \sum_n \gamma(z_{nk}) \tag{9/18}
+\end{aligned}
+$$</p>
+</div>
+<p>(9.40)式を$\mathbf{\mu}_k$について微分し、0となる$\mathbf{\mu}_k$を求めれば良い。</p>
+<p>$$
+\begin{aligned}
+&amp;\frac{d}{d\mathbf{\mu}<em>k} \mathbb{E}</em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})] =
+\sum_n \gamma (z_{nk})\Sigma^{-1}(\mathbf{x}_n-\mathbf{\mu}<em>k)  = 0 \
+&amp;\Rightarrow \sum_n \gamma (z</em>{nk})(\mathbf{x}_n-\mathbf{\mu}_k)  = 0  \
+&amp;\Rightarrow \mathbf{\mu}<em>k = \frac{1}{N_k}\sum_n \gamma(z</em>{nk})\mathbf{x}_n &amp;(\because (9.18))
+\end{aligned}
+$$</p>
+<h2 id="演習-99"><a class="header" href="#演習-99">演習 9.9</a></h2>
+<div class="panel-primary">
+<p>もし負担率$\gamma(z_{nk})$を固定した下で，
+$$\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})]=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \boldsymbol{\Sigma}<em>{k}\right)\right} \tag{9.40}$$
+を$\boldsymbol{\Sigma}</em>{k}$と$\pi_k$についての最大化をしようとすると，
+$$\mathbf{\Sigma}<em>{k}=\frac{1}{N</em>{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}<em>{n}-\mu</em>{k}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}} \tag{9.19}$$
+と
+$$\pi_k = \frac{N_k}{N} \tag{9.22}$$
+で与えられる陽な解が得られることを示せ．</p>
+</div>
+<p>演習(9.8)と同様に最適化したい変数の微分を0として解くことで目的の解を得る．</p>
+<p>$\Sigma_k^{-1}$について(9.40)を偏微分する</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial\Sigma_k^{-1}}\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})]&amp;=\frac{\partial}{\partial\Sigma_k^{-1}}\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \boldsymbol{\Sigma}<em>{k}\right)\right}\
+&amp;=\frac{\partial}{\partial\Sigma_k^{-1}}\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \boldsymbol{\Sigma}<em>{k}\right)\
+&amp;=\frac{\partial}{\partial\Sigma_k^{-1}}\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\left{-\frac{|D|}{2}\ln 2\pi+\frac{1}{2}\ln |\Sigma_k|^{-1}-\frac{1}{2}(\mathbf{x}_n-\mathbf{\mu}_k)^T\Sigma_k^{-1}(\mathbf{x}<em>n-\mathbf{\mu}<em>k)\right}\
+&amp;=\frac{\partial}{\partial\Sigma_k^{-1}}\sum</em>{n=1}^{N} \frac{1}{2}\gamma\left(z</em>{n k}\right)\left{\ln |\Sigma_k^{-1}|-(\mathbf{x}_n-\mathbf{\mu}_k)^T\Sigma_k^{-1}(\mathbf{x}<em>n-\mathbf{\mu}<em>k)\right}\
+&amp;=\sum</em>{n=1}^{N} \frac{1}{2}\gamma\left(z</em>{n k}\right)\left{\Sigma_k^T-(\mathbf{x}_n-\mathbf{\mu}_k)(\mathbf{x}<em>n-\mathbf{\mu}<em>k)^T\right}\
+&amp;=\sum</em>{n=1}^{N} \frac{1}{2}\gamma\left(z</em>{n k}\right)\left{\Sigma_k-(\mathbf{x}_n-\mathbf{\mu}_k)(\mathbf{x}_n-\mathbf{\mu}_k)^T\right}\
+\end{aligned}
+$$</p>
+<p>$|A^{-1}|=|A|^{-1}$,$\frac{\partial}{\partial{A}}\ln|A|=(A^{-1})^T$を用いた．
+これを0として</p>
+<p>$$
+\begin{aligned}
+\sum_{n=1}^{N} \frac{1}{2}\gamma\left(z_{n k}\right)\left{\mathbf{\Sigma}_k-(\mathbf{x}_n-\mathbf{\mu}_k)^T(\mathbf{x}_n-\mathbf{\mu}_k)\right}=0
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma}<em>k\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)=\sum_{n=1}^{N} \gamma\left(z_{n k}\right)(\mathbf{x}_n-\mathbf{\mu}_k)^T(\mathbf{x}_n-\mathbf{\mu}_k)
+\end{aligned}
+$$</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Sigma}<em>k=\frac{1}{N}\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)(\mathbf{x}_n-\mathbf{\mu}_k)^T(\mathbf{x}_n-\mathbf{\mu}_k)
+\end{aligned}
+$$</p>
+<p>が得られる．</p>
+<p>次に$\pi_k$について考える．これは演習(9.7)を応用して考えることができて，$\mathbf{z}<em>{nk}$を$\gamma(\mathbf{z}</em>{nk})$で置き換え，同様にラグランジュ未定乗数法を用いて計算することで</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\pi}<em>k&amp;=\frac{1}{N}\sum</em>{n=1}^N\gamma(\mathbf{z}_{nk})\
+&amp;=\frac{N_k}{N}
+\end{aligned}
+$$</p>
+<p>以上から目的の解が得られた</p>
+<h2 id="演習-910"><a class="header" href="#演習-910">演習 9.10</a></h2>
+<div class="panel-primary">
+<p>$$p(\mathbf{x})=\sum_{k=1}^{K} \pi_{k} p(\mathbf{x} \mid k) \tag{9.81}$$</p>
+<p>の形の混合分布で与えられる密度のモデルを考え，ベクトル$\mathbf{x}$を$\mathbf{x} = (\mathbf{x}_a, \mathbf{x}_b)$のように2つの部分に分解すると仮定する．このとき，条件付き密度$p(\mathbf{x}_b\mid \mathbf{x}_a)$自体が混合分布であることを示し，混合係数と各混合要素の表式を求めよ．</p>
+</div>
+<p>(9.81)より
+$$
+p\left(\mathbf{x}<em>{a}, \mathbf{x}</em>{b}\right)=\sum_{k=1}^{K} \pi_{k} p\left(\mathbf{x}<em>{a}, \mathbf{x}</em>{b} \mid k\right)
+$$
+であることを用いて、</p>
+<p>$$
+\begin{aligned}
+p\left(\mathbf{x}<em>{b} \mid \mathbf{x}</em>{a}\right)&amp;=\frac{p\left(\mathbf{x}<em>{a}, \mathbf{x}</em>{b}\right)}{p\left(\mathbf{x}<em>{a}\right)}
+\&amp;=\frac{\sum</em>{k=1}^{K} \pi_{k} p\left(\mathbf{x}<em>{a}, \mathbf{x}</em>{b} \mid k\right)}{p\left(\mathbf{x}<em>{a}\right)}\&amp;=\frac{\sum</em>{k=1}^{K} \pi_{k} p\left(\mathbf{x}<em>{b} \mid \mathbf{x}</em>{a}, k\right) p\left(\mathbf{x}<em>{a} \mid k\right)}{p\left(\mathbf{x}</em>{a}\right)}
+\&amp;=\sum_{k=1}^{K} \lambda_{k} p\left(\mathbf{x}<em>{b} \mid \mathbf{x}</em>{a}, k\right)
+\end{aligned}
+$$</p>
+<p>ただし混合係数は</p>
+<p>$$
+\begin{aligned}
+\lambda_{k} &amp;\equiv \frac{\pi_{k} p\left(\mathbf{x}<em>{a} \mid k\right)}{p\left(\mathbf{x}</em>{a}\right)}\&amp;=\frac{\pi_{k} p\left(\mathbf{x}<em>{a} \mid k\right)}{\sum</em>{k=1}^{K} \pi_{k} p\left(\mathbf{x}_{a} \mid k\right)}
+\end{aligned}
+$$
+である。</p>
+<h2 id="演習-911"><a class="header" href="#演習-911">演習 9.11</a></h2>
+<div class="panel-primary">
+<p>9.3.2節においてすべての混合要素の共分散が$\epsilon\mathbf{I}$である混合ガウス分布を考えることで，<em>K</em>-means法とEMアルゴリズムの関係を導いた．ここに，$\epsilon \to 0$の極限において，このモデルの期待完全データ対数尤度
+$$\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}, \boldsymbol{\pi})]=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{\ln \pi_{k}+\ln \mathcal{N}\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}, \boldsymbol{\Sigma}<em>{k}\right)\right} \tag{9.40}$$
+の最大化が，<em>K</em>-means法の歪み尺度
+$$J=\sum</em>{n=1}^{N} \sum_{k=1}^{K} r_{n k}\left|\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}\right|^{2} \tag{9.1}$$
+の最小化と等価になることを示せ．</p>
+</div>
+<p>式 (9.37) より$\pi_k$は常に非負。従って、$\epsilon \to 0$となるとき、$\gamma(z_{nk}) \to r_{nk}$である (p.160) ことから、式 (9.40) の最大化は</p>
+<p>$$
+\begin{aligned}
+\sum_{n = 1}^N \sum_{k = 1}^K r_{nk} \left(-\frac{1}{2\epsilon}\left|\mathbf{x}_n - \mathbf{\mu}_k\right|^2\right)
+\end{aligned}
+$$</p>
+<p>の最大化に等しい。上式に最適化の対象である$\mathbf{\mu}_k$を含まないscaling factor $\left(-2\epsilon\right)$ をかけると式 (9.1) に等しくなることから、題意が示される。</p>
+<h2 id="演習-912"><a class="header" href="#演習-912">演習 9.12</a></h2>
+<div class="panel-primary">
+<p>$$p(\mathbf{x})=\sum_{k=1}^{K} \pi_{k} p(\mathbf{x} \mid k) \tag{9.82}$$</p>
+<p>の形の混合分布を考える．ここに，$\mathbf{x}$は離散，連続，その組み合わせのいずれでもよい．$p(\mathbf{x}\mid k)$の平均と共分散をそれぞれ$\boldsymbol{\mu}<em>k$と$\mathbf{\Sigma}<em>k$で表す．混合分布の平均と共分散がそれぞれ
+$$\mathbb{E}[\mathbf{x}] =\sum</em>{k=1}^{K} \pi</em>{k} \boldsymbol{\mu}<em>{k} \tag{9.49}$$
+$$\operatorname{cov}[\mathbf{x}] =\sum</em>{k=1}^{K} \pi_{k}\left{\mathbf{\Sigma}<em>{k}+\boldsymbol{\mu}</em>{k} \boldsymbol{\mu}_{k}^{\mathrm{T}}\right}-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}} \tag{9.50}$$
+で与えられることを示せ．</p>
+</div>
+<p>問題設定より、$p(\mathbf{x}\mid k)$（の分布の下での$\mathbf{x}$）の平均と共分散がそれぞれ$\boldsymbol{\mu}_k$, $\mathbf{\Sigma}_k$となるので、上巻pp.19-20, $(1.36)$の記法にしたがって</p>
+<p>$$\mathbb{E}<em>{k}[\mathbf{x}]=\int \mathbf{x} p(\mathbf{x} \mid k) d \mathbf{x}=\boldsymbol{\mu}</em>{k},\  \operatorname{cov}<em>{k}[\mathbf{x}]=\mathbf{\Sigma}</em>{k}$$</p>
+<p>と書ける。</p>
+<p>$\mathbb{E}[\mathbf{x}]$について、期待値の定義から</p>
+<p>$$\begin{aligned}
+\mathbb{E}[\mathbf{x}] &amp;=\int \mathbf{x} p(\mathbf{x}) d \mathbf{x} \
+&amp;=\int \mathbf{x} \sum_{k=1}^{K} \pi_{k} p(\mathbf{x} \mid k) d \mathbf{x} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \int \mathbf{x} p(\mathbf{x} \mid k) d \mathbf{x} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \boldsymbol{\mu}_{k} \end{aligned}$$</p>
+<p>となる。次に共分散$\operatorname{cov}[\mathbf{x}]$について、</p>
+<p>$$\begin{aligned} \operatorname{cov}[\mathbf{x}]
+&amp;=\mathbb{E}\left[(\mathbf{x}-\mathbb{E}[\mathbf{x}])(\mathbf{x}-\mathbb{E}[\mathbf{x}])^{\mathrm{T}}\right] \quad(\because(1.42)) \
+&amp;=\mathbb{E}\left[\mathbf{xx}^{\mathrm{T}}-2 \mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{x}]^{\mathrm{T}}+\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}}\right] \
+&amp;=\mathbb{E}\left[\mathbf{xx}^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}} \
+&amp;=\int \mathbf{xx}^{\mathrm{T}} \sum_{k=1}^{K} \pi_{k} p(\mathbf{x} \mid k) d x-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \int \mathbf{xx}^{\mathrm{T}} p(\mathbf{x} \mid k) d x-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}} \
+&amp;=\sum_{k=1}^{K} \pi_{k} \mathbb{E}_{k}\left[\mathbf{xx}^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}}
+\end{aligned}$$</p>
+<p>ここで$\mathbb{E}_{k}[\mathbf{xx}^{\mathrm{T}}]$について、$(1.42)$の共分散行列の定義から</p>
+<p>$$\begin{aligned} \mathbf{\Sigma}<em>{k}=\operatorname{cov}</em>{k}[\mathbf{x}]
+&amp;=\mathbb{E}<em>{k}\left[\left(\mathbf{x}-\mathbb{E}</em>{k}[\mathbf{x}]\right)\left(\mathbf{x}-\mathbb{E}<em>{k}[\mathbf{x}]\right)^{\mathrm{T}}\right] \
+&amp;=\mathbb{E}</em>{k}\left[\left(\mathbf{x}-\boldsymbol{\mu}<em>{k}\right)\left(\mathbf{x}-\boldsymbol{\mu}</em>{k}\right)^{\mathrm{T}}\right] \
+&amp;=\mathbb{E}<em>{k}\left[\mathbf{xx}^{\mathrm{T}}\right]-\boldsymbol{\mu}</em>{k} \boldsymbol{\mu}_{k}^{\mathrm{T}} \end{aligned}$$</p>
+<p>であるから、$\mathbb{E}<em>{k}\left[\mathbf{xx}^{\mathrm{T}}\right] = \mathbf{\Sigma}</em>{k}+\boldsymbol{\mu}<em>{k} \boldsymbol{\mu}</em>{k}^{\mathrm{T}}$が得られる。以上を代入して、</p>
+<p>$$\operatorname{cov}[\mathbf{x}] =\sum_{k=1}^{K} \pi_{k}\left{\mathbf{\Sigma}<em>{k}+\boldsymbol{\mu}</em>{k} \boldsymbol{\mu}_{k}^{\mathrm{T}}\right}-\mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}]^{\mathrm{T}}$$</p>
+<p>となる。</p>
+<h2 id="演習-913"><a class="header" href="#演習-913">演習 9.13</a></h2>
+<div class="panel-primary">
+<p>ベルヌーイ分布の混合は，パラメータを最尤解のときの値に一致させた場合</p>
+<p>$$\mathbb{E}[\mathrm{x}]=\frac{1}{N} \sum_{n=1}^{N} \mathrm{x}_{n} \equiv \overline{\mathrm{x}} \tag{9.83}$$</p>
+<p>を満たすことをEMアルゴリズムの更新式を用いて示せ．さらにこのモデルにおいて,すべての混合要素の平均値を$\boldsymbol{\mu}_{k}=\widehat{\boldsymbol{\mu}}(k=1, \ldots, K)$と同ーの値になるようにパラメータを初期化すると，混合係数の初期値が何であっても， EMアルゴリズムは一度の繰り返しで収束し，$\boldsymbol{\mu}_k = \overline{\mathbf{x}}$となることを示せ．これは，すべての混合要素が同ーになる縮退したケースを表しており，実用上，我々は適切な初期化によってこのような解を避ける努力をする．</p>
+</div>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}|\boldsymbol{\mu}, \boldsymbol{\pi}) = \sum_{k=1}^K \pi_k p(\mathbf{x}|\boldsymbol{\mu}_k )  \tag{9.47}
+\end{aligned}
+$$</p>
+<p>なので、</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[\mathbf{x}] &amp;= \sum_{k=1}^K \pi_k \boldsymbol{\mu}<em>k \
+&amp;= \sum</em>{k=1}^K \pi_k \overline{\mathbf{x}<em>k} \
+&amp;= \sum</em>{k=1}^K \pi_k \frac{1}{N_k} \sum_{n=1}^N \gamma (z_{nk}) \mathbf{x}<em>n \
+&amp;= \frac{1}{N} \sum</em>{n=1}^N \sum_{k=1}^K \gamma (z_{nk}) \mathbf{x}<em>n \
+&amp;= \frac{1}{N} \sum</em>{n=1}^N \mathbf{x}_n \
+\end{aligned}
+$$</p>
+<p>となる。ここで、$\gamma (z_{nk})$は負担率であることから、$k$について和をとると$1$になることを用いた。</p>
+<p>次に、後半部分を証明する。Eステップの更新式は(9.56)式で表され、</p>
+<p>$$
+\begin{aligned}
+\gamma (z_{nk})
+&amp;= \frac{\pi _k p(\mathbf{x}_n | \boldsymbol{\mu}<em>k)}{\sum</em>{j=1}^K \pi _j p(\mathbf{x}_n | \boldsymbol{\mu}_j)} \
+&amp;= \frac{\pi <em>k \hat{\boldsymbol{\mu}}}{\sum</em>{j=1}^K \pi _j \hat{\boldsymbol{\mu}}} \
+&amp;= \pi_k
+\end{aligned}
+$$</p>
+<p>となり、$n$によらない。
+Mステップの更新式は(9.59)式で表され、</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}<em>k
+&amp;= \overline{x_k} \
+&amp;= \frac{1}{N_k} \sum</em>{n=1}^N \gamma (z_{nk}) \mathbf{x}<em>n \
+&amp;= \frac{1}{N_k} \pi_k \sum</em>{n=1}^N \mathbf{x}<em>n \
+&amp;= \frac{1}{N} \sum</em>{n=1}^N \mathbf{x}_n \
+\end{aligned}
+$$</p>
+<p>となり、$k$によらない。
+従って、逐次的に更新式を適用しても2回目以降は値が変化しない。結果として、純粋な（混合分布ではない）ベルヌーイ分布と同じ確率分布しか表現できない。</p>
+<h2 id="演習-914"><a class="header" href="#演習-914">演習 9.14</a></h2>
+<div class="panel-primary">
+<p>$$p(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\mu})=\prod_{k=1}^{K} p\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}\right)^{z</em>{k}} \tag{9.52}$$
+と
+$$p(\mathbf{z} \mid \boldsymbol{\pi})=\prod_{k=1}^{K} \pi_{k}^{z_{k}} \tag{9.53}$$
+の積でベルヌーイ分布の潜在変数と観測変数の同時分布を構成しよう．この同時分布を$\mathbf{z}$について周辺化すると
+$$p(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\pi})=\sum_{k=1}^{K} \pi_{k} p\left(\mathbf{x} \mid \boldsymbol{\mu}_{k}\right) \tag{9.47}$$
+が得られることを示せ．</p>
+</div>
+<p>乗法定理から</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x},\mathbf{z},\mid \boldsymbol{\mu},\boldsymbol{\pi})&amp;=p(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\mu})p(\mathbf{z} \mid \boldsymbol{\pi})
+\end{aligned}
+$$</p>
+<p>である．これを$\mathbf{z}$について周辺化し，(9.52), (9.53)を代入すると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{x}\mid \boldsymbol{\mu},\boldsymbol{\pi})&amp;=\sum_\mathbf{z} p(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\mu})p(\mathbf{z} \mid \boldsymbol{\pi})\
+&amp;=\sum_{\mathbf{z}}\prod_{k=1}^{K} \pi_{k}^{z_{k}}\prod_{k=1}^{K} p\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}\right)^{z</em>{k}}\
+&amp;=\sum_{\mathbf{z}}\prod_{k=1}^{K} \pi_{k}^{z_{k}}p\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}\right)^{z</em>{k}}\
+&amp;=\sum_{k=1}^K \pi_{k}p\left(\mathbf{x} \mid \boldsymbol{\mu}_{k}\right)
+\end{aligned}
+$$</p>
+<p>が得られる．
+ここで$z_k$はone-hot-vectorであるため0か1の値を取る．したがって$z_k=0$のとき$\pi_{k}^{0}p\left(\mathbf{x} \mid \boldsymbol{\mu}_{k}\right)^{0}=1$であり，積を考える場合には$z_k=1$となる場合に注目すれば良いことがわかる．以上により最後の行の式に変形できる．</p>
+<h2 id="演習-915"><a class="header" href="#演習-915">演習 9.15</a></h2>
+<div class="panel-primary">
+<p>混合ベルヌーイ分布についての期待完全データ対数尤度関数
+$$\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\pi})]=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\Biggl{
+\ln \pi_{k} \ \left.+\sum_{i=1}^{D}\left[x_{n i} \ln \mu_{k i}+\left(1-x_{n i}\right) \ln \left(1-\mu_{k i}\right)\right]\right} \tag{9.55}$$
+を$\boldsymbol{\mu}<em>k$について最大化すると，Mステップ方程式
+$$\boldsymbol{\mu}</em>{k}=\overline{\mathbf{x}}_{k} \tag{9.59}$$
+が得られることを示せ．</p>
+</div>
+<p>問題文の通り、$\mathbb{E}_{\mathbf{Z}}[\ln p]$を$\boldsymbol{\mu}<em>k$について最大化する。このために$\mu</em>{ki}$での微分を考える。</p>
+<p>$$\begin{aligned} \frac{\partial}{\partial \mu_{k i}} \mathbb{E}<em>{\mathbf{Z}}[\ln p]
+&amp;=\sum</em>{n=1}^{N} \gamma\left(z_{n k}\right)\left(\frac{x_{n i}}{\mu_{k i}}-\frac{1-x_{n i}}{1-\mu_{k i}}\right) \
+&amp;=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}-\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mu_{k i}}{\mu_{k i}\left(1-\mu_{k i}\right)} \end{aligned}$$</p>
+<p>この式を0とおいて、</p>
+<p>$$\begin{aligned}&amp; \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mu_{k i}=\sum_{n=1}^{N} \gamma\left(z_{nk}\right) x_{n i} \
+&amp; \mu_{k i}=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}\hspace{1em}(\because (9.57))\end{aligned}$$</p>
+<p>を得る。これを踏まえると、</p>
+<p>$$\begin{aligned} \frac{\partial \mathbb{E}<em>{\mathbf{Z}}[\ln p]}{\partial \boldsymbol{\mu}</em>{k}} &amp;=\left(\frac{\partial \mathbb{E}<em>{\mathbf{Z}}[\ln p]}{\partial \mu</em>{k 1}}, \frac{\partial \mathbb{E}<em>{\mathbf{Z}}[\ln p]}{\partial \mu</em>{k 2}}, \cdots\right)^{\mathrm{T}} \
+&amp;=\frac{1}{N_{k}}\left(\sum_{n=1}^{N} \gamma \left(z_{n k}\right) x_{n 1}, \sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n 2}, \cdots\right)^{\mathrm{T}} \
+&amp;=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}<em>{n} \
+&amp;=\overline{\mathbf{x}}</em>{k}
+\end{aligned}$$</p>
+<p>したがって、Mステップでは$\boldsymbol{\mu}<em>{k}=\overline{\mathbf{x}}</em>{k}$となる。</p>
+<h2 id="演習-916"><a class="header" href="#演習-916">演習 9.16</a></h2>
+<div class="panel-primary">
+<p>変数混合ベルヌーイ分布についての期待完全データ対数尤度関数
+$$\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\pi})]=\sum</em>{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)\left{\ln \pi_{k}\right. \ \left.+\sum_{i=1}^{D}\left[x_{n i} \ln \mu_{k i}+\left(1-x_{n i}\right) \ln \left(1-\mu_{k i}\right)\right]\right} \tag{9.55}$$
+を，ラグランジュ未定乗数法を用いて混合係数$\pi_k$の総和を一定に保ちつつ$\pi_k$について最大化すると，Mステップ方程式
+$$\pi_{k} = \frac{N_k}{N} \tag{9.60}$$
+が得られることを示せ．</p>
+</div>
+<p>ラグランジュの未定乗数法を用いると</p>
+<p>$$
+L=\mathbb{E}<em>{\mathbf{Z}}[\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\mu}, \boldsymbol{\pi})]+\lambda\left(\sum</em>{k=1}^{K} \pi_{k}-1\right)
+$$</p>
+<p>これを$\pi_{k}$で微分してゼロとおくと</p>
+<p>$$\frac{\partial L}{\partial \pi_{k}}=\sum_{n=1}^{N} \frac{\gamma\left(z_{n k}\right)}{\pi_{k}}+\lambda=0-①$$</p>
+<p>この式の両辺に$\pi_{k}$をかけると</p>
+<p>$$
+\sum_{n=1}^{N} \gamma\left(z_{n k}\right)+\lambda \pi_{k}=0
+$$</p>
+<p>$k$について総和を取れば</p>
+<p>$$
+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)+\lambda=0 \Leftrightarrow \lambda=-\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right)
+$$</p>
+<p>これを①に代入すれば
+$$
+\pi_{k}=\frac{\sum_{n} \gamma\left(z_{n k}\right)}{\sum_{n, k} \gamma\left(z_{n k}\right)}=\frac{N_{k}}{N}
+$$</p>
+<p>※ (9.57)を使用</p>
+<h2 id="演習-917"><a class="header" href="#演習-917">演習 9.17</a></h2>
+<div class="panel-primary">
+<p>混合ベルヌーイ分布については離散変数$\mathbf{x}<em>n$について$0 \leqslant p\left(\mathbf{x}</em>{n} \mid \boldsymbol{\mu}_{k}\right) \leqslant 1$という制約があるために，不完全データ対数尤度関数は上に有界であり，よって尤度関数が発散する特異点が存在しないことを示せ．</p>
+</div>
+<p>不完全データ対数尤度関数$\ln p\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}, \boldsymbol{\pi}\right)$は、(9.51)で与えられる。
+$0\leqslant p\left(\mathbf{x}</em>{n} \mid \boldsymbol{\mu}_{k}\right) \leqslant 1$より、</p>
+<p>$$\begin{aligned} \ln p\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}, \boldsymbol{\pi}\right) &amp;=\sum</em>{n=1}^{N} \ln \left(\sum_{k=1}^{K} \pi_{k} p\left(\mathbf{x}<em>{n} \mid \boldsymbol{\mu}</em>{k}\right)\right) ...(9.51)\ &amp; \leqslant \sum_{n=1}^{N} \ln \left(\sum_{k=1}^{K} \pi_{k}\right) \ &amp;=\sum_{n=1}^{N} \ln 1=0 \end{aligned}$$</p>
+<p>したがって、対数尤度関数は上に有界であり、発散することはない。つまり、そのような特異点は存在しない。</p>
+<p>※ 連続変数である混合ガウス分布のときは発散していた（pp.149-150）との対比</p>
+<h2 id="演習-918"><a class="header" href="#演習-918">演習 9.18</a></h2>
+<div class="panel-primary">
+<p>9.3.3節で論じたように，混合ベルヌーイモデルに事前分布を仮定する．ただし各パラメータベクトル$\boldsymbol{\mu}<em>k$の分布$ρ(\boldsymbol{\mu}<em>k\mid a_k, b_k)$において，$\boldsymbol{\mu}<em>k$の各成分はそれぞれ独立にパラメータ$a_k$と$b_k$を持つベータ分布
+$$\operatorname{Beta}(\mu \mid a, b)=\frac{\Gamma(a+b)}{\Gamma(a) \Gamma(b)} \mu^{a-1}(1-\mu)^{b-1} \tag{2.13}$$
+に従うものとし，また，$p(\boldsymbol{\pi}\mid\boldsymbol{\alpha})$はディリクレ分布
+$$\operatorname{Dir}(\mu \mid \alpha)=\frac{\Gamma\left(\alpha</em>{0}\right)}{\Gamma\left(\alpha</em>{1}\right) \cdots \Gamma\left(\alpha</em>{K}\right)} \prod_{k=1}^{K} \mu_{k}^{\alpha_{k}-1} \tag{2.38}$$
+であるとする．このとき，事後分布$p(\boldsymbol{\mu},\boldsymbol{\pi}\mid \mathbf{X})$を最大化するEMアルゴリズムを導け．</p>
+</div>
+<p>演習9.4より、対数尤度関数ではなく対数事後分布について最大化する場合は、</p>
+<p>$$
+\begin{aligned}
+\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}) = \mathcal{Q}_l(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}) + \ln p(\mathbf{\theta})
+\end{aligned}
+$$</p>
+<p>を最大化すれば良い。ただし、ここでは、</p>
+<p>$$
+\begin{aligned}
+p(\theta) = p(\mathbf{\mu}|\mathbf{a, b})p(\mathbf{\pi}|\mathbf{\alpha})
+\end{aligned}
+$$</p>
+<p>であり、$\mathcal{Q}_l(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }})$は(9.55)式で表される。</p>
+<p>今、(2.13)より、</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{\mu}|\mathbf{a, b}) &amp;= \sum_{\mathbf{z}} \ln p(\mathbf{\mu}<em>k|a_i, bi) \
+&amp;= \sum</em>{\mathbf{z}} \ln \prod_k \mu_{ki}^{a_k-1}(1-\mu_{ki})^{b_k-1} + const. \
+&amp;= \sum_{\mathbf{z}} \sum_{k} {(a_k -1) \ln \mu_{ki}+(b_k-1)\ln (1-\mu_{ki})} + const.
+\end{aligned}
+$$</p>
+<p>そして、同様に、(2.14)より、</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{\pi}|\mathbf{\alpha})
+&amp;= \sum_k (\alpha_k -1)\ln  \pi_k + const.
+\end{aligned}
+$$</p>
+<p>したがって、</p>
+<p>$$
+\begin{aligned}
+\mathcal{Q}(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}) = E_{\mathbf{z}}[\ln p] + \sum_{\mathbf{z}} \sum_{k} {(a_k -1) \ln \mu_{ki}+(b_k-1)\ln (1-\mu_{ki})}  + \sum_k (\alpha_k -1)\ln  \pi_k \tag{9.Ex18.1}
+\end{aligned}
+$$</p>
+<p>を最大化する問題を考えれば良い。よって、$\mathcal{Q}$を$\mu_{ki}$について微分を、$\pi_k$につ未定乗数法を用いて更新式を導出する。</p>
+<p>$$
+\begin{aligned}
+\frac{\partial \mathcal{Q}}{\partial \mu_{ki}} &amp;= \frac{\partial E_{z}[\ln p] }{\partial \mu_{ki}} + \frac{a_i -1}{\mu_{ki}} - \frac{b_i -1 }{1 - \mu_{ki}} \
+&amp;= \sum_n \gamma(z_{nk})(\frac{x_{ni}}{\mu_{ki}} -\frac{1-x_{ni}}{1-\mu_{ki}}) +\frac{a_i -1}{\mu_{ki}} - \frac{b_i -1 }{1 - \mu_{ki}} &amp;(\because Ex. 9.15)\
+&amp;= \frac{N_k \bar{x}<em>{ki}+a_i -1 }{\mu</em>{ki}} - \frac{N_k - N_k \bar{x}<em>{ki}+b_i -1}{1 - \mu</em>{ki}} &amp;(\because (9.57), (9.58))
+\end{aligned}
+$$
+よって、整理して</p>
+<p>$$
+\begin{aligned}
+\mu_{ki} = \frac{N_k \bar{x}<em>{ki}+a_i -1 }{N_k \bar{x}</em>{ki}+a_i -1 +b_i -1}
+\end{aligned}
+$$</p>
+<p>次に、$\pi_k$について、ラグランジュ未定乗数法を用いて$\pi_k$を求める。以下の式を考える。</p>
+<p>$$
+\begin{aligned}
+L \propto E_z + \sum_k (\alpha_k -1)\ln \pi_k +\lambda (\sum \pi_k -1)
+\end{aligned}
+$$
+これを$\pi_k$について微分して、</p>
+<p>$$
+\begin{aligned}
+\frac{\partial L}{\partial \pi_k} = \sum_n \frac{\gamma(z_{nk})}{\pi_k} + \frac{a_k-1}{\pi_k}+ \lambda = 0 &amp;&amp;(\because Ex. 9.16)
+\end{aligned}
+$$
+そして、両辺に$\pi_k$を乗じ、$k$について和をとると、</p>
+<p>$$
+\begin{aligned}
+\sum_k \sum_n \gamma(z_{nk}) + \sum_k(\alpha_k -1)+ \lambda = 0 &amp;&amp;(\because \sum_k \pi_k = 1)
+\end{aligned}
+$$</p>
+<p>これを整理すると、</p>
+<p>$$
+\begin{aligned}
+\lambda = -N -\alpha_0 + K &amp;&amp;(\because \alpha_0 = \sum_k \alpha_k)
+\end{aligned}
+$$</p>
+<p>これを微分式に代入して整理すると</p>
+<p>$$
+\begin{aligned}
+\pi_k = \frac{\sum_n \gamma(z_{nk})+\alpha_k -1}{-\lambda} = \frac{N_k + \alpha_k -1}{N + \alpha_0 - K} &amp;&amp;(\because (9.57))
+\end{aligned}
+$$</p>
+<h2 id="演習-919"><a class="header" href="#演習-919">演習 9.19</a></h2>
+<div class="panel-primary">
+<p>$\mathbf{x}$を，各成分が$x_{i j}(i=1, \ldots, D, j=1, \ldots, M)$である$D\times M$次元のベクトル値の確率変数とする．ただし，$x_{ij}$の各々は${0,1}$に値を取り，すべての$I$に対し制約条件$\sum_{j}x_{ij}=1$を満たすものとする．$\mathbf{x}$の分布は，以下のように，2.2節で議論した($N=1$の)多項分布の混合であるとする．</p>
+<p>$$p(\mathbf{x})=\sum_{k=1}^{K} \pi_{k} p\left(\mathbf{x} \mid \boldsymbol{\mu}_{k}\right) \tag{9.84}$$</p>
+<p>ただし</p>
+<p>$$p\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}\right)=\prod</em>{i=1}^{D} \prod_{j=1}^{M} \mu_{k i j}^{x_{i j}} \tag{9.85}$$</p>
+<p>である．パラメータ$\mu_{kij}$は，確率$p(x_{ij} =1 \mid \boldsymbol{\mu}<em>k)$を表し，$0 \leqslant \mu</em>{kij} \leqslant 1$と，各$k, i$の値について制約条件$\sum_{j}\mu_{kij} = 1$を満たさなくてはならない．観測データ集合$\left{\mathbf{x}<em>{n}\right}(n=1, \ldots, N)$が与えられた下で，この分布の混合係数$\pi_k$と要素のパラメータ$\mu</em>{kij}$を最尤推定するEMアルゴリズムの，EステップとMステップの更新式を求めよ．</p>
+</div>
+<p>観測変数$\mathbf{x}$に対応する潜在変数$\mathbf{z}$を導入する．このとき観測データセットの条件付き分布は</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{X} \mid\mathbf{Z},\boldsymbol{\mu})&amp;=\prod_{n=1}^N\prod_{k=1}^Kp(\mathbf{x}<em>n\mid\boldsymbol{\mu}<em>k)^{z</em>{nk}}\
+&amp;=\prod</em>{n=1}^N\prod_{k=1}^K\prod_{i=1}^{D} \prod_{j=1}^{M} \mu_{k i j}^{x_{i j}z_{nk}}
+\end{aligned}
+$$</p>
+<p>と表せ，同様に潜在変数の分布は</p>
+<p>$$
+p(\mathbf{Z}\mid\pi)=\prod_{n=1}^N\prod_{k=1}^K\pi^{z_{nk}}_k
+$$</p>
+<p>以上から完全データ尤度関数は</p>
+<p>$$\begin{aligned}
+p(\mathbf{X},\mathbf{Z}\mid\boldsymbol{\mu},\pi)&amp;=p(\mathbf{X} \mid\mathbf{Z},\boldsymbol{\mu})p(\mathbf{Z}\mid\pi)\
+&amp;=\prod_{n=1}^N\prod_{k=1}^K\prod_{i=1}^{D} \prod_{j=1}^{M} \mu_{k i j}^{x_{i j}z_{nk}}\prod_{n=1}^N\prod_{k=1}^K\pi^{z_{nk}}<em>k\
+&amp;=\prod</em>{n=1}^N\prod_{k=1}^K\prod_{i=1}^{D} \prod_{j=1}^{M} (\pi_k\mu_{k i j}^{x_{i j}})^{z_{nk}}
+\end{aligned}
+$$</p>
+<p>対数をとって添字に注意しながら整理すると</p>
+<p>$$
+\ln p(\mathbf{X},\mathbf{Z}\mid\boldsymbol{\mu},\pi)=\sum_{n=1}^{N} \sum_{k=1}^{K} z_{n k}\left{\ln \pi_{k}+\sum_{i=1}^{D} \sum_{j=1}^{M}\mathbf{x}<em>{nij}\ln\mu</em>{kij}\right}
+$$</p>
+<p>以上のような完全データ対数尤度関数が得られる．</p>
+<p>E-stepでは以下の式で$p(\mathbf{Z}\mid\pi)$による$z_{nk}$の期待値計算を行う．</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[z_{nk}]=\frac{\pi_kp\left(\mathbf{x} \mid \boldsymbol{\mu}<em>{k}\right)}{\sum_j\pi_jp\left(\mathbf{x} \mid \boldsymbol{\mu}</em>{j}\right)}=\gamma(z_{nk})
+\end{aligned}
+$$</p>
+<p>M-stepではラグランジュ未定乗数法を用いて各種パラメータの最大化を行う.ラグランジアンが制約条件と係数$\lambda_1,\lambda_2$を用いて以下のようにかけて</p>
+<p>$$
+\mathcal{L}=\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma(z_{n k})\left{\ln \pi_{k}+\sum_{i=1}^{D} \sum_{j=1}^{M}\mathbf{x}<em>{nij}\ln\mu</em>{kij}\right}+\lambda_1(\sum_{k=1}^K\pi_k-1)+\sum_{k=1}^K\sum_{i=1}^D\lambda_{2ki}(\sum_{j=1}^M\mu_{kij}-1)
+$$</p>
+<p>これを$\pi_k,\mu_{kij}$について微分しものを0とおいてそれぞれ最大化を行う．</p>
+<p>まず$\pi_k$について</p>
+<p>$$
+\begin{aligned}
+\frac{\partial\mathcal{L}}{\partial\pi_k}&amp;=\sum_{n=1}^N\frac{\gamma(z_{nk})}{\pi_k}+\lambda_1=0
+\end{aligned}
+$$</p>
+<p>$\sum_n\gamma(z_{nk})=N_k,\sum_k\pi_k=1$を用いて$\lambda_1$についてこれを解くと</p>
+<p>$$
+\frac{N_k}{\pi_k}+\lambda_1=0
+$$</p>
+<p>$$
+N_k=-\lambda_1\pi_k
+$$</p>
+<p>$$
+\lambda_1=-N
+$$</p>
+<p>よって</p>
+<p>$$
+\pi_k=\frac{N_k}{N}
+$$</p>
+<p>が得られる．次に$\mu_{kij}$について偏微分を0として</p>
+<p>$$
+\begin{aligned}
+\frac{\partial\mathcal{L}}{\partial\mu_{kij}}&amp;=\sum_{n=1}^N\frac{\gamma(z_{nk})\mathbf{x}<em>{nij}}{\mu</em>{kij}}+\lambda_{2ki}=0
+\end{aligned}
+$$</p>
+<p>$\sum_n\gamma(z_{nk})=N_k,\sum_{j}\mu_{kij}=1$を用いて$\lambda_{2ki}$について解くと</p>
+<p>$$
+\sum_{n=1}^N\gamma(z_{nk})\mathbf{x}<em>{nij}+\lambda</em>{2ki}\mu_{kij}=0
+$$</p>
+<p>$$
+\sum_{n=1}^N\sum_{j=1}^M\gamma(z_{nk})\mathbf{x}<em>{nij}+\lambda</em>{2ki}\sum_{j=1}^M\mu_{kij}=0
+$$
+$$
+\begin{aligned}
+\lambda_{2ki}=-\sum_{n=1}^N\gamma(z_{nk})\sum_{j=1}^M\mathbf{x}_{nij}=-N_k
+\end{aligned}
+$$</p>
+<p>これを$\lambda_{2ki}$に代入して式を整理すると</p>
+<p>$$
+\mu_{kij}=\frac{1}{N_k}\sum_{n=1}^N\gamma(z_{nk})\mathbf{x}_{nij}
+$$</p>
+<p>となる．</p>
+<h2 id="演習-920"><a class="header" href="#演習-920">演習 9.20</a></h2>
+<div class="panel-primary">
+<p>ベイズ線形回帰モデルについて，期待完全データ対数尤度関数
+$$\begin{aligned} \mathbb{E}[\ln p(\mathbf{t}, \mathbf{w} \mid \alpha, \beta)]=&amp; \frac{M}{2} \ln \left(\frac{\alpha}{2 \pi}\right)-\frac{\alpha}{2} \mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]+\frac{N}{2} \ln \left(\frac{\beta}{2 \pi}\right) \ &amp;-\frac{\beta}{2} \sum_{n=1}^{N} \mathbb{E}\left[\left(t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}<em>{n}\right)^{2}\right] \end{aligned} \tag{9.62}$$
+の最大化は$\alpha$に関するMステップの更新式
+$$\alpha=\frac{M}{\mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]}=\frac{M}{\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{m}<em>{N}+\operatorname{Tr}\left(\mathbf{S}</em>{N}\right)} \tag{9.63}$$
+を導くことを示せ．</p>
+</div>
+<p>$\mathbf{w}$の事後分布は$(3.49)$より以下になる。
+$$p(\mathbf{w} \mid \mathbf{t})=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \mathbf{S}</em>{N}\right)$$</p>
+<p>(9.62) を$\alpha$で微分して0とおくと</p>
+<p>$$\frac{\partial \mathbb{E}}{\partial \alpha}=\frac{M}{2} \frac{1}{\alpha}-\frac{1}{2} \mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]=0 \ \therefore \alpha=\frac{M}{\mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]}$$</p>
+<p>$$\begin{aligned} \mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right] &amp;=\mathbb{E}\left[\mathbf{w}<em>{1}^{2}+\mathbf{w}</em>{2}^{2}+\cdots \cdot\right] \ &amp;=\mathbb{E}\left[\mathbf{w}<em>{1}^{2}\right]+\mathbb{E}\left[\mathbf{w}</em>{2}^{2}\right]+\cdots \cdot \ &amp;=\operatorname{Tr}\left(\mathbb{E}\left[\mathbf{w} \mathbf{w}^{\mathrm{T}}\right]\right) \quad \because \operatorname{Tr}\left(\mathbb{E}\left[\mathbf{w} \mathbf{w}^{\mathrm{T}}\right]\right)=E\left[\mathbf{w}<em>{1}^{2}\right]+\cdots \cdot\ &amp;=\operatorname{Tr}\left(\mathbf{m}</em>{N} \mathbf{m}<em>{N}^{\mathrm{T}}+\mathbf{S}</em>{N}\right)\hspace{1em} \because(2.62) E\left[\mathbf{w} \mathbf{w}^{\mathrm{T}}\right]=\mathbf{m}<em>{N} \mathbf{m}</em>{N}^{\mathrm{T}}+\mathbf{S}<em>{N} \ &amp;=\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{m}<em>{N}+\operatorname{Tr}\left(\mathbf{S}</em>{N}\right) \end{aligned}$$</p>
+<p>ゆえに(9.63)が導かれる。
+$$\alpha=\frac{M}{\mathbb{E}\left[\mathbf{\mathbf{w}}^{\mathrm{T}} \mathbf{\mathbf{w}}\right]}=\frac{M}{\mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N}+\operatorname{Tr}\left(\mathbf{S}_{N}\right)}$$</p>
+<h2 id="演習-921"><a class="header" href="#演習-921">演習 9.21</a></h2>
+<div class="panel-primary">
+<p>ベイズ線形回帰モデルについて，3.5節におけるエビデンスの枠組みを用いて，パラメータ$\alpha$に関する
+$$\alpha=\frac{M}{\mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]}=\frac{M}{\mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N}+\operatorname{Tr}\left(\mathbf{S}_{N}\right)} \tag{9.63}$$
+と同様の，パラメータ$\beta$に関するMステップ更新式を導け．</p>
+</div>
+<p>※教科書P.164より、この目的は第3章のエビデンス近似のEMアルゴリズムを用いた$\alpha, \beta$の計算法の再定義。</p>
+<p>Eステップではパラメータ$\alpha, \beta$の現在の値に基づく$\mathbf{w}$の事後分布の計算を行う。$(3.49)$ですでに$\mathbf{w}$の事後分布を求めてあるので</p>
+<p>$$p(\mathbf{w} \mid t)=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \mathbf{S}</em>{N}\right) \tag{3.49}$$</p>
+<p>Mステップではこの量を$\alpha, \beta$について最大化する。完全データ対数尤度</p>
+<p>$$\ln p(\mathbf{t}, \mathbf{w} \mid \alpha, \beta)=\ln p(\mathbf{t} \mid \mathbf{w}, \beta)+\ln p(\mathbf{w} \mid \alpha) \tag{5.61}$$</p>
+<p>$\mathbf{w}$について期待値を取ると、</p>
+<p>$$\begin{aligned} \mathbb{E}[\ln p(\mathbf{t}, \mathbf{w} \mid \alpha, \beta)]=&amp; \frac{M}{2} \ln \left(\frac{\alpha}{2 \pi}\right)-\frac{\alpha}{2} \mathbb{E}\left[\mathbf{w}^{\mathrm{T}} \mathbf{w}\right]+\frac{N}{2} \ln \left(\frac{\beta}{2 \pi}\right) \ &amp;-\frac{\beta}{2} \sum_{n=1}^{N} \mathbb{E}\left[\left(t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}_{n}\right)^{2}\right] \end{aligned} \tag{9.62}$$</p>
+<p>これを$\beta$で微分して$0$とおくと</p>
+<p>$$\frac{\partial \mathbb{E}}{\partial \beta}=\frac{N}{2} \frac{1}{\beta}-\frac{1}{2} \sum_{n} \mathbb{E}\left[\left(t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}_{n}\right)^{2}\right]=0$$</p>
+<p>$$\begin{aligned}
+\mathbb{E}\left[\left(t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}<em>{n}\right)^{2}\right]
+&amp;=\mathbb{E}\left[t</em>{n}^{2}-2 t_{n} \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}<em>{n}+\boldsymbol{\phi}</em>{n}^{\mathrm{T}} \mathbf{w} \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}<em>{n}\right] \
+&amp;=\mathbb{E}[t</em>{n}]^{2}-2 t_{n} \mathbb{E}[\mathbf{w}]^{\mathrm{T}} \boldsymbol{\phi}<em>{n}+\boldsymbol{\phi}</em>{n}^{\mathrm{T}} \mathbb{E}\left[\mathbf{w}\mathbf{w}^{\mathrm{T}}\right] \boldsymbol{\phi}<em>{n} \
+&amp;=t</em>{n}^{2}-2 t_{n} \mathbf{m}<em>{N}^{\mathrm T} \boldsymbol{\phi}</em>{n}+\boldsymbol{\phi}<em>{n}^{\mathrm T}\left(\mathbf{m}</em>{N} \mathbf{m}<em>{N}^{\mathrm{T}}+\mathbf{S}</em>{N}\right) \boldsymbol{\phi}<em>{n}\qquad \because (2.59),(2.62)\
+&amp;=\left(t</em>{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right)^{2}+\boldsymbol{\phi}<em>{n}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\phi}_{n}
+\end{aligned}$$</p>
+<p>なので以下となる。</p>
+<p>$$\frac{N}{\beta}-\sum_{n=1}^N\left{\left(t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right)^{2}+\boldsymbol{\phi}<em>{n}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\phi}_{n}\right}=0$$</p>
+<p>$$\begin{aligned}
+\frac{1}{\beta} &amp;=\frac{1}{N} \sum_{n=1}^N\left{\left(t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right)^{2}+\boldsymbol{\phi}<em>{n}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\phi}<em>{n}\right} \
+&amp;=\frac{1}{N}\left{\sum</em>{n=1}^N\left(t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}</em>{n}\right)^{2}+\operatorname{Tr}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{S}_{N}\right)\right}
+\end{aligned}$$</p>
+<p>※最後の変形は以下のようになる。$N \times M$の計画行列$\mathbf{\Phi}\ (3.16)$を利用して</p>
+<p>$$\mathbf{\Phi} = \begin{pmatrix} \boldsymbol{\phi}_1^{\mathrm T} \ \vdots \ \boldsymbol{\phi}_N^{\mathrm T} \end{pmatrix} \
+\mathbf{\Phi S}_N\mathbf{\Phi}^{\mathrm T} = \begin{pmatrix} \boldsymbol{\phi}_1^{\mathrm T} \ \vdots \ \boldsymbol{\phi}_N^{\mathrm T} \end{pmatrix} \mathbf{S}_N \begin{pmatrix} \boldsymbol{\phi}_1 &amp; \ldots \ \boldsymbol{\phi}_N \end{pmatrix} =
+\begin{pmatrix} \boldsymbol{\phi}_1^{\mathrm T}\mathbf{S}_N\boldsymbol{\phi}_1 &amp; \cdots &amp; \boldsymbol{\phi}_1^{\mathrm T}\mathbf{S}_N\boldsymbol{\phi}_N \ \vdots &amp; \ddots &amp; \vdots \ \boldsymbol{\phi}_N^{\mathrm T}\mathbf{S}_N\boldsymbol{\phi}_1 &amp; \cdots &amp; \boldsymbol{\phi}_N^{\mathrm T}\mathbf{S}_N\boldsymbol{\phi}_N \end{pmatrix}$$</p>
+<p>この結果から、$\sum_{n=1}^{N}\boldsymbol{\phi}_n^{\mathrm T}\mathbf{S}<em>N\boldsymbol{\phi}<em>n = \operatorname{Tr}\left(\mathbf{\Phi} \mathbf{S}</em>{N} \mathbf{\Phi}^{\mathrm{T}}\right) = \operatorname{Tr}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{S}</em>{N}\right)$となることがわかる。</p>
+<h2 id="演習-922"><a class="header" href="#演習-922">演習 9.22</a></h2>
+<div class="panel-primary">
+<p>期待完全データ対数尤度
+$$\mathbb{E}<em>{\mathbf{w}}[{\ln p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \boldsymbol{\alpha})}] \tag{9.66}$$
+を最大化することで.回帰問題のためのRVM(関連ベクトルマシン)の超パラメータについてのMステップ更新式
+$$\alpha</em>{i}^{\text {new }} =\frac{1}{m_{i}^{2}+\Sigma_{i i}} \tag{9.67}$$
+$$\left(\beta^{\text {new }}\right)^{-1} =\frac{|\mathbf{t}-\Phi \mathbf{m}|^{2}+\beta^{-1} \sum_{i} \gamma_{i}}{N} \tag{9.68}$$
+を導け．</p>
+</div>
+<p>$$p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid y(\mathbf{x}), \beta^{-1}\right) \tag{7.76}$$
+$$p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)=\prod_{n=1}^{N} p\left(t_{n} \mid \mathbf{x}<em>{n}, \mathbf{w}, \beta\right) \tag{7.79}$$
+$$p(\mathbf{w} \mid \boldsymbol{\alpha})=\prod</em>{i=1}^{M} \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) \tag{7.80}$$
+よりまずは対数尤度関数を計算する。</p>
+<p>$$\begin{aligned}
+\ln p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \boldsymbol{\alpha}) &amp;=\ln p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)+\ln p(\mathbf{w} \mid \boldsymbol{\alpha}) \
+&amp;=\sum_{n=1}^{N} \ln p\left(t_{n} \mid x_{n}, \mathbf{w}, \beta^{-1}\right)+\sum_{i=1}^{M} \ln \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) \
+&amp;=\sum_{n=1}^{N} \ln \mathcal{N}\left(t_{n} \mid \mathbf{w}^{\mathrm T} \boldsymbol{\phi}<em>{n}, \beta^{-1}\right)+\sum</em>{i=1}^{M} \ln \mathcal{N}\left(w_{i} \mid 0, \alpha_{i}^{-1}\right) \
+&amp;=\frac{N}{2} \ln \frac{\beta}{2 \pi}-\frac{\beta}{2} \sum_{n=1}^{N}\left(t_{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}<em>{n}\right)^{2}+\frac{1}{2} \sum</em>{i=1}^{M} \ln \frac{\alpha_{i}}{2 \pi}-\sum_{i=1}^{M} \frac{\alpha_{i}}{2} w_{i}^{2}
+\end{aligned}$$</p>
+<p>Mステップでは、この対数尤度関数の潜在変数$\mathbf{w}$についての期待値を取る。</p>
+<p>期待値を取る$\mathbf{w}$の事後分布は、
+$$p(\mathbf{w} \mid \mathbf{t}, \mathbf{X}, \boldsymbol{\alpha}, \beta)=\mathcal{N}(\mathbf{w} \mid \mathbf{m}, \mathbf{\Sigma})\tag{7.81}$$
+を利用する。</p>
+<p>$$\mathbb{E}<em>{\mathbf{w}}[\ln p]=\frac{N}{2} \ln \frac{\beta}{2 \pi}-\frac{\beta}{2} \sum</em>{n=1}^{N} \mathbb{E}<em>{\mathbf{w}}\left[\left(t</em>{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}<em>{n}\right)^{2}\right]+\frac{1}{2} \sum</em>{i=1}^{M} \ln \frac{\alpha_{i}}{2 \pi}-\sum_{i=1}^{M} \frac{\alpha_{i}}{2} \mathbb{E}<em>{\mathbf{w}}\left[w</em>{i}^{2}\right]$$</p>
+<p>$\alpha_{i}$に関して微分したものを$0$とおくと</p>
+<p>$$\frac{1}{2} \cdot \frac{2 \pi}{\alpha_{i}} \cdot \frac{1}{2 \pi}-\frac{1}{2} \mathbb{E}<em>{\mathbf{w}}\left[w</em>{i}^{2}\right] =0$$</p>
+<p>$$\begin{aligned}
+\alpha_{i}^{\textrm{new}} &amp;=\frac{1}{\mathbb{E}<em>{\mathbf{w}}\left[w</em>{i}^{2}\right]} \
+&amp;=\frac{1}{\mathbb{E}<em>{\mathbf{w}}\left[\mathbf{ww}^{\mathrm T}\right]</em>{ii} }\
+\end{aligned}$$</p>
+<p>ここで、$\mathbb{E}<em>{\mathbf{w}}\left[\mathbf{ww}^{\mathrm T}\right]</em>{ii}$は$\mathbb{E}_{\mathbf{w}}\left[\mathbf{ww}^{\mathrm T}\right]$の行列$ii$成分を表している。今、$(7.81)$式から$\mathbf{w}$は$\mathcal{N}(\mathbf{w}\mid \mathbf{m}, \mathbf{\Sigma})$から生成されているので（つまり$\mathbf{w} \sim \mathcal{N}(\mathbf{w}\mid \mathbf{m}, \mathbf{\Sigma})$）、$(2.62)$の結果から</p>
+<p>$$\mathbb{E}\left[\mathbf{w} \mathbf{w}^{\mathrm T}\right]=\mathbf{m} \mathbf{m}^{\mathrm T}+\mathbf{\Sigma}$$</p>
+<p>これを用いて</p>
+<p>$$\alpha_{i}=\frac{1}{\mathbb{E}<em>{\mathbf{w}}\left[\mathbf{w} \mathbf{w}^{\mathrm T}\right]</em>{ii}}=\frac{1}{\left(\mathbf{m m}^{\mathrm T}+\mathbf{\Sigma}\right)<em>{ii}}=\frac{1}{m</em>{i}^{2}+\Sigma_{i i}}$$</p>
+<p>同様に$\beta$を微分したものを$0$とおくと</p>
+<p>$$\frac{N}{2} \cdot \frac{2 \pi}{\beta} \cdot \frac{1}{2 \pi}-\frac{1}{2} \sum_{n=1}^{N} \mathbb{E}<em>{\mathbf{w}}\left[\left(t</em>{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}_{n}\right)^{2}\right]=0$$</p>
+<p>$$\begin{aligned}\beta^{\textrm{new}} &amp;= \frac{N}{\sum_{n=1}^{N} \mathbb{E}<em>{\mathbf{w}}\left[\left(t</em>{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}<em>{n}\right)^{2}\right]} \
+\left(\beta^{\textrm{new}}\right)^{-1} &amp;=\frac{1}{N}\sum</em>{n=1}^{N} \mathbb{E}<em>{\mathbf{w}}\left[\left(t</em>{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}<em>{n}\right)^{2}\right] \
+&amp;=\frac{1}{N} \sum</em>{n=1}^{N}\left{\left(t_{n}-\mathbf{m}^{\mathrm T} \boldsymbol{\phi}<em>{N}\right)^{2}+\operatorname{Tr}\left[\boldsymbol{\phi}</em>{n}^{\mathrm{T}} \mathbf{\Sigma} \boldsymbol{\phi}_{n}\right]\right} \
+&amp;=\frac{1}{N}\left{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}+\operatorname{Tr}\left[\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma}\right]\right} \end{aligned}
+$$</p>
+<p>ここで$\sum_{n=1}^{N} \mathbb{E}<em>{\mathbf{w}}\left[\left(t</em>{n}-\mathbf{w}^{\mathrm T} \boldsymbol{\phi}_{n}\right)^{2}\right]$部分については演習9.21と同様に変形した。</p>
+<p>以下では$\operatorname{Tr}\left[\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma}\right] = \beta^{-1} \sum_{i} \gamma_{i}$を示す。RVMでは$\mathbf{\Phi} , \mathbf{\Sigma}$に関する情報は</p>
+<p>$$\mathbf{\Sigma}=\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \tag{7.83}$$</p>
+<p>で与えられる。この両辺にまず$\left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)$をかけて</p>
+<p>$$\begin{aligned} \left(\mathbf{A}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)\mathbf{\Sigma} &amp;= \mathbf{I} \
+\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\mathbf{\Sigma} &amp;= \beta^{-1}\left(\mathbf{I}-\mathbf{A\Sigma}\right)
+\end{aligned}$$</p>
+<p>これを$\operatorname{Tr}\left(\mathbf{\Phi} \mathbf{\Sigma} \mathbf{\Phi}^{\mathrm T}\right)=\operatorname{Tr}\left(\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma} \right)$に代入すれば</p>
+<p>$$\begin{aligned} \operatorname{Tr}\left(\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi} \mathbf{\Sigma} \right) &amp;=\beta^{-1} \operatorname{Tr}(\mathbf{I}-\mathbf{A\Sigma}) \
+&amp;=\beta^{-1} \sum_{i}\left(1-\alpha_{i} \Sigma_{ii}\right) \ &amp;=\beta^{-1} \sum_{i} \gamma_{i} \end{aligned}$$</p>
+<p>以上で$(9.68)$式が導かれた。</p>
+<h2 id="演習-923"><a class="header" href="#演習-923">演習 9.23</a></h2>
+<div class="panel-primary">
+<p>7.2.1節において回帰問題のためのRVMの超パラメータ$\boldsymbol{\alpha}$と$\beta$の更新式$(7.87)$と$(7.88)$を導くのに周辺尤度を直接最大化した．同様に9.3.4節において，同じ周辺尤度を最大化するのにEMアルゴリズムを用いて更新式
+$$\alpha_{i}^{\textrm{new}} =\frac{1}{m_{i}^{2}+\Sigma_{i i}} \tag{9.67}$$
+$$\left(\beta^{\textrm{new}}\right)^{-1} =\frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}+\beta^{-1} \sum_{i} \gamma_{i}}{N} \tag{9.68}$$
+を求めた．任意の停留点においてこれら2組の更新式が厳密に等価であることを示せ．</p>
+</div>
+<p>$$
+\begin{aligned}
+\alpha_{i}^{\textrm{new}} &amp;=\frac{\gamma_{i}}{m_{i}^{2}}\qquad　(7.87) \
+\left(\beta^{\mathrm{new}}\right)^{-1} &amp;=\frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}}{N-\sum_{i} \gamma_{i}}\quad　(7.88)\
+\end{aligned}
+$$
+$$
+\gamma_{i}=1-\alpha_{i} \Sigma_{i i}\quad　(7.89)
+$$</p>
+<p>この問題では「$(7.87)$かつ$(7.88)$」⇔「$(9.67)$かつ$(9.68)$」を示せばよい。$(7.87)$に$(7.89)$を代入すれば</p>
+<p>$$\begin{aligned}
+\alpha_{i}^{\textrm{new}} &amp;=\frac{1-\alpha_{i}^{\textrm{new}} \Sigma_{i i}}{m_{i}^{2}} \
+\Leftrightarrow \alpha_{i}^{\textrm{new}}&amp;=\frac{1}{m_{i}^{2}+\sum_{i i}}\quad (\Leftrightarrow(9.67))
+\end{aligned}$$</p>
+<p>βに関しては、逆に導出する。(9.68)において$\beta$を$\beta^{\textrm{new}}$に置き換えると</p>
+<p>$$\begin{aligned}
+\left(\beta^{\textrm{new}}\right)^{-1}&amp;=\frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}+\left(\beta^{\textrm{new}}\right)^{-1} \sum_{i} \gamma_{i}}{N} \
+\Leftrightarrow\left(\beta^{\textrm{new}}\right)^{-1}&amp;=\frac{|\mathbf{t}-\mathbf{\Phi} \mathbf{m}|^{2}}{N-\sum_{i} \gamma_{i}}
+\end{aligned}$$</p>
+<h2 id="演習-924"><a class="header" href="#演習-924">演習 9.24</a></h2>
+<div class="panel-primary">
+<p>$$\ln p(\mathbf{X} \mid \boldsymbol{\theta})=\mathcal{L}(q, \theta)+\mathrm{KL}(q | p) \tag{9.70}$$
+を示せ．ただし$\mathcal{L}(q, \boldsymbol{\theta})$と$\mathrm{KL}(q | p)$はそれぞれ
+$$\mathcal{L}(q, \boldsymbol{\theta})=\sum_{\mathbf{Z}} q(\mathbf{Z}) \ln \left{\frac{p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta})}{q(\mathbf{Z})}\right} \tag{9.71}$$
+$$\mathrm{KL}(q | p)=-\sum_{\mathbf{Z}} q(\mathbf{Z}) \ln \left{\frac{p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta})}{q(\mathbf{Z})}\right}\tag{9.72}$$
+で定義されている．</p>
+</div>
+<p>乗法定理より、$\ln p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta})=\ln p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta})+\ln p(\mathbf{X} \mid \boldsymbol{\theta})$であるから</p>
+<p>$$\begin{aligned} \mathcal{L}(q, \boldsymbol{\theta}) &amp;=\sum_{\mathbf{Z}} q(\mathbf{Z}){\ln p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta})+\ln p(\mathbf{X} \mid \boldsymbol{\theta})-\ln q(\mathbf{Z})} \ &amp;=\ln p(\mathbf{X} \mid \boldsymbol{\theta}) \sum_{\mathbf{Z}} q(\mathbf{Z})+\sum_{\mathbf{Z}} q(\mathbf{Z}) \ln \frac{p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta})}{q(\mathbf{Z})} \ &amp;=\ln p(\mathbf{X} \mid \boldsymbol{\theta})-\operatorname{KL}(q | p) \end{aligned}$$</p>
+<p>より、$(9.70)$が示された。</p>
+<h2 id="演習-925"><a class="header" href="#演習-925">演習 9.25</a></h2>
+<div class="panel-primary">
+<p>対数尤度関数$\ln p(\mathbf{X}\mid \boldsymbol{\theta})$とその下界
+$$\mathcal{L}(q, \boldsymbol{\theta})=\sum_{\mathbf{Z}} q(\mathbf{Z}) \ln \left{\frac{p(\mathbf{X}, \mathbf{Z} \mid \boldsymbol{\theta})}{q(\mathbf{Z})}\right} \tag{9.71}$$
+(ただし$q(\mathbf{Z}) = p(\mathbf{Z}\mid \mathbf{X}, \boldsymbol{\theta}^{\textrm{old}})$) は，点$\boldsymbol{\theta} = \boldsymbol{\theta}^{\textrm{old}}$において同じ勾配を持つことを示せ．</p>
+</div>
+<p>前提条件である、$q(\mathbf{Z})=p\left(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)$ の場合、
+$$\mathrm{KL}(q | p)=-\sum_{\mathbf{Z}} q(\mathbf{Z}) \ln \left{\frac{p(\mathbf{Z} \mid \mathbf{X}, \boldsymbol{\theta})}{q(\mathbf{Z})}\right} = 0$$
+となっている。また常に$\mathrm{KL}(q | p) \ge 0$なので、点$\boldsymbol{\theta} = \boldsymbol{\theta}^{\textrm{old}}$において
+$$
+\left.\frac{\partial}{\partial \boldsymbol{\theta}} \mathrm{KL}(q | p)\right|<em>{\boldsymbol{\theta}=\boldsymbol{\theta}</em>{\textrm{old}}} = \mathbf{0}
+$$</p>
+<p>となる。
+$$\ln p(\mathbf{X} \mid \boldsymbol{\theta})=\mathcal{L}(q, \theta)+\mathrm{KL}(q | p) \tag{9.70}$$
+式の$\boldsymbol{\theta}$についての両辺の微分をとり、点$\boldsymbol{\theta} = \boldsymbol{\theta}^{\textrm{old}}$において右辺の第2項は$\mathbf{0}$になるので、左辺の微分（勾配）と右辺の第1項の微分（勾配）は同じになる。すなわち、</p>
+<p>$$\left.\frac{\partial}{\partial \boldsymbol{\theta}} \operatorname{ln}p(\mathbf{X} \mid \boldsymbol{\theta})\right|<em>{\boldsymbol{\theta}=\boldsymbol{\theta}</em>{\textrm{old}}} = \left.\frac{\partial}{\partial \boldsymbol{\theta}} \mathcal{L}(q, \boldsymbol{\theta})\right|<em>{\boldsymbol{\theta}=\boldsymbol{\theta}</em>{\textrm{old}}}$$</p>
+<p>を得る。</p>
+<h2 id="演習-926"><a class="header" href="#演習-926">演習 9.26</a></h2>
+<div class="panel-primary">
+<p>混合ガウス分布について，負担率を1つのデータ点$\mathbf{x}<em>m$のみについてしか更新しない逐次型EMアルゴリズムを考える．Mステップの式$(9.17)$と$(9.18)$から始めて，混合要素の平均を更新する式
+$$\boldsymbol{\mu}</em>{k}^{\text {new }}=\boldsymbol{\mu}<em>{k}^{\text {old }}+\left(\frac{\gamma^{\text {new }}\left(z</em>{m k}\right)-\gamma^{\text {old }}\left(z_{m k}\right)}{N_{k}^{\text {new }}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\text {old }}\right) \tag{9.78}$$
+$$N_{k}^{\text {new }}=N_{k}^{\text {old }}+\gamma^{\text {new }}\left(z_{m k}\right)-\gamma^{\text {old }}\left(z_{m k}\right)\tag{9.79}$$
+を導け．</p>
+</div>
+<p>※P.171の流れの通り、Eステップで$n=m$となる1つのデータ点$m$のみについて$\gamma(z_{nk})$を更新する。混合分布が指数型分布族の場合は、負担率が十分統計量となるので、$n=m$についての更新差分だけ考慮すれば良い。</p>
+<p>$$N_{k}=\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \tag{9.18}$$
+より
+$$\begin{aligned}
+N_{k}^{\textrm{new}} &amp;=\gamma^{\textrm{old}}\left(z_{1 k}\right)+\gamma^{\textrm{old}}\left(z_{2 k}\right)+\cdots+\gamma^{\textrm{new}}\left(z_{m k}\right)+\cdots+\gamma^{\textrm{old}}\left(z_{N k}\right) \
+&amp;=\sum_{n=1}^{N} \gamma^{\textrm{old}}\left(z_{n k}\right)-\gamma^{\textrm{old}}\left(z_{m k}\right)+\gamma^{\textrm{new}}\left(z_{m k}\right) \
+&amp;=N_{k}^{\textrm{old}}+\gamma^{\textrm{new}}\left(z_{m k}\right)-\gamma^{\textrm{old}}\left(z_{m k}\right)
+\end{aligned}$$</p>
+<p>以上から$(9.79)$が示された。</p>
+<p>$$\mu_{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n} \tag{9.17}$$</p>
+<p>より</p>
+<p>$$\begin{aligned}
+\boldsymbol{\mu}<em>{k}^{\textrm{new}}&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left{\gamma^{\textrm{old}}\left(z_{1 k}\right) \mathbf{x}<em>{1}+\gamma^{\textrm{old}}\left(z</em>{2 k}\right) \mathbf{x}<em>{2}+\cdots+\gamma^{\textrm{new}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}+\cdots+\gamma^{\textrm{old}}\left(z</em>{N k}\right) \mathbf{x}<em>{N}\right}\
+&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left{\sum_{n=1}^{N} \gamma^{\textrm{old}}\left(z_{n k}\right) \mathbf{x}<em>{n}-\gamma^{\textrm{old}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}+\gamma^{\textrm{new}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}\right}\
+&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left{N_{k}^{\textrm{old}} \boldsymbol{\mu}<em>{k}^{\textrm{old}}-\gamma^{\textrm{old}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}+\gamma^{\textrm{new}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}\right}\
+&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left[\underbrace{\left{N_{k}^{\textrm{new}}+\gamma^{\textrm{old}}\left(z_{m k}\right)-\gamma^{\textrm{new}}\left(z_{m k}\right)\right.}<em>{(\because(9.79))}} \boldsymbol{\mu}</em>{k}^{\textrm{old}}-\gamma^{\textrm{old}}\left(z_{m k}\right) \mathbf{x}<em>{m}+\gamma^{\textrm{new}}\left(z</em>{m k}\right) \mathbf{x}<em>{m}\right] \
+&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left[N_{k}^{\textrm{new}} \boldsymbol{\mu}<em>{k}^{\textrm{old}}-\left{\gamma^{\textrm{new}}\left(z</em>{m k}\right)-\gamma^{\textrm{old}}\left(z_{m k}\right)\right} \boldsymbol{\mu}<em>{k}^{\textrm{old}}+\left{\gamma^{\textrm{new}}\left(z</em>{m k}\right)-\gamma^{\textrm{old}}\left(z_{m k}\right)\right} \mathbf{x}<em>{m}\right]\
+&amp;=\boldsymbol{\mu}</em>{k}^{\textrm{old}}+\frac{1}{N_{k}^{\textrm{new}}}\left{\gamma^{\textrm{new}}\left(z_{m k}\right)-\gamma^{\textrm{old}}\left(z_{m k}\right)\right}\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)
+\end{aligned}$$</p>
+<p>以上から$(9.78)$が示された。</p>
+<h2 id="演習-927"><a class="header" href="#演習-927">演習 9.27</a></h2>
+<div class="panel-primary">
+<p>平均の更新式
+$$\boldsymbol{\mu}<em>{k}^{\text {new }}=\boldsymbol{\mu}</em>{k}^{\text {old }}+\left(\frac{\gamma^{\text {new }}\left(z_{m k}\right)-\gamma^{\text {old }}\left(z_{m k}\right)}{N_{k}^{\text {new }}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\text {old }}\right) \tag{9.78}$$
+と同様に，負担率を逐次型で更新する場合の混合ガウス分布の共分散行列と混合係数を更新するMステップの更新式を求めよ．</p>
+</div>
+<p>教科書P.154の混合ガウス分布のためのEMアルゴリズムから、$(9.24)-(9.26)$を利用して、Mステップでの更新後の混合係数は</p>
+<p>$$\begin{aligned}
+\pi^{\textrm{new}} &amp;=\frac{N^{\textrm{new}}}{N}(\because(9.26)) \ &amp;=\frac{N_{k}^{\text {old}}+\gamma^{\text {new}}\left(z_{m k}\right)-\gamma^{\text {old}}\left(z_{m k}\right)}{N} \
+&amp;=\pi^{\textrm{old}} + \frac{\gamma^{\text {new}}\left(z_{m k}\right)-\gamma^{\text {old}}\left(z_{m k}\right)}{N}
+\end{aligned}
+$$</p>
+<p>となる。</p>
+<p>次に更新後の共分散行列は、古い値は$(9.19)$を利用して</p>
+<p>$$
+\mathbf{\Sigma}<em>{k}^{\textrm{old}}=\frac{1}{N</em>{k}^{\textrm{old}}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)^{\mathrm{T}}
+$$</p>
+<p>である。これを$n=m$について更新すると</p>
+<p>$$\begin{aligned}\mathbf{\Sigma}<em>{k}^{\textrm{new}}&amp;=\frac{1}{N</em>{k}^{\textrm{new}}}\left(\sum_{n \neq m} \gamma^{\textrm{old}}\left(z_{n k}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)\left(\mathbf{x}<em>{n}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)^{\mathrm{T}} +\gamma^{\textrm{new}}\left(z_{m k}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)^{\mathrm{T}}\right) \
+&amp;=\frac{1}{N_{k}^{\textrm{new}}}\left(N_{k}^{\textrm{old}} \mathbf{\Sigma}<em>{k}^{\textrm{old}}-\gamma^{\textrm{old}}\left(z</em>{m k}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)^{\mathrm{T}}+\gamma^{\textrm{new}}\left(z_{m k}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)^{\mathrm{T}}\right) \
+&amp;=\mathbf{\Sigma}<em>{k}^{\mathrm{old}} -\frac{\gamma^{\textrm{old}}\left(z</em>{m k}\right)}{N_{k}^{\mathrm{new}}}\left(\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{old}}\right)^{\mathrm{T}}-\mathbf{\Sigma}<em>{k}^{\textrm{old}}\right) +\frac{\gamma^{\textrm{new}}\left(z</em>{m k}\right)}{N_{k}^{\textrm{new}}}\left(\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)\left(\mathbf{x}<em>{m}-\boldsymbol{\mu}</em>{k}^{\textrm{new}}\right)^{\mathrm{T}}-\mathbf{\Sigma}_{k}^{\textrm{old}}\right)
+\end{aligned}
+$$</p>
+<p>となる。途中で$(9.79)$式の変形$N_{k}^{\textrm{old}} = N_{k}^{\textrm{new}} - \gamma^{\text {new }}\left(z_{m k}\right)+ \gamma^{\text {old }}\left(z_{m k}\right)$を利用して$\mathbf{\Sigma}_{k}^{\mathrm{old}}$とその更新差分に分解した。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch08.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch08.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

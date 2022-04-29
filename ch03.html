@@ -1,0 +1,1549 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第3章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html" class="active"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第3章演習問題解答"><a class="header" href="#prml第3章演習問題解答">PRML第3章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-31"><a class="header" href="#演習-31">演習 3.1</a></h2>
+<div class="panel-primary">
+<p>tanh関数とロジステイックシグモイド関数</p>
+<p>$$
+\sigma(a)=\frac{1}{1+\exp (-a)} \tag{3.6}
+$$</p>
+<p>は次のように関係付けられることを示せ．</p>
+<p>$$
+\tanh(a) = 2\sigma(2a)-1 \tag{3.100}
+$$</p>
+<p>さらに，次の形のロジステイックシグモイド関数の線形結合</p>
+<p>$$
+y(x, \mathbf{w})=w_{0}+\sum_{j=1}^{M} w_{j} \sigma\left(\frac{x-\mu_{j}}{s}\right) \tag{3.101}
+$$</p>
+<p>は次の形の$\tanh$関数の線形結合</p>
+<p>$$
+y(x, \mathbf{u})=u_{0}+\sum_{j=1}^{M} u_{j} \tanh \left(\frac{x-\mu_{j}}{2 s}\right) \tag{3.102}
+$$</p>
+<p>と等価であることを示し，新しいパラメータ${ u_0, \ldots, u_M}$ともとのパラメータ${ w_0, \ldots, w_M}$を関係付ける式を求めよ．</p>
+</div>
+<p>双曲線関数$\sinh$と$\cosh$関数を使うと
+$$
+\sinh a = \frac{e^a - e^{-a}}{2},\quad \cosh a = \frac{e^a + e^{-a}}{2}
+$$
+であるから、
+$$
+\tanh a = \frac{\sinh a}{\cosh a} = \frac{e^a - e^{-a}}{e^a + e^{-a}}
+$$
+である。これと$(3.100)$式の右辺を計算すると
+$$
+2\sigma(2a) -1 = \frac{2}{1+e^{-2a}}-1 = \frac{1-e^{-2a}}{1+e^{-2a}} = \frac{e^a - e^{-a}}{e^a + e^{-a}}
+$$
+となるので、$\tanh a = 2\sigma(2a) -1$が示された。</p>
+<p>また$(3.100)$の関係式から$\displaystyle \sigma(a) = \frac{1}{2}\left{ \tanh \left(\frac{a}{2}\right) + 1\right}$となるので、</p>
+<p>$$
+\begin{aligned}
+w_0+\sum_{j=1}^M w_j \sigma\left( \frac{x-\mu_j}{s} \right) &amp;= w_0 + \sum_{j=1}^M \left{ \frac{w_j}{2} \tanh \left( \frac{x-\mu_j}{2s} \right) + \frac{w_j}{2} \right} \
+&amp;= w_0 + \sum_{j=1}^M \frac{w_j}{2} + \sum_{j=1}^M \frac{w_j}{2} \tanh \left( \frac{x-\mu_j}{2s} \right)
+\end{aligned}
+$$
+これと$(3.102)$式の形を比較すれば
+$$
+u_0 = w_0 + \sum_{j=1}^M \frac{w_j}{2},\quad u_j = \frac{w_j}{2}
+$$
+と関係付けることができる。</p>
+<h2 id="演習-32"><a class="header" href="#演習-32">演習 3.2</a></h2>
+<div class="panel-primary">
+<p>行列</p>
+<p>$$
+\mathbf{\Phi}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \tag{3.103}
+$$</p>
+<p>は任意のベクトル$\mathbf{v}$を$\mathbf{\Phi}$の列ベクトルで張られる空間の上に正射影することを示せ．そしてこの結果を使って，最小二乗解</p>
+<p>$$
+\mathbf{w}_{\mathrm{ML}}=\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \textsf{t} \tag{3.15}
+$$</p>
+<p>は図3.2で示した多様体$\mathcal{S}$の上にベクトル$\mathsf{t}$を正射影することに対応していることを示せ．</p>
+<p><img src="/attachment/5f4281e56b27b0172dd66336" alt="PRML_Fig3.2.png" /><br>
+Figure 3.2</p>
+</div>
+<p>【前半】</p>
+<p>この問題で線形空間（多様体）$\mathcal{S}$は行列$\mathbf{\Phi}$の$j$番目の列ベクトル$\boldsymbol{\varphi}<em>j$を基底としている。つまり、任意のスカラー$x_j$を用いて$\displaystyle \sum</em>{j=1}^M x_j\boldsymbol{\varphi}_j$の形で書けるベクトルは線形空間$\mathcal{S}$に含まれる。</p>
+<p>あるベクトル$\mathbf{v}$の線形空間$\mathcal{S}$への正射影とは、次の2つを満たすベクトル$\mathbf{v}^{\prime}$のことである。</p>
+<ol>
+<li>
+<p>ベクトル$\mathbf{v}^{\prime}$が$\mathcal{S}$上に存在する。すなわち$\displaystyle \mathbf{v}^{\prime} = \sum_{j=1}^M x_j\boldsymbol{\varphi}_j=\mathbf{\Phi}\mathbf{x}$と書ける。</p>
+</li>
+<li>
+<p>ベクトル$\mathbf{v}-\mathbf{v}^{\prime}$が線形空間$\mathcal{S}$と直交する。すなわち任意の$j$について$\boldsymbol{\varphi}_j^{\mathrm{T}}(\mathbf{v}-\mathbf{v}^{\prime})=0$つまり$\displaystyle \mathbf{\Phi}^{\mathrm{T}}(\mathbf{v}-\mathbf{v}^{\prime})=0$が成立する。</p>
+</li>
+</ol>
+<p>以上を踏まえて、まずベクトル$\mathbf{v}$に$\mathbf{\Phi}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}}$を作用させた$\mathbf{v}^{\prime}$を考える。すなわち
+$$
+\begin{aligned}
+\mathbf{v}^{\prime} &amp;= \mathbf{\Phi}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}}\mathbf{v} = \mathbf{\Phi}\tilde{{\mathbf{v}}}=\sum_{j=1}^M \tilde{v_j} \boldsymbol{\varphi}_j
+\end{aligned}
+$$
+とする。ここで$\boldsymbol{\varphi}_j$は$\mathbf{\Phi}$の$j$番目の列ベクトルで$\tilde{\mathbf{v}} \equiv \left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}}\mathbf{v}$とする。$\tilde{v_j}$はベクトル$\tilde{\mathbf{v}}$の$j$番目の要素である（スカラー）。これは$\boldsymbol{\varphi}_j$についての線形結合となっているので、上の正射影の条件1を満たしている。</p>
+<p>ちなみに</p>
+<p>$$
+\Phi=\begin{pmatrix}\mathbf{\phi}<em>{0}\left(\mathbf{x}</em>{1}\right) &amp; \phi_{1}\left(\mathbf{x}<em>{1}\right) &amp; \cdots &amp; \phi</em>{M-1}\left(\mathbf{x}<em>{1}\right) \ \phi</em>{0}\left(\mathbf{x}<em>{2}\right) &amp; \phi</em>{1}\left(\mathbf{x}<em>{2}\right) &amp; \cdots &amp; \phi</em>{M-1}\left(\mathbf{x}<em>{2}\right) \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ \phi</em>{0}\left(\mathbf{x}<em>{N}\right) &amp; \phi</em>{1}\left(\mathbf{x}<em>{N}\right) &amp; \cdots &amp; \phi</em>{M-1}\left(\mathbf{x}_{N}\right)\end{pmatrix} = (\boldsymbol{\varphi}_1\ \boldsymbol{\varphi}<em>2\ \cdots \ \boldsymbol{\varphi}</em>{M})  \tag{3.16}
+$$</p>
+<p>としたので番号は1つずつずれているけれど気にしないでOK。</p>
+<p>次に正射影の条件2のために$\mathbf{v}-\mathbf{v}^{\prime}$と$\mathcal{S}$の直交性を調べる。</p>
+<p>$$
+\begin{aligned}
+\mathbf{\Phi}^{\mathrm{T}}(\mathbf{v}-\mathbf{v}^{\prime}) &amp;= \mathbf{\Phi}^{\mathrm{T}}(\mathbf{I} - \mathbf{\Phi}(\mathbf{\Phi}^{\mathrm{T}}\mathbf{\Phi})^{-1}\mathbf{\Phi}^{\mathrm{T}})\mathbf{v} \
+&amp;=\mathbf{\Phi}^{\mathrm{T}}\mathbf{v} - \mathbf{\Phi}^{\mathrm{T}}\mathbf{v} \
+&amp;= \mathbf{0}
+\end{aligned}
+$$
+であるから、$\mathbf{v}-\mathbf{v}^{\prime}$と$\mathcal{S}$は直交していることが示された。以上条件1と2が成立しているので、$\mathbf{v}^{\prime}$は$\mathbf{v}$の$\mathcal{S}$への正射影であることが示された。</p>
+<p>（参考：https://python.atelierkobato.com/projection/）</p>
+<p>【後半】</p>
+<p>続いて、3.1.2節の流れから$n$番目の要素が$y(\mathbf{x}_n,\mathbf{w})$で与えられる$N$次元ベクトル$\mathsf{y}$を定義すると、$\mathsf{y}$の構成は</p>
+<p>$$
+\mathsf{y} = \begin{pmatrix}y(\mathbf{x}_1,\mathbf{w}) \ \vdots \ y(\mathbf{x}_n,\mathbf{w})\end{pmatrix} = \begin{pmatrix}\mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_1) \ \vdots \ \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_n)\end{pmatrix} = \begin{pmatrix}\boldsymbol{\phi}(\mathbf{x}_1)^{\mathrm{T}}\mathbf{w} \ \vdots \ \boldsymbol{\phi}(\mathbf{x}_n)^{\mathrm{T}}\mathbf{w}\end{pmatrix} = \mathbf{\Phi}\mathbf{w}
+$$</p>
+<p>となっている。これと$(3.15)$から$\mathbf{w}_{\mathrm{ML}} = (\mathbf{\Phi}^{\mathrm{T}}\mathbf{\Phi})^{-1}\mathbf{\Phi}^{\mathrm{T}} \mathsf{t}$を代入してみると</p>
+<p>$$
+\mathsf{y} = \mathbf{\Phi}\mathbf{w}_{\mathrm{ML}} = \mathbf{\Phi}(\mathbf{\Phi}^{\mathrm{T}}\mathbf{\Phi})^{-1}\mathbf{\Phi}^{\mathrm{T}} \mathsf{t}
+$$</p>
+<p>となる。ここで、この数式と【前半】の議論より、$\mathsf{y}$がベクトル$\mathsf{t}$の線形空間$\mathcal{S}$への正射影であることは明らかになっている。したがって題意（最小二乗解$\mathsf{y}$はデータベクトル$\mathsf{t}$の部分空間$\mathcal{S}$上への正射影に対応する）は示された。</p>
+<blockquote>
+<p>統計のための行列代数（上）の第12章 射影と射影行列に詳しい議論が載っている。</p>
+</blockquote>
+<h2 id="演習-33"><a class="header" href="#演習-33">演習 3.3</a></h2>
+<div class="panel-primary">
+<p>それぞれのデータ点$t_n$に重み要素$r_n&gt;0$が割り当てられており，二乗和誤差関数が</p>
+<p>$$
+E_{D}(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N} r_{n}\left{t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right}^{2} \tag{3.104}
+$$</p>
+<p>となるデータ集合を考える．このとき，この誤差関数を最小にする解$\mathbf{w}^{*}$についての式を求めよ．また，(i)ノイズの分散がデータに依存する場合，(ii)データ点に重複がある場合に照らして，それぞれ重み付き二乗和誤差関数の解釈を与えよ．</p>
+</div>
+<p>誤差関数を最小にする解を求めたいので、$(3.104)$式を$\mathbf{w}$で微分する。その前に$(3.104)$式を行列形式で書き直したい。</p>
+<p>$\displaystyle \mathbf{R} = \operatorname{diag}(r_1,r_2,\ldots,r_n)$（つまり対角成分が$r_1,r_2,\ldots,r_n$で残りが$0$の行列）とすると、$(3.104)$式は次のように書ける。</p>
+<p>$$
+\begin{aligned}
+E_{D}(\mathbf{w}) &amp;=\frac{1}{2} \sum_{n=1}^{N} r_{n}\left{t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)\right}^{2} \
+&amp;=\frac{1}{2}\left{\left(\begin{array}{c}
+t</em>{1} \
+\vdots \
+t_{n}
+\end{array}\right)-\left(\boldsymbol{\phi}\left(\mathbf{x}<em>{1}\right), \cdots, \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)\left(\begin{array}{c}
+w_{1} \
+\vdots \
+w_{n}
+\end{array}\right)\right}^{\mathrm{T}} \mathbf{R} \left{\left(\begin{array}{c}
+t_{1} \
+\vdots \
+t_{n}
+\end{array}\right)-\left(\boldsymbol{\phi}\left(\mathbf{x}<em>{1}\right), \cdots, \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)\left(\begin{array}{c}
+w_{1} \
+\vdots \
+w_{n}
+\end{array}\right)\right} \
+&amp;=\frac{1}{2}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})^{\mathrm{T}} \mathbf{R}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})
+\end{aligned}
+$$
+$\mathbf{w}$で微分すると
+$$
+\begin{aligned}
+\frac{\partial E_D}{\partial \mathbf{w}} &amp;=\frac{1}{2}\left{-2 \mathbf{\Phi}^{\mathrm{T}} \mathbf{R}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})\right} \quad \left(\because \frac{\partial}{\partial \mathbf{s}}(\mathbf{x}-\mathbf{A} \mathbf{s})^{\mathrm{T}} \mathbf{W}(\mathbf{x}-\mathbf{A} \mathbf{s})=-2 \mathbf{A}^{\mathrm{T}} \mathbf{W}(\mathbf{x}-\mathbf{A} \mathbf{s}),\ \textrm{if}\ \mathbf{W} \textrm{is symmetric.}\right)\
+&amp;=-\mathbf{\Phi}^{\mathrm{T}} \mathbf{R}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})=0 \
+&amp; \mathbf{\Phi}^{\mathrm{T}} \mathbf{R} \mathsf{t}=\mathbf{\Phi}^{\mathrm{T}} \mathbf{R} \mathbf{\Phi} \mathbf{w}^{<em>} \
+\therefore \quad \mathbf{w}^{</em>}&amp;=\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{R} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \mathbf{R} \mathsf{t}
+\end{aligned}
+$$
+なお行列の微分には https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf の$(84)$の公式を使った。また、こうして得られた$\mathbf{w}^{*}$は単位行列$\mathbf{R} = \mathbf{I}$とすれば$(3.15)$の正規方程式と一致する。</p>
+<ol>
+<li>
+<p>ノイズの分散がデータに依存する場合というのは$(3.8)$において全データの分散の逆数（精度）が$\beta$で一定ではなく、データごとに$y_n$と変化することを意味する。このとき$(3.8)-(3.12)$の導出に沿って対数尤度関数をとると
+$$
+\begin{aligned}
+\ln p(\mathsf{t} \mid \mathbf{x}, \mathbf{w}, \mathbf{y}) &amp;=\sum_{n=1}^{N} \ln \mathcal{N}\left(t_n \mid \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right), y</em>{n}^{-1}\right) \
+&amp;=\sum_{n=1}^{N} \ln \left{\frac{y_{n}^{1 / 2}}{(2 \pi)^{1 / 2}} \exp \left(-\frac{y_{n}\left(t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)\right)^{2}}{2}\right)\right} \
+&amp;=\frac{1}{2} \sum</em>{n=1}^{N} \ln y_{n}-\frac{N}{2} \ln (2 \pi)-\frac{1}{2} \sum_{n=1}^{N} y_{n}\left{t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right}^{2}
+\end{aligned}
+$$
+となる。ここで$y_n = r_n$とすればまさに重み付き二乗和誤差関数として$(3.104)$が現れていることがわかる。</p>
+</li>
+<li>
+<p>データ点に重複がある場合、そのデータ点についての<strong>実効的な</strong>数として見なすことができる。尤度関数$\ln p(\mathsf{t}\mid \mathbf{w},\beta)$の最大化は二乗和誤差関数$E_D(\mathbf{w})$の最小化と等価であることを考えれば、例えば$N$個の点のうち$(\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2)$のみが同じだった場合に$r_1=1, r_2=0$とおけば実質1つカウントとして見なせるし、そうしないこともできる……ってことかな？</p>
+</li>
+</ol>
+<h2 id="演習-34"><a class="header" href="#演習-34">演習 3.4</a></h2>
+<div class="panel-primary">
+<p>次の形の線形モデル</p>
+<p>$$
+y(\mathbf{x}, \mathbf{w})=w_{0}+\sum_{i=1}^{D} w_{i} x_{i} \tag{3.105}
+$$</p>
+<p>と二乗和誤差関数</p>
+<p>$$
+E_{D}(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left{y\left(\mathbf{x}<em>{n}, \mathbf{w}\right)-t</em>{n}\right}^{2} \tag{3.106}
+$$</p>
+<p>を考える．平均$0$，分散$\sigma^2$のガウスノイズ$\epsilon_i$が独立にそれぞれの入力変数$x_i$に加わるものとする．$\mathbb{E}[\epsilon_i] = 0$と$\mathbb{E}\left[\epsilon_{i} \epsilon_{j}\right]=\delta_{i j} \sigma^{2}$の2つの性質を用いて，$E_D$のノイズ分布に関する平均を最小にすることは，ノイズのない入力変数に対する二乗和誤差と荷重減衰の正則化項の和を最小にすることと等価であることを示せ．ただし，正則化項にバイアスパラメータ$w_0$は含めない．</p>
+</div>
+<p>※ 線形モデルの入力ベクトル$\mathbf{x}$の各次元$x_i$にノイズ$\epsilon_i$が加わったときの二乗和誤差について、その二乗和誤差のノイズ$\epsilon_i$についての期待値を取ったものを最小化することが、$\mathbf{w}$の正則化項を考慮した最小二乗法と同じ形式になることを示します。</p>
+<p>ガウスノイズ$\epsilon_{i}$が入力変数$x_i$に加えられるので
+$$
+\begin{aligned}
+\tilde{y}(\mathbf{x}<em>n,\mathbf{w}) &amp;= w_0 + \sum</em>{i=1}^D w_{ni}(x_{ni}+\epsilon_{ni}) \
+&amp;= y(\mathbf{x}<em>n,\mathbf{w})+\sum</em>{i=1}^D w_i \epsilon_{ni}
+\end{aligned}
+$$
+となる。これの二乗和誤差関数は
+$$
+\begin{aligned}
+\tilde{E}<em>D(\mathbf{w}) &amp;= \frac{1}{2}\sum</em>{n=1}^N\left{
+\tilde{y}(\mathbf{x}<em>n,\mathbf{w}) - t_n
+\right}^2 \
+&amp;=\frac{1}{2}\sum</em>{n=1}^N\left{
+\tilde{y}<em>n^2-2\tilde{y}<em>nt_n+t_n
+\right}^2 \
+&amp;=\frac{1}{2}\sum</em>{n=1}^N\left{
+y_n^2+2y_n\sum</em>{i=1}^D{w_i\epsilon_{ni}}+\left(\sum_{i=1}^D w_i \epsilon_{ni} \right)^2 -2 y_n t_n-2\sum_{i=1}^D w_i\epsilon_{ni} + t_n^2
+\right} \quad \cdots (<em>)
+\end{aligned}
+$$
+と展開できる。ここで$\tilde{E}_D(\mathbf{w})$についての期待値$\mathbb{E}\left[\tilde{E}_D(\mathbf{w})\right]$をとると$\mathbb{E}[\epsilon_i]=0$より$(</em>)$の第2項と第5項は0になる。また、第3項については$\mathbb{E}[\epsilon_i \epsilon_j]=\delta_{ij}\sigma^2$から
+$$
+\mathbb{E}\left[\left( \sum_{i=1}^D w_i \epsilon_{ni}\right)^2\right] = \sum_{i=1}^D w_i^2\sigma^2
+$$
+となるので
+$$
+\mathbb{E}\left[\tilde{E}<em>D(\mathbf{w})\right] = E_D(\mathbf{w}) + \frac{1}{2}\sum</em>{i=1}^D w_i^2\sigma^2
+$$
+と表せる。さらに$(3.25)$のような重みベクトルの二乗和$E_W(\mathbf{w})=\frac{1}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}$を用いると
+$$
+\mathbb{E}\left[\tilde{E}_D(\mathbf{w})\right] = E_D(\mathbf{w}) + \frac{\sigma^2}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}
+$$
+となる。これは、ノイズのない入力変数に対する二乗和誤差$E_D(\mathbf{w})$と$\lambda=\sigma^2$にしたときの荷重減衰の正則化項の和$E_W(\mathbf{w})$の和の形になっている。したがって題意が示された。</p>
+<blockquote>
+<p>この問題の意味を考えてみましょう。簡単のため、入力が一次元$x_1$だけだったとします。
+入力$x_1$にノイズ$\epsilon_1$が加わると、そのノイズもパラメータ$w_1$倍されて、誤差に含まれることになります。二乗誤差なので$w_1^2$倍になります。ノイズの分布に関して二乗誤差の期待値を取ると、ノイズの平均はゼロなので、平均の影響は消えてしまうのですが、分散の影響は$\sigma^2 \epsilon_1^2$として残ります。つまり、分散が大きいほど、二乗誤差が大きくなります。そのため、この二乗誤差を最小化しようとすると、$w_1^2$を小さくする方向に力が働く(正則化)ことになります。</p>
+<p>入力が多次元だったとしても、基本的な考えは同じです。ノイズの平均と共分散がゼロなので、ほとんどの項がうまく消えてしまいます。入力がノイズで撹乱されるほど(分散$\sigma^2$が大きいほど)、二乗和誤差は増加します。</p>
+</blockquote>
+<h2 id="演習-35"><a class="header" href="#演習-35">演習 3.5</a></h2>
+<div class="panel-primary">
+<p>付録Eに示したラグランジュ未定乗数法を用いて，正則化誤差関数</p>
+<p>$$
+\frac{1}{2} \sum_{n=1}^{N}\left{t_{n}-\mathbf{w}^{\mathrm{T}} \phi\left(\mathrm{x}<em>{n}\right)\right}^{2}+\frac{\lambda}{2} \sum</em>{j=1}^{M}\left|w_{j}\right|^{q} \tag{3.29}
+$$</p>
+<p>の最小化と，正則化されていない二乗和誤差</p>
+<p>$$
+E_{D}(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left{t_{n}-\mathbf{w}^{\mathrm{T}} \phi\left(\mathbf{x}_{n}\right)\right}^{2} \tag{3.12}
+$$</p>
+<p>の制約条件</p>
+<p>$$
+\sum_{j=1}^{M}|w_j|^q \le \eta \tag{3.30}
+$$</p>
+<p>下での最小化が等価であることを示せ．そして，パラメータ$\eta$と$\lambda$の関係を議論せよ．</p>
+</div>
+<p>※ ヒントとしてラグランジュの未定乗数法を使うと書いてあるのですぐに導けるが、このヒントがないとなぜ等価なのかわかりにくいかもしれない、という問題。</p>
+<p>制約条件$(3.30)$が不等式なので付録Eのラグランジュ未定乗数法の不等式制約の場合を参考にする。</p>
+<p>$(3.30)$を変形すると$\displaystyle \frac{1}{2}\left( \sum_{j=1}^M|w_j|^q - \eta \right) \leq 0$である。（後で$(3.29)$に合わせるために$\frac{1}{2}$をわざとつけている）</p>
+<p>ラグランジュの未定乗数法を用いると</p>
+<p>$$
+\begin{aligned}
+L(\mathbf{w},\lambda) &amp;= \frac{1}{2}\sum_{j=1}^{M}\left{ t_n - \mathbf{w}^{\mathrm{T}}\phi(\mathbf{x}<em>n)\right}^2 + \frac{\lambda}{2}\left( \sum</em>{j=1}^M|w_j|^q - \eta \right) \
+&amp;= \frac{1}{2}\sum_{j=1}^{M}\left{ t_n - \mathbf{w}^{\mathrm{T}}\phi(\mathbf{x}<em>n)\right}^2 + \frac{\lambda}{2}\sum</em>{j=1}^M|w_j|^q - \frac{\lambda\eta}{2}
+\end{aligned}
+$$</p>
+<p>これについて$\displaystyle \frac{\partial}{\partial\mathbf{w}}\left( - \frac{\lambda\eta}{2} \right) = 0$なので、$L(\mathbf{w},\lambda)$を$\mathbf{w}$について最小化させることと、$(3.29)$式の$\mathbf{w}$についての最小化は等価であることが示された。</p>
+<p>またラグランジュの未定乗数法の不等式制約におけるKarush-Kuhn-Tucker条件は
+$$
+\left{
+\begin{array}{l}
+\frac{1}{2}\left( \sum_{j=1}^M|w_j|^q - \eta \right) \leq 0 \
+\lambda \geq 0 \
+\frac{\lambda}{2}\left( \sum_{j=1}^M|w_j|^q - \eta \right) = 0
+\end{array}
+\right.
+$$
+となる。最後の等式が$L(\mathbf{w},\lambda)$を$\mathbf{w}$について最小化させた$\mathbf{w}^<em>$で成立する必要がある。
+すなわち、$\mathbf{w}^</em>$で$\displaystyle \eta = \sum_{j=1}^M|w_j|^q$となる。これより、$q$は正則化項の形状（lasso, ridge...）を示している。$\lambda$は正則化項の大きさを表している。</p>
+<blockquote>
+<p>とても重要な回帰におけるパラメータ正則化(もしくは重み減衰)の問題。パラメータ正則化は非常に重要なテクニックなのですが、よくある下の図を見てなんとなく理解したつもりになっている人が多い気がします。<br>
+<img src="/attachment/611f4b7fe07f664fed1981a3" width="400px"><br>
+$q=2$のときの正則化項を加えた$(3.24)$の誤差関数を最小化することが上の図の通りになることを考察してみます。制約条件$(3.30)$はパラメータ$\mathbf{w}$が図の領域のオレンジ部分$\sum_{j=1}^{M}|w_j|^q \leq \eta$内に存在しなければならないことを表しています。青線は正則化されていない二乗和誤差関数$(3.26)$式の$E_D(\mathbf{w})$の等高線表示です。ラグランジュの未定乗数法を使うことで、領域$(3.30)$の制限下での誤差関数$E_D(\mathbf{w})$の最小化ができるようになり、これが$(3.27)$（$q=2$の場合）、$(3.29)$(一般形)と等価になります。</p>
+</blockquote>
+<h2 id="演習-36"><a class="header" href="#演習-36">演習 3.6</a></h2>
+<div class="panel-primary">
+<p>ガウス分布に従う複数の目標変数$\mathbf{t}$を持つ次の形の線形基底関数モデルを考える．</p>
+<p>$$
+p(\mathbf{t} | \mathbf{W}, \mathbf{\Sigma})=\mathcal{N}(\mathbf{t} | \mathbf{y}(\mathbf{x}, \mathbf{W}), \mathbf{\Sigma}) \tag{3.107}
+$$</p>
+<p>ただし，</p>
+<p>$$
+\mathbf{y}(\mathbf{x}, \mathbf{W}) = \mathbf{W}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}) \tag{3.108}
+$$</p>
+<p>である．入力基底ベクトルの$\boldsymbol{\phi}(\mathbf{x}_n)\ (n=1,\ldots,N)$とそれに対応する目標ベクトル$\mathbf{t}<em>n$が訓練データ集合として与えられるとき，パラメータ行列$\mathbf{W}$の最尤推定解$\mathbf{W}</em>{\mathrm{ML}}$のそれぞれの列が，等方性のノイズ分布に対する解の</p>
+<p>$$
+\mathbf{w}_{\mathrm{ML}}=\left(\Phi^{\mathrm{T}} \Phi\right)^{-1} \Phi^{\mathrm{T}} \mathbf{t} \tag{3.15}
+$$</p>
+<p>の形の式で与えられることを示せ．これは共分散行列$\mathbf{\Sigma}$にはよらないことに注意せよ．さらに，$\mathbf{\Sigma}$の最尤推定解が</p>
+<p>$$
+\mathbf{\Sigma}=\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{t}<em>{n}-\mathbf{W}</em>{\mathrm{ML}}^{\mathrm{T}} \phi\left(\mathbf{x}<em>{n}\right)\right)\left(\mathbf{t}</em>{n}-\mathbf{W}<em>{\mathrm{ML}}^{\mathrm{T}} \phi\left(\mathbf{x}</em>{n}\right)\right)^{\mathrm{T}} \tag{3.109}
+$$</p>
+<p>で与えられることを示せ．</p>
+</div>
+<p>※ <strong>3.1.5 出力変数が多次元の場合</strong>　を参考にしてすすめる。また、途中の行列の微分については付録だけでは足りないので https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf を参考にする。</p>
+<p>$\mathbf{y}(\mathbf{X},\mathbf{W})=\mathbf{W}^{\mathrm T}\boldsymbol{\phi}(\mathbf{x})$について、$\mathbf{y}$は$K$次元列ベクトル、$\mathbf{W}$は$M\times K$のパラメータ行列、$\boldsymbol{\phi}(\mathbf{x})$は$\boldsymbol{\phi}_j(\mathbf{x})$を$j$番目の要素に持つ$M$次元の列ベクトルである。また、$n$番目の観測値$\mathbf{t}_n$は$K$次元の列ベクトル、観測値の集合$\mathbf{t}_1, \mathbf{t}_2, \cdots \mathbf{t}_N$をまとめて$n$番目の行が$\mathbf{t}_n^{\mathrm T}$となる$N\times K$行列$\mathbf{T}$とする。</p>
+<p>$(3.107)$について最尤推定解を得るために対数尤度関数を考えると</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{t} \mid \mathbf{W}, \mathbf{\Sigma}) &amp;=\ln \prod_{n=1}^{N} \mathcal{N}\left(\mathbf{t}<em>{n} \mid \mathbf{W}^{\mathrm T} \boldsymbol{\phi}(\mathbf{x}), \mathbf{\Sigma}\right) \
+&amp;=\sum</em>{n=1}^{N} \ln \mathcal{N}\left(\mathbf{t}<em>{n} \mid \mathbf{W}^{\mathrm T} \boldsymbol{\phi}(\mathbf{x}), \mathbf{\Sigma}\right) \
+&amp;=\sum</em>{n=1}^{N} \ln \left{\frac{1}{(2 \pi)^{\frac{K}{2}}} \frac{1}{\left|\mathbf{\Sigma}\right|^{\frac{1}{2}}} \exp \left(-\frac{1}{2}\left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm T} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)^{\mathrm T} \mathbf{\Sigma}^{-1} \left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm T} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)\right)\right}\
+&amp;=-\frac{N K}{2} \ln (2 \pi)-\frac{N}{2} \ln |\mathbf{\Sigma}|-\frac{1}{2} \sum_{n=1}^{N}\left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm T} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)^{\mathrm T} \mathbf{\Sigma}^{-1} \left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm T} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)
+\end{aligned}
+$$</p>
+<p>$\mathbf{W}_{\mathrm{ML}}$を求めるために$\mathbf{W}$について偏微分すると</p>
+<p>$$
+\begin{aligned}
+\frac{\partial}{\partial \mathbf{W}} \ln p(t \mid \mathbf{W}, \Sigma) &amp;=-\frac{1}{2} \sum_{n=1}^{N} \frac{\partial}{\partial \mathbf{W}}\left{\left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)^{\mathrm{T}} \mathbf{\Sigma}^{-1} \left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right)\right} \
+&amp;= -\frac{1}{2}\sum_{n=1}^N \left( \mathbf{\Sigma}^{-1} + (\mathbf{\Sigma}^{-1})^{\mathrm T}\right) \left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right) \left(- \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)^{\mathrm T}\right) \quad \left(\because \frac{\partial}{\partial \mathbf{X}}(\mathbf{X} \mathbf{b}+\mathbf{c})^{\mathrm T} \mathbf{D}(\mathbf{X} \mathbf{b}+\mathbf{c})=\left(\mathbf{D}+\mathbf{D}^{\mathrm T}\right)(\mathbf{X} \mathbf{b}+\mathbf{c}) \mathbf{b}^{\mathrm T} \right)\
+&amp;= \sum</em>{n=1}^N \mathbf{\Sigma}^{-1}\left(\mathbf{t}<em>{n}-\mathbf{W}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right) \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)^{\mathrm T} \quad \left( \because \mathbf{\Sigma}^{-1} = (\mathbf{\Sigma}^{-1})^{\mathrm T} \right)
+\end{aligned}
+$$</p>
+<p>これを$0$とすると
+$$
+\sum_{n=1}^N \mathbf{\Sigma}^{-1}\mathbf{t}<em>n\boldsymbol{\phi}(\mathbf{x}<em>n)^{\mathrm T} = \sum</em>{n=1}^N \mathbf{\Sigma}^{-1}\left( \mathbf{W}</em>{\mathrm{ML}}^{\mathrm T} \boldsymbol{\phi}(\mathbf{x}<em>n)\right) \boldsymbol{\phi}(\mathbf{x}<em>n)^{\mathrm T}
+$$
+両辺に$\mathbf{\Sigma}$をかけると
+$$
+\sum</em>{n=1}^N \mathbf{t}<em>n\boldsymbol{\phi}(\mathbf{x}<em>n)^{\mathrm T} =
+\mathbf{W}</em>{\mathrm{ML}}^{\mathrm T} \sum</em>{n=1}^N \boldsymbol{\phi}(\mathbf{x}<em>n)\boldsymbol{\phi}(\mathbf{x}<em>n)^{\mathrm T}
+$$
+これは行列形式で書くと
+$$
+\left( \mathbf{t}<em>1, \mathbf{t}<em>2 \cdots, \mathbf{t}<em>n\right)\begin{pmatrix}
+\boldsymbol{\phi}\left(\mathbf{x}</em>{1}\right)^{\mathrm{T}} \
+\boldsymbol{\phi}\left(\mathbf{x}</em>{2}\right)^{\mathrm{T}} \
+\vdots \
+\boldsymbol{\phi}\left(\mathbf{x}</em>{N}\right)^{\mathrm{T}}
+\end{pmatrix} = \mathbf{W}</em>{\mathrm{ML}}^{\mathrm T} \left(\boldsymbol{\phi}\left(\mathbf{x}</em>{1}\right), \boldsymbol{\phi}\left(\mathbf{x}</em>{2}\right),  \ldots, \boldsymbol{\phi}\left(\mathbf{x}<em>{N}\right)\right)\begin{pmatrix}
+\boldsymbol{\phi}\left(\mathbf{x}</em>{1}\right)^{\mathrm{T}} \
+\boldsymbol{\phi}\left(\mathbf{x}<em>{2}\right)^{\mathrm{T}} \
+\vdots \
+\boldsymbol{\phi}\left(\mathbf{x}</em>{N}\right)^{\mathrm{T}}
+\end{pmatrix}
+$$
+と書き直せる。ここで、計画行列が
+$$
+\mathbf{\Phi}=\begin{pmatrix}
+\boldsymbol{\phi}\left(\mathbf{x}<em>{1}\right)^{\mathrm{T}} \
+\boldsymbol{\phi}\left(\mathbf{x}</em>{2}\right)^{\mathrm{T}} \
+\vdots \
+\boldsymbol{\phi}\left(\mathbf{x}<em>{N}\right)^{\mathrm{T}}
+\end{pmatrix}, \quad \mathbf{\Phi}^{\mathrm{T}}=\left(\boldsymbol{\phi}\left(\mathbf{x}</em>{1}\right), \boldsymbol{\phi}\left(\mathbf{x}<em>{2}\right),  \ldots , \boldsymbol{\phi}\left(\mathbf{x}</em>{N}\right)\right)
+$$
+のように書けることを考えると、
+$$
+\mathbf{T}^{\mathrm T}\mathbf{\Phi} = \mathbf{W}<em>{\mathrm{ML}}^{\mathrm T}\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}
+$$
+と書き表せる。これより$\mathbf{W}</em>{\mathrm{ML}}^{\mathrm T}=\mathbf{T}^{\mathrm T}\mathbf{\Phi}\left(\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}\right)^{-1}$なので、$\mathbf{W}<em>{\mathrm{ML}}$を求めるよう変換していくと
+$$
+\begin{aligned}
+\mathbf{W}</em>{\mathrm{ML}} &amp;=\left(\mathbf{T}^{\mathrm T}\mathbf{\Phi}\left(\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}\right)^{-1}\right)^{\mathrm T} \
+&amp;=\left(\left(\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right)^{-1}\right)^{\mathrm T}\left(\mathbf{T}^{\mathrm T} \mathbf{\Phi}\right)^{\mathrm T} \quad \left(\because (\mathbf{AB})^{\mathrm T} = \mathbf{B}^{\mathrm T}\mathbf{A}^{\mathrm T}\right)\
+&amp;=\left(\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm T} \mathbf{T}
+\end{aligned}
+$$
+これは$(3.15)$式のような形で求まっている。また$\mathbf{\Sigma}$によらず決まることが分かる。</p>
+<p>$\mathbf{\Sigma}$についての最尤推定解は<a href="../PRML%E3%81%AE%E6%BC%94%E7%BF%92%E5%95%8F%E9%A1%8C%E8%A7%A3%E7%AD%94%E9%9B%86%20%E7%AC%AC2%E7%AB%A0%202.61%E3%81%BE%E3%81%A7#%E6%BC%94%E7%BF%92%202.34">演習問題2.34と同じ手続き</a>で求めることができるので省略。</p>
+<h2 id="演習-37"><a class="header" href="#演習-37">演習 3.7</a></h2>
+<div class="panel-primary">
+<p>$\mathbf{m}_N$と$\mathbf{S}_N$がそれぞれ</p>
+<p>$$
+\mathbf{m}<em>{N} =\mathbf{S}</em>{N}\left(\mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}+\beta \mathbf{\Phi}^{\mathrm{T}} \textsf{t}\right) \tag{3.50}
+$$
+$$
+\mathbf{S}<em>{N}^{-1} =\mathbf{S}</em>{0}^{-1}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \tag{3.51}
+$$</p>
+<p>で定義される線形基底関数モデルを考える．平方完成を用いて，このモデルのパラメータ$\mathbf{w}$の事後分布が
+$$
+p(\mathbf{w}| \textsf{t})=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \mathbf{S}</em>{N}\right) \tag{3.49}
+$$
+で与えられることを確かめよ．</p>
+</div>
+<p>（事後分布）$\propto$（尤度関数）×（事前分布）の関係式、すなわち$p(\mathbf{w}|\textsf{t}) \propto p(\textsf{t}|\mathbf{w}) p(\mathbf{w})$を使って計算する。正規化係数部分は吸収されるので、指数部分だけに着目する。</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w}|\textsf{t}) &amp;= \prod_{n=1}^{N}\mathcal{N}(t_n|\mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_n))\mathcal{N}(\mathbf{w}|\mathbf{m}_0,\mathbf{S}<em>0) \
+&amp;\propto \left( \prod</em>{n=1}^N \exp\left[ -\frac{1}{2} \left{ t_n - \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x}_n) \right}^2 \beta \right] \right) \exp \left[ -\frac{1}{2} (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}} \mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}<em>0) \right] \
+&amp;= \exp\left[  -\frac{1}{2} \left{ \beta \sum</em>{n=1}^N \left( t_n - \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x}_n)) \right)^2 + (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}} \mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}_0) \right} \right] \
+\end{aligned}
+$$</p>
+<p>ここで、指数部分のみ着目すると</p>
+<p>$$
+\begin{aligned}
+&amp; \beta \sum_{n=1}^N \left( t_n - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_n) \right)^2 + (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}}\mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}_0)\
+= &amp;
+\beta \begin{pmatrix}
+t_1 - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_1) \
+\vdots\
+t_N - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_N)
+\end{pmatrix}^{\mathrm{T}} \begin{pmatrix}
+t_1 - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_1) \
+\vdots\
+t_N - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}(\mathbf{x}_N)
+\end{pmatrix}
++ (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}}\mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}_0) \
+= &amp;
+\beta \begin{pmatrix}
+t_1 - \boldsymbol{\phi}(\mathbf{x}_1)^{\mathrm{T}}\mathbf{w} \
+\vdots\
+t_N - \boldsymbol{\phi}(\mathbf{x}_N)^{\mathrm{T}}\mathbf{w}
+\end{pmatrix}^{\mathrm{T}} \begin{pmatrix}
+t_1 - \boldsymbol{\phi}(\mathbf{x}_1)^{\mathrm{T}}\mathbf{w} \
+\vdots\
+t_N - \boldsymbol{\phi}(\mathbf{x}_N)^{\mathrm{T}}\mathbf{w}
+\end{pmatrix}
++ (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}}\mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}_0) \hspace{1em} (\because \mathbf{a}^{\mathrm{T}}\mathbf{b} = \mathbf{b}^{\mathrm{T}}\mathbf{a})\
+\end{aligned}
+$$</p>
+<p>ここで、$(3.16)$式の計画行列が$\displaystyle \mathbf{\Phi} = \begin{pmatrix} \boldsymbol{\phi}(\mathbf{x}_1)^{\mathrm{T}} \ \boldsymbol{\phi}(\mathbf{x}_2)^{\mathrm{T}} \ \vdots \ \boldsymbol{\phi}(\mathbf{x}_N)^{\mathrm{T}} \end{pmatrix}$と書けることを利用すると、上の式は以下のように変形できる。</p>
+<p>$$
+\begin{aligned}
+&amp;= \beta (\textsf{t} - \mathbf{\Phi} \mathbf{w})^{\mathrm{T}}(\textsf{t} - \mathbf{\Phi} \mathbf{w}) + (\mathbf{w} - \mathbf{m}_0)^{\mathrm{T}}\mathbf{S}_0^{-1}(\mathbf{w} - \mathbf{m}_0)\
+&amp;= \beta (\mathbf{w}^{\mathrm{T}}\mathbf{\Phi}^{\mathrm{T}}\mathbf{\Phi} \mathbf{w} - \mathbf{w}^{\mathrm{T}}\mathbf{\Phi}^{\mathrm{T}}\textsf{t} - \textsf{t}^{\mathrm{T}}\mathbf{\Phi} \mathbf{w} ) + \mathbf{w}^{\mathrm{T}}\mathbf{S}_0^{-1}\mathbf{w} - \mathbf{w}^{\mathrm{T}}\mathbf{S}_0^{-1}\mathbf{m}_0 - \mathbf{m}_0^{\mathrm{T}}\mathbf{S}_0^{-1}\mathbf{w} + \text{const.} \
+&amp;= \mathbf{w}^{\mathrm{T}}(\mathbf{S}_0^{-1} + \beta \mathbf{\Phi}^{\mathrm{T}}\mathbf{\Phi})\mathbf{w} - \mathbf{w}^{\mathrm{T}}(\mathbf{S}_0^{-1}\mathbf{m}_0 + \beta \mathbf{\Phi}^{\mathrm{T}} \textsf{t}) - (\mathbf{S}_0^{-1}\mathbf{m}_0 + \beta \mathbf{\Phi}^{\mathrm{T}} \textsf{t})^{\mathrm{T}}\mathbf{w} + \text{const.}
+\end{aligned}
+$$</p>
+<p>$\mathbf{S}_0$は共分散なので対称行列である。この逆行列も対称行列である。よって$(\mathbf{S}_0^{-1})^{\mathrm{T}} = \mathbf{S}_0^{-1}$となることに注意する。</p>
+<p>一方で、事後分布の形$\mathcal{N}(\mathbf{w}|\mathbf{m}_N, \mathbf{S}_N)$の指数部分を同様に展開すると</p>
+<p>$$
+\mathbf{w}^{\mathrm{T}}\mathbf{S}_N^{-1}\mathbf{w} - \mathbf{w}^{\mathrm{T}}(\mathbf{S}_N^{-1}\mathbf{m}_N) - (\mathbf{S}_N^{-1}\mathbf{m}_N)^{\mathrm{T}}\mathbf{w} + \text{const.}
+$$</p>
+<p>となる。これらの係数を比較すれば</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}_N^{-1} &amp;= \mathbf{S}_0^{-1} + \beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \
+\mathbf{m}_N &amp;= \mathbf{S}_N(\mathbf{S}_0^{-1} \mathbf{m}_0 + \beta \mathbf{\Phi}^{\mathrm{T}}\textsf{t})
+\end{aligned}
+$$</p>
+<p>すなわち$(3.50)$, $(3.51)$式が導けた。</p>
+<h2 id="演習-38"><a class="header" href="#演習-38">演習 3.8</a></h2>
+<div class="panel-primary">
+<p>3.1節の線形基底関数モデルを考える．そして，すでに$N$個のデータ点が観測され，$\mathbf{w}$の事後分布が
+$$
+p(\mathbf{w}|\textsf{t})=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \mathbf{S}</em>{N}\right) \tag{3.49}
+$$
+で与えられるとする．この事後分布は次に観測されるデータの事前確率とみなすことができる．追加のデータ点$(\mathbf{x}<em>{N+1}, t</em>{N+1})$を考え，指数関数の中で平方完成することにより，事後確率が再び$(3.49)$の形式で与えられ，$\mathbf{S}<em>N$を$\mathbf{S}</em>{N+1}$に，$\mathbf{m}<em>N$を$\mathbf{m}</em>{N+1}$にそれぞれ置き換えたものになることを示せ．</p>
+</div>
+<p>事後分布は尤度関数と事前分布の掛け算に比例するので</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w|t})&amp;\propto p(\mathbf{t|w})\cdot p(\mathbf{w})
+\end{aligned}
+$$</p>
+<p>が満たされることがわかる．また事前分布は$p(\mathbf{w}) = \mathcal{N}(\mathbf{w} \mid \mathbf{m}<em>{N},\mathbf{S}</em>{N})$で、尤度関数が$p(t_{N+1}\mathbf{|w}) = \prod_{n=1}^{N}\mathcal{N}({t_{N+1}\mid \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}<em>{N+1}}, \beta^{-1})$なので、
+$$
+\begin{aligned}
+p(\mathbf{w|t})&amp;\propto p(t</em>{N+1}|\mathbf{w}) \cdot p(\mathbf{w})\
+p(t_{N+1}|\mathbf{w}) \cdot p(\mathbf{w}) &amp;\propto \text{exp}\left(-\frac{1}{2}(\mathbf{w-m_{N}})^{\mathbf{T}}\mathbf{S}<em>{N}^{-1}(\mathbf{w-m</em>{N}}) - \frac{\beta}{2}(t_{N+1} - \mathbf{w^{T}}\boldsymbol{\phi}<em>{N+1})^{2}\right)\
+\end{aligned}
+$$
+となる（ここで、$\mathbf{\phi}</em>{N+1} = \mathbf{\phi}(\mathbf{x}_{N+1})$と表記している）．指数部分だけを見ていくと</p>
+<p>$$
+\begin{aligned}
+&amp;\quad(\mathbf{w-m_{N}})^{\mathrm{T}}\mathbf{S}<em>{N}^{-1}(\mathbf{w-m</em>{N}}) + \beta(t_{N+1} - \mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}<em>{N+1})^{2}\
+&amp;= \mathbf{w}^{\mathrm{T}}\mathbf{S}</em>{N}^{-1}\mathbf{w} -2\mathbf{w}^{\mathrm{T}}\mathbf{S}<em>{N}^{-1}\mathbf{m</em>{N}} +\beta\mathbf{w}^{\mathrm{T}}\boldsymbol{\phi}<em>{N+1}^{\mathrm{T}}\boldsymbol{\phi}</em>{N+1}\mathbf{w} - 2\beta\mathbf{w^{T}}\boldsymbol{\phi}<em>{N+1}t</em>{N+1} + \text{const.}\
+&amp;= \mathbf{w}^{\mathrm{T}}(\mathbf{S}<em>{N}^{-1}+\beta\boldsymbol{\phi}</em>{N+1}\boldsymbol{\phi}<em>{N+1}^{\mathrm{T}})\mathbf{w} -2\mathbf{w}^{\mathrm{T}}(\mathbf{S}</em>{N}^{-1}\mathbf{m_{N}} + \beta\boldsymbol{\phi}<em>{N+1}t</em>{N+1}) + \text{const.}\
+\end{aligned}
+$$</p>
+<p>となるので、演習問題3.7の最後の部分と比較すれば</p>
+<p>$$
+\begin{aligned}
+\therefore \quad \mathbf{S}<em>{N+1}^{-1} &amp;= \mathbf{S}</em>{N}^{-1}+\beta\boldsymbol{\phi}<em>{N+1}\boldsymbol{\phi}</em>{N+1}^{\mathrm{T}}\
+\mathbf{m}<em>{N+1} &amp;= \mathbf{S}</em>{N+1}(\mathbf{S}<em>{N}^{-1}\mathbf{m}</em>{N} + \beta\boldsymbol{\phi}<em>{N+1}t</em>{N+1})
+\end{aligned}
+$$</p>
+<p>となって、題意は示された．</p>
+<h2 id="演習-39"><a class="header" href="#演習-39">演習 3.9</a></h2>
+<div class="panel-primary">
+<p>上記の問題を平方完成ではなく，線形ガウスモデルの一般的な結果</p>
+<p>$$
+p(\mathbf{x} \mid \mathbf{y})=\mathcal{N}\left(\mathbf{x} \mid \mathbf{\Sigma}\left{\mathbf{A}^{\mathrm{T}} \mathbf{L}(\mathbf{y}-\mathbf{b})+\mathbf{\Lambda} \boldsymbol{\mu}\right}, \mathbf{\Sigma}\right) \tag{2.116}
+$$</p>
+<p>を用いて示せ．</p>
+</div>
+<p>$$
+\begin{aligned}
+\
+(2.112) \quad p(\mathbf{x}) &amp;= \mathcal{N}(\mathbf{x|}\boldsymbol{\mu,\Lambda^{-1}})\
+(2.114) \quad p(\mathbf{y|x}) &amp;= \mathcal{N}(\mathbf{y|Ax+b,L}^{-1})\
+(2.116) \quad p(\mathbf{x|y}) &amp;= \mathcal{N}(\mathbf{x|}\boldsymbol{\Sigma}{\mathbf{A^{T}L(y-b)+\boldsymbol{\Lambda\mu}}},\boldsymbol{\Sigma})\quad(\boldsymbol{\Sigma=(\Lambda+\mathbf{A^{T}LA})^{-1}})
+\
+\end{aligned}
+$$</p>
+<p>を使って、演習3.8をもう一度解ける、観察すれば$\mathbf{w}\leftrightarrow\mathbf{x}\quad,t_{N+1}\leftrightarrow\mathbf{y}$で関係付けることができるので</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w}) &amp;= \mathcal{N}(\mathbf{w|m_{N},S_{N}})\
+p(t_{N+1}\mathbf{|w}) &amp;= \mathcal{N}({t_{N+1}\mathbf{|w^{T}}\boldsymbol{\phi}_{N+1}}, \beta^{-1})\
+\end{aligned}
+$$</p>
+<p>と比較すれば、さらに各パラメータを次のように決めることができる．</p>
+<p>$$
+\begin{aligned}
+\boldsymbol{\mu}&amp;=\mathbf{m_{N}}\
+\boldsymbol{\Lambda}&amp;=\mathbf{S}<em>{N}^{-1}\
+\mathbf{A}&amp;=\boldsymbol{\phi}</em>{N+1}^{T}\
+\mathbf{b}&amp;=0\
+\mathbf{L}&amp;=\beta\
+\end{aligned}
+$$</p>
+<p>$(2.116)$に代入すれば</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w}|t_{N+1}) &amp;= \mathcal{N}(\mathbf{w|m}<em>{N+1}, \mathbf{S}</em>{N+1})\
+\mathbf{S}<em>{N+1}^{-1} &amp;= \boldsymbol{\Sigma}^{-1} \
+&amp;=\boldsymbol{\Lambda}+\mathbf{A^{T}LA}\
+&amp;= \mathbf{S}</em>{N}^{-1}+\beta\boldsymbol{\phi}<em>{N+1}^{T}\boldsymbol{\phi}</em>{N+1}\
+\mathbf{m}<em>{N+1} &amp;= \boldsymbol{\Sigma}{\textbf{A}^\textbf{T}\textbf{L(y}-\textbf{b)} + \boldsymbol{\Lambda\mu}}\
+&amp;=\textbf{S}</em>{N+1}(\textbf{S}<em>{N}^{-1}\textbf{m}</em>{N} + \beta\boldsymbol{\phi}<em>{N+1}t</em>{N+1})\
+\end{aligned}
+$$</p>
+<p>となって、題意は示された．</p>
+<h2 id="演習-310"><a class="header" href="#演習-310">演習 3.10</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathbf{T}}\right) \tag{2.115}
+$$
+の結果を用いて</p>
+<p>$$
+p(t \mid \mathbf{t}, \alpha, \beta)=\int p(t \mid \mathbf{w}, \beta) p(\mathbf{w} \mid \mathbf{t}, \alpha, \beta) \mathrm{d} \mathbf{w} \tag{3.57}
+$$</p>
+<p>の積分を評価し，ベイズ線形回帰モデルの予測分布が
+$$
+p(t \mid \mathbf{x}, \mathbf{t}, \alpha, \beta)=\mathcal{N}\left(t \mid \mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x}), \sigma</em>{N}^{2}(\mathbf{x})\right) \tag{3.58}
+$$
+で与えられることを確かめよ．ただし，入力に依存する分散は
+$$
+\sigma_{N}^{2}(\mathbf{x})=\frac{1}{\beta}+\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{S}_{N} \boldsymbol{\phi}(\mathbf{x}) \tag{3.59}
+$$
+で与えられる．</p>
+</div>
+<p>$(3.57)$の条件付き分布と事後分布は, それぞれ以下の式で表される。</p>
+<p>$$
+p \left (t \mid \mathbf w,\beta \right ) = \mathcal { N } \left (t \mid \mathbf w^\textrm T \boldsymbol \phi (\mathbf x),\beta^{-1} \right ) \tag{3.3, 3.8}
+$$</p>
+<p>$$
+p \left (\mathbf w \mid \mathbf t,\alpha,\beta \right ) = \mathcal { N } \left (\mathbf w \mid \mathbf m _ N,\mathbf S_N \right )
+\tag{3.49}
+$$</p>
+<p>ここで, $(2.115)$の式は,</p>
+<p>$$
+p \left (\mathbf x \right ) = \mathcal{N} \left( \boldsymbol{\mu},\mathbf{\Lambda}^{-1} \right) \tag{2.113}
+$$</p>
+<p>$$
+p \left (\mathbf y \mid \mathbf x \right ) = \mathcal{N} \left (\mathbf{y} \mid \mathbf{A} \mathbf x + \mathbf b,\mathbf L^{-1} \right ) \tag{2.114}
+$$</p>
+<p>が与えられた際の周辺分布だったことに注意して, $(2.113)$から$(2.115)$について,</p>
+<p>$$
+\mathbf y \rightarrow \textit t, \quad \mathbf x \rightarrow \mathbf w, \quad \boldsymbol \mu \rightarrow \mathbf m_N, \quad \mathbf{\Lambda}^{-1} \rightarrow \mathbf S_N,\quad  \mathbf A \rightarrow \boldsymbol \phi (\mathbf x)^\textrm T,\quad \mathbf L^{-1}→\beta^{-1}
+$$</p>
+<p>と置き換えると, $(3.57)$を評価できる。</p>
+<p>したがって, $(2.115)$にそれぞれを代入すると,</p>
+<p>$$
+p \left (t \mid \mathbf x,\mathbf t,\alpha,\beta \right ) = \mathcal { N } \left (t \mid \mathbf m^\textrm T_N \boldsymbol \phi (\mathbf x),\sigma ^2_N (\mathbf x) \right ) \tag{3.58}
+$$
+と求まる。ここで, 入力に依存する分散は</p>
+<p>$$
+\sigma ^ 2 _ N (\mathbf x) = \frac{1}{\beta}+\boldsymbol \phi (\mathbf x)^\textrm T \mathbf S_N \boldsymbol \phi (\mathbf x) \tag{3.59}
+$$
+である。</p>
+<h2 id="演習-311"><a class="header" href="#演習-311">演習 3.11</a></h2>
+<div class="panel-primary">
+<p>データ集合のサイズが増えるにつれて，モデルパラメータの事後分布に関する不確かさが減少することについて説明した．次の行列の公式（付録C参照）</p>
+<p>$$
+\left(\mathbf{M}+\mathbf{vv}^{\mathrm{T}}\right)^{-1}=\mathbf{M}^{-1}-\frac{\left(\mathbf{M}^{-1} \mathbf{v}\right)\left(\mathbf{v}^{\mathrm{T}} \mathbf{M}^{-1}\right)}{1+\mathbf{v}^{\mathrm{T}} \mathbf{M}^{-1} \mathbf{v}} \tag{3.110}
+$$</p>
+<p>を用いて，
+$$
+\sigma_{N}^{2}(\mathbf{x})=\frac{1}{\beta}+\boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{S}<em>{N} \boldsymbol{\phi}(\mathbf{x}) \tag{3.59}
+$$
+の線形回帰モデルに関する不確かさ$\sigma</em>{N}^{2}(\mathbf{x})$が</p>
+<p>$$
+\sigma_{N+1}^{2}(\mathbf{x}) \leq \sigma_{N}^{2}(\mathbf{x}) \tag{3.111}
+$$</p>
+<p>を満たすことを示せ．</p>
+</div>
+<p>演習問題3.8で示したように、新しい点$(\mathbf{x}<em>{N+1}, t</em>{N+1})$が与えられたとき、$\mathcal{N}(\mathbf{w}\mid \mathbf{m}<em>N, \mathbf{S}<em>N)$に対する事後分布は$\mathcal{N}(\mathbf{w}\mid \mathbf{m}</em>{N+1}, \mathbf{S}</em>{N+1})$と書け、</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}<em>{N+1}&amp;=\left(\mathbf{S}</em>{N}^{-1}+\beta \boldsymbol{\phi}<em>{N+1} \boldsymbol{\phi}</em>{N+1}^{\mathrm{T}}\right)^{-1} \
+\mathbf{m}<em>{N+1}&amp;=\mathbf{S}</em>{N+1}\left(\mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N}+\beta \boldsymbol{\phi}<em>{N+1} t</em>{N+1}\right)
+\end{aligned}
+$$</p>
+<p>で与えられる（$\boldsymbol{\phi}<em>{N+1} = \boldsymbol{\phi}(\mathbf{x}</em>{N+1})$である）。</p>
+<p>問いとしては$\sigma_N^{2}(\mathbf{x})-\sigma_{N+1}^{2}(\mathbf{x}) \ge 0$であることを証明すれば良い。これはまず</p>
+<p>$$
+\begin{aligned}
+\sigma_N^{2}(\mathbf{x})-\sigma_{N+1}^{2}(\mathbf{x}) &amp;= \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}<em>N\boldsymbol{\phi}(\mathbf{x}) - \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}</em>{N+1}\boldsymbol{\phi}(\mathbf{x}) \
+&amp;= \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}(\mathbf{S}<em>{N} - \mathbf{S}</em>{N+1})\boldsymbol{\phi}(\mathbf{x})
+\end{aligned}
+$$</p>
+<p>であるから、$\mathbf{S}<em>{N} - \mathbf{S}</em>{N+1}$を計算すると</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}<em>{N} - \mathbf{S}</em>{N+1} &amp;= \mathbf{S}<em>{N} - \left(\mathbf{S}</em>{N}^{-1} + \beta \boldsymbol{\phi}<em>{N+1} \boldsymbol{\phi}</em>{N+1}^{\mathrm{T}}\right)^{-1} \
+&amp;= \mathbf{S}<em>{N} - \left(\mathbf{S}</em>{N}^{-1} + \boldsymbol{\psi}<em>{N+1} \boldsymbol{\psi}</em>{N+1}^{\mathrm{T}} \right) \quad (\boldsymbol{\psi}<em>{N+1} = \beta^{1/2} \boldsymbol{\phi}</em>{N+1})\
+&amp;=\frac{\left(\mathbf{S}<em>{N} \boldsymbol{\psi}</em>{N+1}\right)\left(\boldsymbol{\psi}<em>{N+1}^{\mathrm{T}} \mathbf{S}</em>{N}\right)}{1+ \boldsymbol{\psi}<em>{N+1}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\psi}<em>{N+1}} \
+&amp;=\frac{\beta \mathbf{S}</em>{N} \boldsymbol{\phi}<em>{N+1} \boldsymbol{\phi}</em>{N+1}^{\mathrm{T}} \mathbf{S}<em>{N}}{1+\beta \boldsymbol{\phi}</em>{N+1}^{\mathrm{T}} \mathbf{S}<em>{N} \boldsymbol{\phi}</em>{N+1}}
+\end{aligned}
+$$</p>
+<p>これより
+$$
+\begin{aligned}
+\sigma_N^{2}(\mathbf{x})-\sigma_{N+1}^{2}(\mathbf{x}) &amp;= \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}<em>N\boldsymbol{\phi}(\mathbf{x}) - \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}</em>{N+1}\boldsymbol{\phi}(\mathbf{x}) \
+&amp;= \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}(\mathbf{S}<em>{N} - \mathbf{S}</em>{N+1})\boldsymbol{\phi}(\mathbf{x}) \
+&amp;= \frac{\beta \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}<em>{N} \boldsymbol{\phi}</em>{N+1} \boldsymbol{\phi}<em>{N+1}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\phi}(\mathbf{x})}{1+\beta \boldsymbol{\phi}<em>{N+1}^{\mathrm{T}} \mathbf{S}</em>{N} \boldsymbol{\phi}<em>{N+1}} \
+&amp;= \frac{\beta \left| \boldsymbol{\phi}(\mathbf{x})^{\mathrm T}\mathbf{S}</em>{N} \boldsymbol{\phi}<em>{N+1} \right|^2}{1+\beta \boldsymbol{\phi}</em>{N+1}^{\mathrm{T}} \mathbf{S}<em>{N} \boldsymbol{\phi}</em>{N+1}}
+\end{aligned}
+$$</p>
+<p>ここで、$\mathbf{S}<em>{N}$は実対称行列であり（$(3.54)$式から $\mathbf{S}</em>{N} = \left( \alpha \mathbf{I} + \beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi} \right)^{-1}$）、このため正定値行列である（後述）。すなわち任意のベクトル$\mathbf{x}$において$\mathbf{x}^{\mathrm T}\mathbf{S}<em>{N}\mathbf{x} \gt 0$が成立するため、$\boldsymbol{\phi}</em>{N+1}^{\mathrm{T}} \mathbf{S}<em>{N} \boldsymbol{\phi}</em>{N+1} \gt 0$となる（また当然ながら$\beta \gt 0$）。これより、</p>
+<p>$$
+\sigma_{N+1}^{2}(\mathbf{x}) \leq \sigma_{N}^{2}(\mathbf{x}) \tag{3.111}
+$$</p>
+<p>が証明された。</p>
+<p>※ 最後の正定値行列であることについて、定義として、任意の零ベクトルでないベクトル$\mathbf{x}$について行列$\mathbf{P}$が</p>
+<p>$$
+\mathbf{x}^{\mathrm T}\mathbf{Px} \gt 0
+$$</p>
+<p>を満たすならば、$\mathbf{P}$は正定値行列である。また、<a href="https://www.iwanttobeacat.com/entry/2019/12/31/152102">その逆行列$\mathbf{P}^{-1}$も正定値行列</a>である。</p>
+<p>そこで$\mathbf{S}<em>{N} = \left( \alpha \mathbf{I} + \beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi} \right)^{-1}$について、逆行列$\mathbf{S}</em>{N}^{-1} = \alpha \mathbf{I} + \beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}$が正定値行列であることを示す。</p>
+<p>まず$\alpha \mathbf{I}$は正定値行列である（$\because \mathbf{x}^{\mathrm T}(\alpha \mathbf{I})\mathbf{x} = \alpha \mathbf{x}^{\mathrm T}\mathbf{x} = \alpha |\mathbf{x}|^{2} \gt 0$）。また、$\mathbf{x}^{\mathrm T}(\beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi})\mathbf{x} = \beta |\mathbf{\Phi x}|^2 \ge 0$が成り立つ（これは半正定値）。したがって線形結合である$\mathbf{S}_N^{-1}$も正定値行列であるので、$\mathbf{S}_N$が正定値行列であることが示された。</p>
+<blockquote>
+<p>むしろ等号成立条件がわからないけど</p>
+</blockquote>
+<h2 id="演習-312"><a class="header" href="#演習-312">演習 3.12</a></h2>
+<div class="panel-primary">
+<p>2.3.6節で，平均および精度（分散の逆数）がともに未知のガウス分布に対応する共役事前分布は正規ガンマ分布であることを述べた．この性質は，線形回帰モデルの条件付きガウス分布$p(t|\mathbf{x}, \mathbf{w}, \beta)$の場合にも成り立つ．尤度関数が
+$$
+p(\mathsf{t} \mid \mathbf{X}, \mathbf{w}, \beta)=\prod_{n=1}^{N} \mathcal{N}\left(t_{n} \mid \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right) \tag{3.10}
+$$
+で与えられるとき，$\mathbf{w}$と$\beta$の共役事前分布が</p>
+<p>$$
+p(\mathbf{w}, \beta)=\mathcal{N}\left(\mathbf{w} | \mathbf{m}<em>{0}, \beta^{-1} \mathbf{S}</em>{0}\right) \operatorname{Gam}\left(\beta | a_{0}, b_{0}\right) \tag{3.112}
+$$</p>
+<p>で与えられることを示せ．さらに，対応する事後分布が同様に</p>
+<p>$$
+p(\mathbf{w}, \beta | \mathbf{t})=\mathcal{N}\left(\mathbf{w} | \mathbf{m}<em>{N}, \beta^{-1} \mathbf{S}</em>{N}\right) \operatorname{Gam}\left(\beta | a_{N}, b_{N}\right) \tag{3.113}
+$$</p>
+<p>の関数形で与えられることを示し，パラメータ$\mathbf{m}<em>{N}, \mathbf{S}</em>{N}, a_N, b_N$についての式を求めよ．</p>
+</div>
+<p>（事後確率）$\propto$（尤度関数）$\times$（共役事前分布）なので、$p(\mathbf{w},\beta\mid \mathsf{t},\mathbf{x}) \propto p(\mathbf{t} \mid \mathbf{x}, \mathbf{w}, \beta)p(\mathbf{w},\beta)$である。</p>
+<blockquote>
+<p>実際には入力変数$\mathbf{x}$をモデル化しようとしていないので、$\mathbf{x}$は条件としてしか現れないので$p(\mathbf{w},\beta\mid t)\propto p(\mathsf{t}\mid \mathbf{w},\beta)p(\mathbf{w},\beta)$である。</p>
+</blockquote>
+<p>P.98を読むことで、この共役事前分布も正規-ガンマ関数として書けることがわかる。よって、$p(\mathbf{w}, \beta)=\mathcal{N}\left(\mathbf{w} | \mathbf{m}<em>{0}, \beta^{-1} \mathbf{S}</em>{0}\right) \operatorname{Gam}\left(\beta | a_{0}, b_{0}\right)$の形で書くことができる。</p>
+<blockquote>
+<p>本当にこれで示せたことになるのか？感はある</p>
+</blockquote>
+<p>これが与えられているとき、対数で事後分布を考えると
+$$
+\ln p(\mathbf{w},\beta\mid \mathsf{t}) = \ln p(\mathsf{t}\mid \mathbf{x},\mathbf{w},\beta) + \ln p(\mathbf{w},\beta) + \textrm{const.}
+$$
+と書くことができる。これを展開すると</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathbf{w}, \beta \mid \mathbf{t})=&amp; \sum_{n=1}^{N} \ln p\left(t_{n} \mid \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right), \beta^{-1}\right) + \ln p(\mathbf{w}, \beta)\
+=&amp; \frac{M}{2} \ln \beta-\frac{1}{2} \ln \left|\mathbf{S}</em>{0}\right|-\frac{\beta}{2}\left(\mathbf{w}-\mathbf{m}<em>{0}\right)^{\mathrm{T}} \mathbf{S}</em>{0}^{-1}\left(\mathbf{w}-\mathbf{m}<em>{0}\right) - b</em>{0} \beta+\left(a_{0}-1\right) \ln \beta \
++&amp; \frac{N}{2} \ln \beta-\frac{\beta}{2} \sum_{n=1}^{N}\left{\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)-t</em>{n}\right}^{2}+\text{const.}
+\end{aligned} \tag{*}
+$$</p>
+<p>この事後分布も正規-ガンマ分布の形で分解できることが示されている。すなわち$p(\mathbf{w},\beta\mid \mathsf{t}) = p(\mathbf{w} \mid \beta, \mathsf{t})p(\beta\mid \mathsf{t})$と分解でき、$\mathbf{w}$に依存する$p(\mathbf{w} \mid \beta, \mathsf{t})$がガウス分布の形$\mathcal{N}(\mathbf{w}\mid \mathbf{m}_N,\beta^{-1}\mathbf{S}_N)$になるはずである。</p>
+<p>(*)式を$\mathbf{w}$についての関数としてまとめ直すと、$\displaystyle \sum_{n=1}^{N}\left{\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)-t</em>{n}\right}^{2} = (\mathbf{\Phi}\mathbf{w} - \mathsf{t})^{\mathrm T}(\mathbf{\Phi}\mathbf{w} - \mathsf{t})$を利用して</p>
+<p>$$
+\ln p(\mathbf{w} \mid \beta, \mathbf{t})=-\frac{\beta}{2} \mathbf{w}^{\mathrm{T}}\left[\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}+\mathbf{S}<em>{0}^{-1}\right] \mathbf{w}+\mathbf{w}^{\mathrm{T}}\left[\beta \mathbf{S}</em>{0}^{-1} \mathbf{m}_{0}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{t}\right]+\mathrm{const.}
+$$</p>
+<p>となる。よって、$\mathcal{N}(\mathbf{w}\mid \mathbf{m}_N, \mathbf{S}_N)$と比較すると（P.84のように$\mathbf{S}_N$から求める）、</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}<em>{N}^{-1} &amp;=\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} + \mathbf{S}</em>{0}^{-1} \
+\mathbf{m}<em>{N} &amp;=\mathbf{S}</em>{N}\left[\mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}+\mathbf{\Phi}^{\mathrm{T}} \mathsf{t}\right]
+\end{aligned}
+$$</p>
+<p>となる（$(3.50), (3.51)$と似ているようで異なる）。</p>
+<p>次に、$p(\beta\mid \mathsf{t})$がガンマ分布の形になるはずなので(*)の$\beta$に依存する残りの項をまとめる。ただし、$\frac{M}{2}\ln \beta$は上記のガウス分布の正規化定数に相当するので$\ln p(\beta\mid \mathsf{t})$には現れなくなることに注意する。</p>
+<p>$$
+\begin{aligned}
+\ln p(\beta \mid \mathbf{t}) &amp;= \ln p(\mathbf{w},\beta\mid \mathsf{t}) - \ln p(\mathbf{w}\mid \beta, \mathsf{t})
+\ &amp;= -\frac{\beta}{2} \mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0}+\frac{\beta}{2} \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N} + \frac{N}{2} \ln \beta-b_{0} \beta+\left(a_{0}-1\right) \ln \beta-\frac{\beta}{2} \sum_{n=1}^{N} t_{n}^{2}+\mathrm{const.} \
+&amp;=\left(\frac{N}{2}+a_0 -1\right)\ln \beta - \frac{1}{2} \left( \mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0} - \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N} + \sum_{n=1}^{N} t_{n}^{2} \right)\beta - b_0\beta + \mathrm{const.}
+\end{aligned}
+$$</p>
+<p>これがガンマ分布の対数形$\ln \operatorname{Gam}(\beta\mid a_N, b_N) = (a_N -1)\ln \beta - b_N \beta + \mathrm{const.}$の式と同形になるべきなので、両式を比較することで</p>
+<p>$$
+\begin{aligned}
+a_{N}&amp;=a_{0}+\frac{N}{2} \
+b_{N}&amp;=b_{0}+\frac{1}{2}\left(\mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0}-\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N}+\sum_{n=1}^{N} t_{n}^{2}\right)
+\end{aligned}
+$$</p>
+<p>が得られる。</p>
+<h2 id="演習-313"><a class="header" href="#演習-313">演習 3.13</a></h2>
+<div class="panel-primary">
+<p>演習問題3.12で議論したモデルに対する予測分布$p(t|\mathbf{x},\mathsf{t})$が次の形のスチューデントのt分布</p>
+<p>$$
+p(t | \mathbf{x}, \mathsf{t})=\operatorname{St}(t | \mu, \lambda, \nu) \tag{3.114}
+$$</p>
+<p>で与えられることを示し，$\mu, \lambda, \nu$についての式を求めよ．</p>
+</div>
+<p>$$ \tag{3.8}
+p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid y(\mathbf{x}, \mathbf{w}), \beta^{-1}\right)
+$$</p>
+<p>$$ \tag{3.113}
+p(\mathbf{w}, \beta \mid \mathsf{t}, \mathbf{X}) = \mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \beta^{-1} \mathbf{S}</em>{N}\right) \operatorname{Gam}\left(\beta \mid a_{N}, b_{N}\right)
+$$</p>
+<p>と$3.3.2$節の議論より，予測分布は</p>
+<p>$$
+\begin{aligned}
+p(t \mid \mathbf{x}, \mathbf{X}, \mathsf{t})
+&amp;= \iint p(t \mid \mathbf{x}, \mathbf{w}, \beta) p(\mathbf{w}, \beta \mid \mathsf{t}, \mathbf{X}) \mathrm{d}\mathbf{w} \mathrm{d}\beta \
+&amp;= \iint \mathcal{N}\left(t \mid \phi(\mathbf{x})^{\mathrm{T}} \mathbf{w}, \beta^{-1}\right) \mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \beta^{-1} \mathbf{S}</em>{N}\right) \mathrm{d} \mathbf{w} \operatorname{Gam}\left(\beta \mid a_{N}, b_{N}\right) \mathrm{d} \beta
+\end{aligned}
+$$</p>
+<p>となる．</p>
+<p>ここで，$\mathbf{w}$についての積分は線形ガウスモデルなので，公式</p>
+<p>$$ \tag{2.113}
+p(\mathbf{x})=\mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}, \mathbf{\Lambda}^{-1}\right)
+$$</p>
+<p>$$ \tag{2.114}
+p(\mathbf{y} \mid \mathbf{x})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \mathbf{x}+\mathbf{b}, \mathbf{L}^{-1}\right)
+$$</p>
+<p>$$ \tag{2.115}
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathbf{T}}\right)
+$$</p>
+<p>を用いる．</p>
+<p>$$ \tag{3.49}
+p(\mathbf{w} \mid \mathbf{t})=\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{N}, \mathbf{S}</em>{N}\right)
+$$</p>
+<p>を$(2.113)$に，</p>
+<p>$$ \tag{3.8}
+p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid y(\mathbf{x}, \mathbf{w}), \beta^{-1}\right)
+$$</p>
+<p>$$ \tag{3.3}
+y(\mathbf{x}, \mathbf{w})=\sum_{j=0}^{M-1} w_{j} \phi_{j}(\mathbf{x})=\mathbf{w}^{\mathrm{T}} \phi(\mathbf{x})
+$$</p>
+<p>を$(2.114)$に適応するために</p>
+<p>$$
+\begin{aligned}
+\mathbf{x} \Rightarrow \mathbf{w} \quad \boldsymbol{\mu} \Rightarrow \mathbf{m}<em>{N} \quad \mathbf{\Lambda}^{-1} \Rightarrow \mathbf{S}</em>{N} \quad \mathbf{y} \Rightarrow t \quad \mathbf{A} \Rightarrow \phi(\mathbf{x})^{\mathrm{T}}=\phi^{\mathrm{T}} \quad \mathbf{b} \Rightarrow \mathbf{0} \quad \mathbf{L}^{-1} \Rightarrow \beta^{-1}
+\end{aligned}
+$$</p>
+<p>と置き換えると，$(2.115)$より</p>
+<p>$$
+\begin{aligned}
+p(t \mid \beta) &amp;=\mathcal{N}\left(t \mid \phi^{\mathrm{T}} \mathbf{m}<em>{N}, \beta^{-1}+\phi^{\mathrm{T}} \mathbf{S}</em>{N} \phi\right) \
+&amp;=\mathcal{N}\left(t \mid \phi^{\mathrm{T}} \mathbf{m}<em>{N}, \beta^{-1}\left(1+\phi^{\mathrm{T}}\left(\mathbf{S}</em>{0}+\phi^{\mathrm{T}} \phi\right)^{-1} \phi\right)\right)
+\end{aligned}
+$$</p>
+<p>となる．ただし，演習問題$3.12$より，$\beta \mathbf{S}_{N}^{-1} = \beta\left[ \mathbf{S}_0^{-1} + \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \right]$を用いた．</p>
+<p>したがって予測分布は</p>
+<p>$$
+p(t \mid \mathbf{x}, \mathbf{X}, \mathbf{t}) = \int \mathcal{N}\left(t \mid \phi^{\mathrm{T}} \mathbf{m}<em>{N}, \beta^{-1} s\right) \operatorname{Gam}\left(\beta \mid a</em>{N}, b_{N}\right) \mathrm{d} \beta
+$$</p>
+<p>と変形できる．ただし</p>
+<p>$$
+s=1+\boldsymbol{\phi}^{\mathrm{T}}\left(\mathbf{S}_{0}+\boldsymbol{\phi}^{\mathrm{T}} \boldsymbol{\phi}\right)^{-1} \boldsymbol{\phi}
+$$</p>
+<p>とおいた．ここで，スチューデントのt分布の式</p>
+<p>$$ \tag{2.158}
+\begin{aligned}
+p(x \mid \mu, a, b) &amp;=\int_{0}^{\infty} \mathcal{N}\left(x \mid \mu, \tau^{-1}\right) \operatorname{Gam}(\tau \mid a, b) \mathrm{d} \tau \
+&amp;=\int_{0}^{\infty} \frac{b^{a} e^{(-b \tau)} \tau^{a-1}}{\Gamma(a)}\left(\frac{\tau}{2 \pi}\right)^{1 / 2} \exp \left{-\frac{\tau}{2}(x-\mu)^{2}\right} \mathrm{d} \tau \
+&amp;=\frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2 \pi}\right)^{1 / 2}\left[b+\frac{(x-\mu)^{2}}{2}\right]^{-a-1 / 2} \Gamma(a+1 / 2)
+\end{aligned}
+$$</p>
+<p>$$ \tag{2.159}
+\operatorname{St}(x \mid \mu, \lambda, \nu)=\frac{\Gamma(\nu / 2+1 / 2)}{\Gamma(\nu / 2)}\left(\frac{\lambda}{\pi \nu}\right)^{1 / 2}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\nu / 2-1 / 2}
+$$</p>
+<p>を参考にすると</p>
+<p>$$
+\begin{aligned}
+p(t \mid \mathbf{x}, \mathbf{X}, \mathbf{t})
+&amp;= \int_{0}^{\infty} \frac{b_N^{a_N} e^{(-b_N \beta)} \beta^{a_N-1}}{\Gamma(a_N)}\left(\frac{\beta s^{-1}}{2 \pi}\right)^{1 / 2} \exp \left{-\frac{\beta s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}<em>{N})^{2}\right} \mathrm{d} \beta  \
+&amp;=\frac{b_N^{a_N}}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} \int</em>{0}^{\infty} \beta^{(a_N + \frac{1}{2})-1} \exp \left{-\left(b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}_{N})^{2} \right)\beta \right} \mathrm{d} \beta  \
+\end{aligned}
+$$</p>
+<p>ここで$\displaystyle u = \left(b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}<em>{N})^{2} \right)\beta$と変数変換すると，$\displaystyle \mathrm{d}u = \left(b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}</em>{N})^{2} \right) \mathrm{d}\beta$と積分範囲に注意すると</p>
+<p>$$
+\begin{aligned}
+p(t \mid \mathbf{x}, \mathbf{X}, \mathbf{t})
+&amp;= \frac{b_N^{a_N}}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} \int_{0}^{\infty} \beta^{(a_N + \frac{1}{2})-1} \exp \left{-\left(b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}<em>{N})^{2} \right)\beta \right} \mathrm{d} \beta  \
+&amp;= \frac{b_N^{a_N}}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} \int</em>{0}^{\infty} \left(b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}<em>{N})^{2} \right)^{-\left{(a_N + \frac{1}{2})-1\right}-1} u^{(a_N + \frac{1}{2})-1} e^{-u} \mathrm{d}u  \
+&amp;= \frac{b_N^{a_N}}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} \left[b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}</em>{N})^{2} \right]^{-a_N - \frac{1}{2}} \Gamma\left(a_N + \frac{1}{2}\right)  \
+&amp;= \frac{\Gamma\left(a_N + 1/2\right)}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} b_N^{a_N} \left[b_N + \frac{s^{-1}}{2}(t-\phi^{\mathrm{T}} \mathbf{m}<em>{N})^{2} \right]^{-a_N - 1/2}  \
+&amp;= \frac{\Gamma\left(a_N + 1/2\right)}{\Gamma(a_N)}\left(\frac{s^{-1}}{2 \pi}\right)^{1 / 2} b_N^{a_N} b_N^{-a_N - 1/2} \left[1 + \frac{a_N}{b_N} \frac{s^{-1}}{2a_N}(t-\phi^{\mathrm{T}} \mathbf{m}</em>{N})^{2} \right]^{-a_N - 1/2}  \
+&amp;= \frac{\Gamma\left(a_N + 1/2\right)}{\Gamma(a_N)}\left(\frac{a_N}{b_N}\frac{s^{-1}}{2 a_N\pi}\right)^{1 / 2} \left[1 + \frac{a_N}{b_N} \frac{s^{-1}}{2a_N}(t-\phi^{\mathrm{T}} \mathbf{m}_{N})^{2} \right]^{-a_N - 1/2}  \
+&amp;= \operatorname{St}(t \mid \mu, \lambda, \nu)
+\end{aligned}
+$$</p>
+<p>となることがわかる．ただし</p>
+<p>$$
+\begin{aligned}
+\mu &amp;= \phi^{\mathrm{T}} \mathbf{m}<em>{N} \
+\lambda &amp;= \frac{a</em>{N}}{b_{N}} s^{-1} \
+\nu &amp;= 2 a_{N}
+\end{aligned}
+$$</p>
+<p>である．</p>
+<h2 id="演習-314"><a class="header" href="#演習-314">演習 3.14</a></h2>
+<div class="panel-primary">
+<p>この演習問題では，
+$$
+k\left(\mathbf{x}, \mathbf{x}^{\prime}\right)=\beta \boldsymbol{\phi}(\mathbf{x})^{\mathrm{T}} \mathbf{S}_{N} \boldsymbol{\phi}\left(\mathbf{x}^{\prime}\right) \tag{3.62}
+$$
+で定義される等価カーネルのより深い性質を調べよう．ただし，$\mathbf{S}<em>N$は
+$$
+\mathbf{S}</em>{N}^{-1}=\alpha \mathbf{I}+\beta \Phi^{\mathrm{T}} \boldsymbol{\Phi} \tag{3.54}
+$$
+で定義される．基底関数$\phi_j(\mathbf{x})$は線形独立であると仮定し，データ点の数$N$は基底関数の数$M$よりも大きいものとする．さらに，基底関数の1つは定数，すなわち$\phi_0(\mathbf{x})=1$とするこれらの基底関数の適当な線形結合を取り，同じ空間を張る新しい基底関数集合$\psi_j(\mathbf{x})$を生成することができる．ただし，新しい基底関数は正規直交である．</p>
+<p>$$
+\sum_{n=1}^{N} \psi_{j}\left(\mathbf{x}<em>{n}\right) \psi</em>{k}\left(\mathbf{x}<em>{n}\right)=I</em>{j k} \tag{3.115}
+$$</p>
+<p>$I_{jk}$は$j=k$のとき$1$を取り，それ以外は$0$を取る．また，$\psi_0(\mathbf{x})=1$と定義する．このとき$\alpha=0$に対して，等価カーネルが$k\left(\mathbf{x}, \mathbf{x}^{\prime}\right)=\boldsymbol{\psi}(\mathbf{x})^{\mathrm{T}} \boldsymbol{\psi}\left(\mathbf{x}^{\prime}\right)$と書けることを示せ．ただし，$\boldsymbol{\psi}=(\psi_0,\ldots,\psi_M)^{\mathrm{T}}$である．そしてこの結果を用いて，上記のカーネルが</p>
+<p>$$
+\sum_{n=1}^{N} k\left(\mathbf{x}, \mathbf{x}_{n}\right)=1 \tag{3.116}
+$$</p>
+<p>を満たすことを示せ．</p>
+</div>
+<p>$$
+\alpha = 0より
+\mathbf{S}_{N}^{-1}=\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}
+$$
+また、基底関数の適当な線型結合をとり互いに正規直交な新しい基底関数集合$\psi_j(\mathbf{x})$を</p>
+<p>$$
+\boldsymbol{\psi(\mathbf{x})}=\mathbf{A}\boldsymbol{\phi(\mathbf{x})}
+$$
+とおく。また、これを用いて$\mathbf{\Psi}$を</p>
+<p>$$
+\mathbf{\Psi}=\mathbf{\Phi}\mathbf{A}^{\mathrm{T}} \
+\mathbf{\Psi}(\mathbf{A}^{\mathrm{T}})^{-1} =\mathbf{\Phi}
+$$</p>
+<p>と定義する。ここで$(3.115)$を用いると$\mathbf{\Phi}^\mathrm{T}\mathbf{\Phi}=\mathbf{I}なので$</p>
+<p>$$
+\begin{aligned}
+\mathbf{S}_{N}^{-1}&amp;=\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\
+&amp;= \beta\mathbf{A}^{-1}\mathbf{\Psi}^{\mathrm{T}}\mathbf{\Psi}(\mathbf{A}^\mathrm{T})^{-1}\
+&amp;= \beta(\mathbf{A}^\mathrm{T}\mathbf{A})^{-1}
+\end{aligned}
+$$
+これを$(3.62)$に代入すると</p>
+<p>$$
+\begin{aligned}
+k\left(\mathbf{x}, \mathbf{x}'\right)&amp;=\boldsymbol{\phi}^\mathrm{T}(\mathbf{x})\mathbf{A}^\mathrm{T}\mathbf{A}\boldsymbol{\phi}(\mathbf{x}') \
+&amp;= \boldsymbol{\psi}^\mathrm{T}(\mathbf{x})\boldsymbol{\psi}(\mathbf{x}')
+\end{aligned}
+$$
+が得られる。</p>
+<p>また、これを$(3.116)$に代入すると</p>
+<p>$$
+\begin{aligned}
+(3.116) &amp;= \sum_{n=1}^{N} k\left(\mathbf{x}, \mathbf{x}<em>n\right) \
+&amp;= \sum</em>{n=1}^{N}\boldsymbol{\psi}^\mathrm{T}(\mathbf{x})\boldsymbol{\psi}(\mathbf{x}<em>n) \
+&amp;= \sum</em>{n=1}^{N} \sum_{i=0}^{M-1} \psi_i(\mathbf{x})\psi_i(\mathbf{x}<em>n) \
+&amp;= \sum</em>{i=0}^{M-1}\psi_i(\mathbf{x})\sum_{n=1}^{N}\psi_i(\mathbf{x}_n)
+\end{aligned}
+$$
+ここで、$(3.115)$の$k=0$のときを考えると$\psi_0(\mathbf{x})=1$なので</p>
+<p>$$
+\begin{aligned}
+\sum_{n=1}^{N}\psi_j(\mathbf{x}_n)\psi_0(\mathbf{x}<em>n)&amp;=\sum</em>{n=1}^{N}\psi_j(\mathbf{x}<em>n) = \mathbf{I}</em>{j0}
+\end{aligned}
+$$
+よって</p>
+<p>$$
+\begin{aligned}
+\sum_{i=0}^{M-1}\psi_i(\mathbf{x})\sum_{n=1}^{N}\psi_i(\mathbf{x}<em>n)=\sum</em>{i=0}^{M-1}\psi_i(\mathbf{x})\mathbf{I}_{i0}=\psi_0(\mathbf{x}) = 1
+\end{aligned}
+$$
+以上より</p>
+<p>$$
+\begin{aligned}
+\sum_{n=1}^{N}k(\mathbf{x},\mathbf{x}_n) = 1
+\end{aligned}
+$$
+を満たすことを示した。</p>
+<h2 id="演習-315"><a class="header" href="#演習-315">演習 3.15</a></h2>
+<div class="panel-primary">
+<p>線形基底関数からなる回帰モデルの超パラメータ$\alpha,\ \beta$をエビデンスの枠組みを用いて決定する場合を考える．
+$$
+E\left(\mathbf{m}<em>{N}\right)=\frac{\beta}{2}\left|\mathbf{t}-\Phi \mathbf{m}</em>{N}\right|^{2}+\frac{\alpha}{2} \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N} \tag{3.82}
+$$
+で定義される関数$E(\mathbf{m}_N)$が関係式$2E(\mathbf{m}_N)=N$を満たすことを示せ．</p>
+</div>
+<p>$(3.92)$式と$(3.95)$式を代入するだけで答えが出る</p>
+<p>$$
+\alpha = \frac{ \gamma }{ \mathbf{m}<em>{N}^\mathrm{T} \mathbf{m}</em>{N} } \tag{3.92}
+$$</p>
+<p>$$
+\beta = (N-\gamma) \left{\sum_{n=1}^{N}\left{t_n-\mathbf{m}_{N}^\mathrm{T}\boldsymbol{\phi}(\mathbf{x}_n)\right}^2\right}^{-1} \tag{3.95}
+$$</p>
+<p>これらを$(3.82)$式に代入すると</p>
+<p>$$
+\begin{aligned}
+E(\mathbf{m}<em>N) &amp;= \frac{(N-\gamma)\left|\mathbf{t}-\Phi \mathbf{m}</em>{N}\right|^{2}}{2 \sum_{n=1}^{N}\left{t_n-\mathbf{m}<em>{N}^\mathrm{T}\boldsymbol{\phi}(\mathbf{x}<em>n)\right}^2}+\frac{\gamma \mathbf{m}</em>{N}^\mathrm{T}\mathbf{m}</em>{N}}{2\mathbf{m}<em>{N}^\mathrm{T}\mathbf{m}</em>{N}} \
+&amp;=\frac{N-\gamma}{2}+\frac{\gamma}{2} \
+&amp;= \frac{N}{2}
+\end{aligned}
+$$
+よって$2E(\mathbf{m}_N)=N$が示せた。</p>
+<h2 id="演習-316"><a class="header" href="#演習-316">演習 3.16</a></h2>
+<div class="panel-primary">
+<p>$$
+p(\mathbf{t} \mid \alpha, \beta)=\int p(\mathbf{t} \mid \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha) \mathrm{d} \mathbf{w} \tag{3.77}
+$$
+の積分の評価に
+$$
+p(\mathbf{y})=\mathcal{N}\left(\mathbf{y} \mid \mathbf{A} \boldsymbol{\mu}+\mathbf{b}, \mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathbf{T}}\right) \tag{2.115}
+$$
+を直接用いて，
+$$
+\ln p(\mathbf{t} \mid \alpha, \beta)=\frac{M}{2} \ln \alpha+\frac{N}{2} \ln \beta-E\left(\mathbf{m}_{N}\right)-\frac{1}{2} \ln |\mathbf{A}|-\frac{N}{2} \ln (2 \pi) \tag{3.86}
+$$
+で与えられる線形回帰モデルの対数エビデンス関数$p(\mathbf{t}|\alpha, \beta)$の結果を導け．</p>
+</div>
+<p>※ $(2.115)$式を適用するところまではそこまで難しくないが、$-  \frac {1}{2} \ln  \left | \beta^{-1} \mathbf I_N+\alpha ^{-1} \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T} \right |$と$-\frac{1}{2} \mathsf{t}^{\mathrm T} \left( \beta^{-1} \mathbf{I}_N+\alpha ^{-1} \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T} \right)^{-1} \mathsf{t}$を$(3.86)$式のように変形するところが非常にテクニカル。付録CのWoodburyの公式(C.7)や<a href="MASP/%E8%A1%8C%E5%88%97%E5%BC%8F#%5Cmathbf%7BR%7D%2B%5Cmathbf%7BSTU%7D%E3%81%AE%E5%BD%A2%E3%81%AE%E8%A1%8C%E5%88%97%E3%81%AE%E8%A1%8C%E5%88%97%E5%BC%8F">行列式についての変形の定理</a>(C.14)を利用する必要がある。</p>
+<p>$(3.77)$式の積分を計算する。$p(\mathsf{t}\mid \mathbf{w}, \beta)$は$(3.10)$式から、$p(\mathbf{w}|\alpha)$は$(3.52)$式から与えられる。</p>
+<p>$(3.52)$式より$p(\mathbf{w}\mid \alpha) = \mathcal{N}(\mathbf{w}\mid \mathbf{0},\alpha^{-1}\mathbf{I}_M)$である。また、$(3.10)$式から</p>
+<p>$$
+\begin{aligned}
+p(\mathsf{t} \mid \mathbf{w}, \beta) &amp;=\prod_{n=1}^{N} \mathcal{N}\left(t_n \mid \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right), \beta^{-1}\right) \
+&amp;=\prod</em>{n=1}^{N}\left(\frac{\beta}{2 \pi}\right)^{\frac{1}{2}} \exp \left{-\frac{\beta}{2}\left(t_n-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}<em>{n}\right)\right)^{2}\right} \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}} \exp \left{-\frac{\beta}{2} \sum</em>{n=1}^{N}\left(t_n-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right)^{2}\right} \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}} \exp \left{-\frac{\beta}{2}\left(\mathsf{t}-\mathbf{\Phi}\mathbf{w}\right)^{\mathrm{T}}\left(\mathsf{t}-\mathbf{\Phi}\mathbf{w}\right)\right} \
+&amp;=\mathcal{N}(\mathsf{t}\mid \mathbf{\Phi}\mathbf{w},\beta^{-1}\mathbf{I}_N)
+\end{aligned}
+$$
+となる。注意点として、$\mathbf{\Phi}$は$N\times M$行列、$\mathbf{w}$は$M$次元の列ベクトルである。</p>
+<p>ここで、問題文のヒントにしたがって</p>
+<p>$$
+\begin{aligned}
+\mathbf y \rightarrow \mathbf t, \quad \mathbf x \rightarrow\mathbf w, \quad \boldsymbol \mu\rightarrow\mathbf 0, \quad \mathbf{\Lambda}^{-1}\rightarrow\alpha ^{-1}\mathbf I_M,\quad  \mathbf A\rightarrow\mathbf{\Phi} ,\quad \mathbf L^{-1}\rightarrow\beta^{-1} \mathbf I_N
+\end{aligned}
+$$</p>
+<p>と置き換えると、$(2.115)$式を使って$p(\mathsf{t}\mid \alpha, \beta)$を求めることができる。これより</p>
+<p>$$
+p\left(\mathsf{t} \mid \alpha,\beta \right) = \mathcal{N}\left(\mathsf{t}\mid \mathbf{0}, ~ \beta^{-1} \mathbf{I}_N+\alpha^{-1} \mathbf{\Phi\Phi}^{\mathrm T} \right)
+$$</p>
+<p>と求まる。これについて対数をとって展開していくと（$(2.43)$の対数表現にあてはめて）</p>
+<p>$$
+\ln p\left( \mathsf{t} \mid \alpha,\beta \right) = -\frac {N}{2} \ln \left ( 2 \pi \right )  -  \frac {1}{2} \ln  \left | \beta^{-1} \mathbf I_N+\alpha ^{-1} \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T} \right | -\frac{1}{2} \mathsf{t}^{\mathrm T} \left( \beta^{-1} \mathbf{I}_N+\alpha ^{-1} \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T} \right)^{-1} \mathsf{t}
+$$
+となる。この第2項と第3項について計算していく。</p>
+<p>まず第2項について</p>
+<p>$$
+\begin{aligned}
+\left|\beta^{-1} \mathbf{I}<em>{N}+\alpha^{-1} \mathbf{\Phi\Phi}^{\mathrm T}\right| &amp;=\beta^{-N} \cdot \beta^{N}\left|\beta^{-1} \mathbf{I}</em>{N}+\alpha^{-1} \mathbf{\Phi\Phi}^{\mathrm T}\right| \
+&amp;=\beta^{-N}\left|\mathbf{I}<em>{N}+\beta \alpha^{-1} \mathbf{\Phi\Phi}^{\mathrm T}\right| \quad\left(\because k^{N}|\mathbf{N}|=|k \mathbf{N}|\right) \
+&amp;=\beta^{-N}\left|\mathbf{I}</em>{M}+\beta \alpha^{-1} \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right| \quad(\because \text {Appendix}\ (\text{C}.14)) \
+&amp;=\beta^{-N} \alpha^{-M}\left|\alpha \mathbf{I}_{M}+\beta \mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}\right|\quad\left(\because k^M|\mathbf{M}|=|k \mathbf{M}|\right) \
+&amp;=\beta^{-N} \alpha^{-M}|\mathbf{A}|\quad(\because \mathbf{A} = \alpha \mathbf{I}_M+\beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}\quad (3.81))
+\end{aligned}
+$$
+が得られる。ここで、以下の定理を用いた。</p>
+<blockquote>
+<p>任意の$n\times n$行列$\mathbf{A}$と任意のスカラー値$k$に対して
+$|k\mathbf{A}| = k^n|\mathbf{A}|$
+が成り立つ（統計のための行列代数P.217, 系13.2.4）</p>
+</blockquote>
+<p>また対数を取った時の第3項についてはまず
+$$
+-\frac{1}{2} \mathsf{t}^{\mathrm T} \left( \beta^{-1} \mathbf{I}_N+\alpha ^{-1} \mathbf{\Phi}\mathbf{\Phi}^{\mathrm T} \right)^{-1} \mathsf{t} = -\frac{1}{2} \mathsf{t}^{\mathrm T} \left( \beta^{-1} \mathbf{I}_N+\mathbf{\Phi}(\alpha ^{-1} \mathbf{I}_M)\mathbf{\Phi}^{\mathrm T} \right)^{-1} \mathsf{t}
+$$
+としてからWoodburyの公式</p>
+<p>$$
+\left ( \mathbf A + \mathbf {BD}^{-1} \mathbf C \right ) ^{-1} = \mathbf A^{-1}-\mathbf A^{-1} \mathbf{B} \left ( \mathbf D + \mathbf{CA}^{-1}\mathbf B \right ) ^{-1}\mathbf{CA}^{-1} \tag {C.7}
+$$</p>
+<p>に当てはめると</p>
+<p>$$
+\begin{aligned}
+-\frac{1}{2} \mathsf{t}^{\mathrm{T}}\left(\beta^{-1} \mathbf{I}<em>{N}+\alpha^{-1} \mathbf{\Phi} \Phi^{\mathrm{T}}\right)^{-1} \mathsf{t} &amp;=-\frac{1}{2} \mathsf{t}^{\mathrm{T}}\left[\beta \mathbf{I}</em>{N}-\beta\mathbf{I}<em>{N} \mathbf{\Phi}\left(\alpha \mathbf{I}</em>{M}+\mathbf{\Phi}^{\mathrm{T}}(\beta\mathbf{I}<em>N)\mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}}(\beta\mathbf{I}<em>N)\right] \mathsf{t} \
+&amp;=-\frac{1}{2} \mathsf{t}^{\mathrm{T}}\left[\beta \mathbf{I}</em>{N}-\beta \mathbf{\Phi}\left(\alpha \mathbf{I}</em>{M}+\beta \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \beta\right] \mathsf{t} \
+&amp;=-\frac{\beta}{2} \mathsf{t}^{\mathrm{T}} \mathsf{t}+\frac{\beta^{2}}{2} \mathsf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}} \mathsf{t} \
+&amp;=-\frac{\beta}{2} \mathsf{t}^{\mathrm{T}} \mathsf{t}+\frac{1}{2} \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{A} \mathbf{m}</em>{N} \quad (\because \mathbf{m}<em>{N}=\beta \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}} \mathsf{t}, (\mathbf{A}^{-1})^{\mathrm{T}} = (\mathbf{A}^{\mathrm{T}})^{-1} = \mathbf{A}^{-1}) \
+&amp;=-\frac{1}{2}\left(\beta \mathsf{t}^{\mathrm{T}} \mathsf{t}-2 \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{A} \mathbf{m}<em>{N}+\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{A} \mathbf{m}<em>{N}\right) \
+&amp;=-\frac{1}{2}\left(\beta \mathsf{t}^{\mathrm{T}} \mathsf{t}-2 \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{A}\left(\beta \mathbf{A}^{-1} \mathbf{\Phi}^{\mathrm{T}} \mathsf{t}\right)+\mathbf{m}<em>{N}^{\mathrm{T}}\left(\alpha \mathbf{I}</em>{M}+\beta \mathbf{\Phi}^{\mathrm{T}} \boldsymbol{\Phi}\right) \mathbf{m}<em>{N}\right) \
+&amp;=-\frac{1}{2}\left(\beta \mathsf{t}^{\mathrm{T}} \mathsf{t}-2 \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{\Phi}^{\mathrm{T}} \mathsf{t} \beta+\beta \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{m}</em>{N}+\alpha \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N}\right) \
+&amp;=-\frac{1}{2}\left(\beta\left(\mathsf{t}-\mathbf{\Phi} \mathbf{m}<em>{N}\right)^{\mathrm{T}}\left(\mathsf{t}-\mathbf{\Phi} \mathbf{m}</em>{N}\right)+\alpha \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N}\right) \
+&amp;=-\frac{\beta}{2}\left|\mathsf{t}-\mathbf{\Phi} \mathbf{m}<em>{N}\right|^{2}-\frac{1}{2} \alpha \mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{m}_{N} \
+&amp;=-E(\mathbf{m}_N)\quad(\because\ (3.82))
+\end{aligned}
+$$</p>
+<p>以上から</p>
+<p>$$
+\ln p \left ( \mathsf{t} \mid \alpha,\beta \right ) =\frac {M}{2} \ln \alpha + \frac {N}{2} \ln \beta - E \left ( \mathbf m_N \right ) -\frac{1}{2} \ln \left | \mathbf A \right | -\frac {N}{2} \ln \left ( 2 \pi \right )  \tag{3.86}
+$$</p>
+<p>を導出することができた。</p>
+<h2 id="演習-317"><a class="header" href="#演習-317">演習 3.17</a></h2>
+<div class="panel-primary">
+<p>ベイズ線形回帰モデルに対するエビデンス関数が
+$$
+p(\mathbf{t} \mid \alpha, \beta)=\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left(\frac{\alpha}{2 \pi}\right)^{M / 2} \int \exp {-E(\mathbf{w})} \mathrm{d} \mathbf{w} \tag{3.78}
+$$
+の形式で書けることを示せ．ただし，
+$$
+\begin{aligned}
+E(\mathbf{w}) &amp;=\beta E_{D}(\mathbf{w})+\alpha E_{W}(\mathbf{w}) \
+&amp;=\frac{\beta}{2}|\mathbf{t}-\mathbf{\Phi} \mathbf{w}|^{2}+\frac{\alpha}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w}
+\end{aligned} \tag{3.79}
+$$
+で定義される．</p>
+</div>
+<p>※演習問題3.16よりも簡単。</p>
+<p>$p(\mathsf{t}\mid \alpha, \beta) = \int p(\mathsf{t}\mid \mathbf{w},\beta)p(\mathbf{w}\mid\alpha)d\mathbf{w}\quad (3.77)$を求める。<strong>演習3.16</strong>で示した通り</p>
+<p>$$
+p(\mathsf{t}\mid \mathbf{w},\beta) = \left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}} \exp \left{-\frac{\beta}{2}(\mathsf{t}-\boldsymbol{\Phi} \mathbf{w})^{\mathrm{T}}(\mathsf{t}-\boldsymbol{\Phi} \mathbf{w})\right}\
+$$
+$$
+\begin{aligned}
+p(\mathbf{w}\mid\alpha) &amp;= \mathcal{N}(\mathbf{w}\mid \mathbf{0}, \alpha^{-1}\mathbf{I}_M) \
+&amp;=\left( \frac{\alpha}{2\pi} \right)^{\frac{M}{2}}\exp \left{ -\frac{1}{2}\mathbf{w}^{\mathrm{T}}(\alpha^{-1}\mathbf{I}_M)^{-1}\mathbf{w}\right} \
+&amp;=\left( \frac{\alpha}{2\pi} \right)^{\frac{M}{2}}\exp \left{ -\frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}\right}
+\end{aligned}
+$$
+なのでこれらを代入すると
+$$
+\begin{aligned}
+p(\mathbf{t} \mid \alpha, \beta)&amp;=\int\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left(\frac{\alpha}{2 \pi}\right)^{M / 2} \exp \left{-\frac{\beta}{2}(\mathsf{t}-\mathbf{\Phi}\mathbf{w})^{\mathrm{T}}(\mathsf{t}-\mathbf{\Phi}\mathbf{w}) - \frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}\right} \mathrm{d} \mathbf{w} \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left(\frac{\alpha}{2 \pi}\right)^{M / 2}\int \exp\left{-\frac{\beta}{2}||\mathsf{t}-\mathbf{\Phi}\mathbf{w}||^{2} - \frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}\right} \mathrm{d} \mathbf{w}
+\end{aligned}
+$$
+となる。これは$(3.78)$,$(3.79)$の形になっている。</p>
+<h2 id="演習-318"><a class="header" href="#演習-318">演習 3.18</a></h2>
+<div class="panel-primary">
+<p>$\mathbf{w}$に関して平方完成することにより，</p>
+<p>$$
+\begin{aligned}
+E(\mathbf{w}) &amp;=\beta E_{D}(\mathbf{w})+\alpha E_{W}(\mathbf{w}) \
+&amp;=\frac{\beta}{2}|\mathbf{t}-\mathbf{\Phi} \mathbf{w}|^{2}+\frac{\alpha}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w}
+\end{aligned} \tag{3.79}
+$$</p>
+<p>で定義されるベイズ線形回帰の誤差関数が</p>
+<p>$$
+E(\mathbf{w})=E\left(\mathbf{m}<em>{N}\right)+\frac{1}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{m}_{N}\right) \tag{3.80}
+$$</p>
+<p>の形で書けることを示せ．</p>
+</div>
+<p>※誘導に従って平方完成して式変形していくだけ。$\mathbf{A} = \alpha \mathbf{I}_M+\beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}=(\alpha \mathbf{I}_M+\mathbf{\Phi}^{\mathrm T}(\beta\mathbf{I}_M)\mathbf{\Phi})$と$(3.84)$式の定義$\mathbf{m}_N=\beta \mathbf{A}^{-1}\mathbf{\Phi}^{\mathrm T}\mathsf{t}$を途中で導入する。</p>
+<p>$$
+\begin{aligned}
+E(\mathbf{w}) &amp;= \frac{\beta}{2} ||\mathbf{t}-\mathbf{\Phi} \mathbf{w}|^{2}+\frac{\alpha}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w} \
+&amp;=\frac{\beta}{2}\left(\mathbf{t}^{\mathrm{T}} \mathbf{t}-2 \mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}+\mathbf{w}^{\mathrm{T}} \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}\right)+\frac{\alpha}{2} \mathbf{w}^{\mathrm{T}} \mathbf{w} \
+&amp;=\frac{1}{2}\left(\mathbf{w}^{\mathrm{T}}\mathbf{\Phi}^{\mathrm{T}}(\beta\mathbf{I}_M)\mathbf{\Phi} \mathbf{w}+\mathbf{w}^{\mathrm{T}}(\alpha \mathbf{I}_M)\mathbf{w}-2\beta\mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}+\beta \mathbf{t}^{\mathrm{T}} \mathbf{t} \right) \
+&amp;=\frac{1}{2}\left( \mathbf{w}^{\mathrm{T}}\mathbf{A}\mathbf{w}-2\beta\mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}+\beta \mathbf{t}^{\mathrm{T}} \mathbf{t}\right) \
+&amp;=\frac{1}{2}\left( \mathbf{w}^{\mathrm{T}}\mathbf{A}\mathbf{w}-2\mathbf{m}_N^{\mathrm T}\mathbf{A}^{\mathrm T}\mathbf{\Phi}^{-1}\mathbf{\Phi} \mathbf{w}+\beta \mathbf{t}^{\mathrm{T}} \mathbf{t}\right) \
+&amp;=\frac{1}{2}\left( \mathbf{w}^{\mathrm{T}}\mathbf{A}\mathbf{w}-2\mathbf{m}_N^{\mathrm T}\mathbf{A}^{\mathrm T}\mathbf{w}+\mathbf{m}_N^{\mathrm T}\mathbf{A}\mathbf{m}_N\right) - \frac{1}{2}\mathbf{m}_N^{\mathrm T} \mathbf{A} \mathbf{m}_N + \frac{\beta}{2}\mathbf{t}^{\mathrm{T}} \mathbf{t} \
+&amp;=\frac{1}{2}(\mathbf{w} - \mathbf{m}_N)^{\mathrm T}\mathbf{A}(\mathbf{w} - \mathbf{m}_N)- \frac{1}{2}\mathbf{m}_N^{\mathrm T} \mathbf{A} \mathbf{m}_N + \frac{\beta}{2}\mathbf{t}^{\mathrm{T}} \mathbf{t}
+\end{aligned}
+$$</p>
+<p>ここで、$\displaystyle -\frac{1}{2}\mathbf{m}_N^{\mathrm T} \mathbf{A} \mathbf{m}_N + \frac{\beta}{2}\mathbf{t}^{\mathrm{T}} \mathbf{t}$については<strong>演習問題3.16</strong>の後半の式変形と同じなので
+$$
+\begin{aligned}
+-\frac{1}{2}\mathbf{m}_N^{\mathrm T} \mathbf{A} \mathbf{m}<em>N + \frac{\beta}{2}\mathbf{t}^{\mathrm{T}} \mathbf{t} &amp;= \frac{\alpha}{2}\mathbf{m}<em>N^{\mathrm T}\mathbf{m}<em>N + \frac{\beta}{2}\left|\mathsf{t}-\mathbf{\Phi} \mathbf{m}</em>{N}\right|^{2}\
+&amp;=E(\mathbf{m}<em>N)
+\end{aligned}
+$$
+となるので、結果として$(3.80)$式
+$$
+E(\mathbf{w})=E\left(\mathbf{m}</em>{N}\right)+\frac{1}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{m}</em>{N}\right) \tag{3.80}
+$$
+が成立する。</p>
+<h2 id="演習-319"><a class="header" href="#演習-319">演習 3.19</a></h2>
+<div class="panel-primary">
+<p>ベイズ線形回帰モデルの$\mathbf{w}$に関する積分が</p>
+<p>$$
+\int \exp {-E(\mathbf{w})} \mathrm{d} \mathbf{w} =\exp \left{-E\left(\mathbf{m}_{N}\right)\right}(2 \pi)^{M / 2}|\mathbf{A}|^{-1 / 2}
+\tag{3.85}
+$$</p>
+<p>で与えられることを示せ．したがって，対数周辺尤度が
+$$
+\ln p(\mathbf{t} \mid \alpha, \beta)=\frac{M}{2} \ln \alpha+\frac{N}{2} \ln \beta-E\left(\mathbf{m}_{N}\right)-\frac{1}{2} \ln |\mathbf{A}|-\frac{N}{2} \ln (2 \pi) \tag{3.86}
+$$
+で与えられることを示せ．</p>
+</div>
+<p>$(3.85)$の積分が成立することを示す。</p>
+<p>$$
+E(\mathbf{w})=E\left(\mathbf{m}<em>{N}\right)+\frac{1}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{m}_{N}\right)
+\tag{3.80}
+$$</p>
+<p>$$
+E\left(\mathbf{m}<em>{N}\right)=\frac{\beta}{2}\left|\mathbf{t}-\mathbf{\Phi} \mathbf{m}</em>{N}\right|^{2}+\frac{\alpha}{2} \mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{m}</em>{N}
+\tag{3.82}
+$$</p>
+<p>$(3.80)$式から$(3.85)$が成り立つことを示す。$(3.82)$より$E\left(\mathbf{m}_{N}\right)$は$\mathbf{w}$の関数ではないため積分の外に出すことができる。</p>
+<p>$$
+\begin{aligned}
+\int \exp {-E(\mathbf{w})} \mathrm{d} \mathbf{w} =\exp \left{-E\left(\mathbf{m}<em>{N}\right)\right} \int \exp \left{-\frac{1}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{m}<em>{N}\right)\right} \mathrm{d} \mathbf{w}
+\end{aligned}
+$$
+今$\mathbf{w}$の次元は$M$であるので、正規化された多次元ガウス分布の形
+$$
+\frac{1}{(2 \pi)^{M / 2}} \frac{1}{|\mathbf{A}|^{1 / 2}}\int \exp \left{-\frac{1}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{A}\left(\mathbf{w}-\mathbf{m}_{N}\right)\right} \mathrm{d} \mathbf{w} = 1
+$$
+から正規化係数部分を取り出せば</p>
+<p>$$
+\int \exp {-E(\mathbf{w})} \mathrm{d} \mathbf{w} =\exp \left{-E\left(\mathbf{m}_{N}\right)\right}(2 \pi)^{M / 2}|\mathbf{A}|^{-1 / 2}
+\tag{3.85}
+$$
+$(3.85)$を示すことができる。</p>
+<p>対数周辺尤度は</p>
+<p>$$
+p(\mathsf{t} | \alpha, \beta)=\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left(\frac{\alpha}{2 \pi}\right)^{M / 2} \int \exp {-E(\mathbf{w})} \mathrm{d} \mathbf{w}
+\tag{3.78}
+$$</p>
+<p>で表すことができ、$(3.85)$の結果と合わせると、</p>
+<p>$$
+p(\mathsf{t} | \alpha, \beta)=\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left(\frac{\alpha}{2 \pi}\right)^{M / 2} \exp \left{-E\left(\mathbf{m}_{N}\right)\right}(2 \pi)^{M / 2}|\mathbf{A}|^{-1 / 2}
+$$
+この等式に対数を取ってやると、</p>
+<p>$$
+\ln p(\mathsf{t} | \alpha, \beta)=\frac{M}{2} \ln \alpha+\frac{N}{2} \ln \beta-E\left(\mathbf{m}_{N}\right)-\frac{1}{2} \ln |\mathbf{A}|-\frac{N}{2} \ln (2 \pi)
+\tag{3.86}
+$$
+よって対数周辺尤度が$(3.86)$で与えられることが示された。</p>
+<h2 id="演習-320"><a class="header" href="#演習-320">演習 3.20</a></h2>
+<div class="panel-primary">
+<p>対数周辺尤度関数</p>
+<p>$$
+\ln p(\mathbf{t} \mid \alpha, \beta)=\frac{M}{2} \ln \alpha+\frac{N}{2} \ln \beta-E\left(\mathbf{m}_{N}\right)-\frac{1}{2} \ln |\mathbf{A}|-\frac{N}{2} \ln (2 \pi) \tag{3.86}
+$$</p>
+<p>の$\alpha$に関する最大化が再推定方程式</p>
+<p>$$
+\alpha = \frac{\gamma}{\mathbf{m}_N^{\mathrm{T}}\mathbf{m}<em>N},\quad \gamma = \sum</em>{i}\frac{\lambda_i}{\alpha+\lambda_i} \tag{3.92}
+$$
+に帰着されることを示すのに必要なすべての段階を$(3.86)$から始めて確かめよ．</p>
+</div>
+<p>※<strong>3.5.2 エビデンス関数の最大化</strong>をなぞるだけ。</p>
+<p>$(3.86)$式を$\alpha$で偏微分する。そのために，まず次の固有ベクトル方程式を考える。
+$$
+\left(\beta \mathbf{\Phi}^{\mathrm T}\mathbf{\Phi} \right)\mathbf{u}_i = \lambda_i \mathbf{u}_i \tag{3.87}
+$$
+また、$\alpha \mathbf{I}_M$についての固有値は当然$\alpha$であり、$(\alpha \mathbf{I}<em>M)\mathbf{u}<em>i = \alpha \mathbf{u}<em>i$のように書けるので、この2式を足せば
+$$
+\left(\alpha \mathbf{I}<em>M + \beta \mathbf{\Phi}^{\mathrm T}\mathbf{\Phi} \right)\mathbf{u}<em>i = (\alpha + \lambda_i)\mathbf{u}<em>i
+$$
+となるので、$\mathbf{A}$は固有値$\alpha + \lambda_i$を持つことがわかる。ここで，$(3.86)$に含まれる$\ln |\mathbf{A}|$の項の$\alpha$に関する導関数を考えると
+$$
+\frac{d}{d \alpha} \ln |\mathbf{A}|=\frac{d}{d \alpha} \ln \prod</em>{i=1}^M \left(\lambda</em>{i}+\alpha\right)=\frac{d}{d \alpha} \sum</em>{i=1}^M \ln \left(\lambda</em>{i}+\alpha\right)=\sum</em>{i=1}^M \frac{1}{\lambda</em>{i}+\alpha} \tag{3.88}
+$$
+が得られる。これより，$(3.86)$の$\alpha$に関する停留点は
+$$
+0 = \frac{M}{2\alpha}-\frac{1}{2}\mathbf{m}<em>N^{\mathrm T}\mathbf{m}<em>N-\frac{1}{2}\sum</em>{i=1}^M \frac{1}{\lambda_i+\alpha} \tag{3.89}
+$$
+を満たす。$2\alpha$を掛け，式を整理すれば
+$$
+\alpha\mathbf{m}<em>N^{\mathrm T}\mathbf{m}<em>N = M - \alpha \sum</em>{i=1}^M \frac{1}{\lambda_i + \alpha} = \sum</em>{i=1}^M \left( 1- \frac{1}{\lambda_i + \alpha} \right) = \sum</em>{i=1}^M \frac{\lambda_i}{\lambda_i + \alpha} \equiv \gamma
+$$
+が得られる。よって
+$$
+\alpha = \frac{\gamma}{\mathbf{m}_N^{\mathrm T}\mathbf{m}_N} \tag{3.92}
+$$
+となる。</p>
+<h2 id="演習-321"><a class="header" href="#演習-321">演習 3.21</a></h2>
+<div class="panel-primary">
+<p>$(3.92)$はエビデンスの枠組みにおける最適な$\alpha$の値である．この結果は，次の等式を使って導出することもできる．</p>
+<p>$$
+\frac{d}{d \alpha} \ln |\mathbf{A}|=\operatorname{Tr}\left(\mathbf{A}^{-1} \frac{d}{d \alpha} \mathbf{A}\right) \tag{3.117}
+$$</p>
+<p>実対称行列$\mathbf{A}$の固有値展開，および$\mathbf{A}$の行列式とトレースの固有値表現の標準的結果（付録C参照）を用いて，この等式を証明せよ．そして，$(3.117)$を用いて，$(3.86)$から$(3.92)$を導け．</p>
+</div>
+<p>※$(3.117)$を証明する。付録Cも参照。
+まず$\mathbf{A} = \alpha \mathbf{I}_M + \beta\mathbf{\Phi}^{\mathrm T}\mathbf{\Phi}$であり、$\mathbf{A}\mathbf{u}_i = \lambda_i \mathbf{u}_i$となるような固有値$\lambda_i$と固有ベクトル$\mathbf{u}_i$が存在する。この2つはそれぞれ$\alpha$に依存する。</p>
+<p>$\mathbf{U} = (\mathbf{u}_1,\mathbf{u}_2,\ldots,\mathbf{u}_M)$とすると$\mathbf{AU} = \mathbf{U\Lambda}$と書くことができる。ここで$\mathbf{\Lambda}$は$\lambda_i$を対角成分とする$M\times M$対角行列である（付録Cの(C.38)）。</p>
+<p>実対称行列$\mathbf{A}$についての$\mathbf{U}$は正規直交行列となるようにとることができるので(C.29)〜(C.36)、$\mathbf{U}^{\mathrm T}\mathbf{U}=\mathbf{I}$, よって$\mathbf{U}^{\mathrm T} = \mathbf{U}^{-1}$となる。これより$\mathbf{A} = \mathbf{U\Lambda U}^{-1}$が得られ、
+$$
+|\mathbf{A}| = |\mathbf{U}||\mathbf{\Lambda}||\mathbf{U}^{-1}|=|\mathbf{\Lambda}|=\prod_{i=1}^M \lambda_i
+$$
+となることが分かる。</p>
+<p>一方で
+$$
+\operatorname{Tr}(\mathbf{A}) = \operatorname{Tr}(\mathbf{U\Lambda U}^{-1}) = \operatorname{Tr}(\mathbf{U}^{-1}\mathbf{U\Lambda}) = \operatorname{Tr}(\mathbf{\Lambda}) = \sum_{i=1}^M \lambda_i
+$$
+である。</p>
+<p>以上から$(3.117)$の左辺について変形すると
+$$
+\frac{d}{d \alpha} \ln |\mathbf{A}|=\frac{d}{d \alpha} \ln \prod_{i=1}^{M} \lambda_{i}=\frac{d}{d \alpha} \sum_{i=1}^{M} \ln \lambda_{i}=\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d}{d \alpha} \lambda_{i}
+$$
+となる。続いて右辺について</p>
+<p>$$
+\begin{aligned}
+\operatorname{Tr}\left(\mathbf{A}^{-1} \frac{d}{d \alpha} \mathbf{A}\right) &amp;=\operatorname{Tr}\left(\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T} \frac{d}{d \alpha} \sum_{j=1}^{M} \lambda_{j} \mathbf{u}<em>{j} \mathbf{u}</em>{j}^{\mathrm T}\right) \
+&amp;=\operatorname{Tr}\left(\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T}\left{\sum_{j=1}^{M}\left(\frac{d \lambda_{j}}{d \alpha} \mathbf{u}<em>{j} \mathbf{u}</em>{j}^{\mathrm T}+\lambda_{j} \frac{d \mathbf{u}<em>{j}}{d \alpha} \mathbf{u}</em>{j}^{\mathrm T}+\lambda_j \mathbf{u}<em>{j} \frac{d \mathbf{u}</em>{j}^{\mathrm T}}{d \alpha}\right)\right}\right) \
+&amp;=\operatorname{Tr}\left(\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T} \sum_{j=1}^{M} \frac{d \lambda_{j}}{d \alpha} \mathbf{u}<em>{j} \mathbf{u}</em>{j}^{\mathrm T}\right)+\operatorname{Tr}\left(\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T} \left( \sum_{j=1}^{M} \lambda_{j} \frac{d \mathbf{u}<em>{j}}{d \alpha} \mathbf{u}</em>{j}^{\mathrm T}+\lambda_j \mathbf{u}<em>{j} \frac{d \mathbf{u}</em>{j}^{\mathrm T}}{d \alpha}\right) \right)\
+&amp;=\operatorname{Tr}\left(\sum_{i=1}^{M} \sum_{j=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{j}}{d \alpha} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T} \mathbf{u}<em>{j} \mathbf{u}</em>{j}^{\mathrm T}\right)+\operatorname{Tr}\left(\sum_{i=1}^{M} \sum_{j=1}^{M} \frac{2\lambda_{j}}{\lambda_{i}} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T} \mathbf{u}<em>{j} \frac{d \mathbf{u}</em>{j}^{\mathrm T}}{d \alpha} \right) \quad \left(\because \sum_i \alpha_i\sum_j \beta_j = \sum_i \sum_j \alpha_i \beta_j \right)\
+&amp;=\operatorname{Tr}\left(\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{i}}{d \alpha} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T}\right)+\operatorname{Tr}\left(\sum_{i=1}^{M} 2 \mathbf{u}<em>{i} \frac{d \mathbf{u}</em>{i}^{\mathrm T}}{d \alpha}\right) \quad \left( \because \mathbf{u}<em>i^{\mathrm T}\mathbf{u}<em>j = \delta</em>{ij}より, i=jの項だけが残る \right)\
+&amp;=\sum</em>{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{i}}{d \alpha}+\operatorname{Tr}\left(\frac{d}{d \alpha}\left(\frac{d \mathbf{u}<em>{i}}{d \alpha} \mathbf{u}</em>{i}^{\mathrm T}+\mathbf{u}<em>{i} \frac{d \mathbf{u}</em>{i}^{\mathrm T}}{d \alpha}\right)\right) \
+&amp;=\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{i}}{d \alpha}+\operatorname{Tr}\left(\frac{d}{d \alpha} \sum_{i=1}^{M} \mathbf{u}<em>{i} \mathbf{u}</em>{i}^{\mathrm T}\right) \
+&amp;=\sum_{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{i}}{d \alpha}+\operatorname{Tr}\left(\frac{d}{d \alpha} \mathbf{I}<em>{M}\right) \
+&amp;=\sum</em>{i=1}^{M} \frac{1}{\lambda_{i}} \frac{d \lambda_{i}}{d \alpha}
+\end{aligned}
+$$</p>
+<p>以上の式変形から
+$$
+\frac{d}{d \alpha} \ln |\mathbf{A}| = \operatorname{Tr}\left(\mathbf{A}^{-1} \frac{d}{d \alpha} \mathbf{A}\right) \tag{3.117}
+$$
+が示された。</p>
+<blockquote>
+<p>統計のための行列代数第15章 15.8 <strong>行列式と逆行列と随伴行列の一次偏導関数</strong>（P.365）の話によれば、余因子行列を使って$(3.117)$式を証明することもできるらしい。</p>
+</blockquote>
+<p>後半の$(3.92)$の導出は演習問題3.20とほぼ同じなので省略。</p>
+<h2 id="演習-322"><a class="header" href="#演習-322">演習 3.22</a></h2>
+<div class="panel-primary">
+<p>対数周辺尤度関数</p>
+<p>$$
+\ln p(\mathbf{t} \mid \alpha, \beta)=\frac{M}{2} \ln \alpha+\frac{N}{2} \ln \beta-E\left(\mathbf{m}_{N}\right)-\frac{1}{2} \ln |\mathbf{A}|-\frac{N}{2} \ln (2 \pi) \tag{3.86}
+$$</p>
+<p>の$\beta$に関する最大化が再推定方程式</p>
+<p>$$
+\frac{1}{\beta}=\frac{1}{N-\gamma} \sum_{n=1}^{N}\left{t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right}^{2} \tag{3.95}
+$$</p>
+<p>に帰着されることを示すのにすべての段階を，$(3.86)$から始めて確かめよ．</p>
+</div>
+<p>※P.168をなぞるだけ</p>
+<p>$(3.86)$の$\ln p(\mathsf{t}\mid \alpha, \beta)$を$\beta$で偏微分する。準備として、$\displaystyle \frac{\partial}{\partial \beta}\ln |\mathbf{A}|$について、$\beta$と$\lambda_i$は比例するので$\displaystyle \frac{\partial \lambda_i}{\partial \beta} = \frac{\lambda_i}{\beta}$より</p>
+<p>$$
+\frac{d}{d \beta} \ln |\mathbf{A}|=\frac{d}{d \beta} \sum_{i} \ln \left(\lambda_{i}+\alpha\right)=\frac{1}{\beta} \sum_{i} \frac{\lambda_{i}}{\lambda_{i}+\alpha}=\frac{\gamma}{\beta}
+$$
+が得られる。したがって, 周辺尤度の停留点は
+$$
+0=\frac{N}{2 \beta}-\frac{1}{2} \sum_{n=1}^{N}\left{t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right}^{2}-\frac{\gamma}{2 \beta} \tag{3.94}
+$$
+これを整理すれば
+$$
+\frac{1}{\beta}=\frac{1}{N-\gamma} \sum_{n=1}^{N}\left{t_{n}-\mathbf{m}<em>{N}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}</em>{n}\right)\right}^{2} \tag{3.95}
+$$
+が得られる。</p>
+<blockquote>
+<p>$\mathbf{m}_N$は$\alpha, \beta$に依存しているので本当は$E(\mathbf{m}_N)$も$\beta$で偏微分するともっと複雑な式になるが（$\partial \mathbf{m}_N/\partial \beta$の項を考える必要が出てくる）、P.168の$\alpha$のときのように繰り返し法で解くことを想定しているので$\mathbf{m}_N$の$\beta$依存性は考慮しなくてよいことになっている。</p>
+</blockquote>
+<h2 id="演習-323"><a class="header" href="#演習-323">演習 3.23</a></h2>
+<div class="panel-primary">
+<p>演習問題3.12で説明したモデルに対するデータの周辺確率（言い換えるとモデルエビデンス）が</p>
+<p>$$
+p(\mathsf{t})=\frac{1}{(2 \pi)^{N / 2}} \frac{b_{0}^{a_{0}}}{b_{N}^{a_{N}}} \frac{\Gamma\left(a_{N}\right)}{\Gamma\left(a_{0}\right)} \frac{\left|\mathbf{S}<em>{N}\right|^{1 / 2}}{\left|\mathbf{S}</em>{0}\right|^{1 / 2}} \tag{3.118}
+$$</p>
+<p>で与えられることを示せ．まず最初に$\mathbf{w}$に関して周辺化し，そして次に$\beta$に関して周辺化するとよい．</p>
+</div>
+<p>ベイズの定理と周辺確率から
+$$
+p(t)=\iint p(\mathsf{t}, \mathbf{w}, \beta) d\mathbf{w} d \beta=\iint p(\mathsf{t} \mid \mathbf{w}, \beta) p(\mathbf{w}, \beta) d\mathbf{w} d\beta
+$$
+と書くことができる。
+演習問題3.12でやったように、$p(\mathsf{t} \mid \mathbf{w}, \beta)$は尤度関数、$p(\mathbf{w},\beta)$は共役事前分布となる（正規-ガンマ分布）。</p>
+<p>$p(\mathsf{t} \mid \mathbf{w}, \beta)$は演習問題3.16でやったように$\mathcal{N}(\mathsf{t}\mid \mathbf{\Phi}\mathbf{w},\beta^{-1}\mathbf{I}<em>N)$と表すことができる。よってこれらの式を使うと、
+$$
+\begin{aligned}
+p(\mathsf{t}) &amp;=\iint \mathcal{N}\left(\mathsf{t} \mid \mathbf{\Phi} \mathbf{w}, \beta^{-1} \mathbf{I}</em>{N}\right) \mathcal{N}\left(\mathbf{w} \mid \mathbf{m}<em>{0}, \beta^{-1}  \mathbf{S}</em>{0}\right) {\operatorname{Gam}}\left(\beta \mid a_{0}, b_{0}\right) d \mathbf{w} d \beta \
+&amp;=\iint\left(\frac{\beta}{2 \pi}\right)^{\frac{N}{2}} \exp \left{-\frac{\beta}{2}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})^{\mathrm{T}}(\mathsf{t}-\mathbf{\Phi} \mathbf{w})\right}\left(\frac{\beta}{2 \pi}\right)^{\frac{M}{2}} \frac{1}{\left| \mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \exp \left{-\frac{\beta}{2}\left(\mathbf{w}-\mathbf{m}</em>{0}\right)^{\mathrm{T}}  \mathbf{S}<em>{0}^{-1}\left(\mathbf{w}-\mathbf{m}</em>{0}\right)\right}\Gamma\left(a_{0}\right)^{-1} b_{0}^{a_{0}} \beta^{a_{0}-1} \exp \left(-b_{0} \beta\right) d \mathbf{w} d \beta \
+&amp;=\frac{b_{0}^{a_{0}}}{\Gamma\left(a_{0}\right)(2 \pi)^{\frac{M+N}{2}}\left| \mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \iint \beta^{\frac{M}{2}+\frac{N}{2}+a</em>{0}-1} \exp \left[-\frac{\beta}{2}\left{\mathbf{w}^{\mathrm{T}}\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}+ \mathbf{S}<em>{0}^{-1}\right) \mathbf{w}-2 \mathbf{w}^{\mathrm{T}}\left(\mathbf{\Phi}^{\mathrm{T}} \mathsf{t}+ \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0}\right)\right}\right] \exp \left[-\frac{\beta}{2}\left(\mathsf{t}^{\mathrm{T}} \mathsf{t}+\mathbf{m}</em>{0}^{\mathrm{T}}  \mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}\right)\right] \exp \left(-b_{0} \beta\right) d \mathbf{w} d \beta
+\end{aligned}
+$$
+演習問題3.12で求めた$\mathbf{S}<em>{N}^{-1}=\mathbf{\Phi}^{\mathrm T} \mathbf{\Phi}+\mathbf{S}</em>{0}^{-1}, \quad \mathbf{m}<em>{N}=\mathbf{S}</em>{N}\left(\mathbf{\Phi}^{\mathrm T} \mathsf{t}+\mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}\right)$（※教科書$(3.50), (3.51)$のものとは異なるので注意）を使ってこれを書き換えると</p>
+<p>$$
+\begin{aligned}
+p(\mathsf{t})&amp;=\frac{b_{0}^{a_{0}}}{\Gamma\left(a_{0}\right)(2 \pi)^{\frac{M+N}{2}}\left| \mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \iint \beta^{\frac{M}{2}+\frac{N}{2}+a</em>{0}-1} \exp \left[-\frac{\beta}{2}\left{\mathbf{w}^{\mathrm{T}}  \mathbf{S}<em>{N}^{-1} \mathbf{w}-2 \mathbf{w}^{\mathrm{T}}  \mathbf{S}</em>{N}^{-1} \mathbf{m}<em>{N}\right}\right] \exp \left[-\frac{\beta}{2}\left(\mathsf{t}^{\mathrm{T}} \mathsf{t}+\mathbf{m}</em>{0}^{\mathrm{T}}  \mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}\right)\right] \exp \left(-b_{0} \beta\right) d \mathbf{w} d \beta \
+&amp;=\frac{b_{0}^{a_{0}}}{\Gamma\left(a_{0}\right)(2 \pi)^{\frac{M+N}{2}}\left| \mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \iint \beta^{\frac{M}{2}+\frac{N}{2}+a</em>{0}-1} \exp \left[-\frac{\beta}{2}\left(\mathbf{w}-\mathbf{m}<em>{N}\right)^{\mathrm{T}}  \mathbf{S}</em>{N}^{-1}\left(\mathbf{w}-\mathbf{m}<em>{N}\right)\right] \exp \left[-\frac{\beta}{2}\left(\mathsf{t}^{\mathrm{T}} \mathsf{t}+\mathbf{m}</em>{0}^{\mathrm{T}}  \mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0}-\mathbf{m}<em>{N}^{\mathrm{T}}  \mathbf{S}</em>{N}^{-1} \mathbf{m}<em>{N}\right)\right] \exp \left(-b</em>{0} \beta\right) d \mathbf{w} d \beta \
+\end{aligned}
+$$
+そしてさらに演習問題3.12で求めた$\displaystyle a_{N}=a_{0}+\frac{N}{2},\quad b_{N}=b_{0}+\frac{1}{2}\left(\mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0}-\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N}+\mathsf{t}^{\mathrm{T}} \mathsf{t}\right)$を使うと</p>
+<p>$$
+\begin{aligned}
+p(\mathsf{t}) &amp;= \underbrace{\frac{\beta^{\frac{M}{2}}}{(2 \pi)^{\frac{M}{2}}|\mathbf{S}<em>N|^{\frac{1}{2}}} \int \exp \left[-\frac{\beta}{2}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)^{\mathrm{T}} \mathbf{S}<em>{N}^{-1}\left(\mathbf{w}-\mathbf{m}</em>{N}\right)\right] d \mathbf{w}}<em>{\text{Normal distribution, equal to 1}} \cdot \frac{\left|\mathbf{S}</em>{N}\right|^{\frac{1}{2}} b_{0}^{a_{0}}}{\Gamma\left(a_{0}\right)(2 \pi)^{\frac{N}{2}}\left|\mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \underbrace{\int \beta^{a</em>{N}-1} \exp \left(-b_{N} \beta\right) d \beta}<em>{\text{Gamma distribution (not normalized)}} \
+&amp;= \frac{b</em>{0}^{a_{0}}\left|\mathbf{S}<em>{N}\right|^{\frac{1}{2}}}{\Gamma\left(a</em>{0}\right)(2 \pi)^{\frac{N}{2}}\left|\mathbf{S}<em>{0}\right|^{\frac{1}{2}}} \frac{\Gamma\left(a</em>{N}\right)}{b_{N}^{a_{N}}} \
+&amp;=\frac{1}{(2 \pi)^{N / 2}} \frac{b_{0}^{a_{0}}}{b_{N}^{a_{N}}} \frac{\Gamma\left(a_{N}\right)}{\Gamma\left(a_{0}\right)} \frac{\left|\mathbf{S}<em>{N}\right|^{1 / 2}}{\left|\mathbf{S}</em>{0}\right|^{1 / 2}}
+\end{aligned}
+$$</p>
+<p>以上から$(3.118)$式となることが示された。</p>
+<h2 id="演習-324"><a class="header" href="#演習-324">演習 3.24</a></h2>
+<div class="panel-primary">
+<p>次の形のベイズの定理に事前，事後分布と尤度関数を代入して上記の$(3.118)$が成立することを示せ．</p>
+<p>$$
+p(\mathsf{t})=\frac{p(\mathsf{t} | \mathbf{w}, \beta) p(\mathbf{w}, \beta)}{p(\mathbf{w}, \beta | \mathsf{t})} \tag{3.119}
+$$</p>
+</div>
+<p>$(3.119)$の分母は演習問題3.12の$(3.113)$の$p(\mathbf{w}, \beta | \mathbf{t})=\mathcal{N}\left(\mathbf{w} | \mathbf{m}<em>{N}, \beta^{-1} \mathbf{S}</em>{N}\right) \operatorname{Gam}\left(\beta | a_{N}, b_{N}\right)$で、分子の$p(\mathsf{t} | \mathbf{w}, \beta)$は演習問題3.16の$\mathcal{N}(\mathsf{t}\mid \mathbf{\Phi}\mathbf{w},\beta^{-1}\mathbf{I}<em>N)$で、$p(\mathbf{w}, \beta)$は$\mathcal{N}\left(\mathbf{w} \mid \mathbf{m}</em>{0}, \beta^{-1}  \mathbf{S}<em>{0}\right) {\operatorname{Gam}}\left(\beta \mid a</em>{0}, b_{0}\right)$で、それぞれ与えられる。これらを代入して展開する。まず分母について計算すると</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{w}, \beta | \mathbf{t})&amp;=\mathcal{N}\left(\mathbf{w} | \mathbf{m}<em>{N}, \beta^{-1} \mathbf{S}</em>{N}\right) \operatorname{Gam}\left(\beta | a_{N}, b_{N}\right) \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{M / 2}\left|\mathbf{S}<em>{N}\right|^{-1 / 2} \exp \left(-\frac{\beta}{2}\left(\mathbf{w}^{\mathrm{T}} \mathbf{S}</em>{N}^{-1} \mathbf{w}-\mathbf{w}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N}-\mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{S}</em>{N}^{-1} \mathbf{w} +\mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{S}</em>{N}^{-1} \mathbf{m}<em>{N}\right)\right) \Gamma\left(a</em>{N}\right)^{-1} b_{N}^{a_{N}} \beta^{a_{N}-1} \exp \left(-b_{N} \beta\right) \
+&amp;= \left(\frac{\beta}{2 \pi}\right)^{M / 2}\left|\mathbf{S}<em>{N}\right|^{-1 / 2} \exp \left(-\frac{\beta}{2}\left(\mathbf{w}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{w}+\mathbf{w}^{\mathrm{T}} \mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}-\mathbf{w}^{\mathrm{T}} \mathbf{S}<em>{0}^{-1} \mathbf{m}</em>{0} - \mathbf{w}^{\mathrm{T}} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t}-\mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{N}^{-1} \mathbf{w}-\mathbf{t}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}+\mathbf{m}<em>{N}^{\mathrm{T}} \mathbf{S}</em>{N}^{-1} \mathbf{m}<em>{N}\right)\right) \ &amp;\quad \ \Gamma\left(a</em>{N}\right)^{-1} b_{N}^{a_{N}} \beta^{a_{0}+N / 2-1} \exp \left(-\left(b_{0}+\frac{1}{2}\left(\mathbf{m}<em>{0}^{\mathrm{T}} \mathbf{S}</em>{0}^{-1} \mathbf{m}<em>{0}-\mathbf{m}</em>{N}^{\mathrm{T}} \mathbf{S}<em>{N}^{-1} \mathbf{m}</em>{N}+\mathbf{t}^{\mathrm{T}} \mathbf{t}\right)\right) \beta\right) \
+&amp;=\left(\frac{\beta}{2 \pi}\right)^{M / 2}\left|\mathbf{S}<em>{N}\right|^{-1 / 2} \exp \left(-\frac{\beta}{2}\left(\left(\mathbf{w}-\mathbf{m}</em>{0}\right)^{\mathrm{T}} \mathbf{S}<em>{0}^{-1}\left(\mathbf{w}-\mathbf{m}</em>{0}\right)+|\mathbf{t}-\Phi \mathbf{w}|^{2}\right)\right) \Gamma\left(a_{N}\right)^{-1} b_{N}^{a_{N}} \beta^{a_{0}+N / 2-1} \exp \left(-b_{0} \beta\right)
+\end{aligned}
+$$</p>
+<p>一方で分子は
+$$
+\begin{aligned}
+p(\mathsf{t} | \mathbf{w}, \beta) p(\mathbf{w}, \beta) &amp;= \left(\frac{\beta}{2 \pi}\right)^{N / 2} \exp \left(-\frac{\beta}{2}|\mathbf{t}-\Phi \mathbf{w}|^{2}\right) \left(\frac{\beta}{2 \pi}\right)^{M / 2}\left|\mathbf{S}<em>{0}\right|^{-1 / 2} \exp \left(-\frac{\beta}{2}\left(\mathbf{w}-\mathbf{m}</em>{0}\right)^{\mathrm{T}} \mathbf{S}<em>{0}^{-1}\left(\mathbf{w}-\mathbf{m}</em>{0}\right)\right) \
+&amp;\quad\ \Gamma\left(a_{0}\right)^{-1} b_{0}^{a_{0}} \beta^{a_{0}-1} \exp \left(-b_{0} \beta\right)
+\end{aligned}
+$$</p>
+<p>よってこれらを用いて約分すると</p>
+<p>$$
+\begin{aligned}
+p(\mathsf{t}) &amp;= \frac{p(\mathsf{t} | \mathbf{w}, \beta) p(\mathbf{w}, \beta)}{p(\mathbf{w}, \beta | \mathsf{t})} \
+&amp;= \frac{\left(\frac{\beta}{2 \pi}\right)^{N / 2}\left|\mathbf{S}<em>{0}\right|^{-1 / 2}\Gamma\left(a</em>{0}\right)^{-1} b_{0}^{a_{0}} \beta^{a_{0}-1}}{\left|\mathbf{S}<em>{N}\right|^{-1 / 2}\Gamma\left(a</em>{N}\right)^{-1} b_{N}^{a_{N}} \beta^{a_{0}+N / 2-1}} \
+&amp;= \frac{1}{(2\pi)^{N/2}}\frac{\left|\mathbf{S}<em>{0}\right|^{-1 / 2}\Gamma\left(a</em>{0}\right)^{-1} b_{0}^{a_{0}}}{\left|\mathbf{S}<em>{N}\right|^{-1 / 2}\Gamma\left(a</em>{N}\right)^{-1} b_{N}^{a_{N}}} \
+&amp;=\frac{1}{(2 \pi)^{N / 2}} \frac{b_{0}^{a_{0}}}{b_{N}^{a_{N}}} \frac{\Gamma\left(a_{N}\right)}{\Gamma\left(a_{0}\right)} \frac{\left|\mathbf{S}<em>{N}\right|^{1 / 2}}{\left|\mathbf{S}</em>{0}\right|^{1 / 2}}
+\end{aligned}
+$$</p>
+<p>となり、$(3.118)$式が得られることが確認された。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch02.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch04.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch02.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch04.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

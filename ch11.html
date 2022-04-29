@@ -1,0 +1,794 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第11章 - PRML-exercise-solution</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">TOP</a></li><li class="chapter-item expanded "><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章</a></li><li class="chapter-item expanded "><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章</a></li><li class="chapter-item expanded "><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章</a></li><li class="chapter-item expanded "><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章</a></li><li class="chapter-item expanded "><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章</a></li><li class="chapter-item expanded "><a href="ch06.html"><strong aria-hidden="true">6.</strong> 第6章</a></li><li class="chapter-item expanded "><a href="ch07.html"><strong aria-hidden="true">7.</strong> 第7章</a></li><li class="chapter-item expanded "><a href="ch08.html"><strong aria-hidden="true">8.</strong> 第8章</a></li><li class="chapter-item expanded "><a href="ch09.html"><strong aria-hidden="true">9.</strong> 第9章</a></li><li class="chapter-item expanded "><a href="ch10.html"><strong aria-hidden="true">10.</strong> 第10章</a></li><li class="chapter-item expanded "><a href="ch11.html" class="active"><strong aria-hidden="true">11.</strong> 第11章</a></li><li class="chapter-item expanded "><a href="ch12.html"><strong aria-hidden="true">12.</strong> 第12章</a></li><li class="chapter-item expanded "><a href="ch13.html"><strong aria-hidden="true">13.</strong> 第13章</a></li><li class="chapter-item expanded "><a href="ch14.html"><strong aria-hidden="true">14.</strong> 第14章</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">PRML-exercise-solution</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="prml第11章演習問題解答"><a class="header" href="#prml第11章演習問題解答">PRML第11章演習問題解答</a></h1>
+<head>
+<style>
+  div.panel-primary {
+	border: 1px solid #000;
+    margin: 10px 5px;
+    padding: 16px 10px 0px;
+  }
+</style>
+</head>
+<h2 id="演習-111"><a class="header" href="#演習-111">演習 11.1</a></h2>
+<div class="panel-primary">
+<p>$$
+\widehat{f}=\frac{1}{L} \sum_{l=1}^{L} f\left(\mathbf{z}^{(l)}\right) \tag{11.2}
+$$</p>
+<p>で定義される有限のサンプルによる推定量$f$は$E[f]$に等しい平均と</p>
+<p>$$
+\operatorname{var}[\widehat{f}]=\frac{1}{L} \mathbb{E}\left[(f-\mathbb{E}[f])^{2}\right] \tag{11.3}
+$$</p>
+<p>で与えられる分散を持つことを示せ．</p>
+</div>
+<p>※
+「有限和で近似した期待値」の期待値が元の期待値と一致することを示す．定義から</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\widehat{f}\right]&amp;=\mathbb{E}\left[\frac{1}{L} \sum_{l=1}^{L} f\left(\mathbf{z}^{(l)}\right)\right]\
+&amp;=\frac{1}{L}\sum_{l=1}^{L}\mathbb{E}\left[ f\left(\mathbf{z}^{(l)}\right)\right]\
+&amp;=\frac{1}{L}L\mathbb{E}\left[ f\left(\mathbf{z}^{(l)}\right)\right]\
+&amp;=\mathbb{E}[ f]
+\end{aligned}
+$$</p>
+<p>確率変数$\mathbf{z}^{(l)}$は確率分布$p(\mathbf{z})$からサンプリングされるため$\mathbb{E}[f]=\mathbb{E}[f(\mathbf{z}^{(l)})]$となることを用いた．</p>
+<p>次に分散(11.3)を示す．分散と期待値の二乗を紐付ける式から</p>
+<p>$$
+\begin{aligned} \operatorname{var}[\widehat{f}] &amp;=\mathbb{E}\left[(\widehat{f}-\mathbb{E}[\widehat{f}])^{2}\right]=\mathbb{E}\left[\hat{f}^{2}\right]-\mathbb{E}[\widehat{f}]^{2}=\mathbb{E}\left[\hat{f}^{2}\right]-\mathbb{E}[f]^{2} \ &amp;=\mathbb{E}\left[\left(\frac{1}{L} \sum_{l=1}^{L} f\left(\mathbf{z}^{(l)}\right)\right)^{2}\right]-\mathbb{E}[f]^{2} \ &amp;=\frac{1}{L^{2}} \mathbb{E}\left[\left(\sum_{l=1}^{L} f\left(\mathbf{z}^{(l)}\right)\right)^{2}\right]-\mathbb{E}[f]^{2} \ &amp;=\frac{1}{L^{2}} \mathbb{E}\left[\sum_{l=1}^{L} f^{2}\left(\mathbf{z}^{(l)}\right)+\sum_{i, j=1, i \neq j}^{L} f\left(\mathbf{z}^{(i)}\right) f\left(\mathbf{z}^{(j)}\right)\right]-\mathbb{E}[f]^{2} \ &amp;=\frac{1}{L^{2}} \mathbb{E}\left[\sum_{l=1}^{L} f^{2}\left(\mathbf{z}^{(l)}\right)\right]+\frac{L^{2}-L}{L^{2}} \mathbb{E}[f]^{2}-\mathbb{E}[f]^{2} \ &amp;=\frac{1}{L^{2}} \sum_{l=1}^{L} \mathbb{E}\left[f^{2}\left(\mathbf{z}^{(l)}\right)\right]-\frac{1}{L} \mathbb{E}[f]^{2} \ &amp;=\frac{1}{L^{2}} \cdot L \cdot \mathbb{E}\left[f^{2}\right]-\frac{1}{L} \mathbb{E}[f]^{2} \ &amp;=\frac{1}{L} \mathbb{E}\left[f^{2}\right]-\frac{1}{L} \mathbb{E}[f]^{2}=\frac{1}{L} \mathbb{E}\left[(f-\mathbb{E}[f])^{2}\right] \end{aligned}
+$$</p>
+<p>以上により示された．</p>
+<h2 id="演習-112"><a class="header" href="#演習-112">演習 11.2</a></h2>
+<div class="panel-primary">
+<p>$z$は区間$(0,1)$上の一様分布を持つ確率変数で， $z$を$y=h^{-1}(z)$で変換することを考えることで，$h(y)$は
+$$
+z=h(y) \equiv \int_{-\infty}^{y} p(\widehat{y}) \mathrm{d} \widehat{y} \tag{11.6}
+$$
+で与えられる$y$が分布$p(y)$を持つことを示せ．</p>
+</div>
+<p>※
+yの分布を$p^\star(y)$とおくと(11.5)式の$p(y)=p(z)\left|\frac{\mathrm{d} z}{\mathrm{~d} y}\right|$と(11.6)式および$p(z)=1$を用いて</p>
+<p>$$
+p^{\star}(y)=p(z) \cdot\left|\frac{d z}{d y}\right|=1 \cdot h^{\prime}(y)=\frac{d}{d y} \int_{-\infty}^{y} p(\widehat{y}) d \widehat{y}=p(y)
+$$</p>
+<p>となりyが(11.6)式で与えられる分布p(y)を持つことがわかる．</p>
+<h2 id="演習-113"><a class="header" href="#演習-113">演習 11.3</a></h2>
+<div class="panel-primary">
+<p>区間$(0,1)$上で一様分布する確率変数$z$が与えられたとき，$y$が
+$$
+p(y)=\frac{1}{\pi} \frac{1}{1+y^{2}} \tag{11.8}
+$$
+で与えられるコーシ一分布を持つようにする変換$y=f(z)$を求めよ．</p>
+</div>
+<p>※</p>
+<p>(11.8)より</p>
+<p>$$
+p(y) = \frac{1}{\pi}\frac{1}{1+y^2}
+$$</p>
+<p>(11.5)式よりこれを積分することで$z=h(y)$が得られて</p>
+<p>$$
+\begin{aligned}
+z&amp;=h(y)\
+&amp;=\int_{-\infty}^yp(\widehat{y})d\widehat{y}\
+&amp;=\int_{-\infty}^y\frac{1}{\pi}\frac{1}{1+\widehat{y}^2}d\widehat{y}\
+&amp;=\left[\frac{1}{\pi}\tan^{-1}\widehat{y}\right]_{-\infty}^y\
+&amp;=\frac{1}{\pi}\tan^{-1}y-\frac{1}{\pi}(-\frac{\pi}{2})\
+&amp;=\frac{1}{\pi}\tan^{-1}y+\frac{1}{2}
+\end{aligned}
+$$</p>
+<p>これをyについて解くと</p>
+<p>$$
+y = \tan\left{\pi(z-\frac{1}{2})\right}
+$$</p>
+<p>が得られる</p>
+<h2 id="演習-114"><a class="header" href="#演習-114">演習 11.4</a></h2>
+<div class="panel-primary">
+<p>図11.3に示すように，$z_1$と$z_2$が単位円上で一様分布し，</p>
+<p>$$
+y_{1}=z_{1}\left(\frac{-2 \ln r^{2}}{r^{2}}\right)^{1 / 2} \tag{11.10}
+$$</p>
+<p>および
+$$
+y_{2}=z_{2}\left(\frac{-2 \ln r^{2}}{r^{2}}\right)^{1 / 2} \tag{11.11}
+$$
+で与えられる変数変換を行うとする.$(y_1,y_2)$が
+$$
+\begin{aligned} p\left(y_{1}, y_{2}\right) &amp;=p\left(z_{1}, z_{2}\right)\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial\left(y_{1}, y_{2}\right)}\right| \ &amp;=\left[\frac{1}{\sqrt{2 \pi}} \exp \left(-y_{1}^{2} / 2\right)\right]\left[\frac{1}{\sqrt{2 \pi}} \exp \left(-y_{2}^{2} / 2\right)\right] \end{aligned} \tag{11.12}
+$$
+に従って分布することを示せ．</p>
+</div>
+<p>※
+方針：計算を楽にするため極座標で表してヤコビアンの計算を以下のように行う．</p>
+<p>$$
+\begin{aligned}
+\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial\left(y_{1}, y_{2}\right)}\right| &amp;=\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)} \cdot \frac{\partial(r, \theta)}{\partial\left(y_{1}, y_{2}\right)}\right| \
+\end{aligned}
+$$</p>
+<p>$r^2=z_1^2+z_2^2$であるから，</p>
+<p>$$
+z_1=r\cos\theta
+$$</p>
+<p>$$
+z_2=r\sin\theta
+$$</p>
+<p>とすると</p>
+<p>$$
+\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)}=\left[\begin{array}{ll}
+\partial z_{1} / \partial r &amp; \partial z_{1} / \partial \theta \
+\partial z_{2} / \partial r &amp; \partial z_{2} / \partial \theta
+\end{array}\right]=\left[\begin{array}{cc}
+\cos \theta &amp; -r \sin \theta \
+\sin \theta &amp; r \cos \theta
+\end{array}\right]
+$$</p>
+<p>であるから，行列式の値は</p>
+<p>$$
+\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)}\right|=r\left(\cos ^{2} \theta+\sin ^{2} \theta\right)=r
+$$</p>
+<p>となる．つぎに$(y_1,y_2)$について考えると</p>
+<p>$$
+y_{1}=r \cos \theta\left(\frac{-2 \ln r^{2}}{r^{2}}\right)^{1 / 2}=\cos \theta\left(-2 \ln r^{2}\right)^{1 / 2}
+$$</p>
+<p>同様に</p>
+<p>$$
+y_{2}=\sin \theta\left(-2 \ln r^{2}\right)^{1 / 2}
+$$</p>
+<p>が求まるので，</p>
+<p>$$
+\frac{\partial\left(y_{1}, y_{2}\right)}{\partial(r, \theta)}=\left[\begin{array}{ll}
+\partial y_{1} / \partial r &amp; \partial y_{1} / \partial \theta \
+\partial y_{2} / \partial r &amp; \partial y_{2} / \partial \theta
+\end{array}\right]=\left[\begin{array}{cc}
+-2 \cos \theta\left(-2 \ln r^{2}\right)^{-1 / 2} \cdot r^{-1} &amp; -\sin \theta\left(-2 \ln r^{2}\right)^{1 / 2} \
+-2 \sin \theta\left(-2 \ln r^{2}\right)^{-1 / 2} \cdot r^{-1} &amp; \cos \theta\left(-2 \ln r^{2}\right)^{1 / 2}
+\end{array}\right]
+$$</p>
+<p>となる．したがって行列式の値は</p>
+<p>$$
+\left|\frac{\partial\left(y_{1}, y_{2}\right)}{\partial(r, \theta)}\right|=\left(-2 r^{-1}\left(\cos ^{2} \theta+\sin ^{2} \theta\right)\right)=-2 r^{-1}
+$$</p>
+<p>となる．以上により求めたかったヤコビアンを計算することができて，</p>
+<p>$$
+\begin{aligned}
+\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial\left(y_{1}, y_{2}\right)}\right| &amp;=\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)} \cdot \frac{\partial(r, \theta)}{\partial\left(y_{1}, y_{2}\right)}\right| \
+&amp;=\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)}\right| \cdot\left|\frac{\partial(r, \theta)}{\partial\left(y_{1}, y_{2}\right)}\right| \
+&amp;=\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial(r, \theta)}\right| \cdot\left|\frac{\partial\left(y_{1}, y_{2}\right)}{\partial(r, \theta)}\right|^{-1} \
+&amp;=r \cdot\left(-2 r^{-1}\right)^{-1}=-\frac{r^{2}}{2}
+\end{aligned}
+$$</p>
+<p>が得られる．次に$r^2$を$(y_1,y_2)$で表すと(11.10)，(11.11) 及び $r^2=z_1^2+z_2^2$ から</p>
+<p>$$
+y_1^2+y_2^2=-2\ln r^2
+$$</p>
+<p>$$
+r^2=\exp\left{-\frac{y_1^2+y_2^2}{2}\right}
+$$</p>
+<p>いま$p(z_1, z_2)=\frac{1}{\pi}$であるので</p>
+<p>$$
+\begin{aligned}
+p\left(y_{1}, y_{2}\right) &amp;=p\left(z_{1}, z_{2}\right)\left|\frac{\partial\left(z_{1}, z_{2}\right)}{\partial\left(y_{1}, y_{2}\right)}\right|\
+&amp;=\frac{1}{\pi}\mid-\frac{r^{2}}{2}\mid\
+&amp;=\frac{1}{2\pi}\exp\left{-\frac{y_1^2+y_2^2}{2}\right}\
+&amp;=\left[\frac{1}{\sqrt{2 \pi}} \exp \left(-y_{1}^{2} / 2\right)\right]\left[\frac{1}{\sqrt{2 \pi}} \exp \left(-y_{2}^{2} / 2\right)\right]
+\end{aligned}
+$$</p>
+<h2 id="演習-115"><a class="header" href="#演習-115">演習 11.5</a></h2>
+<div class="panel-primary">
+<p>$z$を平均ゼロと単位行列の共分散行列を持つ$D$次元のガウス分布に従う確率変数とし正定値対称行列$\mathbf{\Sigma}$がコレスキー分解$\mathbf{\Sigma} = \mathbf{LL}^{\mathrm T}$を持つとする。ここで，$\mathbf{L}$は下三角行列(すなわち，対角成分より上側がゼロになる行列)である。変数$\mathbf{y} = \boldsymbol{\mu}+\mathbf{Lz}$が平均$\boldsymbol{\mu}$，共分散行列$\mathbf{\Sigma}$であるガウス分布に従うことを示せ．これは，平均$0$分散$1$の$1$変数ガウス分布からのサンプルを用いて， 一般の多変量ガウス分布からのサンプルを生成する技術を提供する．</p>
+</div>
+<p>ガウス分布に従う確率変数を線形変換して得られる確率変数はガウス分布に従うので
+$\mathbf{y}$の平均と分散を計算すれば良い.$\mathbf{z}\backsim\mathcal{N}(\mathbf{0},\mathbf{I})$ であるから</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}\left[\mathbf{y}\right]&amp;=\mathbb{E}\left[\boldsymbol{\mu}+\mathbf{Lz}\right]\
+&amp;=\boldsymbol{\mu}+\mathbf{L}\mathbb{E}\left[\mathbf{z}\right]\
+&amp;=\boldsymbol{\mu}
+\end{aligned}
+$$</p>
+<p>次に分散共分散行列について$\operatorname{cov}[\mathbf{z}]=\mathbb{E}\left[\mathbf{z z}^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{z}] \mathbb{E}\left[\mathbf{z}^{\mathrm{T}}\right]=\mathbb{E}\left[\mathbf{z z}^{\mathrm{T}}\right]=\mathbf{I}$, を用いて</p>
+<p>$$
+\begin{aligned}
+\operatorname{cov}[\mathbf{y}] &amp;=\mathbb{E}\left[\mathbf{y} \mathbf{y}^{\mathrm{T}}\right]-\mathbb{E}[\mathbf{y}] \mathbb{E}\left[\mathbf{y}^{\mathrm{T}}\right] \
+&amp;=\mathbb{E}\left[(\boldsymbol{\mu}+\mathbf{L} \mathbf{z}) \cdot(\boldsymbol{\mu}+\mathbf{L z})^{\mathrm{T}}\right]-\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}} \
+&amp;=\mathbb{E}\left[\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}}+2 \boldsymbol{\mu} \cdot(\mathbf{L z})^{\mathrm{T}}+(\mathbf{L z}) \cdot(\mathbf{L z})^{\mathrm{T}}\right]-\boldsymbol{\mu} \boldsymbol{\mu}^{\mathrm{T}} \
+&amp;=2 \boldsymbol{\mu} \cdot \mathbb{E}\left[\mathbf{z}^{\mathrm{T}}\right] \cdot \mathbf{L}^{\mathrm{T}}+\mathbb{E}\left[\mathbf{L z z}^{\mathrm{T}} \mathbf{L}^{\mathrm{T}}\right] \
+&amp;=\mathbf{L} \cdot \mathbb{E}\left[\mathbf{z z}^{\mathrm{T}}\right] \cdot \mathbf{L}^{\mathrm{T}}=\mathbf{L} \cdot \mathbf{I} \cdot \mathbf{L}^{\mathrm{T}} \
+&amp;=\mathbf{\Sigma}
+\end{aligned}
+$$</p>
+<p>以上から.$\mathbf{y}\backsim\mathcal{N}(\boldsymbol{\mu},\mathbf{\Sigma})$がわかる</p>
+<h2 id="演習-116"><a class="header" href="#演習-116">演習 11.6</a></h2>
+<div class="panel-primary">
+<p>この練習問題では，棄却サンプリングが求めたい分布$p(\mathbf{z})$から実際にサンプルを抽出することをより注意深く示す。提案分布を$q(\mathbf{z})$とし，サンプル値$\mathbf{z}$が受理される確率が$\widetilde{p}(\mathbf{z}) / k q(\mathbf{z})$であることを示せ．ここで，$\tilde{p}$は$p(\mathbf{z})$に比例する任意の正規化されていない分布であり，定数$k$は$k q(\mathbf{z}) \geqslant \widetilde{p}(\mathbf{z})$をすべての$\mathbf{z}$の値に対して保証する最小値に設定される．値$\mathbf{z}$を抽出する確率はその値を$q(\mathbf{z})$から抽出する確率とその値が抽出されたときにそれが受理される確率の積であることに注意せよ．この事実と確率の和と積の規則を共に用いて，$\mathbf{z}$上の分布を正規化された形に書き下し，それが$p(\mathbf{z})$に等しいことを示せ．</p>
+</div>
+<p>※まずP.242の流れをしっかりと確認する。</p>
+<p>$p(\mathbf{z})$から直接サンプリングすることは困難であるが、任意の与えられた$\mathbf{z}$の値について$p(\mathbf{z})$を求めることは、正規化定数を除いて容易だとする。すなわち、</p>
+<p>$$
+p(\mathbf{z}) = \frac{1}{Z_{p}}\tilde{p}(\mathbf{z})
+$$</p>
+<p>において$\tilde{p}(\mathbf{z})$はすぐに求まるが、$Z_{p}$はわからないとする。</p>
+<p>ここから教科書の流れと少し変わる。値$\mathbf{z}$が与えられている時に、それが受理される確率は$p(\textrm{acceptance}\mid \mathbf{z})$と書けて、かつ図11.4のように、区間$[0,kq(\mathbf{z})]$の一様分布から得られたサンプル$u$が$0\le u \le \tilde{p}(\mathbf{z})$となったときに受理(acceptance)され、サンプル値$\mathbf{z}$として保持されるので</p>
+<p>$$
+p(\textrm{acceptance}\mid \mathbf{z}) = \int_{0}^{\tilde{p}(\mathbf{z})}\frac{1}{kq(\mathbf{z})}du = \frac{\tilde{p}(\mathbf{z})}{kq(\mathbf{z})}
+$$</p>
+<p>これがサンプル値$\mathbf{z}$の受理確率である。</p>
+<p>次に受理されたサンプル値$\mathbf{z}$の確率密度分布は数式上で$p(\mathbf{z} \mid \textrm{acceptance})$とかけ、これが$p(\mathbf{z})$となることを示せば良い。</p>
+<p>ベイズの定理から</p>
+<p>$$
+p(\mathbf{z} \mid \textrm{acceptance}) = \frac{p(\mathbf{z},\textrm{acceptance})}{p(\textrm{acceptance})}
+$$</p>
+<p>となり、分子$p(\mathbf{z},\textrm{acceptance})$は任意の$\mathbf{z}$が受理されるときの同時確率を表すので、これは$q(\mathbf{z})$と$p(\textrm{acceptance}\mid \mathbf{z})$の積になり、</p>
+<p>$$
+\begin{aligned}
+p(\mathbf{z},\textrm{acceptance}) &amp;= q(\mathbf{z}) p(\textrm{acceptance} \mid \mathbf{z}) \
+&amp;= q(\mathbf{z}) \frac{\widetilde{p}(\mathbf{z})}{k q(\mathbf{z})} \
+&amp;=\frac{\tilde{p}(\mathbf{z})}{k} \
+&amp;=\frac{Z_{p}}{k}p(\mathbf{z}) \quad (\because (11.13))
+\end{aligned}
+$$</p>
+<p>分母$p(\textrm{acceptance})$はP.243の$(11.14)$の導出と同様で</p>
+<p>$$
+\begin{aligned}
+p(\textrm{acceptance}) &amp;=\int q(\mathbf{z}) \frac{\widetilde{p}(\mathbf{z})}{k q(\mathbf{z})} \mathrm{d} \mathbf{z} \quad (\because (11.14))\
+&amp;=\frac{1}{k} \int \widetilde{p}(\mathbf{z}) \mathrm{d} \mathbf{z}\
+&amp;=\frac{Z_{p}}{k}\int p(\mathbf{z})  \mathrm{d} \mathbf{z}\quad (\because (11.13)) \
+&amp;= \frac{Z_{p}}{k} \quad \left(\because \int p(\mathbf{z}) \mathrm{d} \mathbf{z} = 1 \right)
+\end{aligned}
+$$</p>
+<p>以上から、</p>
+<p>$$
+p(\mathbf{z} \mid \textrm{acceptance}) = \frac{p(\mathbf{z},\textrm{acceptance})}{p(\textrm{acceptance})} = p(\mathbf{z})
+$$</p>
+<p>となり、題意が示された。</p>
+<h2 id="演習-117"><a class="header" href="#演習-117">演習 11.7</a></h2>
+<div class="panel-primary">
+<p>$y$が区間$[0,1]$上の一様分布に従うとせよ．変数$z = b\tan y + c$が
+$$
+q(z)=\frac{k}{1+(z-c)^{2} / b^{2}} \tag{11.16}
+$$
+で与えられるコーシ一分布に従うことを示せ．</p>
+</div>
+<p>※ $(11.5)$式の変換を用いる。教科書11.1.1節における説明に使われている変数の組$y,z$の役割がこの問題では逆になっていることに注意する。</p>
+<p>$y$を$[0,1]$の一様分布とし、$z=f(y)=b\tan y +c$の関数$z$の値が求めたい特定の分布$q(z)$に従うようになっていることを示す。ここでは$p(y)=1$となっていることに注意する。</p>
+<p>$\displaystyle y = \tan^{-1}\left( \frac{z-c}{b} \right)$と書けるので、</p>
+<p>$$
+q(z) = p(y)\left| \frac{dy}{dz} \right| \tag{11.5}
+$$</p>
+<p>に当てはめるために$dy/dz$の値を求めると、$\displaystyle \frac{d}{dx} \tan^{-1} x = \frac{1}{1+x^2}$であることを用いて</p>
+<p>$$
+\begin{aligned} \frac{d y}{d z} &amp;=\frac{1}{1+\left(\frac{z-c}{b}\right)^{2}} \frac{d}{d z}\left(\frac{z-c}{b}\right) \ &amp;=\frac{1}{b} \frac{1}{1+\left(\frac{z-c}{b}\right)^{2}} \end{aligned}
+$$</p>
+<p>$(11.5)$式に当てはめて</p>
+<p>$$
+\begin{aligned}
+q(z) &amp;=p(y)\left|\frac{d y}{d z}\right| \
+&amp;=1 \times \frac{1}{b} \frac{1}{1+\left(\frac{z-c}{b}\right)^{2}}
+\end{aligned}
+$$</p>
+<p>$k = 1/b$とみなせば、これは$(11.16)$式と同型になる。</p>
+<p>※しかし、そもそも教科書の$(11.16)$式は、提案分布$q(z)$ではなく比較関数$kq(z)$と呼ぶのが適切なのではないかという意見。。</p>
+<h2 id="演習-118"><a class="header" href="#演習-118">演習 11.8</a></h2>
+<div class="panel-primary">
+<p>連続性と正規化の条件を用いて適応的棄却サンプリングの包絡分布</p>
+<p>$$
+q(z)=k_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} \quad \widehat{z}<em>{i-1, i}&lt;z \leqslant \widehat{z}</em>{i, i+1} \tag{11.17}
+$$</p>
+<p>の係数$k_i$の式を決定せよ．</p>
+</div>
+<p>$f(z)=l_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right}, \hat{z}<em>{i-1, i}&lt;z \leqq \hat{z}</em>{i, i+1}$ とする。</p>
+<p>対数を取ると$\ln f(z)=\ln l_{i}+\ln \lambda_{i}-\lambda_{i}\left(z-z_{i}\right)$</p>
+<p>これが、$z_{i}$において、$\ln p(z_{i})$と接する。傾きが同じになるので</p>
+<p>$$\lambda_{i}=(\ln p(z_{i}))^{\prime}=\frac{p\left(z_{i}\right)^{\prime}}{p\left(z_{i}\right)}$$</p>
+<p>また値が同じになるので</p>
+<p>$$
+\ln p\left(z_{i}\right)=\ln \ln l_{i}+\ln \lambda_{i}=\ln \ln l_{i}+\ln \frac{p^{\prime}\left(z_{i}\right)}{p\left(z_{i}\right)}
+$$</p>
+<p>これより</p>
+<p>$$
+p\left(z_{i}\right)=l_{i} \frac{p^{\prime}\left(z_{i}\right)}{p\left(z_{i}\right)}
+$$</p>
+<p>$$
+\therefore l_{i}=\frac{p\left(z_{i}\right)^{2}}{p\left(z_{i}\right)^{\prime}}
+$$</p>
+<p>よって</p>
+<p>$$
+f(z)=l_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right}, \lambda_{i}=\frac{p^{\prime}\left(z_{i}\right)}{p\left(z_{i}\right)}, l_{i}=\frac{p\left(z_{i}\right)^{2}}{p\left(z_{i}\right)^{\prime}}
+$$</p>
+<p>$f(z)$の正規化係数は</p>
+<p>$$
+Z_{q}=\int f(z) d z=\sum_{i=1}^{N} \int_{\hat{z}<em>{i-1, i}}^{\hat{z}</em>{i, i+1}} f(z) d z
+$$</p>
+<p>$N$はグリッドの個数、$\hat{z}<em>{i-1, i}$は接線の交点の$z$座標。$\hat{z}</em>{0,1}=-\infty, \hat{z}<em>{N, N</em>{2} 1}=\infty$</p>
+<p>ここで</p>
+<p>$$
+\begin{aligned}
+\int_{\hat{z}<em>{i-1}, i}^{\hat{z}, i, i+1} f(z) d z &amp;=\int</em>{\hat{z}<em>{i-1, i}}^{\hat{z}</em>{i, i+1}} l_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} d z \
+&amp;=l_{i} \lambda_{i} \int_{\hat{z}<em>{i-1, i}}^{\hat{z}</em>{i, i+1}} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} d z \
+&amp;=l_{i} \lambda_{i}\left[-\frac{1}{\lambda_{i}} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right}\right]<em>{\hat{z}</em>{i-1, i}}^{\hat{z}<em>{i, i+1}} \
+&amp;=l</em>{i}\left[\exp \left{-\lambda_{i}\left(\hat{z}<em>{i-1, i}-z</em>{i}\right)\right}-\exp \left{-\lambda_{i}\left(\hat{z}_{i, i+1}-z\right)\right}\right]
+\end{aligned}
+$$</p>
+<p>よって正規化係数は以下になる。
+$$
+Z_{q}=\sum_{i=1}^{N} l_{i}\left[\exp \left{-\lambda_{i}\left(\hat{z}<em>{i-1, i}-z</em>{i}\right)\right}-\exp \left{-\lambda_{i}\left(\hat{z}<em>{i, i+1}-z</em>{i}\right)\right}\right.
+$$</p>
+<p>ここで$(11.17)$は以下でも表現できる。
+$$
+q(z)=\frac{1}{z_{z}} f(z)
+$$</p>
+<p>$$
+q(z)=\frac{1}{Z_{q}} l_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right}
+$$</p>
+<h2 id="演習-119"><a class="header" href="#演習-119">演習 11.9</a></h2>
+<div class="panel-primary">
+<p>11.1.1節で述べた，単一の指数分布からサンプリングする技術を用いて
+$$
+q(z)=k_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} \quad \widehat{z}<em>{i-1, i} \lt z \leqslant \widehat{z}</em>{i, i+1} \tag{11.17}
+$$
+で定義される区分的な指数分布からサンプリングするアルゴリズムを考案せよ．</p>
+</div>
+<p>区分的な指数分布からのサンプリング確率を知る必要があるが、(11.17)の$q(z)$は正規化されていない。従って、まず初めに正規化定数$Z_{q}$を求める。</p>
+<p>$$
+\begin{aligned}
+Z_{q} &amp;=\int_{\tilde{z}<em>{0,1}}^{\tilde{z}</em>{N, N+1}} q(z) d z=\sum_{i=1}^{N} \int_{\tilde{z}<em>{i-1, i}}^{\tilde{z}</em>{i, i+1}} q_{i}\left(z_{i}\right) d z_{i} \
+&amp;=\sum_{i=1}^{N} \int_{\tilde{z}<em>{i-1, i}}^{\tilde{z}</em>{i, i+1}} k_{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} d z_{i} \
+&amp;=\sum_{i=1}^{N}-\left.k_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right}\right|<em>{\tilde{z}</em>{i-1, i}} ^{\tilde{z}<em>{i, i+1}} \
+&amp;=\sum</em>{i=1}^{N}-k_{i}\left[\exp \left{-\lambda_{i}\left(\widetilde{z}<em>{i, i+1}-z</em>{i}\right)\right}-\exp \left{-\lambda_{i}\left(\widetilde{z}<em>{i-1, i}-z</em>{i}\right)\right}\right]=\sum_{i=1}^{N} \widehat{k}<em>{i}
+\end{aligned}
+$$
+$\widehat{k}</em>{i}$は以下のように定義する。</p>
+<p>$$
+\widehat{k}<em>{i}=-k</em>{i}\left[\exp \left{-\lambda_{i}\left(\widetilde{z}<em>{i, i+1}-z</em>{i}\right)\right}-\exp \left{-\lambda_{i}\left(\widetilde{z}<em>{i-1, i}-z</em>{i}\right)\right}\right]
+\tag{A}
+$$</p>
+<p>この導出から、$i$番目の区分からサンプリングする確率は、$Z_{q}=\sum_{i=1}^{N} \widehat{k}<em>{i}$とすると、 $\widehat{k}</em>{i} / Z_{q}$で与えられる。 そこで今度は区間$[0,1]$で一様な補助的な確率変数$\eta$を定義する。
+$$
+i=j \quad \text { if } \eta \in\left[\frac{1}{Z_{q}} \sum_{m=0}^{j-1} \widehat{k}<em>{m}, \frac{1}{Z</em>{q}} \sum_{m=0}^{j} \widehat{k}<em>{m}\right], \quad j=1,2, \ldots, N
+\tag{B}
+$$
+ここで便宜上、$\widehat{k}</em>{0}=0$と定義し、ここまでで選択された$i$番目の区分を決定した。
+次に、11.1.1節の手法を用いて、i番目の指数分布からサンプリングする。(11.6)より、次のように書くことができる。</p>
+<p>$$
+\begin{aligned}
+h_{i}(z) &amp;=\int_{\tilde{z}<em>{i-1, i}}^{z} \frac{q</em>{i}\left(z_{i}\right)}{\widehat{k}<em>{i}} d z</em>{i} \
+&amp;=\frac{1}{\widehat{k}<em>{i}} \int</em>{\tilde{z}<em>{i-1, i}}^{z} k</em>{i} \lambda_{i} \exp \left{-\lambda_{i}\left(z-z_{i}\right)\right} d z_{i} \
+&amp;=\left.\frac{-k_{i}}{\widehat{k}<em>{i}} \exp \left{-\lambda</em>{i}\left(z-z_{i}\right)\right}\right|<em>{\tilde{z}</em>{i-1, i}} ^{z} \
+&amp;=\frac{-k_{i}}{\widehat{k}<em>{i}}\left[\exp \left{-\lambda</em>{i}\left(z-z_{i}\right)\right}-\exp \left{-\lambda_{i}\left(\widetilde{z}<em>{i-1, i}-z</em>{i}\right)\right}\right] \
+&amp;=\frac{k_{i}}{\widehat{k}<em>{i}}\exp \left(\lambda</em>{i} z_{i}\right)\left[\exp \left{-\lambda_{i} \widetilde{z}<em>{i-1, i}\right}-\exp \left{-\lambda</em>{i} z\right}\right]
+\end{aligned}
+$$
+なお、$q_{i}(z)$は正しく正規化されておらず、$q_{i}(z)/\widehat{k}<em>{i}$が正しい正規化された形になる。
+いくつか並べ替えを行うと次のようになる。
+$$
+\begin{aligned}
+h</em>{i}^{-1}(\xi) &amp;=\frac{1}{-\lambda_{i}} \ln \left[\exp \left{-\lambda_{i} \tilde{z}<em>{i-1, i}\right}-\frac{\xi}{\frac{k</em>{i}}{\hat{k}<em>{i}} \exp \left(\lambda</em>{i} z_{i}\right)}\right] \
+&amp;=\frac{1}{-\lambda_{i}} \frac{\ln \left[\exp \left{-\lambda_{i} \tilde{z}<em>{i-1, i}\right]\right.}{\ln \frac{\widehat{\hat{k}</em>{i} \xi}}{k_{i} \cdot \exp \left(\lambda_{i} z_{i}\right)}} \
+&amp;=\frac{\tilde{z}<em>{i-1, i}}{\ln \xi+\ln \frac{\widehat{k}</em>{i}}{k_{i}}-\lambda_{i} z_{i}}
+\end{aligned}
+$$</p>
+<p>結論として、まず、区間$[0,1]$に一様なランダム変数$\eta$を生成し、(B)に従って値$i$を求め、次に、同じく区間$[0,1]$に一様なランダム変数$x_i$を生成し、$z=h_{i}^{-1}(\xi)$を用いて$z$に変換している。</p>
+<p>ここで，$z_{1}, z_{2}, \ldots, z_{N}$の格子点が与えられれば，$\lambda_{i}, \widetilde{z}<em>{i, i+1}$と$k</em>{i}$が得られることに注意。詳細は前問を参照。これらの変数が得られた後、(A)を用いて$\widehat{k}<em>{i}$も決定することができるため、$h</em>{i}^{-1}(\xi)$を決定することができる。</p>
+<h2 id="演習-1110"><a class="header" href="#演習-1110">演習 11.10</a></h2>
+<div class="panel-primary">
+<p>$$
+p\left(z^{(\tau+1)}=z^{(\tau)}\right)=0.5 \tag{11.34}
+$$
+$$
+p\left(z^{(\tau+1)}=z^{(\tau)}+1\right)=0.25 \tag{11.35}
+$$
+および
+$$
+p\left(z^{(\tau+1)}=z^{(\tau)}-1\right)=0.25 \tag{11.36}
+$$
+で定義される整数上の単純なランダムウォークが$\mathbb{E}\left[\left(z^{(\tau)}\right)^{2}\right]=\mathbb{E}\left[\left(z^{(\tau-1)}\right)^{2}\right]+1 / 2$という性質を持ち，よって帰納法により$\mathbb{E}[(z^{(r)})^2] = \tau / 2$であることを示せ．</p>
+</div>
+<p>仮定より、
+\begin{align}
+\mathbb{E}[(z^{(r)})^2] &amp;= \sum (z^{(\tau)})^2 p(z^{(\tau)}) \
+&amp;=  0.5 \cdot \mathbb{E}[(z^{(\tau-1)})^2]+ 0.25 \cdot \mathbb{E}[(z^{(\tau-1)}-1)^2]+ 0.25 \cdot \mathbb{E}[(z^{(\tau-1)}+1)^2] \
+&amp;= \mathbb{E}\left[\left(z^{(\tau-1)}\right)^{2}\right]+1 / 2
+\end{align}
+である。今、$\mathbb{E}[(z^{(0)})^2] = 0$で、$\mathbb{E}\left[\left(z^{(\tau)}\right)^{2}\right] - \mathbb{E}\left[\left(z^{(\tau-1)}\right)^{2}\right] = 1/2$の等差数列と見做せるので、$\mathbb{E}[(z^{(r)})^2] = \tau / 2$である</p>
+<h2 id="演習-1111"><a class="header" href="#演習-1111">演習 11.11</a></h2>
+<div class="panel-primary">
+<p>11.3節で述べたギブスサンプリングアルゴリズムは，
+$$
+p^{\star}(\mathbf{z}) T\left(\mathbf{z}, \mathbf{z}^{\prime}\right)=p^{\star}\left(\mathbf{z}^{\prime}\right) T\left(\mathbf{z}^{\prime}, \mathbf{z}\right) \tag{11.40}
+$$
+で定義される詳細釣り合い条件を満たすことを示せ．</p>
+</div>
+<p>ギブスサンプリングではある時刻$\tau$において$\mathbf{z}^{(\tau)}$の全変数のうち$z_k$を除く変数すべてを固定して$z_k^{(\tau + 1)}$をサンプリングする。したがってこの一操作では$k$を除く残りすべての${z_{i}}<em>{i\ne k}$は不変である。つまり${{z</em>{i}}^{\prime}}<em>{i\ne k} = {z</em>{i}}_{i\ne k}$である。</p>
+<p>P.254の説明から遷移確率$T\left(\mathbf{z}, \mathbf{z}^{\prime}\right) \equiv p\left(\mathbf{z}^{\prime} \mid \mathbf{z}\right)$であるが、ここでは一操作あたり$T\left(\mathbf{z}, \mathbf{z}^{\prime}\right) \equiv p\left({z_{k}}^{\prime} \mid {z_{i}}_{i\ne k}\right)$と書ける(下の式では$p^{\star}$としているが同じである)。</p>
+<p>以上を用いると</p>
+<p>$$
+\begin{aligned}
+p^{\star}(\mathbf{z}) T\left(\mathbf{z}, \mathbf{z}^{\prime}\right) &amp;=p^{\star}\left(z_{k},\left{z_{i}\right}<em>{i \neq k}\right) p^{\star}\left(z</em>{k}^{\prime} \mid\left{z_{i}\right}<em>{i \neq k}\right) \
+&amp;=p^{\star}\left(z</em>{k} \mid\left{z_{i}\right}<em>{i \neq k}\right) p^{\star}\left(\left{z</em>{i}\right}<em>{i \neq k}\right) p^{\star}\left(z</em>{k}^{\prime} \mid\left{z_{i}\right}<em>{i \neq k}\right) \
+&amp;=p^{\star}\left(z</em>{k} \mid\left{z_{i}^{\prime}\right}<em>{i \neq k}\right) p^{\star}\left(\left{z</em>{i}^{\prime}\right}<em>{i \neq k}\right) p^{\star}\left(z</em>{k}^{\prime} \mid\left{z_{i}^{\prime}\right}<em>{i \neq k}\right)\quad \left(\because {{z</em>{i}}^{\prime}}<em>{i\ne k} = {z</em>{i}}<em>{i\ne k} \right)\
+&amp;=p^{\star}\left(z</em>{k} \mid\left{z_{i}^{\prime}\right}<em>{i \neq k}\right) p^{\star}\left(z</em>{k}^{\prime},\left{z_{i}^{\prime}\right}_{i \neq k}\right) \
+&amp;=T\left(\mathbf{z}^{\prime}, \mathbf{z}\right)p^{\star}\left(\mathbf{z}^{\prime}\right) \
+&amp;=p^{\star}\left(\mathbf{z}^{\prime}\right)T\left(\mathbf{z}^{\prime}, \mathbf{z}\right)
+\end{aligned}
+$$</p>
+<p>以上で$(11.40)$式が示された。</p>
+<h2 id="演習-1112"><a class="header" href="#演習-1112">演習 11.12</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/TC56byx.png" alt="" /></p>
+<p>図11.15に示す分布を考えよ．この分布に対する標準的なギブスサンプリングの手続きがエルゴード的かどうか，よって，この分布から正しくサンプリングするかどうか，について論ぜよ．</p>
+</div>
+<p>エルゴード的でない。なぜなら、$z_1$軸と$z_2$軸、どちらに射影してみても、影がつけられた二つの領域は重ならず、それゆえ片方の領域から最初の点としてサンプリングを行うと、ギブスサンプリングにより他方の領域に到達することはなく、初期サンプリングがどちらの領域に所属するかによって分布の収束先が変わってしまうからである。</p>
+<h2 id="演習-1113"><a class="header" href="#演習-1113">演習 11.13</a></h2>
+<div class="panel-primary">
+<p><img src="https://i.imgur.com/4NkevK3.png" alt="" /></p>
+<p>図11.16に示す単純な3ノードのグラフで, 観測ノード$x$が平均$\mu$，精度$\tau$のガウス分布$\mathcal{N}(x\mid \mu，\tau^{-1})$で与えられるものを考えよ．平均と精度の周辺分布が$\mathcal{N}(\mu \mid \mu_{0}，s_{0})$および$\operatorname{Gam}(\tau \mid a，b)$で与えられるとせよ．ここで，$\operatorname{Gam}(\cdot\mid\cdot,\cdot)$はガンマ分布を表す事後分布$p(\mu，\tau \mid x)$にギブスサンプリングを適用するために必要となる条件付き分布$p(\mu\mid x，\tau)$ と$p(\tau \mid x，\mu)$の式を書き下せ．</p>
+</div>
+<p>※</p>
+<h2 id="演習-1114"><a class="header" href="#演習-1114">演習 11.14</a></h2>
+<div class="panel-primary">
+<p>$z_i$が平均$\mu_i$，分散$\sigma_{i}^{2}$を持ち，$\nu$が平均$0$，分散$1$を持つとき，過剰緩和の更新式
+$$
+z_{i}^{\prime}=\mu_{i}+\alpha\left(z_{i}-\mu_{i}\right)+\sigma_{i}\left(1-\alpha^{2}\right)^{1 / 2} \nu \tag{11.50}
+$$
+が平均$\mu_i$，分散$\sigma_i^{2}$である値$z_{i}^{\prime}$を与えることを示せ．</p>
+</div>
+<p>※期待値と分散の定義にしたがって計算していけば良い。</p>
+<p>$z_{i}^{\prime}$の期待値は</p>
+<p>$$
+\begin{aligned} \mathbb{E}\left[z_{i}^{\prime}\right] &amp;=\mathbb{E}\left[\mu_{i}+\alpha\left(z_{i}-\mu_{i}\right)+\sigma_{i}\left(1-\alpha^{2}\right)^{1 / 2}{ }<em>{\nu}\right] \ &amp;=\mu</em>{i}+\alpha\left(\mathbb{E}\left[z_{i}\right]-\mu_{i}\right)+\sigma_{i}\left(1-\alpha^{2}\right)^{1 / 2} \mathbb{E}[\nu] \
+&amp;=\mu_{i}+0+0 \
+&amp;=\mu_{i} \end{aligned}
+$$</p>
+<p>$z_{i}^{\prime}$の分散は</p>
+<p>$$
+\begin{aligned} \operatorname{var}\left[z_{i}^{\prime}\right] &amp;=\mathbb{E}\left[\left(z_{i}^{\prime}\right)^{2}\right]-\mathbb{E}\left[z_{i}^{\prime}\right]^{2} \ &amp;=\mathbb{E}\left[\left(\mu_{i}+\alpha\left(z_{i}-\mu_{i}\right)+\sigma_{i}\left(1-\alpha^{2}\right)^{1 / 2} \nu\right)^{2}\right]-\mu_{i}^{2} \
+&amp;=\alpha^{2} \mathbb{E}\left[\left(z_{i}-\mu_{i}\right)^{2}\right]+\sigma_{i}^{2}\left(1-\alpha^{2}\right) \mathbb{E}\left[\nu^{2}\right] \
+&amp;=\alpha^{2} \sigma_{i}^{2}+\sigma_{i}^{2}\left(1-\alpha^{2}\right)\
+&amp;=\sigma_{i}^{2} \end{aligned}
+$$</p>
+<h2 id="演習-1115"><a class="header" href="#演習-1115">演習 11.15</a></h2>
+<div class="panel-primary">
+<p>$$
+K(\mathbf{r})=\frac{1}{2}|\mathbf{r}|^{2}=\frac{1}{2} \sum_{i} r_{i}^{2} \tag{11.56}
+$$
+$$
+H(\mathbf{z}, \mathbf{r})=E(\mathbf{z})+K(\mathbf{r}) \tag{11.57}
+$$
+を用いて，ハミルトン方程式
+$$
+\frac{\mathrm{d} z_{i}}{\mathrm{~d} \tau}=\frac{\partial H}{\partial r_{i}} \tag{11.58}
+$$
+が
+$$
+r_{i}=\frac{\mathrm{d} z_{i}}{\mathrm{~d} \tau} \tag{11.53}
+$$
+と等価であることを示せ.同様に，$(11.57)$を用いて，
+$$
+\frac{\mathrm{d} r_{i}}{\mathrm{~d} \tau}=-\frac{\partial H}{\partial z_{i}} \tag{11.59}
+$$
+が
+$$
+\frac{\mathrm{d} r_{i}}{\mathrm{~d} \tau}=-\frac{\partial E(\mathbf{z})}{\partial z_{i}} \tag{11.55}
+$$
+に等価であることを示せ．</p>
+</div>
+<p>(11.57)を$r_{i}$で偏微分すると、
+$$
+\frac{\partial H}{\partial r_{i}}=\frac{\partial K}{\partial r_{i}}=r_{i}
+(\because 11.56)
+$$
+(11.53)と比較して(11.58)を得る。</p>
+<p>同様に(11.57)を$z_{i}$で偏微分すると、
+$$
+\frac{\partial H}{\partial z_{i}}=\frac{\partial E}{\partial z_{i}}
+(\because 11.56)
+$$</p>
+<p>を得る。
+(11.55)と比較して(11.59)を得る。</p>
+<h2 id="演習-1116"><a class="header" href="#演習-1116">演習 11.16</a></h2>
+<div class="panel-primary">
+<p>$$
+K(\mathbf{r})=\frac{1}{2}|\mathbf{r}|^{2}=\frac{1}{2} \sum_{i} r_{i}^{2} \tag{11.56}
+$$
+$$
+H(\mathbf{z}, \mathbf{r})=E(\mathbf{z})+K(\mathbf{r}) \tag{11.57}
+$$
+および
+$$
+p(\mathbf{z}, \mathbf{r})=\frac{1}{Z_{H}} \exp (-H(\mathbf{z}, \mathbf{r})) \tag{11.63}
+$$
+を用いて，条件付き分布$p(\mathbf{r}\mid \mathbf{z})$がガウス分布であることを示せ．</p>
+</div>
+<p>※
+ベイズの定理と(11.54),(11.63)によれば、
+$$
+\begin{align}
+p(\mathbf{r} \mid \mathbf{z})&amp;=\frac{p(\mathbf{z}, \mathbf{r})}{p(\mathbf{z})}\
+&amp;= \frac{1 / Z_{H} \cdot \exp (-H(\mathbf{z}, \mathbf{r}))}{1 / Z_{p} \cdot \exp (-E(\mathbf{z}))}\
+&amp;= \frac{Z_{p}}{Z_{H}} \cdot \exp (-K(\mathbf{r}))(\because 11.57)\
+&amp;= \frac{Z_{p}}{Z_{H}} \cdot \exp (-\frac{1}{2} \sum_{i} r_{i}^{2})(\because 11.56)
+\end{align}
+$$</p>
+<p>従って、$p(\mathbf{r} \mid \mathbf{z})$はガウス分布に従う。</p>
+<h2 id="演習-1117"><a class="header" href="#演習-1117">演習 11.17</a></h2>
+<div class="panel-primary">
+<p>2つの確率
+$$
+\frac{1}{Z_{H}} \exp (-H(\mathcal{R})) \delta V \frac{1}{2} \min \left{1, \exp \left(H(\mathcal{R})-H\left(\mathcal{R}^{\prime}\right)\right)\right} \tag{11.68}
+$$
+$$
+\frac{1}{Z_{H}} \exp \left(-H\left(\mathcal{R}^{\prime}\right)\right) \delta V \frac{1}{2} \min \left{1, \exp \left(H\left(\mathcal{R}^{\prime}\right)-H(\mathcal{R})\right)\right} \tag{11.69}
+$$
+が等しくよってハイブリッドモンテカルロアルゴリズムで詳細釣り合い条件が満たされることを確認せよ．</p>
+</div>
+<p>$$
+\frac{1}{Z_{H}} \exp (-H(R)) \delta V \frac{1}{2} \min \left{1, \exp \left(H(R)-H\left(R^{\prime}\right)\right)\right}
+\tag{11.68}
+$$
+$$
+\frac{1}{Z_{H}} \exp \left(-H\left(R^{\prime}\right)\right) \delta V \frac{1}{2} \min \left{1, \exp \left(H\left(R^{\prime}\right)-H(R)\right)\right}
+\tag{11.69}
+$$</p>
+<p>$H(R)=H\left(R^{\prime}\right)$の時、両者は明らかに等しい。
+$H(R)&gt;H\left(R^{\prime}\right)$の時、(11.68)は
+$$
+\frac{1}{Z_{H}} \exp (-H(R)) \delta V \frac{1}{2}
+$$
+に減少する。
+この時、$(11.69)$は</p>
+<p>$$
+\frac{1}{Z_{H}} \exp \left(-H\left(R^{\prime}\right)\right) \delta V \frac{1}{2} \exp \left(H\left(R^{\prime}\right)-H(R)\right)
+=\frac{1}{Z_{H}} \exp (-H(R)) \delta V \frac{1}{2}
+$$
+ゆえに両者は同一である。</p>
+<p>$H(R)&lt;H\left(R^{\prime}\right)$の時も同様である。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch12.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="ch10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ch12.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
