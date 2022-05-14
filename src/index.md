@@ -4,6 +4,11 @@ PRMLの勉強会のときに作成した解答例です。不備や修正すべ�
 https://github.com/YoshitakaMo/prml-exercise-solution
 こちらのissueやPull Requestを使って知らせてください。
 
+## 表示方法
+
+このGitHubリポジトリをクローンして、VSCode各章のmdファイルを開き、拡張機能の**Markdown All in One**を入れた状態でプレビューを表示してください。**Markdown Preview Enhanced**を利用すると表示形式を変更できます。
+それ以外の方法ではうまくレンダリングされません。
+
 ## 上巻(ch01-05)勉強会
 
 当研究室の学生で作成しました。
@@ -26,6 +31,3 @@ https://github.com/YoshitakaMo/prml-exercise-solution
 ## Amazonリンク
 - [PRML上巻](https://www.amazon.co.jp/dp/4621061224)
 - [PRML下巻](https://www.amazon.co.jp/dp/4621061240)
-
-## Contribution
-このtutorialは[mdbook](https://github.com/rust-lang-nursery/mdBook)で運用しています.
